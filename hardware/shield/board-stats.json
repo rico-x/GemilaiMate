@@ -1,0 +1,20 @@
+{
+  "board_size_mm": [
+    90,
+    75
+  ],
+  "copper_layers": 2,
+  "electronic_components": 34,
+  "smd_placements": 20,
+  "smd_unique_types": 6,
+  "smd_solder_contacts": 43,
+  "tht_solder_contacts_selected_socket_rows": 112,
+  "track_segments": 1093,
+  "vias": 75,
+  "pth_pad_sites_including_alternative_row": 121,
+  "npth_sites": 17,
+  "all_vias_tented": true,
+  "pcb_sha256": "6e6be39867a3d72463a991ace8d736d34375151601cdf0abe0bc48d50cc1f20a",
+  "pth_mask_front_openings": 121,
+  "pth_mask_back_openings": 121
+}

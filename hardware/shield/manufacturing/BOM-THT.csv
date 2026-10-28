@@ -1,0 +1,15 @@
+Reference,Quantity_per_board,Description,Assembly_notes
+U1 upper/lower,2,1x22 female 2.54mm >=8.5mm nominal,Populate ONE of the lower alternatives; verify real DevKit
+U2,1,SN74AHCT125N PDIP-14,Same logic as carrier v0.1
+J2,1,1x10 female 2.54mm >=8.5mm,"ADS1115 Blue; ten pins, ADDR wired GND"
+J7,2,1x5 female 2.54mm >=8.5mm,CJMCU-0102 rows 12.70mm ASSUMED; extra G left NC
+J3,1,1x6 female 2.54mm >=8.5mm,"MAX31855 VIN,3Vo NC,GND,DO,CS,CLK"
+J5,1,1x4 female 2.54mm >=8.5mm,RobotDyn control dock; power body outward; fit unverified
+J6,1,1x5 female 2.54mm >=8.5mm,SSR input pins 1/3/5; input terminal rework required for direct docking
+J1 J9 JP1,3,1x2 male 2.54mm,Power/display/USB disconnect
+J4 J10 JP3,3,1x3 male 2.54mm,Pressure / unused heater / MAX VIN select
+J8,1,1x4 male 2.54mm,Dry contact buttons only
+JP1 JP3 shunts,2,2.54mm removable shunt,Open JP1 for USB
+Module-side headers,1,1x10 + 2x5 + 1x6 + 1x4 male 2.54mm,Some are supplied loose with modules; orient for sockets
+SSR input header,1,1x5 male 2.54mm with pins 2/4 removed,Only replace low-voltage screw terminal; assumed 5.08mm signal pitch
+Mechanical retention,1,Insulating common frame and module supports,No power module may be supported by header alone

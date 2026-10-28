@@ -1,0 +1,316 @@
+{
+  "status": "PROTOTYPE - mechanical validation required",
+  "profiles": [
+    {
+      "reference": "J2",
+      "model": "ADS1115 Blue 28x17",
+      "geometry_status": "seller outline; 2.54 pitch assumed; received board not measured",
+      "url": "https://aliexpress.ru/item/1005009774074735.html?sku_id=12000050121529945",
+      "source_notes": "Selected Blue photo: one row of ten, VDD GND SCL SDA ADDR ALRT A0 A1 A2 A3; seller states 17x28 mm",
+      "outline_mm": [
+        28,
+        17
+      ],
+      "socket_height_mm": 8.5,
+      "body_rect_mm": [
+        2.54,
+        48.26,
+        30.48,
+        65.3
+      ],
+      "pin_centres_mm": [
+        {
+          "number": "1",
+          "x": 5.08,
+          "y": 63.5,
+          "name": "VDD"
+        },
+        {
+          "number": "2",
+          "x": 7.62,
+          "y": 63.5,
+          "name": "GND"
+        },
+        {
+          "number": "3",
+          "x": 10.16,
+          "y": 63.5,
+          "name": "SCL"
+        },
+        {
+          "number": "4",
+          "x": 12.7,
+          "y": 63.5,
+          "name": "SDA"
+        },
+        {
+          "number": "5",
+          "x": 15.24,
+          "y": 63.5,
+          "name": "ADDR"
+        },
+        {
+          "number": "6",
+          "x": 17.78,
+          "y": 63.5,
+          "name": "ALRT"
+        },
+        {
+          "number": "7",
+          "x": 20.32,
+          "y": 63.5,
+          "name": "A0"
+        },
+        {
+          "number": "8",
+          "x": 22.86,
+          "y": 63.5,
+          "name": "A1"
+        },
+        {
+          "number": "9",
+          "x": 25.4,
+          "y": 63.5,
+          "name": "A2"
+        },
+        {
+          "number": "10",
+          "x": 27.939999999999998,
+          "y": 63.5,
+          "name": "A3"
+        }
+      ]
+    },
+    {
+      "reference": "J7",
+      "model": "CJMCU-0102 TXS0102",
+      "geometry_status": "pin labels from selected seller photo; row distance 12.70 mm is an unmeasured assumption",
+      "url": "https://aliexpress.ru/item/32898604164.html?sku_id=65803725915",
+      "source_notes": "Two rows of five. GND/OE/VA/A1/A2 opposite GND/G/VB/B1/B2. G pad deliberately NC on carrier.",
+      "outline_mm": [
+        15.24,
+        15.24
+      ],
+      "row_spacing_mm": 12.7,
+      "socket_height_mm": 8.5,
+      "body_rect_mm": [
+        34.29,
+        49.53,
+        49.53,
+        64.77
+      ],
+      "pin_centres_mm": [
+        {
+          "number": "1",
+          "x": 36.83,
+          "y": 63.5,
+          "name": "GND_A"
+        },
+        {
+          "number": "2",
+          "x": 39.37,
+          "y": 63.5,
+          "name": "OE"
+        },
+        {
+          "number": "3",
+          "x": 41.91,
+          "y": 63.5,
+          "name": "VCCA"
+        },
+        {
+          "number": "4",
+          "x": 44.449999999999996,
+          "y": 63.5,
+          "name": "A1"
+        },
+        {
+          "number": "5",
+          "x": 46.989999999999995,
+          "y": 63.5,
+          "name": "A2"
+        },
+        {
+          "number": "6",
+          "x": 36.83,
+          "y": 50.8,
+          "name": "GND_B"
+        },
+        {
+          "number": "7",
+          "x": 39.37,
+          "y": 50.8,
+          "name": "G_RESERVED_NC"
+        },
+        {
+          "number": "8",
+          "x": 41.91,
+          "y": 50.8,
+          "name": "VCCB"
+        },
+        {
+          "number": "9",
+          "x": 44.449999999999996,
+          "y": 50.8,
+          "name": "B1"
+        },
+        {
+          "number": "10",
+          "x": 46.989999999999995,
+          "y": 50.8,
+          "name": "B2"
+        }
+      ]
+    },
+    {
+      "reference": "J3",
+      "model": "MAX31855 6-pin regulated breakout",
+      "geometry_status": "selected seller photo pinout; Adafruit v2 reference envelope, clone dimensions unmeasured",
+      "url": "https://aliexpress.ru/item/33050360870.html?sku_id=67508712590",
+      "source_notes": "VIN 3Vo GND DO CS CLK. 3Vo is an output and is NOT tied to carrier 3V3. Adafruit v2 is a reference, not proof of clone fit.",
+      "outline_mm": [
+        20.32,
+        22.86
+      ],
+      "socket_height_mm": 8.5,
+      "body_rect_mm": [
+        58.42,
+        47.5,
+        78.74,
+        70.36
+      ],
+      "pin_centres_mm": [
+        {
+          "number": "1",
+          "x": 74.93,
+          "y": 49.53,
+          "name": "VIN"
+        },
+        {
+          "number": "2",
+          "x": 72.39,
+          "y": 49.53,
+          "name": "3VO_NC"
+        },
+        {
+          "number": "3",
+          "x": 69.85000000000001,
+          "y": 49.53,
+          "name": "GND"
+        },
+        {
+          "number": "4",
+          "x": 67.31,
+          "y": 49.53,
+          "name": "DO"
+        },
+        {
+          "number": "5",
+          "x": 64.77000000000001,
+          "y": 49.53,
+          "name": "CS"
+        },
+        {
+          "number": "6",
+          "x": 62.230000000000004,
+          "y": 49.53,
+          "name": "CLK"
+        }
+      ]
+    },
+    {
+      "reference": "J5",
+      "model": "RobotDyn 16A Standard edge interface",
+      "geometry_status": "electrical order from selected seller image; mechanical dock and pin direction not measured",
+      "url": "https://aliexpress.ru/item/1005001965951718.html?sku_id=12000044296027587",
+      "source_notes": "Seller image states 60x42 mm; power body must extend outward from carrier, supported on common frame. No mains routing on carrier.",
+      "outline_mm": [
+        60,
+        42
+      ],
+      "socket_height_mm": 8.5,
+      "requires_mechanical_fit_check": true,
+      "body_rect_mm": [
+        1.27,
+        16.51,
+        3.81,
+        26.67
+      ],
+      "pin_centres_mm": [
+        {
+          "number": "1",
+          "x": 2.54,
+          "y": 17.78,
+          "name": "VCC5V"
+        },
+        {
+          "number": "2",
+          "x": 2.54,
+          "y": 20.32,
+          "name": "GND"
+        },
+        {
+          "number": "3",
+          "x": 2.54,
+          "y": 22.86,
+          "name": "ZC5V"
+        },
+        {
+          "number": "4",
+          "x": 2.54,
+          "y": 25.400000000000002,
+          "name": "PSM3V3"
+        }
+      ]
+    },
+    {
+      "reference": "J6",
+      "model": "TZT 5V1wayHigh input dock",
+      "geometry_status": "5.08 mm input-terminal pitch is a prototype assumption; received board not measured",
+      "url": "https://aliexpress.ru/item/1005004574175141.html?sku_id=12000057604741628",
+      "source_notes": "Selected board has a fixed three-way screw input terminal. Direct fit requires removing ONLY that low-voltage terminal and fitting pins at 1/3/5; verify DC+ DC- CH1 before any power.",
+      "signal_pitch_mm": 5.08,
+      "socket_height_mm": 8.5,
+      "requires_header_rework": true,
+      "alternate": "same three connected pins may take short control wires without modifying SSR",
+      "body_rect_mm": [
+        85.09,
+        49.53,
+        87.63,
+        62.23
+      ],
+      "pin_centres_mm": [
+        {
+          "number": "1",
+          "x": 86.36,
+          "y": 50.8,
+          "name": "DC_PLUS"
+        },
+        {
+          "number": "2",
+          "x": 86.36,
+          "y": 53.339999999999996,
+          "name": "SPACER_NC"
+        },
+        {
+          "number": "3",
+          "x": 86.36,
+          "y": 55.879999999999995,
+          "name": "DC_MINUS"
+        },
+        {
+          "number": "4",
+          "x": 86.36,
+          "y": 58.419999999999995,
+          "name": "SPACER_NC"
+        },
+        {
+          "number": "5",
+          "x": 86.36,
+          "y": 60.959999999999994,
+          "name": "CH1"
+        }
+      ]
+    }
+  ]
+}

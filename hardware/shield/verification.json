@@ -1,0 +1,109 @@
+{
+  "schematic_connectivity_matches_design": true,
+  "connected_nets": 29,
+  "source_version": "v0.1.0",
+  "firmware_ref": "v0.1.0",
+  "firmware_pin_checks": {
+    "pumpPin": {
+      "gpio": 9,
+      "carrier_pin": "U1.15",
+      "net": "PUMP_PWM"
+    },
+    "pumpSensePin": {
+      "gpio": 21,
+      "carrier_pin": "U1.40",
+      "net": "PUMP_ZC"
+    },
+    "valvePin": {
+      "gpio": 10,
+      "carrier_pin": "U1.16",
+      "net": "VALVE_3V3"
+    },
+    "heaterPin": {
+      "gpio": 14,
+      "carrier_pin": "U1.20",
+      "net": "HEATER_3V3"
+    },
+    "pressureScl": {
+      "gpio": 41,
+      "carrier_pin": "U1.29",
+      "net": "SCL_3V3"
+    },
+    "pressureSda": {
+      "gpio": 42,
+      "carrier_pin": "U1.28",
+      "net": "SDA_3V3"
+    },
+    "maxSckPin": {
+      "gpio": 6,
+      "carrier_pin": "U1.6",
+      "net": "TC_SCK"
+    },
+    "maxCsPin": {
+      "gpio": 7,
+      "carrier_pin": "U1.7",
+      "net": "TC_CS"
+    },
+    "maxMisoPin": {
+      "gpio": 4,
+      "carrier_pin": "U1.4",
+      "net": "TC_DO"
+    },
+    "brewButtonPin": {
+      "gpio": 38,
+      "carrier_pin": "U1.32",
+      "net": "BREW"
+    },
+    "steamButtonPin": {
+      "gpio": 48,
+      "carrier_pin": "U1.38",
+      "net": "STEAM"
+    },
+    "DETECT_EN_PIN": {
+      "gpio": 40,
+      "carrier_pin": "U1.30",
+      "net": "DETECT_EN"
+    },
+    "DETECT_VALUE_PIN": {
+      "gpio": 11,
+      "carrier_pin": "U1.17",
+      "net": "BOARD_ID"
+    }
+  },
+  "gpio35_36_37_unused": true,
+  "divider": {
+    "top_ohm": 10000,
+    "bottom_ohm": 1200,
+    "unloaded_mv": [
+      329.9415308291991,
+      377.9319654427646
+    ],
+    "pulldown_scenario_30k_to_60k_mv": [
+      318.65098785416785,
+      371.25065638376304
+    ],
+    "settled_10ms_from_zero_mv": [
+      329.9415308291991,
+      377.9319654427646
+    ]
+  },
+  "adc_attached_before_settling": true,
+  "adc_settling_ms": 10,
+  "board_id_window_mv": [
+    300,
+    400
+  ],
+  "button_closed_low_ratio_vdd_worst_scenario": 0.11947559880106377,
+  "zc_interface": "SN74LVC1G17DBV at 3V3, 5.5V-tolerant input; no TXS on ZC",
+  "mechanical_reference_size_mm": [
+    90,
+    75
+  ],
+  "mechanical_clone_and_mounts_not_verified": true,
+  "electrical_limits": [
+    "30-60kohm internal pulls are scenario values, not guaranteed component limits.",
+    "ADC error, GPIO source impedance and physical variation still need bench measurement.",
+    "ERC does not model module internals or certify mains isolation.",
+    "No physical assembly or USB upload has been performed."
+  ]
+}

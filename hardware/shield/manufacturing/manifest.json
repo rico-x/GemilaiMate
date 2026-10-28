@@ -1,0 +1,11 @@
+{
+  "variant": "shield-v0.2-prototype",
+  "size_mm": [
+    90,
+    75
+  ],
+  "pcb_sha256": "6e6be39867a3d72463a991ace8d736d34375151601cdf0abe0bc48d50cc1f20a",
+  "archive_sha256": "0244fb95082e94b079a7dd7bea977a165680cdde89c625bf969e3a0a80103daa",
+  "physical_assembly_verified": false,
+  "module_clone_geometry_verified": false
+}

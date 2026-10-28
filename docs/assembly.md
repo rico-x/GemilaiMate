@@ -1,5 +1,7 @@
 # Сборка carrier v0.1
 
+Этот документ описывает **carrier v0.1**. Для второго варианта см. [shield v0.2](shield.md): его разъёмы J2/J3/J6/J7 имеют другую распиновку.
+
 ![Carrier в сборе, 3D-вид](../hardware/carrier/previews/assembled-3d-front.png)
 
 3D-виды в сборе: [спереди](../hardware/carrier/previews/assembled-3d-front.png), [сзади](../hardware/carrier/previews/assembled-3d-back.png), [сверху](../hardware/carrier/previews/assembled-3d-top.png). Показан нижний ряд гнёзд A и перемычки JP1/JP3 в положении 1-2. DevKit упрощён (плата, USB-C, BOOT/RESET), модуль ESP32-S3-WROOM-1 - модель KiCad; геометрия реального клона и высоты требуют сверки.

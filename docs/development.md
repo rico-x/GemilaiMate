@@ -21,3 +21,13 @@ KiCad 10.0.7 использован для текущих производств
 Страницу [docs/wiring.html](wiring.html) генерирует `tools/build_wiring_page.py` из `hardware/carrier/connections.csv`, описания модулей и жгутов в самом скрипте и шаблона `tools/wiring_template.html`; текстура платы встраивается из `previews/board-top.png`. После изменения разъёмов, модулей или превью перезапустить скрипт. `tools/check_project.py` вызывает его с `--check` и падает, если страница устарела. `--fragment PATH` дополнительно пишет страницу без обёртки документа для публикации отдельно. Workflow `.github/workflows/pages.yml` при изменении `docs/wiring.html` в `main` публикует её на [GitHub Pages](https://rico-x.github.io/GemilaiMate/wiring.html).
 
 Проект имеет собственную историю Git и один актуальный набор материалов. Автоматического слияния или отслеживания исходного проекта нет. Полезные исправления переносятся вручную/патчем с адаптацией имён, проверкой лицензии и повторением тестов. При изменении кода обновлять `VERSION`, документацию, отчёты и согласованную пару прошивок; публиковать только текущие артефакты с явно указанным статусом аппаратных испытаний.
+
+## Второй аппаратный вариант shield
+
+Carrier v0.1 сохраняется в hardware/carrier. Shield v0.2 — в hardware/shield; файл gemilaimate-shield.kicad_pro открывается отдельно, со своими локальными библиотеками. Общая прошивка остаётся v0.1.0, исходники firmware не менялись.
+
+Проверка: `.venv/bin/python tools/check_project.py` проверяет оба варианта. Для восстановления shield из актуального carrier: KiCad Python запускает `hardware/shield/scripts/make_shield.py`, затем `route_shield.py`; обычный Python запускает `make_schematic.py`. Полный электрический/CAM экспорт: `.venv/bin/python tools/export_shield.py --kicad-cli /path/to/kicad-cli --kicad-python /path/to/kicad-python`. Скрипт останавливается при любом ERC/DRC/unconnected/parity и формирует отдельный prototype ZIP.
+
+Для PNG из SVG требуется CairoSVG из requirements-dev.txt и системный Cairo (на macOS Homebrew: cairo). Если динамический загрузчик не находит библиотеку, запускать экспорт с `DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib:/usr/lib`. Рабочая установленная копия KiCad в текущей сессии находится на смонтированном томе `/Volumes/KiCad/KiCad/KiCad.app`; пути не зашиты в исходники.
+
+`tools/build_shield_page.py` создаёт docs/shield.html и шаблон SVG 1:1 из design.json и текущих рендеров; `--check` выявляет устаревшие файлы. Страница carrier и её 3D сохраняются, shield имеет свою страницу. Pages публикует обе. Сохранённая нулевая DRC не означает измеренную геометрию модулей: допущения перечислены в module-profiles.json и docs/shield.md.

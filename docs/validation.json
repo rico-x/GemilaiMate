@@ -36,5 +36,29 @@
     "url": "https://github.com/rico-x/GemilaiMate/actions/runs/40653238272",
     "conclusion": "success",
     "code_commit": "59f4f32da13b477a2515482c141d564ec3ddf624"
+  },
+  "shield": {
+    "hardware_revision": "0.2 prototype",
+    "board_size_mm": [
+      90,
+      75
+    ],
+    "pcb_sha256": "6e6be39867a3d72463a991ace8d736d34375151601cdf0abe0bc48d50cc1f20a",
+    "erc_violations": 0,
+    "drc_violations": 0,
+    "unconnected": 0,
+    "schematic_parity": 0,
+    "firmware_gpio_checks": 13,
+    "same_firmware_as_carrier": "0.1.0",
+    "physical_assembly_verified": false,
+    "module_clone_geometry_verified": false,
+    "machine_fit_verified": false,
+    "carrier_sources_unchanged": true,
+    "full_regeneration_verified": true,
+    "track_segments": 1093,
+    "vias": 75,
+    "pth_front_mask_openings": 121,
+    "pth_back_mask_openings": 121,
+    "mask_generator_verified": true
   }
 }

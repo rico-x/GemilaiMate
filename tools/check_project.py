@@ -22,4 +22,5 @@ assert sum(int(row['Quantity_per_board']) for row in csv.DictReader((H/'manufact
 e=json.loads((H/'erc.json').read_text());assert all(not x['violations'] for x in e['sheets'])
 d=json.loads((H/'drc.json').read_text());assert all(not d[x] for x in ['violations','unconnected_items','schematic_parity'])
 subprocess.run([sys.executable,str(R/'tools/build_wiring_page.py'),'--check'],check=True,stdout=subprocess.DEVNULL)
+subprocess.run([sys.executable,str(R/'tools/check_shield.py')],check=True)
 print('PASS current project: links, branding, prototype notice, hardware hashes, BOM/CPL, stored ERC/DRC, wiring page')
