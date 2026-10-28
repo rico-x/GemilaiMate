@@ -29,5 +29,10 @@
     "controller": 703744,
     "display": 3373392
   },
-  "unchanged_copper_geometry_verified": true
+  "unchanged_copper_geometry_verified": true,
+  "github_ci": {
+    "url": "https://github.com/rico-x/GemilaiMate/actions/runs/40653238272",
+    "conclusion": "success",
+    "code_commit": "59f4f32da13b477a2515482c141d564ec3ddf624"
+  }
 }
