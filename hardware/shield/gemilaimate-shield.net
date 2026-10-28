@@ -1,9 +1,9 @@
 (export
 	(version "E")
 	(design
-		(source "/Users/rico-x/Documents/Codex/2026-10-27/yf/work/GemilaiMate-shield/hardware/shield/gemilaimate-shield.kicad_sch")
-		(date "2026-10-28T19:57:46")
-		(tool "Eeschema 10.0.7")
+		(source "/home/ubuntu/codex-builds/gemilaimate-shield-review-20261028/source/hardware/shield/gemilaimate-shield.kicad_sch")
+		(date "2026-10-28T20:45:02")
+		(tool "Eeschema 10.0.7-10.0.7~ubuntu26.04.1")
 		(sheet
 			(number "1")
 			(name "/")
@@ -11,12 +11,12 @@
 			(title_block
 				(title "GemilaiMate - LOW VOLTAGE carrier / Rico-X")
 				(company)
-				(rev "0.2.1 SHIELD - PROTOTYPE")
+				(rev "0.2.2 SHIELD - PROTOTYPE")
 				(date "2026-10-28")
 				(source "gemilaimate-shield.kicad_sch")
 				(comment
 					(number "1")
-					(value "Breakouts in dedicated sockets; edge docks for power-module controls. No mains on carrier.")
+					(value "Breakouts in dedicated sockets; J5/J6 wired controls to separate power modules. No mains on board.")
 				)
 				(comment
 					(number "2")
@@ -85,7 +85,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "c389f20c-8ae5-4d80-a228-8164687ca591")
+			(tstamps "34e71d0e-41e7-4003-92e7-660c9e2cedf3")
 			(units
 				(unit
 					(name "A")
@@ -131,7 +131,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "48d78215-de1d-49d5-bd45-61a486f37859")
+			(tstamps "bfecf84e-6983-4fe3-aa8a-44e59ef16e9e")
 			(units
 				(unit
 					(name "A")
@@ -177,7 +177,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "764be84f-03b9-43ec-b018-31e7337b41d3")
+			(tstamps "4dbbc27b-3c97-4bc8-a858-3e669cffbc9a")
 			(units
 				(unit
 					(name "A")
@@ -223,7 +223,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "77049623-3444-4488-b426-15fef5fedf00")
+			(tstamps "c6ab01f6-24d1-46c8-a3d3-de10fa33ebde")
 			(units
 				(unit
 					(name "A")
@@ -269,7 +269,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "fce72fed-e4a2-486c-b606-4dc020aff83c")
+			(tstamps "22c5117a-c0b0-4a81-b7a9-f73e4ba3c77a")
 			(units
 				(unit
 					(name "A")
@@ -315,7 +315,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "398c3305-d6d4-4ab5-8c67-95e0208146c2")
+			(tstamps "d3aab740-1b07-4210-a6de-a5dea6eb3dd7")
 			(units
 				(unit
 					(name "A")
@@ -361,7 +361,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "ffd76e9c-88d9-406d-a3cd-413fc93bf3a2")
+			(tstamps "cf930352-0123-47c0-b195-b102f34c4d56")
 			(units
 				(unit
 					(name "A")
@@ -407,7 +407,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "854edbef-2fbc-4306-aefc-33461fb5b9db")
+			(tstamps "f98bcfa2-02d3-4cb1-9b38-cb8be091a362")
 			(units
 				(unit
 					(name "A")
@@ -477,7 +477,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "70bb9555-a58f-4ae7-9519-a897612e6cb4")
+			(tstamps "8c629e2c-37a1-4189-9a3d-28408b5d7bf1")
 			(units
 				(unit
 					(name "A")
@@ -535,7 +535,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "2e48511b-2c29-4737-b599-8cbd13dc226d")
+			(tstamps "84ce9f2b-f01c-4f74-9f5d-ef0c0509f01b")
 			(units
 				(unit
 					(name "A")
@@ -555,7 +555,7 @@
 		)
 		(comp
 			(ref "J5")
-			(value "ROBOTDYN EDGE DOCK 1x4")
+			(value "ROBOTDYN CABLE 1x4")
 			(footprint "GemilaiMate:J5_socket_shield")
 			(fields
 				(field
@@ -584,7 +584,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "b0b930f7-b351-4f36-a770-26a1c4a6210f")
+			(tstamps "70554db5-088e-4874-8e7f-57c95a62e728")
 			(units
 				(unit
 					(name "A")
@@ -607,7 +607,7 @@
 		)
 		(comp
 			(ref "J6")
-			(value "SSR EDGE DOCK 1x5 USE 1-3-5")
+			(value "SSR CABLE 1x5 USE 1-3-5")
 			(footprint "GemilaiMate:J6_socket_shield")
 			(fields
 				(field
@@ -636,7 +636,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "6c8fbad9-3bb6-424b-ba40-172048e73459")
+			(tstamps "cc6e0161-7277-4948-a95a-cc2b769c76c2")
 			(units
 				(unit
 					(name "A")
@@ -662,7 +662,7 @@
 		)
 		(comp
 			(ref "J7")
-			(value "CJMCU-0102 SOCKET 2x5")
+			(value "CJMCU-0102 SOCKET 2x1x5")
 			(footprint "GemilaiMate:J7_socket_shield")
 			(fields
 				(field
@@ -691,7 +691,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "2b458558-3cda-4833-aa43-4d1c5a540673")
+			(tstamps "45c9bd0d-af3f-40ff-9d42-3eb4e83d8ef0")
 			(units
 				(unit
 					(name "A")
@@ -761,7 +761,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "82969012-2830-42c6-9db1-77883bab94be")
+			(tstamps "239dc374-5a0e-4337-9d9a-08973f40af85")
 			(units
 				(unit
 					(name "A")
@@ -813,7 +813,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "af3b89a5-ddd6-45f2-98f0-2089afc81f67")
+			(tstamps "84f91e42-90b1-44a5-8f92-4f2c7ca8292f")
 			(units
 				(unit
 					(name "A")
@@ -859,7 +859,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "61eea081-a221-43f1-9d0e-6b4bd3e7bef1")
+			(tstamps "c3c7ef59-0b98-4272-a77e-53a2789b81f9")
 			(units
 				(unit
 					(name "A")
@@ -908,7 +908,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "2c0a8369-b3fc-47b4-9719-7a91a11d616e")
+			(tstamps "71909587-a5a7-45bb-aa92-4d34dcddddbd")
 			(units
 				(unit
 					(name "A")
@@ -954,7 +954,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "69ffaab3-5a9d-406b-a297-a7ad6916b4c3")
+			(tstamps "5c619219-1e4c-4da2-ad40-7655e8dc97d2")
 			(units
 				(unit
 					(name "A")
@@ -1003,7 +1003,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "3d5f6667-e329-4a48-8a87-bd94c42dd66a")
+			(tstamps "3d396faa-2de6-4855-841b-fc23706c4493")
 			(units
 				(unit
 					(name "A")
@@ -1049,7 +1049,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "c00171b0-9246-40e4-af79-1d243894b6f8")
+			(tstamps "86aaf802-09f5-45ab-96e9-639fbc0b2ab1")
 			(units
 				(unit
 					(name "A")
@@ -1095,7 +1095,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "d266c14e-ca83-4e1b-8715-d9114892d652")
+			(tstamps "65332df4-a40c-4260-905c-1b6dae44f6e5")
 			(units
 				(unit
 					(name "A")
@@ -1141,7 +1141,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "5ef62003-824e-4a1d-a991-099a93d18975")
+			(tstamps "fe2def10-b59f-4e88-b1f0-4a8848374359")
 			(units
 				(unit
 					(name "A")
@@ -1187,7 +1187,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "95c51825-5187-4fcc-ae6c-63e4fc47c0f2")
+			(tstamps "acd9fe94-3ca6-48e8-a7a9-48d1b8932dfb")
 			(units
 				(unit
 					(name "A")
@@ -1233,7 +1233,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "ca8da3cf-cfaa-45a4-a56b-efd101443733")
+			(tstamps "50601fea-c34e-448a-8d1e-44b1ad91561f")
 			(units
 				(unit
 					(name "A")
@@ -1279,7 +1279,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "ea56e58e-51f7-45a4-bd16-d163bd60e251")
+			(tstamps "d71b01ec-3249-40b1-affe-e6fd22c90131")
 			(units
 				(unit
 					(name "A")
@@ -1325,7 +1325,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "bc6bcaa7-eb6e-413e-8ff0-858b3c2aef33")
+			(tstamps "d987c631-2df2-43e9-937c-8b64c195047a")
 			(units
 				(unit
 					(name "A")
@@ -1371,7 +1371,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "daf7d4c7-597c-4c5c-815e-1f58de65da2e")
+			(tstamps "a303174c-3e3f-4d50-b178-a1681f1a75e2")
 			(units
 				(unit
 					(name "A")
@@ -1417,7 +1417,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "aa7b66c3-4288-4183-b0f9-549f2a7aaeb3")
+			(tstamps "340a34ec-5bca-4379-83d0-101f9f944ea9")
 			(units
 				(unit
 					(name "A")
@@ -1463,7 +1463,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "1a799dfe-7924-4714-b093-fc76f969f73b")
+			(tstamps "642d9ada-fca8-440e-b115-5dbb1c394666")
 			(units
 				(unit
 					(name "A")
@@ -1509,7 +1509,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "7282dc1a-afb6-4b69-8847-505782a7b9a5")
+			(tstamps "0495290c-1344-4f2b-a23e-d6f91ba48fb2")
 			(units
 				(unit
 					(name "A")
@@ -1555,7 +1555,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "3e478cc4-e5a7-4c56-b1ee-e0c30f4dfe62")
+			(tstamps "5154aca0-1a1e-4f20-98eb-d640795c7a22")
 			(units
 				(unit
 					(name "A")
@@ -1601,7 +1601,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "4c59539f-69ff-4119-996b-9d289ead2096")
+			(tstamps "aab36e22-e236-4e42-a1c5-e999c53e0702")
 			(units
 				(unit
 					(name "A")
@@ -1773,7 +1773,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "9810abce-83c0-45ec-b511-23289cd398e9")
+			(tstamps "1ef977ec-43e8-4c84-8369-fbce8593a889")
 			(units
 				(unit
 					(name "A")
@@ -1855,7 +1855,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "95203cd7-2679-44b0-8ae3-e1d14cd2359f")
+			(tstamps "3965e942-63a7-4691-837d-c938b465a105")
 			(units
 				(unit
 					(name "A")
@@ -2290,7 +2290,7 @@
 				(field
 					(name "Reference") "J5")
 				(field
-					(name "Value") "ROBOTDYN EDGE DOCK 1x4")
+					(name "Value") "ROBOTDYN CABLE 1x4")
 				(field
 					(name "Footprint") "GemilaiMate:J5_socket_shield")
 				(field
@@ -2330,7 +2330,7 @@
 				(field
 					(name "Reference") "J6")
 				(field
-					(name "Value") "SSR EDGE DOCK 1x5 USE 1-3-5")
+					(name "Value") "SSR CABLE 1x5 USE 1-3-5")
 				(field
 					(name "Footprint") "GemilaiMate:J6_socket_shield")
 				(field
@@ -2375,7 +2375,7 @@
 				(field
 					(name "Reference") "J7")
 				(field
-					(name "Value") "CJMCU-0102 SOCKET 2x5")
+					(name "Value") "CJMCU-0102 SOCKET 2x1x5")
 				(field
 					(name "Footprint") "GemilaiMate:J7_socket_shield")
 				(field

@@ -1,19 +1,19 @@
-"""Convert the baseline v0.1 PCB to the v0.2.1 socket carrier.
+"""Convert the baseline v0.1 PCB to the v0.2.2 socket carrier.
 
 Read the active sibling carrier v0.1 with KiCad's pcbnew Python. Module geometry
 is an explicit prototype profile, not a claim about a received clone.
 """
 from pathlib import Path
 import json, csv
-import wx
-_app=wx.App(False)
+from kicad_runtime import application
+_app=application()
 import pcbnew as p
 
 H=Path(__file__).resolve().parents[1]
 BASE=H.parent/'carrier'
 B=p.LoadBoard(str(BASE/'gemilaimate-carrier.kicad_pcb'))
 D=json.loads((BASE/'design.json').read_text())
-tb=B.GetTitleBlock();tb.SetRevision('0.2.1');tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate('2026-10-28');B.SetTitleBlock(tb)
+tb=B.GetTitleBlock();tb.SetRevision('0.2.2');tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate('2026-10-28');B.SetTitleBlock(tb)
 for net in B.GetNetsByNetcode().values():
     if net.GetNetname().startswith('/'):
         net.SetNetname(net.GetNetname()[1:])
@@ -41,7 +41,7 @@ move('U1',1.27,0)
 D['rf_keepout']=[v+(1.27 if i%2==0 else 0) for i,v in enumerate(D['rf_keepout'])]
 for z in B.Zones():
     if z.GetIsRuleArea(): z.Move(V(1.27,0))
-move('J4',7.62-parts['J4']['x'],69.85-parts['J4']['y'])
+move('J4',8.89-parts['J4']['x'],69.85-parts['J4']['y'])
 move('J8',27.94-parts['J8']['x'],69.85-parts['J8']['y'])
 move('R12',17.78-parts['R12']['x'],69.85-parts['R12']['y'])
 move('C6',22.86-parts['C6']['x'],69.85-parts['C6']['y'])
@@ -57,23 +57,37 @@ def rectangle(fp,rect,layer,margin=0):
     for e,f in [((a,b),(c,b)),((c,b),(c,d)),((c,d),(a,d)),((a,d),(a,b))]:shape(fp,e,f,layer,.05 if layer==p.F_CrtYd else .1)
 
 profiles=[]
+socket_labels={
+ 'J2':[('1',3.4,66.7),('VDD ... A3',16.51,66.7)],
+ 'J3':[('1',77.5,46.1),('VIN ... CLK',68.58,72.0)],
+ 'J5':[('1',41.91,73.3)],
+ 'J6':[('1',88.5,48.1),('DC+',82.5,50.8),('DC-',82.5,55.88),('CH1',82.5,60.96)],
+ 'J7':[('1',35.6,66.6),('A 3V3',43,66.6),('B 5V',42,46.5)],
+}
 def socket(ref,value,pins,body,socket_boxes,meta):
     old=fps[ref];B.Remove(old)
     fp=p.FOOTPRINT(B);fp.SetReference(ref);fp.SetValue(value)
     name=ref+'_socket_shield';fp.SetFPID(p.LIB_ID('GemilaiMate',name))
     fp.SetPosition(V(pins[0][1],pins[0][2]));B.Add(fp)
     fp.Reference().SetPosition(V(body[0]+(body[2]-body[0])/2,body[1]-1.4))
+    if ref=='J5':fp.Reference().SetPosition(V(52.4,71.12))
     fp.Reference().SetTextSize(V(.8,.8));fp.Reference().SetTextThickness(p.FromMM(.12))
     fp.Value().SetVisible(False)
     for number,x,y,net,label in pins:
         pad=p.PAD(fp);pad.SetNumber(str(number));pad.SetPosition(V(x,y))
-        pad.SetAttribute(p.PAD_ATTRIB_PTH);pad.SetShape(p.PAD_SHAPE_CIRCLE)
+        pad.SetAttribute(p.PAD_ATTRIB_PTH);pad.SetShape(p.PAD_SHAPE_RECT if number==1 else p.PAD_SHAPE_CIRCLE)
         pad.SetSize(V(1.7,1.7));pad.SetDrillSize(V(1,1))
         # Do not mutate LSET.AllCuMask(): it is a cached native singleton.
         pad.SetLayerSet(p.PAD.PTHMask())
         if net: pad.SetNet(NETS_BY_NAME[net])
         fp.Add(pad)
     rectangle(fp,body,p.F_Fab)
+    # Full nominal module outline, or the cable connector body for J5/J6.
+    rectangle(fp,body,p.F_SilkS)
+    for label,x,y in socket_labels[ref]:
+        t=p.PCB_TEXT(fp);t.SetText(label);t.SetPosition(V(x,y));t.SetLayer(p.F_SilkS)
+        t.SetTextSize(V(.8,.8));t.SetTextThickness(p.FromMM(.12));fp.Add(t)
+    meta.update(silk_labels=[label for label,x,y in socket_labels[ref]],pin1_shape='rect',body_outline_layer='F.SilkS')
     # Daughterboard body is above 8.5 mm sockets; these module courtyards
     # are kept clear of other tall parts in the placement script.
     for box in socket_boxes:
@@ -81,10 +95,10 @@ def socket(ref,value,pins,body,socket_boxes,meta):
         rectangle(fp,box,p.F_SilkS)
     rec=dict(ref=ref,value=value,x=pins[0][1],y=pins[0][2],
         pins=[dict(number=str(n),x=x,y=y,net=nn,name=pn) for n,x,y,nn,pn in pins],
-        rect=body,kind='module_socket',footprint='GemilaiMate:'+name,
+        rect=body,kind='cable_connector' if ref in ['J5','J6'] else 'module_socket',footprint='GemilaiMate:'+name,
         module_profile=meta)
     parts[ref].clear();parts[ref].update(rec);fps[ref]=fp
-    profiles.append(dict(reference=ref,**meta,body_rect_mm=body,
+    profiles.append(dict(reference=ref,**meta,body_rect_mm=body if ref not in ['J5','J6'] else None,connector_rect_mm=body,
         pin_centres_mm=[dict(number=str(n),x=x,y=y,name=pn) for n,x,y,nn,pn in pins]))
 
 pitch=2.54
@@ -104,7 +118,7 @@ txs=[]
 for row,y,names,nets in [(0,63.5,['GND_A','OE','VCCA','A1','A2'],['GND','+3V3','+3V3','SCL_3V3','SDA_3V3']),
                         (1,50.8,['GND_B','G_RESERVED_NC','VCCB','B1','B2'],['GND',None,'+5V','SCL_5V','SDA_5V'])]:
     txs.extend((row*5+i+1,36.83+i*pitch,y,nets[i],names[i]) for i in range(5))
-socket('J7','CJMCU-0102 SOCKET 2x5',txs,[34.29,49.53,49.53,64.77],
+socket('J7','CJMCU-0102 SOCKET 2x1x5',txs,[34.29,49.53,49.53,64.77],
        [[35.56,62.23,48.26,64.77],[35.56,49.53,48.26,52.07]],
        dict(model='CJMCU-0102 TXS0102',geometry_status='pin labels from selected seller photo; row distance 12.70 mm is an unmeasured assumption',
             url='https://aliexpress.ru/item/32898604164.html?sku_id=65803725915',
@@ -121,23 +135,24 @@ socket('J3','MAX31855 VIN SOCKET 1x6',
             source_notes='VIN 3Vo GND DO CS CLK. 3Vo is an output and is NOT tied to carrier 3V3. Adafruit v2 is a reference, not proof of clone fit.',
             outline_mm=[20.32,22.86],socket_height_mm=8.5))
 
-socket('J5','ROBOTDYN EDGE DOCK 1x4',
+socket('J5','ROBOTDYN CABLE 1x4',
        [(i+1,41.91+i*pitch,71.12,nn,pn) for i,(nn,pn) in enumerate([('+5V','VCC5V'),('GND','GND'),('ZC_RAW','ZC5V'),('PUMP_PWM','PSM3V3')])],
        [40.64,69.85,50.8,72.39],[[40.64,69.85,50.8,72.39]],
-       dict(model='RobotDyn 16A Standard edge interface',geometry_status='electrical order from selected seller image; mechanical dock and pin direction not measured',
+       dict(model='RobotDyn 16A Standard external module',geometry_status='seller PCB outline only; header, heatsink, terminals and height unmeasured; no direct docking',
             url='https://aliexpress.ru/item/1005001965951718.html?sku_id=12000044296027587',
-            source_notes='Seller image states 60x42 mm. Bottom-edge dock, pin 1 LEFT in top view. Power body must extend below the board on its own support, clear of the left-side USB access corridor. Actual header offset/direction remains unmeasured. No mains routing on carrier.',
-            outline_mm=[60,42],socket_height_mm=8.5,dock_outward='bottom',requires_mechanical_fit_check=True))
+            source_notes='Seller image states 60x42 mm PCB only. Connect by four control wires to a separately retained module. Pin 1 LEFT on shield; no direct dock or header rework specified. No mains routing on shield.',
+            outline_mm=[60,42],height_mm=None,assembly_reservation_mm=[80,65,65],reservation_is_measured=False,
+            placement_on_shield=None,mounting_mode='external_wired',socket_height_mm=8.5,requires_mechanical_fit_check=True))
 
 ssr=[('+5V','DC_PLUS'),(None,'SPACER_NC'),('GND','DC_MINUS'),(None,'SPACER_NC'),('VALVE_IN','CH1')]
-socket('J6','SSR EDGE DOCK 1x5 USE 1-3-5',
+socket('J6','SSR CABLE 1x5 USE 1-3-5',
        [(i+1,86.36,50.8+i*pitch,nn,pn) for i,(nn,pn) in enumerate(ssr)],
        [85.09,49.53,87.63,62.23],[[85.09,49.53,87.63,62.23]],
-       dict(model='TZT 5V1wayHigh input dock',geometry_status='5.08 mm input-terminal pitch is a prototype assumption; received board not measured',
+       dict(model='TZT 5V1wayHigh external SSR',geometry_status='module outline, terminal and height unmeasured; no direct docking',
             url='https://aliexpress.ru/item/1005004574175141.html?sku_id=12000057604741628',
-            source_notes='Selected board has a fixed three-way screw input terminal. Direct fit requires removing ONLY that low-voltage terminal and fitting pins at 1/3/5; verify DC+ DC- CH1 before any power.',
-            signal_pitch_mm=5.08,socket_height_mm=8.5,requires_header_rework=True,
-            alternate='same three connected pins may take short control wires without modifying SSR'))
+            source_notes='Connect shield pins 1/3/5 to DC+/DC-/CH1 using three separate control wires and the original input screw terminal. Pins 2/4 NC. No input-terminal rework or module pitch match required.',
+            outline_mm=None,height_mm=None,assembly_reservation_mm=[60,45,40],reservation_is_measured=False,
+            placement_on_shield=None,mounting_mode='external_wired',signal_pitch_mm=5.08,socket_height_mm=8.5,requires_header_rework=False))
 
 # Extend only the old lower outline edge and its adjoining vertical edges.
 for item in B.GetDrawings():
@@ -148,7 +163,7 @@ for item in B.GetDrawings():
     elif isinstance(item,p.PCB_TEXT):
         txt=item.GetText()
         if txt=='1' and abs(p.ToMM(item.GetPosition().x)-67)<.1 and abs(p.ToMM(item.GetPosition().y)-8.89)<.1:item.SetPosition(V(68.75,8.89))
-        if txt.startswith('GemilaiMate v'): item.SetText('GemilaiMate v0.2.1 SHIELD - PROTOTYPE')
+        if txt.startswith('GemilaiMate v'): item.SetText('GemilaiMate v0.2.2 SHIELD - PROTOTYPE')
         if p.ToMM(item.GetPosition().y)>43:
             item.Move(V(0,HEIGHT-46-1))
 for x,y in [(3,72),(87,72)]:
@@ -158,7 +173,7 @@ for x,y in [(3,72),(87,72)]:
     fp.Reference().SetVisible(False);fp.Value().SetVisible(False)
 
 # Compact legible front labels, grouped on the free strip between MCU and modules.
-for txt,x,y in [('ADS1115 BLUE',16.5,45.2),('CJMCU-0102',42,45.2),('MAX31855 VIN',68.5,44.6),('PRESSURE',9,73.1),('BUTTONS',32,73.1),('NO MAINS ON CARRIER',46,43.18)]:
+for txt,x,y in [('ADS1115 BLUE',16.5,45.2),('CJMCU-0102',42,45.2),('MAX31855 VIN',68.5,44.6),('PRESSURE',10.3,73.1),('BUTTONS',32,73.1),('NO MAINS ON BOARD',46,43.18)]:
     t=p.PCB_TEXT(B);t.SetText(txt);t.SetPosition(V(x,y));t.SetLayer(p.F_SilkS)
     t.SetTextSize(V(.8,.8));t.SetTextThickness(p.FromMM(.12));B.Add(t)
 # A mechanical access envelope, NOT a copper keepout or measured cable model.
@@ -171,13 +186,15 @@ for aa,bb in [((-30,7.62),(4.8,7.62)),((4.8,7.62),(4.8,35.56)),((4.8,35.56),(-30
     shape(B,aa,bb,p.Dwgs_User,.15)
 t=p.PCB_TEXT(B);t.SetText('USB PLUG ACCESS - KEEP FREE');t.SetPosition(V(-13,6));t.SetLayer(p.Dwgs_User)
 t.SetTextSize(V(1,1));t.SetTextThickness(p.FromMM(.15));B.Add(t)
-D.update(revision='0.2.1 SHIELD PROTOTYPE 90x75',size_mm=[W,HEIGHT],
+D.update(revision='0.2.2 SHIELD PROTOTYPE 90x75',size_mm=[W,HEIGHT],
          mechanical_access=[usb_access],
          module_headers_unmeasured=True,manufacturing_release=False)
 D['mounts_mm'] += [[3,72],[87,72]]
+from mechanical_profiles import build_profiles
+D['mechanical_profiles']=build_profiles(D)
 (H/'design.json').write_text(json.dumps(D,ensure_ascii=False,indent=2)+'\n')
 (H/'module-profiles.json').write_text(json.dumps(dict(status='PROTOTYPE - mechanical validation required',profiles=profiles),ensure_ascii=False,indent=2)+'\n')
 for fp in fps.values():
     p.FootprintSave(str(H/'GemilaiMate.pretty'),fp)
 p.SaveBoard(str(H/'gemilaimate-shield.kicad_pcb'),B)
-print('Shield placement generated: 90x75; 3 local module sockets, 2 edge control docks; no mains copper.')
+print('Shield placement generated: 90x75; 3 local module sockets, 2 wired external controls; no mains copper.')

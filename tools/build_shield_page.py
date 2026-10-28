@@ -9,7 +9,7 @@ def build():
  svg=['<svg xmlns="http://www.w3.org/2000/svg" width="150mm" height="110mm" viewBox="0 0 150 110">',
  '<rect width="150" height="110" fill="white"/>',
  '<g font-family="Arial,sans-serif" fill="#183132">',
- '<text x="7" y="4" font-size="2.6">GemilaiMate shield v0.2.1 - 90 x 75 mm</text>',
+ '<text x="7" y="4" font-size="2.6">GemilaiMate shield v0.2.2 - 90 x 75 mm</text>',
  '<text x="7" y="8" font-size="1.7">PRINT 100% - NOMINAL CLONE GEOMETRY - Rico-X</text>',
  '<g transform="translate(35,12)"><rect width="90" height="75" fill="#f6f9f3" stroke="#1d4b40" stroke-width=".2"/>']
  for access in d['mechanical_access']:
@@ -21,11 +21,16 @@ def build():
   svg.append(f'<rect data-ref="{ref}" x="{a}" y="{b}" width="{e-a}" height="{f-b}" fill="{colors.get(ref,"#f0f2e8")}" stroke="#65776e" stroke-width=".12"/>')
   if not smd:svg.append(f'<text x="{(a+e)/2}" y="{(b+f)/2}" text-anchor="middle" font-size="1.4">{ref}</text>')
   for pin in c.get('physical_pads',c['pins']):
-   svg.append(f'<circle cx="{pin["x"]}" cy="{pin["y"]}" r=".5" fill="white" stroke="{"#ba3a20" if pin["number"]=="1" else "#3f4b44"}" stroke-width=".15"/>')
+   if pin['number']=='1':svg.append(f'<rect x="{pin["x"]-.5}" y="{pin["y"]-.5}" width="1" height="1" fill="white" stroke="#ba3a20" stroke-width=".15"/>')
+   else:svg.append(f'<circle cx="{pin["x"]}" cy="{pin["y"]}" r=".5" fill="white" stroke="#3f4b44" stroke-width=".15"/>')
+ for profile in d['mechanical_profiles']['occupied']:
+  if profile['kind']!='mated_plug':continue
+  a,b,z,e,f,top=profile['bbox_mm']
+  svg.append(f'<rect x="{a}" y="{b}" width="{e-a}" height="{f-b}" fill="none" stroke="#d08220" stroke-dasharray=".5,.5" stroke-width=".18"/>')
  for x,y in d['mounts_mm']:
   svg.append(f'<circle cx="{x}" cy="{y}" r="1.6" fill="white" stroke="#1d4b40" stroke-width=".18"/>')
  a,b,e,f=d['rf_keepout'];svg.append(f'<rect x="{a}" y="{b}" width="{e-a}" height="{f-b}" fill="none" stroke="#238d89" stroke-dasharray="1,.7" stroke-width=".18"/>')
- svg+=['<path d="M45.72 73v5 l-1 -1 m1 1 l1 -1" stroke="#183132" stroke-width=".25" fill="none"/><text x="45.72" y="81" text-anchor="middle" font-size="1.7">J5: RobotDyn outward DOWN</text>',
+ svg+=['<path d="M45.72 73v5 l-1 -1 m1 1 l1 -1" stroke="#183132" stroke-width=".25" fill="none"/><text x="45.72" y="81" text-anchor="middle" font-size="1.7">J5: 4 control wires, external RobotDyn</text>',
  '</g><text x="15" y="97" font-size="1.9">1:1 fit template. Red ring: pin 1. Check real modules, plugs and enclosure.</text>',
  '<path d="M10 98v4 M10 100h100 M110 98v4" stroke="#183132" stroke-width=".2" fill="none"/>',
  '<text x="60" y="105" text-anchor="middle" font-size="2">100 mm calibration line</text></g></svg>']
@@ -40,7 +45,7 @@ def build():
   if not p.exists():return '<p>Рендер пока не экспортирован.</p>'
   return '<img alt="Номинальная сборка shield" src="data:image/png;base64,'+base64.b64encode(p.read_bytes()).decode()+'">'
  page=(R/'tools/shield_template.html').read_text()
- page=page.replace('%%FRONT%%',img('assembled-3d-front.png')).replace('%%TOP%%',img('assembled-3d-top.png')).replace('%%FIT%%',svg).replace('%%TABLES%%',''.join(rows))
+ page=page.replace('%%FRONT%%',img('assembled-3d-front.png')).replace('%%TOP%%',img('assembled-3d-top.png')).replace('%%MARKINGS%%',img('orientation-silkscreen.png')).replace('%%FIT%%',svg).replace('%%TABLES%%',''.join(rows))
  return svg,page
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--check',action='store_true');a=ap.parse_args()

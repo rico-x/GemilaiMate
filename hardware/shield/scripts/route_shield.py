@@ -1,8 +1,8 @@
 """Two-layer grid router; KiCad DRC, not this router, is the final authority."""
 import json, math, heapq, itertools, random, time
 from pathlib import Path
-import wx
-_app=wx.App(False)
+from kicad_runtime import application
+_app=application()
 import pcbnew as p
 
 OUT=Path(__file__).resolve().parents[1]

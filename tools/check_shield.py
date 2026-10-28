@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Check the active shield variant and pin-layout invariants without hardware."""
 from pathlib import Path
-import csv,hashlib,json,subprocess,sys
+import argparse,csv,hashlib,json,math,subprocess,sys
+import sexpdata as sx
 R=Path(__file__).resolve().parents[1];H=R/'hardware/shield'
 def check_usb_access(d):
  parts={c['ref']:c for c in d['parts']}
@@ -14,19 +15,66 @@ def check_usb_access(d):
   b=c['rect']
   assert not (max(b[0],zone[0])<min(b[2],zone[2]) and max(b[1],zone[1])<min(b[3],zone[3])), f'{ref} blocks USB access'
  dock=parts['J5'];pins=dock['pins']
- assert dock['module_profile']['dock_outward']=='bottom'
+ assert dock['module_profile']['mounting_mode']=='external_wired'
  assert [p['net'] for p in pins]==['+5V','GND','ZC_RAW','PUMP_PWM']
  assert all(abs(p['y']-71.12)<1e-6 for p in pins)
  assert all(abs(p['x']-(41.91+i*2.54))<1e-6 for i,p in enumerate(pins))
  assert dock['rect'][1]-zone[3]>30
 
+def check_mechanical_profiles(d):
+ m=d['mechanical_profiles'];items=m['occupied'];owners={i['owner'] for i in items if i['kind']=='mated_plug'}
+ assert owners=={'J1','J4','J8','J9','J5','J6'}
+ assert all(i['measured'] is False for i in items)
+ overlaps=lambda a,b:all(max(a[k],b[k])<min(a[k+3],b[k+3]) for k in range(3))
+ for ix,a in enumerate(items):
+  assert all(a['bbox_mm'][k]<a['bbox_mm'][k+3] for k in range(3))
+  for b in items[ix+1:]:
+   if a['owner']!=b['owner']:
+    assert not overlaps(a['bbox_mm'],b['bbox_mm']), f"Nominal occupied envelopes collide: {a['id']} / {b['id']}"
+  if a['owner']!='U1':
+   zone=d['mechanical_access'][0]['rect_mm'];box=a['bbox_mm']
+   assert not(max(box[0],zone[0])<min(box[3],zone[2]) and max(box[1],zone[1])<min(box[4],zone[3])),a['id']+' blocks USB'
+ fast=m['fasteners'];assert fast['head_diameter_max_mm']==5.5 and fast['washer_allowed'] is False
+ for x,y in d['mounts_mm']:
+  for a in items:
+   b=a['bbox_mm'];distance=math.hypot(max(b[0]-x,0,x-b[3]),max(b[1]-y,0,y-b[4]))
+   assert distance-fast['head_diameter_max_mm']/2>=fast['minimum_planar_gap_mm'],f"M3 head / {a['id']} interference"
+ for ext in m['external_power_modules']:
+  assert ext['mounting_mode']=='external_wired' and ext['placement_mm'] is None
+  assert ext['reservation_is_measured'] is False and ext['clearance_result'].startswith('NOT ASSESSED')
+
+def check_markings(board,d):
+ tree=sx.loads(board)
+ field=lambda node,key:next((v for v in node if isinstance(v,list) and v and str(v[0])==key),None)
+ footprints={next(p[2] for p in n if isinstance(p,list) and len(p)>2 and str(p[0])=='property' and p[1]=='Reference'):n for n in tree if isinstance(n,list) and n and str(n[0])=='footprint'}
+ for ref in ['J2','J3','J5','J6','J7']:
+  fp=footprints[ref];part=next(c for c in d['parts'] if c['ref']==ref)
+  pad1=[p for p in fp if isinstance(p,list) and len(p)>3 and str(p[0])=='pad' and p[1]=='1']
+  assert len(pad1)==1 and str(pad1[0][3])=='rect',ref+' needs square pad 1'
+  texts={n[2] for n in fp if isinstance(n,list) and len(n)>2 and str(n[0])=='fp_text' and field(n,'layer')[1]=='F.SilkS'}
+  assert set(part['module_profile']['silk_labels'])<=texts,ref+' missing silk labels'
+  at=field(fp,'at');ox,oy=map(float,at[1:3]);assert len(at)<4 or float(at[3])==0
+  point=lambda n,key:tuple(round(float(v)+(ox if i==0 else oy),4) for i,v in enumerate(field(n,key)[1:3]))
+  lines={frozenset((point(n,'start'),point(n,'end'))) for n in fp if isinstance(n,list) and n and str(n[0])=='fp_line' and field(n,'layer')[1]=='F.SilkS'}
+  a,b,c,e=part['rect'];corners=[(a,b),(c,b),(c,e),(a,e)]
+  expected={frozenset((tuple(round(v,4) for v in corners[i]),tuple(round(v,4) for v in corners[(i+1)%4]))) for i in range(4)}
+  assert expected<=lines,ref+' missing full F.SilkS outline'
+
 def main():
+ ap=argparse.ArgumentParser();ap.add_argument('--write-report',action='store_true');args=ap.parse_args()
  d=json.loads((H/'design.json').read_text());parts={c['ref']:c for c in d['parts']}
  check_usb_access(d)
+ check_mechanical_profiles(d)
+ profiles={p['reference']:p for p in json.loads((H/'module-profiles.json').read_text())['profiles']}
+ for ref in ['J5','J6']:
+  assert profiles[ref]['body_rect_mm'] is None and profiles[ref]['connector_rect_mm']==parts[ref]['rect']
+  assert profiles[ref]['mounting_mode']==parts[ref]['module_profile']['mounting_mode']=='external_wired'
+ assert profiles['J6']['requires_header_rework'] is False
  assert d['size_mm']==[90,75] and len(parts)==34
  assert d['module_headers_unmeasured'] is True
  board=(H/'gemilaimate-shield.kicad_pcb').read_text()
  assert 'github.com/Rico-X/GemilaiMate' in board and 'Rico-X' in board
+ check_markings(board,d)
  stats=json.loads((H/'board-stats.json').read_text())
  assert stats['pcb_sha256']==hashlib.sha256((H/'gemilaimate-shield.kicad_pcb').read_bytes()).hexdigest()
  assert stats['pth_mask_front_openings']==stats['pth_pad_sites_including_alternative_row']
@@ -66,5 +114,15 @@ def main():
   assert abs(float(row['Mid_Y_mm'])-(75-c['y']))<.00001
  subprocess.run([sys.executable,str(H/'scripts/verify_netlist.py')],check=True,stdout=subprocess.DEVNULL)
  subprocess.run([sys.executable,str(R/'tools/build_shield_page.py'),'--check'],check=True,stdout=subprocess.DEVNULL)
- print('PASS shield: electrical reports, hardware hash, shared SMD BOM, NC outputs, socket pinout, nominal fit, CPL and 13 firmware GPIOs')
+ report=dict(revision=d['revision'],pcb_sha256=stats['pcb_sha256'],nominal_module_plug_cable_envelopes='PASS',
+             marking_checks='PASS: square pad 1, label 1, full F.SilkS outline and pin-function labels',
+             populated_mating_connector_profiles=['J1','J4','J8','J9','J5','J6'],
+             mounting_head_max_diameter_mm=5.5,washers_allowed=False,
+             external_power_modules='NOT PLACED: J5 and J6 use control wires; separate retention required',
+             real_module_geometry_verified=False,real_connector_geometry_verified=False,
+             physical_retention_verified=False,machine_fit_verified=False)
+ report_path=H/'mechanical-check.json'
+ if args.write_report:report_path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+ else:assert json.loads(report_path.read_text())==report,'Mechanical report is stale'
+ print('PASS shield: electrical reports, hardware hash, square pin 1 and silk outlines/labels, nominal module/plug/cable/M3 clearance, shared BOM and 13 GPIOs. Real fit and external power-module layout NOT VERIFIED.')
 if __name__=='__main__':main()

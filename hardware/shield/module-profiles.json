@@ -12,7 +12,19 @@
         17
       ],
       "socket_height_mm": 8.5,
+      "silk_labels": [
+        "1",
+        "VDD ... A3"
+      ],
+      "pin1_shape": "rect",
+      "body_outline_layer": "F.SilkS",
       "body_rect_mm": [
+        2.54,
+        48.26,
+        30.48,
+        65.3
+      ],
+      "connector_rect_mm": [
         2.54,
         48.26,
         30.48,
@@ -93,7 +105,20 @@
       ],
       "row_spacing_mm": 12.7,
       "socket_height_mm": 8.5,
+      "silk_labels": [
+        "1",
+        "A 3V3",
+        "B 5V"
+      ],
+      "pin1_shape": "rect",
+      "body_outline_layer": "F.SilkS",
       "body_rect_mm": [
+        34.29,
+        49.53,
+        49.53,
+        64.77
+      ],
+      "connector_rect_mm": [
         34.29,
         49.53,
         49.53,
@@ -173,7 +198,19 @@
         22.86
       ],
       "socket_height_mm": 8.5,
+      "silk_labels": [
+        "1",
+        "VIN ... CLK"
+      ],
+      "pin1_shape": "rect",
+      "body_outline_layer": "F.SilkS",
       "body_rect_mm": [
+        58.42,
+        47.5,
+        78.74,
+        70.36
+      ],
+      "connector_rect_mm": [
         58.42,
         47.5,
         78.74,
@@ -220,18 +257,32 @@
     },
     {
       "reference": "J5",
-      "model": "RobotDyn 16A Standard edge interface",
-      "geometry_status": "electrical order from selected seller image; mechanical dock and pin direction not measured",
+      "model": "RobotDyn 16A Standard external module",
+      "geometry_status": "seller PCB outline only; header, heatsink, terminals and height unmeasured; no direct docking",
       "url": "https://aliexpress.ru/item/1005001965951718.html?sku_id=12000044296027587",
-      "source_notes": "Seller image states 60x42 mm. Bottom-edge dock, pin 1 LEFT in top view. Power body must extend below the board on its own support, clear of the left-side USB access corridor. Actual header offset/direction remains unmeasured. No mains routing on carrier.",
+      "source_notes": "Seller image states 60x42 mm PCB only. Connect by four control wires to a separately retained module. Pin 1 LEFT on shield; no direct dock or header rework specified. No mains routing on shield.",
       "outline_mm": [
         60,
         42
       ],
+      "height_mm": null,
+      "assembly_reservation_mm": [
+        80,
+        65,
+        65
+      ],
+      "reservation_is_measured": false,
+      "placement_on_shield": null,
+      "mounting_mode": "external_wired",
       "socket_height_mm": 8.5,
-      "dock_outward": "bottom",
       "requires_mechanical_fit_check": true,
-      "body_rect_mm": [
+      "silk_labels": [
+        "1"
+      ],
+      "pin1_shape": "rect",
+      "body_outline_layer": "F.SilkS",
+      "body_rect_mm": null,
+      "connector_rect_mm": [
         40.64,
         69.85,
         50.8,
@@ -266,15 +317,33 @@
     },
     {
       "reference": "J6",
-      "model": "TZT 5V1wayHigh input dock",
-      "geometry_status": "5.08 mm input-terminal pitch is a prototype assumption; received board not measured",
+      "model": "TZT 5V1wayHigh external SSR",
+      "geometry_status": "module outline, terminal and height unmeasured; no direct docking",
       "url": "https://aliexpress.ru/item/1005004574175141.html?sku_id=12000057604741628",
-      "source_notes": "Selected board has a fixed three-way screw input terminal. Direct fit requires removing ONLY that low-voltage terminal and fitting pins at 1/3/5; verify DC+ DC- CH1 before any power.",
+      "source_notes": "Connect shield pins 1/3/5 to DC+/DC-/CH1 using three separate control wires and the original input screw terminal. Pins 2/4 NC. No input-terminal rework or module pitch match required.",
+      "outline_mm": null,
+      "height_mm": null,
+      "assembly_reservation_mm": [
+        60,
+        45,
+        40
+      ],
+      "reservation_is_measured": false,
+      "placement_on_shield": null,
+      "mounting_mode": "external_wired",
       "signal_pitch_mm": 5.08,
       "socket_height_mm": 8.5,
-      "requires_header_rework": true,
-      "alternate": "same three connected pins may take short control wires without modifying SSR",
-      "body_rect_mm": [
+      "requires_header_rework": false,
+      "silk_labels": [
+        "1",
+        "DC+",
+        "DC-",
+        "CH1"
+      ],
+      "pin1_shape": "rect",
+      "body_outline_layer": "F.SilkS",
+      "body_rect_mm": null,
+      "connector_rect_mm": [
         85.09,
         49.53,
         87.63,

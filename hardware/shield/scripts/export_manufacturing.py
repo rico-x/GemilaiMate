@@ -1,7 +1,7 @@
 from pathlib import Path
 import csv,json,hashlib
-import wx
-_app=wx.App(False)
+from kicad_runtime import application
+_app=application()
 import pcbnew as p
 out=Path(__file__).resolve().parents[1];m=out/'manufacturing';d=json.loads((out/'design.json').read_text());board=p.LoadBoard(str(out/'gemilaimate-shield.kicad_pcb'))
 # Match the physical KiCad pad coordinates, including alternative ESP rows,
@@ -35,15 +35,16 @@ csvout('BOM-THT.csv',['Reference','Quantity_per_board','Description','Assembly_n
  ['J2',1,'1x10 female 2.54mm >=8.5mm','ADS1115 Blue; ten pins, ADDR wired GND'],
  ['J7',2,'1x5 female 2.54mm >=8.5mm','CJMCU-0102 rows 12.70mm ASSUMED; extra G left NC'],
  ['J3',1,'1x6 female 2.54mm >=8.5mm','MAX31855 VIN,3Vo NC,GND,DO,CS,CLK'],
- ['J5',1,'1x4 female 2.54mm >=8.5mm','Bottom edge, pin 1 LEFT in top view; RobotDyn outward DOWN; preserve left USB corridor; fit unverified'],
- ['J6',1,'1x5 female 2.54mm >=8.5mm','SSR input pins 1/3/5; input terminal rework required for direct docking'],
+ ['J5',1,'1x4 female 2.54mm >=8.5mm','Four-wire control harness to separately retained RobotDyn; pin 1 LEFT; no direct docking'],
+ ['J6',1,'1x5 female 2.54mm >=8.5mm','Three-wire control harness, shield pins 1/3/5 to original SSR DC+/DC-/CH1 screw terminal; 2/4 NC'],
  ['J1 J9 JP1',3,'1x2 male 2.54mm','Power/display/USB disconnect'],
  ['J4 J10 JP3',3,'1x3 male 2.54mm','Pressure / unused heater / MAX VIN select'],
  ['J8',1,'1x4 male 2.54mm','Dry contact buttons only'],
  ['JP1 JP3 shunts',2,'2.54mm removable shunt','Open JP1 for USB'],
- ['Module-side headers',1,'1x10 + 2x5 + 1x6 + 1x4 male 2.54mm','Some are supplied loose with modules; orient for sockets'],
- ['SSR input header',1,'1x5 male 2.54mm with pins 2/4 removed','Only replace low-voltage screw terminal; assumed 5.08mm signal pitch'],
- ['Mechanical retention',1,'Insulating common frame and module supports','No power module may be supported by header alone'],
+ ['Module-side headers',1,'1x10 + (2 x 1x5) + 1x6 male 2.54mm','TXS uses TWO independent 1x5 rows; 12.70mm spacing ASSUMED until measured, not a standard 2x5 block'],
+ ['J5 J6 control harnesses',1,'4 + 3 flexible control wires; male 2.54mm contacts at shield','RobotDyn original header and SSR original input terminal; do not remove SSR screw terminals'],
+ ['Mechanical retention',1,'Insulating tray, adjustable padded keepers and underside supports','Use existing four PCB mounts; retain each module PCB edge independently per docs/retention.md'],
+ ['PCB fasteners',4,'M3 nylon or insulated head <=5.5mm; no washers','J4 moved right by 1.27mm; respect mating-plug allowance and check real hardware'],
 ])
 
 pos=list(csv.DictReader((m/'positions-kicad.csv').open()));byref={c['ref']:c for c in d['parts']};assert len(pos)==20

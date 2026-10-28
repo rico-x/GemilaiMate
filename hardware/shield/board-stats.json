@@ -9,12 +9,12 @@
   "smd_unique_types": 6,
   "smd_solder_contacts": 43,
   "tht_solder_contacts_selected_socket_rows": 112,
-  "track_segments": 1437,
-  "vias": 84,
+  "track_segments": 1360,
+  "vias": 96,
   "pth_pad_sites_including_alternative_row": 121,
   "npth_sites": 17,
   "all_vias_tented": true,
-  "pcb_sha256": "5d3048600ab643fb4e74c024cb1ca43cba27d931c3561ab297380fd94f116c05",
+  "pcb_sha256": "fb138cb06c1b0c2370d1649e95a9eb33aee9c497e3100022a5b71b11908a1e4e",
   "pth_mask_front_openings": 121,
   "pth_mask_back_openings": 121
 }

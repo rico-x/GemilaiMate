@@ -1,21 +1,21 @@
 """Align saved PCB to schematic and assign nominal module/socket 3D models."""
 import json, math
 from pathlib import Path
-import wx
-_app=wx.App(False)
+from kicad_runtime import application
+_app=application()
 import pcbnew as p
 
 H=Path(__file__).resolve().parents[1]
 from make_3d_models import box
 B=p.LoadBoard(str(H/'gemilaimate-shield.kicad_pcb'))
-tb=B.GetTitleBlock();tb.SetRevision('0.2.1');tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate('2026-10-28');B.SetTitleBlock(tb)
+tb=B.GetTitleBlock();tb.SetRevision('0.2.2');tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate('2026-10-28');B.SetTitleBlock(tb)
 for item in B.GetDrawings():
     if isinstance(item,p.PCB_TEXT) and item.GetLayer()==p.B_SilkS and abs(p.ToMM(item.GetPosition().x)-32)<.01 and abs(p.ToMM(item.GetPosition().y)-23)<.01:
         item.SetText('github.com/Rico-X/GemilaiMate')
     if isinstance(item,p.PCB_TEXT) and item.GetText()=='1' and abs(p.ToMM(item.GetPosition().x)-67)<.1 and abs(p.ToMM(item.GetPosition().y)-8.89)<.1:
         item.SetPosition(p.VECTOR2I(p.FromMM(68.75),p.FromMM(8.89)))
 # Mark the revised dock orientation on the manufactured board, not only in docs.
-for label,x,y in [('ROBOTDYN',45.72,66.7),('1',41.91,73.3)]:
+for label,x,y in [('ROBOTDYN CABLE',45.72,68.2)]:
     if not any(isinstance(t,p.PCB_TEXT) and t.GetText()==label and abs(p.ToMM(t.GetPosition().x)-x)<.01 and abs(p.ToMM(t.GetPosition().y)-y)<.01 for t in B.GetDrawings()):
         t=p.PCB_TEXT(B);t.SetText(label);t.SetPosition(p.VECTOR2I(p.FromMM(x),p.FromMM(y)))
         t.SetLayer(p.F_SilkS);t.SetTextSize(p.VECTOR2I(p.FromMM(.8),p.FromMM(.8)));t.SetTextThickness(p.FromMM(.12));B.Add(t)
