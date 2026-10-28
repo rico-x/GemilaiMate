@@ -11,7 +11,7 @@ Carrier содержит только низковольтные цепи, 90×4
 ## Начать здесь
 
 1. [Статус проверок и открытые вопросы](docs/validation.md).
-2. [Комплектующие](docs/components.md), [сборка и крепление](docs/assembly.md), [интерфейсы платы](docs/interfaces.md).
+2. [Комплектующие](docs/components.md), [сборка и крепление](docs/assembly.md), [интерфейсы платы](docs/interfaces.md), [подключение в машине: схема, 3D и жгуты](docs/wiring.html).
 3. [Низковольтный стенд](docs/bench.md) и [прошивка через USB](docs/flashing.md).
 4. [Производство и бюджет](docs/manufacturing.md).
 5. [Сборка исходников и сопровождение](docs/development.md).

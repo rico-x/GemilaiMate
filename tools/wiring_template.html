@@ -1,0 +1,519 @@
+<title>Подключение GemilaiMate</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a harness formboard — one wide drawing sheet on a faint grid, tabs switch the same wiring between drawing, 3D and pin lists */
+:root {
+  --paper: #e9eeec; --sheet: #f8faf9; --ink: #14201d; --muted: #566562; --rule: #c6d0cc;
+  --accent: #0b6b65; --accent-ink: #ffffff; --hazard: #c2410c; --hazard-soft: #fbe9df;
+  --pcb: #2d5b3d; --pcb-ink: #e8f1eb; --devkit: #1c2124; --wroom: #8b9297; --gold: #c9a227; --screen: #16314a;
+  --scene: #dfe5e2; --ground: #cfd8d4;
+  --w5v: #d33a2c; --w3v3: #e2860f; --wgnd: #262c2b; --wdata: #2a6bcf; --wanalog: #1d9354; --wpump: #8a4dd4;
+  --wvalve: #cf337c; --wbtn: #0c978a; --wL: #8b5a2b; --wN: #2b6abd; --wload: #b5671a; --wtc: #7a8818;
+  --wwater: #2398bd; --wstock: #7b8683;
+  --display: "Fira Sans Extra Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0e1413; --sheet: #141c1b; --ink: #dce5e2; --muted: #8b9b97; --rule: #2a3735;
+  --accent: #46b8ad; --accent-ink: #0b1312; --hazard: #f07a45; --hazard-soft: #2a1a12;
+  --pcb: #24533a; --pcb-ink: #e6f1ea; --devkit: #0a0d0f; --wroom: #7d858a; --gold: #d8b23a; --screen: #1b3a58;
+  --scene: #141b1a; --ground: #1c2524;
+  --wgnd: #a9b3b0; --wdata: #5d9cf2; --wanalog: #3cbf76; --wpump: #a97cf0; --wvalve: #ec5b9c; --wbtn: #2cc2b3;
+  --wL: #bd8a55; --wN: #5f9ae6; --wload: #e08a36; --wtc: #b9c83c; --wwater: #45c1e6; --wstock: #8d9a97;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #0e1413; --sheet: #141c1b; --ink: #dce5e2; --muted: #8b9b97; --rule: #2a3735;
+  --accent: #46b8ad; --accent-ink: #0b1312; --hazard: #f07a45; --hazard-soft: #2a1a12;
+  --pcb: #24533a; --pcb-ink: #e6f1ea; --devkit: #0a0d0f; --wroom: #7d858a; --gold: #d8b23a; --screen: #1b3a58;
+  --scene: #141b1a; --ground: #1c2524;
+  --wgnd: #a9b3b0; --wdata: #5d9cf2; --wanalog: #3cbf76; --wpump: #a97cf0; --wvalve: #ec5b9c; --wbtn: #2cc2b3;
+  --wL: #bd8a55; --wN: #5f9ae6; --wload: #e08a36; --wtc: #b9c83c; --wwater: #45c1e6; --wstock: #8d9a97;
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+[hidden] { display: none !important; }
+body { background: var(--paper); color: var(--ink); font: 15px/1.55 var(--body);
+  background-image: linear-gradient(var(--rule) 1px, transparent 1px), linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 24px 24px; background-position: -1px -1px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+.wrap { max-width: 1320px; margin: 0 auto; padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 20px; }
+.titleblock { display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; align-items: end;
+  background: var(--sheet); border: 1.5px solid var(--ink); padding: 18px 22px; }
+.titleblock h1 { margin: 0; font: 700 clamp(30px, 4.4vw, 46px)/1 var(--display); letter-spacing: .01em; text-wrap: balance; }
+.titleblock .meta { font: 500 12px/1.5 var(--mono); color: var(--muted); letter-spacing: .03em; }
+.titleblock .stamp { grid-row: span 2; align-self: center; font: 600 12px/1.35 var(--mono); text-transform: uppercase;
+  letter-spacing: .08em; color: var(--hazard); border: 1.5px solid var(--hazard); padding: 8px 12px; max-width: 220px; text-align: center; }
+@media (max-width: 640px) { .titleblock { grid-template-columns: 1fr; } .titleblock .stamp { grid-row: auto; max-width: none; } }
+
+.tabs { display: flex; gap: 0; flex-wrap: wrap; border-bottom: 1.5px solid var(--ink); }
+.tabs button { font: 600 16px var(--display); letter-spacing: .04em; text-transform: uppercase; color: var(--muted);
+  background: transparent; border: 1.5px solid transparent; border-bottom: none; padding: 9px 18px 8px; cursor: pointer; margin-bottom: -1.5px; }
+.tabs button[aria-selected="true"] { color: var(--ink); background: var(--sheet); border-color: var(--ink); }
+.tabs button:focus-visible, .chip:focus-visible, .ctl:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.panel { background: var(--sheet); border: 1.5px solid var(--ink); border-top: none; padding: 18px; display: grid; gap: 16px; min-width: 0; }
+
+.sheet-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+.draw { overflow-x: auto; border: 1px solid var(--rule); background: var(--sheet); }
+figure { margin: 0; display: grid; gap: 8px; min-width: 0; }
+figcaption { font-size: 13px; color: var(--muted); max-width: 80ch; }
+
+.scheme { display: block; width: 100%; min-width: 1000px; height: auto; font-family: var(--body); }
+.zone-mains { fill: url(#hatch); stroke: var(--hazard); stroke-width: 1.2; stroke-dasharray: 7 5; }
+.hatch-line { stroke: var(--hazard); stroke-width: 1.3; opacity: .16; }
+.zone-label { font: 600 12px var(--mono); fill: var(--hazard); letter-spacing: .05em; text-transform: uppercase; }
+.zone-label.lv { fill: var(--muted); }
+.box { fill: var(--sheet); stroke: var(--ink); stroke-width: 1.4; }
+.box.machine { stroke-dasharray: 5 3; }
+.box.round { fill: var(--devkit); stroke: var(--ink); }
+.screen { fill: var(--screen); }
+.usb, .conn { fill: var(--devkit); }
+.m-title { font: 600 15px var(--display); fill: var(--ink); letter-spacing: .02em; }
+.m-sub { font: 400 11px var(--body); fill: var(--muted); }
+.m-title.light, .m-sub.light { fill: var(--pcb-ink); }
+.pin-lab { font: 500 10.5px var(--mono); fill: var(--muted); }
+.mpin { fill: var(--gold); stroke: var(--ink); stroke-width: 1; }
+.pin { fill: var(--gold); }
+.pcb { fill: var(--pcb); }
+.devkit { fill: var(--devkit); opacity: .92; }
+.wroom { fill: var(--wroom); }
+.dev-title { font: 600 14px var(--display); fill: var(--pcb-ink); letter-spacing: .02em; }
+.dev-sub, .pcb-title, .pcb-note { font: 500 11px var(--mono); fill: var(--pcb-ink); opacity: .85; }
+.conn-lab { font: 600 12px var(--mono); fill: var(--pcb-ink); }
+.jumper { fill: #e8be22; }
+.fuse { fill: var(--sheet); stroke: var(--wL); stroke-width: 2; }
+.junction { fill: var(--ink); }
+.tee { fill: var(--sheet); stroke: var(--wwater); stroke-width: 2.5; }
+.note-lab { font: 500 11px var(--body); fill: var(--muted); }
+.m-title, .m-sub, .note-lab, .pin-lab { paint-order: stroke; stroke: var(--sheet); stroke-width: 3px; stroke-linejoin: round; }
+.m-title.light, .m-sub.light { stroke: none; }
+.bus-label { font: 700 13px var(--mono); }
+.bus-label.L { fill: var(--wL); } .bus-label.N { fill: var(--wN); }
+.end-dot { fill: var(--ink); }
+.w { fill: none; stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; transition: opacity .15s, stroke-width .15s; }
+.w-5v { stroke: var(--w5v); } .w-3v3 { stroke: var(--w3v3); } .w-gnd { stroke: var(--wgnd); } .w-data { stroke: var(--wdata); }
+.w-analog { stroke: var(--wanalog); } .w-pump { stroke: var(--wpump); } .w-valve { stroke: var(--wvalve); } .w-btn { stroke: var(--wbtn); }
+.w-L { stroke: var(--wL); } .w-N { stroke: var(--wN); } .w-load { stroke: var(--wload); stroke-dasharray: 10 5; }
+.w-tc { stroke: var(--wtc); stroke-width: 2.8; } .w-water { stroke: var(--wwater); stroke-dasharray: 2 6; stroke-width: 3.4; }
+.bus, .mains { stroke-width: 3.2; }
+.stock { stroke: var(--wstock); stroke-dasharray: 3 5; stroke-width: 2; }
+.harness { cursor: pointer; outline: none; }
+.scheme.dim .harness, .scheme.dim .mains, .scheme.dim .bus { opacity: .14; }
+.scheme.dim .harness.on { opacity: 1; }
+.harness.on .w { stroke-width: 3.6; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font: 500 12px var(--mono); color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { display: inline-block; width: 22px; height: 0; border-top: 3px solid; vertical-align: middle; margin-right: 6px; }
+.sw-5v { border-color: var(--w5v); } .sw-3v3 { border-color: var(--w3v3); } .sw-gnd { border-color: var(--wgnd); } .sw-data { border-color: var(--wdata); }
+.sw-analog { border-color: var(--wanalog); } .sw-pump { border-color: var(--wpump); } .sw-valve { border-color: var(--wvalve); } .sw-btn { border-color: var(--wbtn); }
+.sw-L { border-color: var(--wL); } .sw-N { border-color: var(--wN); } .sw-load { border-color: var(--wload); border-top-style: dashed; }
+.sw-tc { border-color: var(--wtc); } .sw-water { border-color: var(--wwater); border-top-style: dotted; } .sw-stock { border-color: var(--wstock); border-top-style: dashed; }
+
+aside.info { border: 1.5px solid var(--ink); background: var(--paper); padding: 14px; display: grid; gap: 10px 24px; align-content: start; min-width: 0;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr); grid-template-areas: "k t" "h t" "c n"; }
+aside.info .kicker { grid-area: k; } aside.info h2 { grid-area: h; } aside.info .chips { grid-area: c; align-self: start; }
+aside.info .pinlist { grid-area: t; } aside.info #info-note { grid-area: n; }
+@media (max-width: 760px) { aside.info { grid-template-columns: 1fr; grid-template-areas: "k" "h" "c" "t" "n"; } }
+aside.info h2 { margin: 0; font: 700 20px/1.1 var(--display); letter-spacing: .02em; }
+aside.info .kicker { font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 600 12px var(--mono); padding: 4px 8px; border: 1.5px solid var(--ink); background: var(--sheet); color: var(--ink); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--sheet); }
+.pinlist { width: 100%; border-collapse: collapse; font: 500 12px var(--mono); }
+.pinlist td { padding: 4px 4px; border-top: 1px solid var(--rule); vertical-align: top; }
+.pinlist td:last-child { color: var(--muted); }
+.info p { margin: 0; font-size: 13px; }
+
+#view3d { position: relative; height: min(70vh, 640px); min-height: 380px; border: 1px solid var(--rule); background: var(--scene); overflow: hidden; }
+#view3d canvas { display: block; }
+.ctl-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.ctl { font: 600 13px var(--mono); padding: 6px 10px; border: 1.5px solid var(--ink); background: var(--sheet); color: var(--ink); cursor: pointer; }
+.ctl[aria-pressed="false"] { opacity: .55; }
+.ctl-note { font-size: 13px; color: var(--muted); }
+.lbl3 { font: 600 12px var(--display); letter-spacing: .03em; color: var(--ink); background: var(--sheet); border: 1px solid var(--ink);
+  padding: 1px 6px; white-space: nowrap; pointer-events: none; }
+.lbl3.machine { border-style: dashed; }
+.lbl3.conn { font: 600 11px var(--mono); background: var(--pcb); color: var(--pcb-ink); border-color: var(--pcb); }
+.lbls-off .lbl3 { display: none; }
+.tip { position: absolute; pointer-events: none; background: var(--sheet); border: 1.5px solid var(--ink); padding: 6px 9px;
+  font: 500 12px/1.4 var(--mono); max-width: 280px; display: none; z-index: 2; }
+.fallback { position: absolute; inset: 0; display: grid; place-items: center; padding: 20px; text-align: center; color: var(--muted); }
+
+.hgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 390px), 1fr)); gap: 14px; }
+.hcard td:last-child { white-space: nowrap; }
+.mains-card td:last-child { white-space: normal; }
+.hcard { border: 1.5px solid var(--ink); background: var(--sheet); display: grid; align-content: start; min-width: 0; }
+.hcard header { display: flex; align-items: baseline; gap: 10px; padding: 10px 12px; border-bottom: 1.5px solid var(--ink); flex-wrap: wrap; }
+.hcard .ref { font: 600 13px var(--mono); background: var(--pcb); color: var(--pcb-ink); padding: 2px 7px; }
+.hcard .ref.haz { background: var(--hazard); color: var(--sheet); }
+.hcard h3 { margin: 0; font: 700 18px/1.1 var(--display); letter-spacing: .02em; }
+.hcard .to { font-size: 12px; color: var(--muted); }
+.tbl { overflow-x: auto; }
+.hcard table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+.hcard th { text-align: left; font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 7px 12px; }
+.hcard td { padding: 6px 12px; border-top: 1px solid var(--rule); }
+.mono { font-family: var(--mono); font-size: 12.5px; }
+.hnote { margin: 0; padding: 10px 12px 12px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--rule); }
+.mains-card { grid-column: 1 / -1; border-color: var(--hazard); }
+.mains-card header { border-color: var(--hazard); }
+
+.rules { background: var(--sheet); border: 1.5px solid var(--ink); padding: 16px 20px; display: grid; gap: 10px; }
+.rules h2 { margin: 0; font: 700 22px/1.1 var(--display); letter-spacing: .02em; }
+.rules ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; columns: 2 420px; column-gap: 36px; }
+.rules li { break-inside: avoid; font-size: 14px; max-width: 70ch; }
+.rules b { font-family: var(--mono); font-weight: 600; font-size: 13px; }
+.src { font-size: 12px; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .w { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header class="titleblock">
+    <h1>Подключение GemilaiMate</h1>
+    <div class="stamp">Прототип · не собран · сеть по референсу</div>
+    <div class="meta">GemilaiMate v%%VERSION%% · carrier v0.1 · Gemilai 3007Z · %%NH%% низковольтных жгутов, %%NW%% проводов</div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Вид">
+    <button role="tab" id="tab-scheme" aria-controls="p-scheme" aria-selected="true">Схема</button>
+    <button role="tab" id="tab-model" aria-controls="p-model" aria-selected="false">3D</button>
+    <button role="tab" id="tab-harness" aria-controls="p-harness" aria-selected="false">Жгуты</button>
+  </nav>
+
+  <section class="panel" id="p-scheme" role="tabpanel" aria-labelledby="tab-scheme">
+    <div class="sheet-row">
+      <figure>
+        <div class="draw">%%SVG%%</div>
+        <figcaption>Каждый провод идёт от контакта разъёма carrier к выводу модуля в том порядке, как на модуле. Перекрещенные пары в жгутах J2 и J8 — так и должно быть: порядок выводов на модулях отличается от порядка на carrier. Сетевая часть заштрихована.</figcaption>
+      </figure>
+      <aside class="info" aria-live="polite">
+        <div class="kicker">Жгут</div>
+        <h2 id="info-title">Выберите разъём</h2>
+        <div class="chips" id="chips"></div>
+        <table class="pinlist" id="info-pins"><tbody><tr><td>Наведите на провода схемы или нажмите на разъём, чтобы увидеть его контакты.</td></tr></tbody></table>
+        <p id="info-note"></p>
+      </aside>
+    </div>
+    <div class="legend" aria-label="Обозначения проводов">
+      <span><i class="sw sw-5v"></i>+5 В</span><span><i class="sw sw-3v3"></i>+3,3 В</span><span><i class="sw sw-gnd"></i>GND</span>
+      <span><i class="sw sw-data"></i>I²C / SPI</span><span><i class="sw sw-analog"></i>давление</span><span><i class="sw sw-pump"></i>помпа ZC / PSM</span>
+      <span><i class="sw sw-valve"></i>клапан</span><span><i class="sw sw-btn"></i>кнопки</span><span><i class="sw sw-tc"></i>термопара K</span>
+      <span><i class="sw sw-L"></i>сеть L</span><span><i class="sw sw-N"></i>сеть N</span><span><i class="sw sw-load"></i>коммутируемая L</span>
+      <span><i class="sw sw-stock"></i>штатный выход, проверить</span><span><i class="sw sw-water"></i>вода</span>
+    </div>
+  </section>
+
+  <section class="panel" id="p-model" role="tabpanel" aria-labelledby="tab-model" hidden>
+    <div class="ctl-row">
+      <button class="ctl" id="v-iso" type="button">Изометрия</button>
+      <button class="ctl" id="v-top" type="button">Сверху</button>
+      <button class="ctl" id="t-mains" type="button" aria-pressed="true">Сеть 230 В</button>
+      <button class="ctl" id="t-labels" type="button" aria-pressed="true">Подписи</button>
+      <span class="ctl-note">Вращение — перетаскивание, масштаб — колесо или щипок. Наведите на провод, чтобы увидеть его жгут.</span>
+    </div>
+    <div id="view3d"><div class="tip" id="tip"></div></div>
+    <p class="ctl-note">Плата carrier, разъёмы и DevKit — в реальном масштабе. Модули и узлы машины — примерные габариты, размещение условное: замеров Gemilai 3007Z нет.</p>
+  </section>
+
+  <section class="panel" id="p-harness" role="tabpanel" aria-labelledby="tab-harness" hidden>
+    <div class="hgrid">%%TABLES%%</div>
+  </section>
+
+  <section class="rules">
+    <h2>Перед подключением</h2>
+    <ol>
+      <li><b>JP1 1–2</b> в рабочем режиме. Для USB-прошивки контроллера JP1 снять, внешние 5 В и USB не объединять.</li>
+      <li><b>JP3 1–2</b> — Vin модуля MAX31855 от 5 В. Вывод 3Vo никуда не подключать.</li>
+      <li><b>J10</b> не подключать: нагрев остаётся на штатной плате.</li>
+      <li><b>J8</b> — только независимые сухие контакты на GND. Штатную цепь кнопок не подключать, пока не выяснены её схема и изоляция.</li>
+      <li><b>J2</b>: порядок выводов ADS1115 другой. J2.5 → A0, J2.6 → ADDR; ALRT и A1–A3 свободны.</li>
+      <li><b>J7</b>: выводы TXS0102 подключать по маркировке модуля, а не по порядку на разъёме.</li>
+      <li><b>J9</b>: кабель USB-C только для питания дисплея. VBUS и GND определить прозвонкой, а не по цвету жил.</li>
+      <li><b>J5</b>: Z-C — логический сигнал 0–5 В. Z-C и PSM свить с GND и вести отдельно от сетевых проводов.</li>
+      <li><b>Термопара</b>: спай изолирован от корпуса (прозвонить), полярность T+ / T− по маркировке.</li>
+      <li><b>230 В</b>: только на обесточенной машине, с сохранением штатных защит и PE. Низковольтные жгуты не связывать с сетевыми.</li>
+    </ol>
+    <p class="src">Страница генерируется <code>tools/build_wiring_page.py</code> из hardware/carrier/connections.csv; пояснения — по docs/interfaces.md, docs/assembly.md и docs/bench.md. Сетевая часть — по переделке Turin Legato V2 (GaggiMate, обсуждение #222).</p>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS2DRenderer.js"></script>
+<script>
+const DATA = %%D3%%;
+
+/* ---------- tabs ---------- */
+const TABS = { scheme: 'tab-scheme', model: 'tab-model', harness: 'tab-harness' };
+function showTab(name) {
+  if (!TABS[name]) name = 'scheme';
+  for (const [k, id] of Object.entries(TABS)) {
+    const on = k === name;
+    document.getElementById(id).setAttribute('aria-selected', on);
+    document.getElementById('p-' + k).hidden = !on;
+  }
+  try { history.replaceState(null, '', '#' + name); } catch (e) {}
+  if (name === 'model') init3d();
+}
+for (const [k, id] of Object.entries(TABS)) document.getElementById(id).addEventListener('click', () => showTab(k));
+document.querySelector('.tabs').addEventListener('keydown', e => {
+  if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+  const keys = Object.keys(TABS), cur = keys.findIndex(k => document.getElementById(TABS[k]).getAttribute('aria-selected') === 'true');
+  const next = keys[(cur + (e.key === 'ArrowRight' ? 1 : keys.length - 1)) % keys.length];
+  showTab(next); document.getElementById(TABS[next]).focus();
+});
+
+/* ---------- scheme interaction ---------- */
+const scheme = document.querySelector('.scheme');
+const byH = {};
+for (const w of DATA.wires) (byH[w.h] = byH[w.h] || []).push(w);
+const chips = document.getElementById('chips');
+let pinned = null;
+function selectHarness(h) {
+  scheme.classList.toggle('dim', !!h);
+  document.querySelectorAll('.harness').forEach(g => g.classList.toggle('on', g.dataset.h === h));
+  chips.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.h === pinned));
+  const title = document.getElementById('info-title'), tb = document.querySelector('#info-pins tbody'), note = document.getElementById('info-note');
+  if (!h) {
+    title.textContent = 'Выберите разъём';
+    tb.innerHTML = '<tr><td>Наведите на провода схемы или нажмите на разъём, чтобы увидеть его контакты.</td></tr>';
+    note.textContent = '';
+    return;
+  }
+  const ws = byH[h].slice().sort((a, b) => +a.a[1] - +b.a[1]);
+  const mod = DATA.mods[ws[0].b[0]];
+  title.textContent = h + ' → ' + mod.t;
+  tb.innerHTML = ws.map(w => `<tr><td>${h}.${w.a[1]}</td><td>→ ${w.b[1]}</td><td><i class="sw sw-${w.kind}"></i>${w.net}</td></tr>`).join('');
+  const card = document.getElementById('h-' + h);
+  note.textContent = card ? card.querySelector('.hnote').textContent : '';
+}
+Object.keys(byH).forEach(h => {
+  const b = document.createElement('button');
+  b.className = 'chip'; b.type = 'button'; b.dataset.h = h; b.textContent = h; b.setAttribute('aria-pressed', 'false');
+  b.addEventListener('click', () => { pinned = pinned === h ? null : h; selectHarness(pinned); });
+  chips.appendChild(b);
+});
+document.querySelectorAll('.harness').forEach(g => {
+  g.addEventListener('mouseenter', () => selectHarness(g.dataset.h));
+  g.addEventListener('mouseleave', () => selectHarness(pinned));
+  g.addEventListener('focus', () => selectHarness(g.dataset.h));
+  g.addEventListener('blur', () => selectHarness(pinned));
+  g.addEventListener('click', () => { pinned = pinned === g.dataset.h ? null : g.dataset.h; selectHarness(pinned); });
+});
+
+/* ---------- 3D ---------- */
+let started = false;
+function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+function init3d() {
+  if (started) return; started = true;
+  const host = document.getElementById('view3d'), tip = document.getElementById('tip');
+  if (!window.THREE || !THREE.OrbitControls) {
+    host.insertAdjacentHTML('beforeend', '<div class="fallback">3D-вид не загрузился: нет доступа к библиотеке three.js. Схема и таблицы жгутов работают без неё.</div>');
+    return;
+  }
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({ antialias: true }); }
+  catch (e) { host.insertAdjacentHTML('beforeend', '<div class="fallback">Браузер не поддерживает WebGL. Схема и таблицы жгутов доступны на соседних вкладках.</div>'); return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  host.appendChild(renderer.domElement);
+  const labelR = new THREE.CSS2DRenderer();
+  labelR.domElement.style.position = 'absolute'; labelR.domElement.style.top = '0'; labelR.domElement.style.left = '0';
+  labelR.domElement.style.pointerEvents = 'none';
+  host.appendChild(labelR.domElement);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(36, 1, 1, 4000);
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true; controls.dampingFactor = 0.1; controls.maxPolarAngle = Math.PI * 0.49;
+  const VIEWS = { iso: [[-30, 230, 300], [10, 0, 8]], top: [[10, 470, 1], [10, 0, 8]] };
+  function setView(v) { camera.position.set(...VIEWS[v][0]); controls.target.set(...VIEWS[v][1]); controls.update(); }
+  setView('iso');
+
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x445048, 0.75));
+  const sun = new THREE.DirectionalLight(0xffffff, 0.7); sun.position.set(-120, 260, 160); scene.add(sun);
+  const fill = new THREE.DirectionalLight(0xffffff, 0.25); fill.position.set(200, 120, -200); scene.add(fill);
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(520, 360), new THREE.MeshLambertMaterial({ color: 0xcccccc }));
+  ground.rotation.x = -Math.PI / 2; ground.position.set(15, -0.2, 10); scene.add(ground);
+  function applyTheme() {
+    renderer.setClearColor(new THREE.Color(css('--scene') || '#dfe5e2'));
+    ground.material.color.set(css('--ground') || '#cfd8d4');
+  }
+  applyTheme();
+  try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme); } catch (e) {}
+  new MutationObserver(applyTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  const mat = c => new THREE.MeshStandardMaterial({ color: c, roughness: 0.6, metalness: 0.05 });
+  const metal = c => new THREE.MeshStandardMaterial({ color: c, roughness: 0.35, metalness: 0.6 });
+  function box(w, h, d, m, x, y, z) { const o = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m); o.position.set(x, y, z); scene.add(o); return o; }
+  function cyl(r, h, m, x, y, z, rot) { const o = new THREE.Mesh(new THREE.CylinderGeometry(r, r, h, 40), m); o.position.set(x, y, z); if (rot) o.rotation.set(...rot); scene.add(o); return o; }
+  function label(text, x, y, z, cls) {
+    const el = document.createElement('div'); el.className = 'lbl3 ' + (cls || ''); el.textContent = text;
+    const o = new THREE.CSS2DObject(el); o.position.set(x, y, z); scene.add(o); return o;
+  }
+
+  /* carrier: real 90 x 46 mm board, textured with the KiCad top view */
+  const pcbSide = mat(0x2d5b3d);
+  const top = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.7 });
+  new THREE.TextureLoader().load('%%BOARD_TEX%%', t => { t.anisotropy = 4; top.map = t; top.needsUpdate = true; renderer.render(scene, camera); });
+  const board = new THREE.Mesh(new THREE.BoxGeometry(90, 1.6, 46), [pcbSide, pcbSide, top, pcbSide, pcbSide, pcbSide]);
+  board.position.set(0, 0.8, 0); scene.add(board);
+  const black = mat(0x18191b), gold = metal(0xc9a227), yellow = mat(0xe8be22);
+  for (const [ref, pins] of Object.entries(DATA.conns)) {
+    const pts = Object.values(pins), xs = pts.map(p => p[0]), zs = pts.map(p => p[1]);
+    const x0 = Math.min(...xs), x1 = Math.max(...xs), z0 = Math.min(...zs), z1 = Math.max(...zs);
+    box(x1 - x0 + 2.54, 2.5, z1 - z0 + 2.54, black, (x0 + x1) / 2, 1.6 + 1.25, (z0 + z1) / 2);
+    for (const [px, pz] of pts) cyl(0.32, 8, gold, px, 1.6 + 4, pz);
+  }
+  for (const [ref, a, b] of DATA.jumpers) {
+    const p1 = DATA.conns[ref][a], p2 = DATA.conns[ref][b];
+    box(Math.abs(p2[0] - p1[0]) + 2.6, 6, 2.6, yellow, (p1[0] + p2[0]) / 2, 1.6 + 2.5 + 3, p1[1]);
+  }
+  /* DevKit on sockets (simplified body, real module footprint) */
+  box(55.9, 8.5, 2.5, black, -6.67, 1.6 + 4.25, -14.11);
+  box(55.9, 8.5, 2.5, black, -6.67, 1.6 + 4.25, 8.75);
+  box(62.8, 1.6, 28, mat(0x16191c), -10.1, 1.6 + 8.5 + 2.54 + 0.8, -2.68);
+  box(18, 3.1, 25.5, metal(0x9aa1a6), 8.6, 1.6 + 8.5 + 2.54 + 1.6 + 1.55, -2.68);
+  for (const dz of [-5.2, 5.2]) box(7.4, 3.2, 8.9, metal(0xb9bec2), -38.2, 1.6 + 8.5 + 2.54 + 1.6 + 1.6, -2.68 + dz);
+  label('carrier v0.1 · ESP32-S3', -12, 24, 4, 'conn');
+  for (const [ref, pins] of Object.entries(DATA.conns)) {
+    const p = Object.values(pins)[0];
+    if (!byH[ref] && ref !== 'J10') continue;
+    label(ref === 'J10' ? 'J10 — не подключать' : ref, p[0] + (ref === 'J10' ? 16 : 0), 13, p[1] + (p[1] < 0 ? -3 : 3), 'conn');
+  }
+
+  /* modules */
+  const mainsGroup = [];
+  for (const [id, m] of Object.entries(DATA.mods)) {
+    const [cx, cz] = m.c, [w, d, h] = m.size, col = new THREE.Color(m.color);
+    const add = o => { if (m.machine) mainsGroup.push(o); return o; };
+    if (m.shape === 'disk') {
+      cyl(w / 2, h, mat(col), cx, h / 2, cz);
+      cyl(w / 2 - 5, 0.4, mat(0x1b3a58), cx, h + 0.2, cz);
+      box(9, 3.2, 7, metal(0xb9bec2), cx, 3, cz + w / 2);
+    } else if (m.shape === 'dimmer') {
+      box(w, 1.6, d, mat(col), cx, 0.8, cz);
+      box(w * 0.42, h, d * 0.42, mat(0x111214), cx + w * 0.18, h / 2, cz - d * 0.05);
+      box(w * 0.5, 9, 8, mat(0x2b8a3e), cx, 4.5, cz - d / 2 + 5);
+      box(10, 2.5, 4, black, cx - w * 0.1, 2.9, cz + d / 2 - 3);
+    } else if (m.shape === 'ssr') {
+      box(w, 1.6, d, mat(col), cx, 0.8, cz);
+      box(w * 0.7, h, d * 0.35, mat(0x111214), cx - 2, h / 2, cz);
+      box(8, 9, w * 0.5, mat(0x2b8a3e), cx + w / 2 - 4, 4.5, cz + d * 0.2);
+    } else if (m.shape === 'pcb') {
+      box(w, 1.6, d, mat(col), cx, 0.8, cz);
+      box(Math.min(8, w * 0.35), 1.6, Math.min(6, d * 0.35), black, cx, 2.2, cz);
+    } else if (m.shape === 'buttons') {
+      box(w, 3, d, mat(0x2a2d30), cx, 1.5, cz);
+      cyl(5, 4, mat(0xd8dcde), cx - 6, 4, cz); cyl(5, 4, mat(0xd8dcde), cx + 6, 4, cz);
+    } else if (m.shape === 'sensor') {
+      cyl(w / 2, d, metal(col), cx, w / 2, cz, [Math.PI / 2, 0, 0]);
+      box(12, 10, 10, black, cx, w / 2, cz + d / 2 + 4);
+    } else if (m.shape === 'pump') {
+      add(cyl(d / 2, w, mat(col), cx, d / 2, cz, [0, 0, Math.PI / 2]));
+      add(cyl(6, 14, metal(0xb9bec2), cx + w / 2 + 6, d / 2, cz, [0, 0, Math.PI / 2]));
+    } else if (m.shape === 'valve') {
+      add(box(w, 12, d, metal(col), cx, 6, cz));
+      add(cyl(12, h - 12, mat(0x1d1f22), cx, 12 + (h - 12) / 2, cz));
+    } else if (m.shape === 'boiler') {
+      add(cyl(w / 2, h, metal(col), cx, h / 2, cz));
+    } else {
+      add(box(w, h, d, mat(col), cx, h / 2, cz));
+    }
+    label(m.t, cx, h + 10, cz, m.machine ? 'machine' : '');
+  }
+  /* mains terminal block */
+  const src = DATA.src;
+  const srcObj = [box(16, 10, 20, mat(0x3a3f44), src[0], 5, src[1])];
+  const srcPins = { 'src:L': [src[0] + 3, 10, src[1] - 5], 'src:N': [src[0] + 3, 10, src[1] + 5] };
+  srcObj.push(label('Сеть 230 В · L N', src[0], 22, src[1], 'machine'));
+
+  /* wires */
+  const COLORS = { '5v': 0xd33a2c, '3v3': 0xe2860f, gnd: 0x2a2f2e, data: 0x2a6bcf, analog: 0x1d9354, pump: 0x8a4dd4, valve: 0xcf337c,
+    btn: 0x0c978a, L: 0x8b5a2b, N: 0x2b6abd, load: 0xd07a22, tc: 0x9aa71e, water: 0x2398bd, stock: 0x8d9a97 };
+  const pickable = [];
+  const pinPos = (end, isConn) => {
+    if (typeof end === 'string') return new THREE.Vector3(...srcPins[end]);
+    if (isConn) { const p = DATA.conns[end[0]][end[1]]; return new THREE.Vector3(p[0], 9.6, p[1]); }
+    const p = DATA.mods[end[0]].pins[end[1]]; return new THREE.Vector3(p[0], p[1] + 0.6, p[2]);
+  };
+  function tube(a, b, kind, r, lift, info, spread) {
+    const up1 = Math.max(10, lift), mid = a.clone().add(b).multiplyScalar(0.5);
+    const pts = [a, a.clone().add(new THREE.Vector3(0, up1, 0)),
+      mid.clone().add(new THREE.Vector3(spread || 0, up1 + 8 + a.distanceTo(b) * 0.08, 0)),
+      b.clone().add(new THREE.Vector3(0, up1 * 0.7, 0)), b];
+    const curve = new THREE.CatmullRomCurve3(pts, false, 'centripetal');
+    const m = new THREE.MeshStandardMaterial({ color: COLORS[kind], roughness: 0.45, transparent: true, opacity: kind === 'water' ? 0.55 : (kind === 'stock' ? 0.7 : 1) });
+    const o = new THREE.Mesh(new THREE.TubeGeometry(curve, 64, r, 8, false), m);
+    o.userData = info; scene.add(o); pickable.push(o); return o;
+  }
+  const idx = {};
+  for (const w of DATA.wires) {
+    idx[w.h] = (idx[w.h] || 0) + 1;
+    tube(pinPos(w.a, true), pinPos(w.b, false), w.kind, 0.55, 14 + idx[w.h] * 0.9,
+      { h: w.h, text: `${w.h}.${w.a[1]} → ${DATA.mods[w.b[0]].t}: ${w.b[1]}`, sub: `${w.net} · ${DATA.labels[w.kind]}` }, (idx[w.h] - 2) * 1.2);
+  }
+  for (const w of DATA.mains) {
+    const a = pinPos(w.a, false), b = pinPos(w.b, false);
+    const r = w.kind === 'water' ? 1.4 : (w.kind === 'tc' ? 0.45 : (w.kind === 'stock' ? 0.6 : 0.9));
+    const o = tube(a, b, w.kind, r, 18, { h: w.h, text: w.title, sub: DATA.labels[w.kind] || 'штатный выход, проверить' }, 0);
+    if (w.kind !== 'tc') mainsGroup.push(o);
+  }
+  srcObj.forEach(o => mainsGroup.push(o));
+
+  /* interaction */
+  const ray = new THREE.Raycaster(), ptr = new THREE.Vector2();
+  let hoverH = null;
+  function highlight(h) {
+    if (h === hoverH) return; hoverH = h;
+    for (const o of pickable) {
+      const on = !h || o.userData.h === h;
+      o.material.opacity = on ? (o.userData.h === 'W' ? 0.55 : 1) : 0.12;
+      o.material.transparent = true;
+    }
+  }
+  renderer.domElement.addEventListener('pointermove', e => {
+    const r = renderer.domElement.getBoundingClientRect();
+    ptr.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+    ray.setFromCamera(ptr, camera);
+    const hit = ray.intersectObjects(pickable.filter(o => o.visible), false)[0];
+    if (hit) {
+      highlight(hit.object.userData.h);
+      tip.innerHTML = `<b>${hit.object.userData.text}</b><br>${hit.object.userData.sub}`;
+      tip.style.display = 'block';
+      tip.style.left = Math.min(e.clientX - r.left + 14, r.width - 290) + 'px';
+      tip.style.top = (e.clientY - r.top + 14) + 'px';
+    } else { highlight(null); tip.style.display = 'none'; }
+  });
+  renderer.domElement.addEventListener('pointerleave', () => { highlight(null); tip.style.display = 'none'; });
+
+  const bMains = document.getElementById('t-mains'), bLbl = document.getElementById('t-labels');
+  bMains.addEventListener('click', () => {
+    const on = bMains.getAttribute('aria-pressed') !== 'true';
+    bMains.setAttribute('aria-pressed', on);
+    mainsGroup.forEach(o => { o.visible = on; if (o.element) o.element.style.visibility = on ? '' : 'hidden'; });
+  });
+  bLbl.addEventListener('click', () => {
+    const on = bLbl.getAttribute('aria-pressed') !== 'true';
+    bLbl.setAttribute('aria-pressed', on); host.classList.toggle('lbls-off', !on);
+  });
+  document.getElementById('v-iso').addEventListener('click', () => setView('iso'));
+  document.getElementById('v-top').addEventListener('click', () => setView('top'));
+
+  function resize() {
+    const w = host.clientWidth, h = host.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h); labelR.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(resize).observe(host); resize();
+  (function loop() { requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); labelR.render(scene, camera); })();
+}
+
+window.addEventListener('hashchange', () => showTab(location.hash.slice(1)));
+showTab((location.hash || '#scheme').slice(1));
+</script>

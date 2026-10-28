@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Validate the current project structure and manufacturing inputs without hardware access."""
 from pathlib import Path
-import json,re,hashlib,csv,urllib.parse
+import json,re,hashlib,csv,urllib.parse,subprocess,sys
 R=Path(__file__).resolve().parents[1];H=R/'hardware/carrier'
 assert (R/'VERSION').read_text().strip()=='0.1.0'
 assert 'Проект пока не воспроизводился в железе' in (R/'README.md').read_text()
@@ -21,4 +21,5 @@ assert len(list(csv.DictReader((H/'manufacturing/CPL-SMD.csv').open())))==20
 assert sum(int(row['Quantity_per_board']) for row in csv.DictReader((H/'manufacturing/BOM-SMD.csv').open()))==20
 e=json.loads((H/'erc.json').read_text());assert all(not x['violations'] for x in e['sheets'])
 d=json.loads((H/'drc.json').read_text());assert all(not d[x] for x in ['violations','unconnected_items','schematic_parity'])
-print('PASS current project: links, branding, prototype notice, hardware hashes, BOM/CPL, stored ERC/DRC')
+subprocess.run([sys.executable,str(R/'tools/build_wiring_page.py'),'--check'],check=True,stdout=subprocess.DEVNULL)
+print('PASS current project: links, branding, prototype notice, hardware hashes, BOM/CPL, stored ERC/DRC, wiring page')
