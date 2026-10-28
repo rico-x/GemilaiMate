@@ -1,0 +1,24 @@
+# Интерфейсы carrier v0.1
+
+Таблица относится к нашему жгуту, а не к универсальному расположению пинов всех купленных модулей. Каждый провод сверять с фактическим breakout. Полная таблица с координатами: [connections.csv](../hardware/carrier/connections.csv).
+
+| Разъём | Назначение | Контакты |
+|---|---|---|
+| J1 | ISOLATED 5V INPUT | 1=5V; 2=GND |
+| JP1 | OPEN FOR USB | 1=SUPPLY_5V; 2=DEVKIT_5V |
+| J9 | DISPLAY USB 5V | 1=USB5V; 2=GND |
+| J5 | ROBOTDYN STANDARD | 1=VCC5V; 2=GND; 3=ZC5V; 4=PSM3V3 |
+| J4 | PRESSURE SENSOR | 1=VCC5V; 2=GND; 3=OUT0.5-4.5V |
+| JP3 | MAX VIN SELECT | 1=5V_VIN; 2=TC_VIN; 3=3V3_OPTION |
+| J2 | ADS1115 CABLE | 1=VDD5V; 2=GND; 3=SCL; 4=SDA; 5=A0; 6=ADDR0 |
+| J7 | TXS0102 I2C ONLY | 1=VCCA; 2=GND; 3=A1; 4=A2; 5=VCCB; 6=OE; 7=B1; 8=B2 |
+| J3 | MAX31855 VIN | 1=VIN_SELECT; 2=GND; 3=DO; 4=CS; 5=SCK |
+| J8 | DRY CONTACTS ONLY | 1=BREW_CONTACT; 2=STEAM_CONTACT; 3=GND; 4=GND |
+| J6 | VALVE SSR HIGH5V | 1=VCC5V; 2=GND; 3=IN |
+| J10 | HEATER UNUSED | 1=VCC5V; 2=GND; 3=IN |
+
+J9 - 5 В на USB-питание дисплея, не PA/Grove. J8 - только независимые сухие контакты на GND. J10 в штатной конфигурации Gemilai не подключён. J5 ZC - логический 0-5 В, без отрицательного напряжения; U3 питается 3,3 В и имеет вход до 5,5 В. Один TXS0102 используется только для I2C ADS1115, адрес 0x48, давление A0. Второй преобразователь уровней на ZC не требуется.
+
+R1/R2=10 кОм/1,2 кОм 1%, C2=100 нФ; ADC подключается до задержки 10 мс. Кнопки имеют 10 кОм к 3,3 В, 1 кОм последовательно, 100 нФ и четыре устойчивых отсчёта с периодом 10 мс. Давление фильтруется R12/C6 1 кОм/100 нФ. SSR High5V подключён через AHCT125 и съёмную 0-омную R13; входной ток/уровни SSR ещё измерить.
+
+[verification.json](../hardware/carrier/verification.json) сверяет 13 назначений GPIO с конфигурацией GEMILAI_3007Z. GPIO35/36/37 не используются из-за N8R8. Размеры клона и распиновка полученного устройства требуют физической сверки.

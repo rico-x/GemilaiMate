@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- iOS PWA support -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="GemilaiMate" />
+
+    <link rel="manifest" href="/app.webmanifest" />
+    <link rel="shortcut icon" type="image/svg+xml" href="/gemilaimate.svg" />
+    <link rel="apple-touch-icon" href="/gemilaimate.png" />
+    <title>GemilaiMate</title>
+    <script>
+      // Apply the saved theme synchronously before any module loads, so we
+      // never flash the default-light theme on a fresh page load.
+      (function () {
+        try {
+          var key = 'gemilaimate-daisyui-theme';
+          var allowed = ['light', 'dark', 'coffee', 'nord'];
+          var saved = localStorage.getItem(key);
+          var theme = allowed.indexOf(saved) >= 0 ? saved : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-base-100">
+    <div id="app"></div>
+    <script type="module" src="/src/index.jsx"></script>
+  </body>
+</html>

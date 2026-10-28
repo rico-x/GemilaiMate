@@ -1,0 +1,4 @@
+platformio==6.2.0
+esptool==4.9.0
+sexpdata==1.0.2
+reportlab==5.1.0

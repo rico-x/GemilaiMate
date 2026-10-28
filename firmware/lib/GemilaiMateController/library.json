@@ -1,0 +1,36 @@
+{
+  "name": "GemilaiMateController",
+  "keywords": "GemilaiMate Controller Lib",
+  "description": "GemilaiMate Controller Lib",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rico-X/GemilaiMate"
+  },
+  "version": "0.1.0",
+  "exclude": "doc",
+  "frameworks": "arduino",
+  "platforms": [
+    "esp32"
+  ],
+  "dependencies": {
+    "FS": "*",
+    "SPIFFS": "*",
+    "ble_ota_dfu": "file://lib/ble_ota_dfu",
+    "NanoPbComm": "file://lib/NanoPbComm",
+    "nanopb/Nanopb": "0.4.92",
+    "overrides": "file://lib/overrides",
+    "h2zero/NimBLE-Arduino": "1.4.3",
+    "robtillaart/MAX31855": "0.6.2",
+    "bblanchon/ArduinoJson": "7.4.3",
+    "robtillaart/ADS1X15": "0.5.4",
+    "Wire": "*",
+    "NayrodPID": "file://lib/NayrodPID",
+    "lewisxhe/SensorLib": "0.2.3"
+  },
+  "authors": [
+    {
+      "name": "Rico-X",
+      "maintainer": true
+    }
+  ]
+}

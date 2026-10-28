@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "GemilaiMate") (type "KiCad") (uri "${KIPRJMOD}/GemilaiMate.kicad_sym") (options "") (descr "Carrier interface symbols"))
+)

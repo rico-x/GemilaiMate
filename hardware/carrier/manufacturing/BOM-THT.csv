@@ -1,0 +1,12 @@
+Reference,Quantity_per_board,Description,Assembly_notes
+U1 socket upper,1,1x22 female 2.54mm; height >=8.5mm nominal,Verify >=5mm free under actual DevKit; use only one lower row
+U1 socket lower A OR B,1,1x22 female 2.54mm; matching height,Row spacing 22.86 OR 25.40mm; one only
+U2,1,SN74AHCT125N PDIP-14,Pin1/orientation from assembly drawing
+J1 J9 JP1,3,1x2 male 2.54mm,JP1 removable jumper
+J4 J6 J10 JP3,4,1x3 male 2.54mm,J10 unused; JP3 one removable jumper
+J5 J8,2,1x4 male 2.54mm,Cable pin order in connections.csv
+J3,1,1x5 male 2.54mm,MAX module VIN selection
+J2,1,1x6 male 2.54mm,ADS1115 A0; ADDR=GND
+J7,1,1x8 male 2.54mm,One TXS0102 for I2C only
+JP1 JP3 shunts,2,2.54mm removable shunt,JP1 open for USB; JP3 match MAX module
+U1 DevKit (installed after test),1,ESP32-S3 DevKitC-1 N8R8 44 pins,Owner-supplied external module; not included in automatic SMD placement

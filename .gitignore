@@ -1,0 +1,13 @@
+firmware/.pio/
+firmware/web/node_modules/
+firmware/web/dist/
+firmware/src/version.h
+firmware/src/display/webassets/
+releases/*
+!releases/README.md
+__pycache__/
+.DS_Store
+*.kicad_prl
+*-backups/
+.venv/
+.flash-venv/

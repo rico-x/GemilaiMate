@@ -1,0 +1,5 @@
+{
+  "name": "esp-arduino-ble-scales",
+  "version": "1.0.4",
+  "description": "Vendored BLE scale support; MIT; see LICENSE and project NOTICE.md"
+}

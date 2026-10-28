@@ -1,0 +1,23 @@
+{
+  "name": "NanoPbComm",
+  "version": "0.1.0",
+  "description": "GemilaiMate controller<->display protocol: transport-agnostic nanopb framing with a coalescing, acknowledged outbound queue.",
+  "keywords": "GemilaiMate, nanopb, protobuf, BLE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rico-X/GemilaiMate"
+  },
+  "frameworks": "arduino",
+  "platforms": [
+    "espressif32"
+  ],
+  "dependencies": {
+    "nanopb/Nanopb": "0.4.92",
+    "h2zero/NimBLE-Arduino": "1.4.3"
+  },
+  "build": {
+    "flags": [
+      "-I src"
+    ]
+  }
+}

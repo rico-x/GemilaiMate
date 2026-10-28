@@ -1,0 +1,2066 @@
+{
+  "revision": "0.1 PROTOTYPE 90x46",
+  "size_mm": [
+    90,
+    46
+  ],
+  "mounts_mm": [
+    [
+      3,
+      3
+    ],
+    [
+      87,
+      43
+    ]
+  ],
+  "rf_keepout": [
+    57.38,
+    11.176,
+    73.89,
+    30.48
+  ],
+  "parts": [
+    {
+      "ref": "U1",
+      "value": "ESP32-S3-N8R8 DevKitC-1",
+      "x": 65,
+      "y": 8.89,
+      "pins": [
+        {
+          "number": "1",
+          "x": 65.0,
+          "y": 8.89,
+          "net": "+3V3",
+          "name": "3V3"
+        },
+        {
+          "number": "2",
+          "x": 62.46,
+          "y": 8.89,
+          "net": "+3V3",
+          "name": "3V3"
+        },
+        {
+          "number": "3",
+          "x": 59.92,
+          "y": 8.89,
+          "net": null,
+          "name": "EN"
+        },
+        {
+          "number": "4",
+          "x": 57.38,
+          "y": 8.89,
+          "net": "TC_DO",
+          "name": "GPIO4"
+        },
+        {
+          "number": "5",
+          "x": 54.84,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO5"
+        },
+        {
+          "number": "6",
+          "x": 52.3,
+          "y": 8.89,
+          "net": "TC_SCK",
+          "name": "GPIO6"
+        },
+        {
+          "number": "7",
+          "x": 49.76,
+          "y": 8.89,
+          "net": "TC_CS",
+          "name": "GPIO7"
+        },
+        {
+          "number": "8",
+          "x": 47.22,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO15"
+        },
+        {
+          "number": "9",
+          "x": 44.68,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO16"
+        },
+        {
+          "number": "10",
+          "x": 42.14,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO17"
+        },
+        {
+          "number": "11",
+          "x": 39.6,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO18"
+        },
+        {
+          "number": "12",
+          "x": 37.06,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO8"
+        },
+        {
+          "number": "13",
+          "x": 34.519999999999996,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO3"
+        },
+        {
+          "number": "14",
+          "x": 31.979999999999997,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO46"
+        },
+        {
+          "number": "15",
+          "x": 29.439999999999998,
+          "y": 8.89,
+          "net": "PUMP_PWM",
+          "name": "GPIO9"
+        },
+        {
+          "number": "16",
+          "x": 26.9,
+          "y": 8.89,
+          "net": "VALVE_3V3",
+          "name": "GPIO10"
+        },
+        {
+          "number": "17",
+          "x": 24.36,
+          "y": 8.89,
+          "net": "BOARD_ID",
+          "name": "GPIO11"
+        },
+        {
+          "number": "18",
+          "x": 21.82,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO12"
+        },
+        {
+          "number": "19",
+          "x": 19.28,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO13"
+        },
+        {
+          "number": "20",
+          "x": 16.740000000000002,
+          "y": 8.89,
+          "net": "HEATER_3V3",
+          "name": "GPIO14"
+        },
+        {
+          "number": "21",
+          "x": 14.200000000000003,
+          "y": 8.89,
+          "net": "DEV_5V",
+          "name": "5V"
+        },
+        {
+          "number": "22",
+          "x": 11.659999999999997,
+          "y": 8.89,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "23",
+          "x": 65.0,
+          "y": 31.75,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "24",
+          "x": 62.46,
+          "y": 31.75,
+          "net": null,
+          "name": "TX43"
+        },
+        {
+          "number": "25",
+          "x": 59.92,
+          "y": 31.75,
+          "net": null,
+          "name": "RX44"
+        },
+        {
+          "number": "26",
+          "x": 57.38,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO1"
+        },
+        {
+          "number": "27",
+          "x": 54.84,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO2"
+        },
+        {
+          "number": "28",
+          "x": 52.3,
+          "y": 31.75,
+          "net": "SDA_3V3",
+          "name": "GPIO42"
+        },
+        {
+          "number": "29",
+          "x": 49.76,
+          "y": 31.75,
+          "net": "SCL_3V3",
+          "name": "GPIO41"
+        },
+        {
+          "number": "30",
+          "x": 47.22,
+          "y": 31.75,
+          "net": "DETECT_EN",
+          "name": "GPIO40"
+        },
+        {
+          "number": "31",
+          "x": 44.68,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO39"
+        },
+        {
+          "number": "32",
+          "x": 42.14,
+          "y": 31.75,
+          "net": "BREW",
+          "name": "GPIO38"
+        },
+        {
+          "number": "33",
+          "x": 39.6,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO37_RESERVED"
+        },
+        {
+          "number": "34",
+          "x": 37.06,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO36_RESERVED"
+        },
+        {
+          "number": "35",
+          "x": 34.519999999999996,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO35_RESERVED"
+        },
+        {
+          "number": "36",
+          "x": 31.979999999999997,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO0"
+        },
+        {
+          "number": "37",
+          "x": 29.439999999999998,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO45"
+        },
+        {
+          "number": "38",
+          "x": 26.9,
+          "y": 31.75,
+          "net": "STEAM",
+          "name": "GPIO48"
+        },
+        {
+          "number": "39",
+          "x": 24.36,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO47"
+        },
+        {
+          "number": "40",
+          "x": 21.82,
+          "y": 31.75,
+          "net": "PUMP_ZC",
+          "name": "GPIO21"
+        },
+        {
+          "number": "41",
+          "x": 19.28,
+          "y": 31.75,
+          "net": null,
+          "name": "USB_D+20"
+        },
+        {
+          "number": "42",
+          "x": 16.740000000000002,
+          "y": 31.75,
+          "net": null,
+          "name": "USB_D-19"
+        },
+        {
+          "number": "43",
+          "x": 14.200000000000003,
+          "y": 31.75,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "44",
+          "x": 11.659999999999997,
+          "y": 31.75,
+          "net": "GND",
+          "name": "GND"
+        }
+      ],
+      "rect": [
+        3.530000000000001,
+        7.620000000000001,
+        66.27,
+        35.56
+      ],
+      "kind": "ESP32",
+      "footprint": "GemilaiMate:U1_ESP32",
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 65.0,
+          "y": 8.89,
+          "net": "+3V3",
+          "name": "3V3"
+        },
+        {
+          "number": "2",
+          "x": 62.46,
+          "y": 8.89,
+          "net": "+3V3",
+          "name": "3V3"
+        },
+        {
+          "number": "3",
+          "x": 59.92,
+          "y": 8.89,
+          "net": null,
+          "name": "EN"
+        },
+        {
+          "number": "4",
+          "x": 57.38,
+          "y": 8.89,
+          "net": "TC_DO",
+          "name": "GPIO4"
+        },
+        {
+          "number": "5",
+          "x": 54.84,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO5"
+        },
+        {
+          "number": "6",
+          "x": 52.3,
+          "y": 8.89,
+          "net": "TC_SCK",
+          "name": "GPIO6"
+        },
+        {
+          "number": "7",
+          "x": 49.76,
+          "y": 8.89,
+          "net": "TC_CS",
+          "name": "GPIO7"
+        },
+        {
+          "number": "8",
+          "x": 47.22,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO15"
+        },
+        {
+          "number": "9",
+          "x": 44.68,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO16"
+        },
+        {
+          "number": "10",
+          "x": 42.14,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO17"
+        },
+        {
+          "number": "11",
+          "x": 39.6,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO18"
+        },
+        {
+          "number": "12",
+          "x": 37.06,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO8"
+        },
+        {
+          "number": "13",
+          "x": 34.519999999999996,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO3"
+        },
+        {
+          "number": "14",
+          "x": 31.979999999999997,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO46"
+        },
+        {
+          "number": "15",
+          "x": 29.439999999999998,
+          "y": 8.89,
+          "net": "PUMP_PWM",
+          "name": "GPIO9"
+        },
+        {
+          "number": "16",
+          "x": 26.9,
+          "y": 8.89,
+          "net": "VALVE_3V3",
+          "name": "GPIO10"
+        },
+        {
+          "number": "17",
+          "x": 24.36,
+          "y": 8.89,
+          "net": "BOARD_ID",
+          "name": "GPIO11"
+        },
+        {
+          "number": "18",
+          "x": 21.82,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO12"
+        },
+        {
+          "number": "19",
+          "x": 19.28,
+          "y": 8.89,
+          "net": null,
+          "name": "GPIO13"
+        },
+        {
+          "number": "20",
+          "x": 16.740000000000002,
+          "y": 8.89,
+          "net": "HEATER_3V3",
+          "name": "GPIO14"
+        },
+        {
+          "number": "21",
+          "x": 14.200000000000003,
+          "y": 8.89,
+          "net": "DEV_5V",
+          "name": "5V"
+        },
+        {
+          "number": "22",
+          "x": 11.659999999999997,
+          "y": 8.89,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "23",
+          "x": 65.0,
+          "y": 31.75,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "24",
+          "x": 62.46,
+          "y": 31.75,
+          "net": null,
+          "name": "TX43"
+        },
+        {
+          "number": "25",
+          "x": 59.92,
+          "y": 31.75,
+          "net": null,
+          "name": "RX44"
+        },
+        {
+          "number": "26",
+          "x": 57.38,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO1"
+        },
+        {
+          "number": "27",
+          "x": 54.84,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO2"
+        },
+        {
+          "number": "28",
+          "x": 52.3,
+          "y": 31.75,
+          "net": "SDA_3V3",
+          "name": "GPIO42"
+        },
+        {
+          "number": "29",
+          "x": 49.76,
+          "y": 31.75,
+          "net": "SCL_3V3",
+          "name": "GPIO41"
+        },
+        {
+          "number": "30",
+          "x": 47.22,
+          "y": 31.75,
+          "net": "DETECT_EN",
+          "name": "GPIO40"
+        },
+        {
+          "number": "31",
+          "x": 44.68,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO39"
+        },
+        {
+          "number": "32",
+          "x": 42.14,
+          "y": 31.75,
+          "net": "BREW",
+          "name": "GPIO38"
+        },
+        {
+          "number": "33",
+          "x": 39.6,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO37_RESERVED"
+        },
+        {
+          "number": "34",
+          "x": 37.06,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO36_RESERVED"
+        },
+        {
+          "number": "35",
+          "x": 34.519999999999996,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO35_RESERVED"
+        },
+        {
+          "number": "36",
+          "x": 31.979999999999997,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO0"
+        },
+        {
+          "number": "37",
+          "x": 29.439999999999998,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO45"
+        },
+        {
+          "number": "38",
+          "x": 26.9,
+          "y": 31.75,
+          "net": "STEAM",
+          "name": "GPIO48"
+        },
+        {
+          "number": "39",
+          "x": 24.36,
+          "y": 31.75,
+          "net": null,
+          "name": "GPIO47"
+        },
+        {
+          "number": "40",
+          "x": 21.82,
+          "y": 31.75,
+          "net": "PUMP_ZC",
+          "name": "GPIO21"
+        },
+        {
+          "number": "41",
+          "x": 19.28,
+          "y": 31.75,
+          "net": null,
+          "name": "USB_D+20"
+        },
+        {
+          "number": "42",
+          "x": 16.740000000000002,
+          "y": 31.75,
+          "net": null,
+          "name": "USB_D-19"
+        },
+        {
+          "number": "43",
+          "x": 14.200000000000003,
+          "y": 31.75,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "44",
+          "x": 11.659999999999997,
+          "y": 31.75,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "23",
+          "x": 65.0,
+          "y": 34.29,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "24",
+          "x": 62.46,
+          "y": 34.29,
+          "net": null,
+          "name": "TX43"
+        },
+        {
+          "number": "25",
+          "x": 59.92,
+          "y": 34.29,
+          "net": null,
+          "name": "RX44"
+        },
+        {
+          "number": "26",
+          "x": 57.38,
+          "y": 34.29,
+          "net": null,
+          "name": "GPIO1"
+        },
+        {
+          "number": "27",
+          "x": 54.84,
+          "y": 34.29,
+          "net": null,
+          "name": "GPIO2"
+        },
+        {
+          "number": "28",
+          "x": 52.3,
+          "y": 34.29,
+          "net": "SDA_3V3",
+          "name": "GPIO42"
+        },
+        {
+          "number": "29",
+          "x": 49.76,
+          "y": 34.29,
+          "net": "SCL_3V3",
+          "name": "GPIO41"
+        },
+        {
+          "number": "30",
+          "x": 47.22,
+          "y": 34.29,
+          "net": "DETECT_EN",
+          "name": "GPIO40"
+        },
+        {
+          "number": "31",
+          "x": 44.68,
+          "y": 34.29,
+          "net": null,
+          "name": "GPIO39"
+        },
+        {
+          "number": "32",
+          "x": 42.14,
+          "y": 34.29,
+          "net": "BREW",
+          "name": "GPIO38"
+        },
+        {
+          "number": "33",
+          "x": 39.6,
+          "y": 34.29,
+          "net": null,
+          "name": "GPIO37_RESERVED"
+        },
+        {
+          "number": "34",
+          "x": 37.06,
+          "y": 34.29,
+          "net": null,
+          "name": "GPIO36_RESERVED"
+        },
+        {
+          "number": "35",
+          "x": 34.519999999999996,
+          "y": 34.29,
+          "net": null,
+          "name": "GPIO35_RESERVED"
+        },
+        {
+          "number": "36",
+          "x": 31.979999999999997,
+          "y": 34.29,
+          "net": null,
+          "name": "GPIO0"
+        },
+        {
+          "number": "37",
+          "x": 29.439999999999998,
+          "y": 34.29,
+          "net": null,
+          "name": "GPIO45"
+        },
+        {
+          "number": "38",
+          "x": 26.9,
+          "y": 34.29,
+          "net": "STEAM",
+          "name": "GPIO48"
+        },
+        {
+          "number": "39",
+          "x": 24.36,
+          "y": 34.29,
+          "net": null,
+          "name": "GPIO47"
+        },
+        {
+          "number": "40",
+          "x": 21.82,
+          "y": 34.29,
+          "net": "PUMP_ZC",
+          "name": "GPIO21"
+        },
+        {
+          "number": "41",
+          "x": 19.28,
+          "y": 34.29,
+          "net": null,
+          "name": "USB_D+20"
+        },
+        {
+          "number": "42",
+          "x": 16.740000000000002,
+          "y": 34.29,
+          "net": null,
+          "name": "USB_D-19"
+        },
+        {
+          "number": "43",
+          "x": 14.200000000000003,
+          "y": 34.29,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "44",
+          "x": 11.659999999999997,
+          "y": 34.29,
+          "net": "GND",
+          "name": "GND"
+        }
+      ],
+      "assembly": "USB LEFT, antenna RIGHT. Fit one lower socket row only: A 22.86 mm or B 25.40 mm. At least 5 mm clearance under DevKit required for 0805 parts.",
+      "dimension_source": "Official DevKit envelope only; selected clone still requires template comparison."
+    },
+    {
+      "ref": "J1",
+      "value": "ISOLATED 5V INPUT",
+      "x": 8.89,
+      "y": 3.81,
+      "pins": [
+        {
+          "number": "1",
+          "x": 8.89,
+          "y": 3.81,
+          "net": "+5V",
+          "name": "5V"
+        },
+        {
+          "number": "2",
+          "x": 11.43,
+          "y": 3.81,
+          "net": "GND",
+          "name": "GND"
+        }
+      ],
+      "rect": [
+        7.620000000000001,
+        2.54,
+        12.700000000000001,
+        5.08
+      ],
+      "kind": "header",
+      "footprint": "GemilaiMate:J1_header"
+    },
+    {
+      "ref": "JP1",
+      "value": "OPEN FOR USB",
+      "x": 16.51,
+      "y": 3.81,
+      "pins": [
+        {
+          "number": "1",
+          "x": 16.51,
+          "y": 3.81,
+          "net": "+5V",
+          "name": "SUPPLY_5V"
+        },
+        {
+          "number": "2",
+          "x": 19.05,
+          "y": 3.81,
+          "net": "DEV_5V",
+          "name": "DEVKIT_5V"
+        }
+      ],
+      "rect": [
+        15.240000000000002,
+        2.54,
+        20.32,
+        5.08
+      ],
+      "kind": "header",
+      "footprint": "GemilaiMate:JP1_header"
+    },
+    {
+      "ref": "J9",
+      "value": "DISPLAY USB 5V",
+      "x": 24.13,
+      "y": 3.81,
+      "pins": [
+        {
+          "number": "1",
+          "x": 24.13,
+          "y": 3.81,
+          "net": "+5V",
+          "name": "USB5V"
+        },
+        {
+          "number": "2",
+          "x": 26.669999999999998,
+          "y": 3.81,
+          "net": "GND",
+          "name": "GND"
+        }
+      ],
+      "rect": [
+        22.86,
+        2.54,
+        27.939999999999998,
+        5.08
+      ],
+      "kind": "header",
+      "footprint": "GemilaiMate:J9_header"
+    },
+    {
+      "ref": "J5",
+      "value": "ROBOTDYN STANDARD",
+      "x": 31.75,
+      "y": 3.81,
+      "pins": [
+        {
+          "number": "1",
+          "x": 31.75,
+          "y": 3.81,
+          "net": "+5V",
+          "name": "VCC5V"
+        },
+        {
+          "number": "2",
+          "x": 34.29,
+          "y": 3.81,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "3",
+          "x": 36.83,
+          "y": 3.81,
+          "net": "ZC_RAW",
+          "name": "ZC5V"
+        },
+        {
+          "number": "4",
+          "x": 39.37,
+          "y": 3.81,
+          "net": "PUMP_PWM",
+          "name": "PSM3V3"
+        }
+      ],
+      "rect": [
+        30.48,
+        2.54,
+        40.64,
+        5.08
+      ],
+      "kind": "header",
+      "footprint": "GemilaiMate:J5_header"
+    },
+    {
+      "ref": "J4",
+      "value": "PRESSURE SENSOR",
+      "x": 44.45,
+      "y": 3.81,
+      "pins": [
+        {
+          "number": "1",
+          "x": 44.45,
+          "y": 3.81,
+          "net": "+5V",
+          "name": "VCC5V"
+        },
+        {
+          "number": "2",
+          "x": 46.99,
+          "y": 3.81,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "3",
+          "x": 49.53,
+          "y": 3.81,
+          "net": "PRESSURE_RAW",
+          "name": "OUT0.5-4.5V"
+        }
+      ],
+      "rect": [
+        43.18,
+        2.54,
+        50.800000000000004,
+        5.08
+      ],
+      "kind": "header",
+      "footprint": "GemilaiMate:J4_header"
+    },
+    {
+      "ref": "JP3",
+      "value": "MAX VIN SELECT",
+      "x": 54.61,
+      "y": 3.81,
+      "pins": [
+        {
+          "number": "1",
+          "x": 54.61,
+          "y": 3.81,
+          "net": "+5V",
+          "name": "5V_VIN"
+        },
+        {
+          "number": "2",
+          "x": 57.15,
+          "y": 3.81,
+          "net": "TC_VIN",
+          "name": "TC_VIN"
+        },
+        {
+          "number": "3",
+          "x": 59.69,
+          "y": 3.81,
+          "net": "+3V3",
+          "name": "3V3_OPTION"
+        }
+      ],
+      "rect": [
+        53.339999999999996,
+        2.54,
+        60.96,
+        5.08
+      ],
+      "kind": "header",
+      "footprint": "GemilaiMate:JP3_header"
+    },
+    {
+      "ref": "J2",
+      "value": "ADS1115 CABLE",
+      "x": 5.08,
+      "y": 41.91,
+      "pins": [
+        {
+          "number": "1",
+          "x": 5.08,
+          "y": 41.91,
+          "net": "+5V",
+          "name": "VDD5V"
+        },
+        {
+          "number": "2",
+          "x": 7.62,
+          "y": 41.91,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "3",
+          "x": 10.16,
+          "y": 41.91,
+          "net": "SCL_5V",
+          "name": "SCL"
+        },
+        {
+          "number": "4",
+          "x": 12.7,
+          "y": 41.91,
+          "net": "SDA_5V",
+          "name": "SDA"
+        },
+        {
+          "number": "5",
+          "x": 15.24,
+          "y": 41.91,
+          "net": "PRESSURE",
+          "name": "A0"
+        },
+        {
+          "number": "6",
+          "x": 17.78,
+          "y": 41.91,
+          "net": "GND",
+          "name": "ADDR0"
+        }
+      ],
+      "rect": [
+        3.81,
+        40.63999999999999,
+        19.049999999999997,
+        43.18
+      ],
+      "kind": "header",
+      "footprint": "GemilaiMate:J2_header"
+    },
+    {
+      "ref": "J7",
+      "value": "TXS0102 I2C ONLY",
+      "x": 22.86,
+      "y": 41.91,
+      "pins": [
+        {
+          "number": "1",
+          "x": 22.86,
+          "y": 41.91,
+          "net": "+3V3",
+          "name": "VCCA"
+        },
+        {
+          "number": "2",
+          "x": 25.4,
+          "y": 41.91,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "3",
+          "x": 27.939999999999998,
+          "y": 41.91,
+          "net": "SCL_3V3",
+          "name": "A1"
+        },
+        {
+          "number": "4",
+          "x": 30.48,
+          "y": 41.91,
+          "net": "SDA_3V3",
+          "name": "A2"
+        },
+        {
+          "number": "5",
+          "x": 33.019999999999996,
+          "y": 41.91,
+          "net": "+5V",
+          "name": "VCCB"
+        },
+        {
+          "number": "6",
+          "x": 35.56,
+          "y": 41.91,
+          "net": "+3V3",
+          "name": "OE"
+        },
+        {
+          "number": "7",
+          "x": 38.1,
+          "y": 41.91,
+          "net": "SCL_5V",
+          "name": "B1"
+        },
+        {
+          "number": "8",
+          "x": 40.64,
+          "y": 41.91,
+          "net": "SDA_5V",
+          "name": "B2"
+        }
+      ],
+      "rect": [
+        21.59,
+        40.63999999999999,
+        41.91,
+        43.18
+      ],
+      "kind": "header",
+      "footprint": "GemilaiMate:J7_header"
+    },
+    {
+      "ref": "J3",
+      "value": "MAX31855 VIN",
+      "x": 45.72,
+      "y": 41.91,
+      "pins": [
+        {
+          "number": "1",
+          "x": 45.72,
+          "y": 41.91,
+          "net": "TC_VIN",
+          "name": "VIN_SELECT"
+        },
+        {
+          "number": "2",
+          "x": 48.26,
+          "y": 41.91,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "3",
+          "x": 50.8,
+          "y": 41.91,
+          "net": "TC_DO",
+          "name": "DO"
+        },
+        {
+          "number": "4",
+          "x": 53.339999999999996,
+          "y": 41.91,
+          "net": "TC_CS",
+          "name": "CS"
+        },
+        {
+          "number": "5",
+          "x": 55.879999999999995,
+          "y": 41.91,
+          "net": "TC_SCK",
+          "name": "SCK"
+        }
+      ],
+      "rect": [
+        44.449999999999996,
+        40.63999999999999,
+        57.15,
+        43.18
+      ],
+      "kind": "header",
+      "footprint": "GemilaiMate:J3_header"
+    },
+    {
+      "ref": "J8",
+      "value": "DRY CONTACTS ONLY",
+      "x": 60.96,
+      "y": 41.91,
+      "pins": [
+        {
+          "number": "1",
+          "x": 60.96,
+          "y": 41.91,
+          "net": "BREW_CONTACT",
+          "name": "BREW_CONTACT"
+        },
+        {
+          "number": "2",
+          "x": 63.5,
+          "y": 41.91,
+          "net": "STEAM_CONTACT",
+          "name": "STEAM_CONTACT"
+        },
+        {
+          "number": "3",
+          "x": 66.04,
+          "y": 41.91,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "4",
+          "x": 68.58,
+          "y": 41.91,
+          "net": "GND",
+          "name": "GND"
+        }
+      ],
+      "rect": [
+        59.69,
+        40.63999999999999,
+        69.85,
+        43.18
+      ],
+      "kind": "header",
+      "footprint": "GemilaiMate:J8_header"
+    },
+    {
+      "ref": "J6",
+      "value": "VALVE SSR HIGH5V",
+      "x": 76.2,
+      "y": 41.91,
+      "pins": [
+        {
+          "number": "1",
+          "x": 76.2,
+          "y": 41.91,
+          "net": "+5V",
+          "name": "VCC5V"
+        },
+        {
+          "number": "2",
+          "x": 78.74000000000001,
+          "y": 41.91,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "3",
+          "x": 81.28,
+          "y": 41.91,
+          "net": "VALVE_IN",
+          "name": "IN"
+        }
+      ],
+      "rect": [
+        74.93,
+        40.63999999999999,
+        82.55,
+        43.18
+      ],
+      "kind": "header",
+      "footprint": "GemilaiMate:J6_header"
+    },
+    {
+      "ref": "J10",
+      "value": "HEATER UNUSED",
+      "x": 86.36,
+      "y": 5.08,
+      "pins": [
+        {
+          "number": "1",
+          "x": 86.36,
+          "y": 5.08,
+          "net": "+5V",
+          "name": "VCC5V"
+        },
+        {
+          "number": "2",
+          "x": 86.36,
+          "y": 7.62,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "3",
+          "x": 86.36,
+          "y": 10.16,
+          "net": "HEATER_5V",
+          "name": "IN"
+        }
+      ],
+      "rect": [
+        85.09,
+        3.81,
+        87.63,
+        11.43
+      ],
+      "kind": "header",
+      "footprint": "GemilaiMate:J10_header"
+    },
+    {
+      "ref": "U2",
+      "value": "SN74AHCT125N PDIP14",
+      "x": 77.47,
+      "y": 20.32,
+      "pins": [
+        {
+          "number": "1",
+          "x": 77.47,
+          "y": 20.32,
+          "net": "GND",
+          "name": "1OE"
+        },
+        {
+          "number": "2",
+          "x": 77.47,
+          "y": 22.86,
+          "net": "VALVE_3V3",
+          "name": "1A"
+        },
+        {
+          "number": "3",
+          "x": 77.47,
+          "y": 25.4,
+          "net": "VALVE_5V",
+          "name": "1Y"
+        },
+        {
+          "number": "4",
+          "x": 77.47,
+          "y": 27.94,
+          "net": "GND",
+          "name": "2OE"
+        },
+        {
+          "number": "5",
+          "x": 77.47,
+          "y": 30.48,
+          "net": "HEATER_3V3",
+          "name": "2A"
+        },
+        {
+          "number": "6",
+          "x": 77.47,
+          "y": 33.019999999999996,
+          "net": "HEATER_5V",
+          "name": "2Y"
+        },
+        {
+          "number": "7",
+          "x": 77.47,
+          "y": 35.56,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "14",
+          "x": 85.09,
+          "y": 20.32,
+          "net": "+5V",
+          "name": "VCC"
+        },
+        {
+          "number": "13",
+          "x": 85.09,
+          "y": 22.86,
+          "net": "+5V",
+          "name": "4OE"
+        },
+        {
+          "number": "12",
+          "x": 85.09,
+          "y": 25.4,
+          "net": "GND",
+          "name": "4A"
+        },
+        {
+          "number": "11",
+          "x": 85.09,
+          "y": 27.94,
+          "net": null,
+          "name": "4Y"
+        },
+        {
+          "number": "10",
+          "x": 85.09,
+          "y": 30.48,
+          "net": "+5V",
+          "name": "3OE"
+        },
+        {
+          "number": "9",
+          "x": 85.09,
+          "y": 33.019999999999996,
+          "net": "GND",
+          "name": "3A"
+        },
+        {
+          "number": "8",
+          "x": 85.09,
+          "y": 35.56,
+          "net": null,
+          "name": "3Y"
+        }
+      ],
+      "rect": [
+        76.07,
+        18.12,
+        86.49,
+        37.760000000000005
+      ],
+      "kind": "DIP14",
+      "footprint": "GemilaiMate:U2_DIP14"
+    },
+    {
+      "ref": "R1",
+      "value": "10k 1% 0805",
+      "x": 43.18,
+      "y": 24.13,
+      "pins": [
+        {
+          "number": "1",
+          "x": 42.2675,
+          "y": 24.13,
+          "net": "DETECT_EN",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 44.0925,
+          "y": 24.13,
+          "net": "BOARD_ID",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        41.48,
+        23.13,
+        44.88,
+        25.13
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:R1_R_0805_2012Metric"
+    },
+    {
+      "ref": "R2",
+      "value": "1.2k 1% 0805",
+      "x": 48.26,
+      "y": 24.13,
+      "pins": [
+        {
+          "number": "1",
+          "x": 47.3475,
+          "y": 24.13,
+          "net": "BOARD_ID",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 49.1725,
+          "y": 24.13,
+          "net": "GND",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        46.559999999999995,
+        23.13,
+        49.96,
+        25.13
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:R2_R_0805_2012Metric"
+    },
+    {
+      "ref": "C2",
+      "value": "100nF 50V 0805",
+      "x": 53.34,
+      "y": 24.13,
+      "pins": [
+        {
+          "number": "1",
+          "x": 52.39,
+          "y": 24.13,
+          "net": "BOARD_ID",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 54.29,
+          "y": 24.13,
+          "net": "GND",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        51.64,
+        23.13,
+        55.040000000000006,
+        25.13
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:C2_C_0805_2012Metric"
+    },
+    {
+      "ref": "R3",
+      "value": "10k 0805",
+      "x": 22.86,
+      "y": 15.24,
+      "pins": [
+        {
+          "number": "1",
+          "x": 21.9475,
+          "y": 15.24,
+          "net": "VALVE_3V3",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 23.7725,
+          "y": 15.24,
+          "net": "GND",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        21.16,
+        14.24,
+        24.56,
+        16.240000000000002
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:R3_R_0805_2012Metric"
+    },
+    {
+      "ref": "R4",
+      "value": "10k 0805",
+      "x": 12.7,
+      "y": 15.24,
+      "pins": [
+        {
+          "number": "1",
+          "x": 11.7875,
+          "y": 15.24,
+          "net": "HEATER_3V3",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 13.6125,
+          "y": 15.24,
+          "net": "GND",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        11.0,
+        14.24,
+        14.399999999999999,
+        16.240000000000002
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:R4_R_0805_2012Metric"
+    },
+    {
+      "ref": "R5",
+      "value": "10k 0805",
+      "x": 27.94,
+      "y": 15.24,
+      "pins": [
+        {
+          "number": "1",
+          "x": 27.0275,
+          "y": 15.24,
+          "net": "PUMP_PWM",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 28.8525,
+          "y": 15.24,
+          "net": "GND",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        26.240000000000002,
+        14.24,
+        29.64,
+        16.240000000000002
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:R5_R_0805_2012Metric"
+    },
+    {
+      "ref": "R6",
+      "value": "1k 0805",
+      "x": 43.18,
+      "y": 38.1,
+      "pins": [
+        {
+          "number": "1",
+          "x": 42.2675,
+          "y": 38.1,
+          "net": "BREW_CONTACT",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 44.0925,
+          "y": 38.1,
+          "net": "BREW",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        41.48,
+        37.1,
+        44.88,
+        39.1
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:R6_R_0805_2012Metric"
+    },
+    {
+      "ref": "R8",
+      "value": "10k 0805",
+      "x": 48.26,
+      "y": 38.1,
+      "pins": [
+        {
+          "number": "1",
+          "x": 47.3475,
+          "y": 38.1,
+          "net": "+3V3",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 49.1725,
+          "y": 38.1,
+          "net": "BREW",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        46.559999999999995,
+        37.1,
+        49.96,
+        39.1
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:R8_R_0805_2012Metric"
+    },
+    {
+      "ref": "C4",
+      "value": "100nF 50V 0805",
+      "x": 53.34,
+      "y": 38.1,
+      "pins": [
+        {
+          "number": "1",
+          "x": 52.39,
+          "y": 38.1,
+          "net": "BREW",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 54.29,
+          "y": 38.1,
+          "net": "GND",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        51.64,
+        37.1,
+        55.040000000000006,
+        39.1
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:C4_C_0805_2012Metric"
+    },
+    {
+      "ref": "R7",
+      "value": "1k 0805",
+      "x": 58.42,
+      "y": 38.1,
+      "pins": [
+        {
+          "number": "1",
+          "x": 57.5075,
+          "y": 38.1,
+          "net": "STEAM_CONTACT",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 59.3325,
+          "y": 38.1,
+          "net": "STEAM",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        56.72,
+        37.1,
+        60.120000000000005,
+        39.1
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:R7_R_0805_2012Metric"
+    },
+    {
+      "ref": "R9",
+      "value": "10k 0805",
+      "x": 63.5,
+      "y": 38.1,
+      "pins": [
+        {
+          "number": "1",
+          "x": 62.5875,
+          "y": 38.1,
+          "net": "+3V3",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 64.4125,
+          "y": 38.1,
+          "net": "STEAM",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        61.8,
+        37.1,
+        65.2,
+        39.1
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:R9_R_0805_2012Metric"
+    },
+    {
+      "ref": "C5",
+      "value": "100nF 50V 0805",
+      "x": 68.58,
+      "y": 38.1,
+      "pins": [
+        {
+          "number": "1",
+          "x": 67.63,
+          "y": 38.1,
+          "net": "STEAM",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 69.53,
+          "y": 38.1,
+          "net": "GND",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        66.88,
+        37.1,
+        70.28,
+        39.1
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:C5_C_0805_2012Metric"
+    },
+    {
+      "ref": "R13",
+      "value": "0R 0805 LINK",
+      "x": 71.12,
+      "y": 35.56,
+      "pins": [
+        {
+          "number": "1",
+          "x": 70.2075,
+          "y": 35.56,
+          "net": "VALVE_5V",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 72.0325,
+          "y": 35.56,
+          "net": "VALVE_IN",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        69.42,
+        34.56,
+        72.82000000000001,
+        36.56
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:R13_R_0805_2012Metric"
+    },
+    {
+      "ref": "R12",
+      "value": "1k 0805",
+      "x": 20.32,
+      "y": 24.13,
+      "pins": [
+        {
+          "number": "1",
+          "x": 19.4075,
+          "y": 24.13,
+          "net": "PRESSURE_RAW",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 21.2325,
+          "y": 24.13,
+          "net": "PRESSURE",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        18.62,
+        23.13,
+        22.02,
+        25.13
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:R12_R_0805_2012Metric"
+    },
+    {
+      "ref": "C6",
+      "value": "100nF 50V 0805",
+      "x": 25.4,
+      "y": 24.13,
+      "pins": [
+        {
+          "number": "1",
+          "x": 24.45,
+          "y": 24.13,
+          "net": "PRESSURE",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 26.35,
+          "y": 24.13,
+          "net": "GND",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        23.7,
+        23.13,
+        27.099999999999998,
+        25.13
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:C6_C_0805_2012Metric"
+    },
+    {
+      "ref": "C1",
+      "value": "100nF 50V 0805",
+      "x": 81.28,
+      "y": 15.24,
+      "pins": [
+        {
+          "number": "1",
+          "x": 80.33,
+          "y": 15.24,
+          "net": "+5V",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 82.23,
+          "y": 15.24,
+          "net": "GND",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        79.58,
+        14.24,
+        82.98,
+        16.240000000000002
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:C1_C_0805_2012Metric"
+    },
+    {
+      "ref": "R10",
+      "value": "1k 0805",
+      "x": 73.02499999999999,
+      "y": 2.540000000000001,
+      "pins": [
+        {
+          "number": "1",
+          "x": 72.11249999999998,
+          "y": 2.540000000000001,
+          "net": "ZC_RAW",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 73.93749999999999,
+          "y": 2.540000000000001,
+          "net": "ZC_SCHMITT_IN",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        71.32499999999999,
+        1.540000000000001,
+        74.725,
+        3.540000000000001
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:R10_R_0805_2012Metric"
+    },
+    {
+      "ref": "R11",
+      "value": "10k 0805",
+      "x": 81.28,
+      "y": 10.16,
+      "pins": [
+        {
+          "number": "1",
+          "x": 80.3675,
+          "y": 10.16,
+          "net": "+5V",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 82.1925,
+          "y": 10.16,
+          "net": "ZC_RAW",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        79.58,
+        9.16,
+        82.98,
+        11.16
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:R11_R_0805_2012Metric"
+    },
+    {
+      "ref": "C3",
+      "value": "100nF 50V 0805",
+      "x": 76.2,
+      "y": 10.16,
+      "pins": [
+        {
+          "number": "1",
+          "x": 75.25,
+          "y": 10.16,
+          "net": "+3V3",
+          "name": "1"
+        },
+        {
+          "number": "2",
+          "x": 77.15,
+          "y": 10.16,
+          "net": "GND",
+          "name": "2"
+        }
+      ],
+      "rect": [
+        74.5,
+        9.16,
+        77.9,
+        11.16
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:C3_C_0805_2012Metric"
+    },
+    {
+      "ref": "U3",
+      "value": "SN74LVC1G17DBV SOT23-5",
+      "x": 77.47,
+      "y": 5.08,
+      "pins": [
+        {
+          "number": "1",
+          "x": 76.3325,
+          "y": 4.13,
+          "net": null,
+          "name": "NC"
+        },
+        {
+          "number": "2",
+          "x": 76.3325,
+          "y": 5.08,
+          "net": "ZC_SCHMITT_IN",
+          "name": "A5V_TOLERANT"
+        },
+        {
+          "number": "3",
+          "x": 76.3325,
+          "y": 6.03,
+          "net": "GND",
+          "name": "GND"
+        },
+        {
+          "number": "4",
+          "x": 78.6075,
+          "y": 6.03,
+          "net": "PUMP_ZC",
+          "name": "Y3V3"
+        },
+        {
+          "number": "5",
+          "x": 78.6075,
+          "y": 4.13,
+          "net": "+3V3",
+          "name": "VCC3V3"
+        }
+      ],
+      "rect": [
+        75.42,
+        3.33,
+        79.52,
+        6.83
+      ],
+      "kind": "SMD",
+      "footprint": "GemilaiMate:U3_SOT-23-5"
+    }
+  ],
+  "source_version": "v0.1.0",
+  "mains_on_board": false,
+  "stack_clearance_under_devkit_mm_min": 5,
+  "project": "GemilaiMate",
+  "author": "Rico-X",
+  "repository": "https://github.com/Rico-X/GemilaiMate",
+  "firmware_ref": "v0.1.0",
+  "hardware_tested": false,
+  "mount_positions_in_machine_verified": false
+}

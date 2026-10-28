@@ -1,0 +1,33 @@
+{
+  "project": "GemilaiMate",
+  "version": "v0.1.0",
+  "date": "2026-10-28",
+  "hardware_assembled": false,
+  "hardware_flashed": false,
+  "tested_on_machine": false,
+  "erc_violations": 0,
+  "drc_violations": 0,
+  "unconnected_items": 0,
+  "schematic_parity_issues": 0,
+  "gpio_checks": 13,
+  "connected_nets": 29,
+  "host_control_scenarios": 14,
+  "host_ping_scenarios": 5,
+  "flasher_tests": 6,
+  "native_tests_passed": 42,
+  "native_tests_skipped": 7,
+  "web_build": true,
+  "controller_build": true,
+  "display_build": true,
+  "filesystem_build": true,
+  "modified_ui_eslint": true,
+  "pdf_pages_visually_reviewed": 2,
+  "build_does_not_require_git_or_parent_checkout": true,
+  "pcb_sha256": "dfd4c211bd05bddf13110bd3bf884e0e9dac9d7ae5df36853eb8e614cceb64c3",
+  "source_tree_sha256": "31656ed1c9c89883b8ff7bfa59d2b353c98c985c185ad17f21083d6fd1815058",
+  "firmware_sizes": {
+    "controller": 703744,
+    "display": 3373392
+  },
+  "unchanged_copper_geometry_verified": true
+}

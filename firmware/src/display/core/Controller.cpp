@@ -1,0 +1,1446 @@
+#include "Controller.h"
+#include "ArduinoJson.h"
+#include "esp_coexist.h"
+#include "esp_sntp.h"
+#include <LittleFS.h>
+#include <SD_MMC.h>
+#include <algorithm>
+#include <cmath>
+#include <ctime>
+#include <display/config.h>
+#include <display/core/constants.h>
+#include <display/core/process/BrewProcess.h>
+#include <display/core/process/GrindProcess.h>
+#include <display/core/process/PumpProcess.h>
+#include <display/core/process/SteamProcess.h>
+#include <display/core/static_profiles.h>
+#include <display/core/zones.h>
+#include <display/plugins/AutoWakeupPlugin.h>
+#include <display/plugins/BoilerFillPlugin.h>
+#include <display/plugins/LedControlPlugin.h>
+#include <display/plugins/ShotHistoryPlugin.h>
+#include <display/plugins/SmartGrindPlugin.h>
+#include <display/plugins/WebUIPlugin.h>
+#ifndef GEMILAIMATE_SIM // network/BLE plugins are device-only
+#include <display/plugins/BLEScalePlugin.h>
+#include <display/plugins/HomekitPlugin.h>
+#include <display/plugins/ImprovPlugin.h>
+#include <display/plugins/MQTTPlugin.h>
+#include <display/plugins/NetworkWatchdogPlugin.h>
+#include <display/plugins/WifiStaWatchdogPlugin.h>
+#include <display/plugins/mDNSPlugin.h>
+#endif
+#include <display/util/PsramAllocator.h>
+#ifndef GEMILAIMATE_HEADLESS
+#ifdef GEMILAIMATE_SIM
+#include <SdlDriver.h> // desktop SDL panel stands in for the hardware drivers
+#else
+#include <Preferences.h>
+#include <display/drivers/AmoledDisplayDriver.h>
+#include <display/drivers/LilyGoDriver.h>
+#include <display/drivers/WaveshareDriver.h>
+#endif
+#endif
+
+const String LOG_TAG = F("Controller");
+
+void Controller::setup() {
+    mode = MODE_STANDBY;
+
+    // Web assets are served from this partition. LittleFS (not SPIFFS): SPIFFS
+    // has no directory tree, so stat()/exists() is O(whole filesystem) and a
+    // miss scans every page -- the web handler does that synchronously in the
+    // async_tcp task for every request, which under a multi-tab load burst
+    // pegged CPU0 for >5s and tripped the task watchdog (reboot). LittleFS
+    // lookups are O(path). maxOpenFiles 16 for concurrent asset serving. [GM-90]
+    if (!LittleFS.begin(true, "/littlefs", 16)) {
+        Serial.println(F("An Error has occurred while mounting LittleFS"));
+    }
+
+#ifndef GEMILAIMATE_HEADLESS
+    setupPanel();
+#endif
+
+    pluginManager = new PluginManager();
+    warnings.setup(this);
+#ifndef GEMILAIMATE_HEADLESS
+    ui = new DefaultUI(this, driver, pluginManager);
+    if (driver->supportsSDCard() && driver->installSDCard()) {
+        sdcard = true;
+        ESP_LOGI(LOG_TAG, "SD Card detected and mounted");
+        ESP_LOGI(LOG_TAG, "Used: %lluMB, Capacity: %lluMB", SD_MMC.usedBytes() / 1024 / 1024, SD_MMC.cardSize() / 1024 / 1024);
+    }
+#endif
+    FS *fs = &LittleFS;
+    if (sdcard) {
+        fs = &SD_MMC;
+    }
+    profileManager = new ProfileManager(fs, "/p", settings, pluginManager);
+    profileManager->setup();
+#ifndef GEMILAIMATE_SIM // mDNS/HomeKit are device-only
+    if (settings.isHomekit())
+        pluginManager->registerPlugin(new HomekitPlugin(settings.getWifiSsid(), settings.getWifiPassword()));
+    else
+        pluginManager->registerPlugin(new mDNSPlugin());
+#endif
+    if (settings.isBoilerFillActive()) {
+        pluginManager->registerPlugin(new BoilerFillPlugin());
+    }
+    if (settings.isSmartGrindActive()) {
+        pluginManager->registerPlugin(new SmartGrindPlugin());
+    }
+#ifndef GEMILAIMATE_SIM // MQTT/HomeAssistant is device-only
+    if (settings.isHomeAssistant()) {
+        pluginManager->registerPlugin(new MQTTPlugin());
+    }
+#endif
+    pluginManager->registerPlugin(new WebUIPlugin());
+#ifndef GEMILAIMATE_SIM // WiFi watchdogs and BLE scales are device-only
+    pluginManager->registerPlugin(new NetworkWatchdogPlugin());
+    pluginManager->registerPlugin(new WifiStaWatchdogPlugin());
+    pluginManager->registerPlugin(new ImprovPlugin());
+#endif
+    pluginManager->registerPlugin(&ShotHistory);
+#ifndef GEMILAIMATE_SIM
+    pluginManager->registerPlugin(&BLEScales);
+#endif
+    pluginManager->registerPlugin(new LedControlPlugin());
+    pluginManager->registerPlugin(new AutoWakeupPlugin());
+    pluginManager->setup(this);
+
+    pluginManager->on("profiles:profile:save", [this](Event const &event) {
+        String id = event.getString("id");
+        if (id == profileManager->getSelectedProfile().id) {
+            this->handleProfileUpdate();
+        }
+    });
+
+    pluginManager->on("profiles:profile:select", [this](Event const &event) { this->handleProfileUpdate(); });
+
+    buttons.setCallback([this](uint8_t index, ButtonHandler::Event event) { onButtonEvent(index, event); });
+
+#ifndef GEMILAIMATE_HEADLESS
+    ui->init();
+#endif
+    this->onScreenReady();
+
+    updateLastAction();
+    xTaskCreatePinnedToCore(loopLogicTask, "Controller::loopLogic", configMINIMAL_STACK_SIZE * 6, this, 3, &logicTaskHandle, 0);
+}
+
+void Controller::onScreenReady() { screenReady = true; }
+
+void Controller::onTargetToggle() { settings.setVolumetricTarget(!settings.isVolumetricTarget()); }
+
+void Controller::onTargetChange(ProcessTarget target) { settings.setVolumetricTarget(target == ProcessTarget::VOLUMETRIC); }
+
+void Controller::connect() {
+    lastPing = millis();
+    connectStartTime = millis();
+    pluginManager->trigger("controller:startup");
+
+    setupWifi();
+    setupBluetooth();
+    pluginManager->on("ota:update:start", [this](Event const &) { this->updating = true; });
+    pluginManager->on("ota:update:end", [this](Event const &) { this->updating = false; });
+
+    updateLastAction();
+    initialized = true;
+}
+
+#ifndef GEMILAIMATE_HEADLESS
+// NVS values for the cached panel detection result (GM-140) — only append, never renumber
+enum PanelModel : uint8_t { PANEL_UNKNOWN = 0, PANEL_LILYGO = 1, PANEL_AMOLED = 2, PANEL_WAVESHARE = 3 };
+
+void Controller::setupPanel() {
+#ifdef GEMILAIMATE_SIM
+    driver = SdlDriver::getInstance(); // desktop SDL panel
+    driver->init();
+#else
+    // The panel can't change after flashing, so cache the detection result in NVS
+    // and skip the multi-second probing chain on subsequent boots (GM-140).
+    Preferences panelPrefs;
+    panelPrefs.begin("panel", false);
+    uint8_t model = panelPrefs.getUChar("driver", PANEL_UNKNOWN);
+    if (model != PANEL_UNKNOWN) {
+        // Drop the cache before init so a crash here falls back to full detection
+        panelPrefs.remove("driver");
+        switch (model) {
+        case PANEL_LILYGO:
+            driver = LilyGoDriver::getInstance();
+            break;
+        case PANEL_AMOLED:
+            if (AmoledDisplayDriver::getInstance()->selectVariant(panelPrefs.getChar("variant", -1)))
+                driver = AmoledDisplayDriver::getInstance();
+            break;
+        case PANEL_WAVESHARE:
+            driver = WaveshareDriver::getInstance();
+            break;
+        }
+    }
+    if (driver == nullptr) {
+        if (LilyGoDriver::getInstance()->isCompatible()) {
+            driver = LilyGoDriver::getInstance();
+            model = PANEL_LILYGO;
+        } else if (AmoledDisplayDriver::getInstance()->isCompatible()) {
+            driver = AmoledDisplayDriver::getInstance();
+            model = PANEL_AMOLED;
+            panelPrefs.putChar("variant", AmoledDisplayDriver::getInstance()->getVariant());
+        } else if (WaveshareDriver::getInstance()->isCompatible()) {
+            driver = WaveshareDriver::getInstance();
+            model = PANEL_WAVESHARE;
+        } else {
+            Serial.println("No compatible display driver found");
+            delay(10000);
+            ESP.restart();
+        }
+    }
+    driver->init();
+    panelPrefs.putUChar("driver", model);
+    panelPrefs.end();
+#endif
+}
+#endif
+
+// Parse a comma-separated float string ("a,b,c,d") into `out`. Missing fields
+// are left at `def` -- used so pump-model coeffs can carry NaN to signal
+// two-point flow-measurement mode, and an absent PID Kf defaults to 0.
+static void parseFloatCsv(const String &csv, float *out, size_t count, float def) {
+    for (size_t i = 0; i < count; i++)
+        out[i] = def;
+    int start = 0;
+    for (size_t i = 0; i < count; i++) {
+        if (start > csv.length())
+            break;
+        int comma = csv.indexOf(',', start);
+        String token = (comma < 0) ? csv.substring(start) : csv.substring(start, comma);
+        token.trim();
+        if (token.length() > 0)
+            out[i] = token.toFloat();
+        if (comma < 0)
+            break;
+        start = comma + 1;
+    }
+}
+
+void Controller::setupBluetooth() {
+    comms.init("GPBLC");
+    comms.onSendFailed([this]() { requestStateResend(); });
+    comms.onConnectionChanged([this](bool connected) {
+        controlStateSent = false;
+        settleResendAt = 0;
+        if (connected) {
+            applyConnectionPriority(true);
+            requestStateResend();
+        } else if (initialized) {
+            pluginManager->trigger("controller:bluetooth:disconnect");
+            waitingForController = true;
+            setMode(MODE_STANDBY);
+        }
+    });
+    comms.onSystemInfo([this](const char *hardware, const char *version, uint32_t protocolVersion, bool dimming, bool pressure,
+                              bool ledControl, bool tof, vector<uint32_t> addons) {
+        onSystemInfo(hardware, version, protocolVersion, dimming, pressure, ledControl, tof, addons);
+    });
+    comms.onIncompatibleController([this](const String &info) { onIncompatibleController(info); });
+    pluginManager->on("ota:update:start", [this](Event const &event) {
+        if (event.getString("component") != "display") {
+            connLowLatency = true;
+            comms.setLowLatency(true);
+            esp_coex_preference_set(ESP_COEX_PREFER_BT);
+        }
+    });
+    pluginManager->on("ota:update:end", [this](Event const &) { applyConnectionPriority(true); });
+    comms.onSensorData([this](float temp, float pressure, float puckFlow, float pumpFlow, float puckResistance, float pumpPower,
+                              float heaterPower, float waterPumped) {
+        onTempRead(temp);
+        onPressureRead(pressure);
+        this->currentPuckFlow = puckFlow;
+        this->currentPumpFlow = pumpFlow;
+        this->currentPumpPower = pumpPower;
+        this->currentHeaterPower = heaterPower;
+        this->currentPuckResistance = puckResistance;
+        this->currentWaterPumped = waterPumped;
+        pluginManager->trigger("pump:puck-flow:change", "value", puckFlow);
+        pluginManager->trigger("pump:flow:change", "value", pumpFlow);
+        pluginManager->trigger("pump:puck-resistance:change", "value", puckResistance);
+        pluginManager->trigger("pump:volume:change", "value", waterPumped);
+    });
+    comms.onButtonState([this](uint8_t index, bool pressed) {
+        ESP_LOGV(LOG_TAG, "Button %d changed to %d", index, pressed);
+        buttons.setConfig(buttonConfig()); // settings may have changed since the last edge
+        buttons.onRawState(index, pressed, millis());
+    });
+    comms.onError([this](int error) {
+        // Autotune timeout = info-level, not runaway. Controller already
+        // preserved NVS PID. Clear autotuning flag, fire dedicated Web UI
+        // event. Don't latch this->error (would gate future setupBluetooth).
+        if (error == ERROR_CODE_AUTOTUNE_TIMEOUT) {
+            ESP_LOGW(LOG_TAG, "Autotune timed out — previous PID preserved");
+            autotuning = false;
+            pluginManager->trigger("controller:autotune:failed");
+            return;
+        }
+        if (error != ERROR_CODE_TIMEOUT && error != this->error) {
+            this->error = error;
+            deactivate();
+            setMode(MODE_STANDBY);
+            pluginManager->trigger(F("controller:error"));
+            ESP_LOGE(LOG_TAG, "Received error %d", error);
+        }
+    });
+    comms.onAutotuneResult([this](float Kp, float Ki, float Kd, float Kf) {
+        ESP_LOGI(LOG_TAG, "Received autotune values: Kp=%.3f, Ki=%.3f, Kd=%.3f, Kf=%.3f (combined)", Kp, Ki, Kd, Kf);
+        // Guard: older controller firmware could emit zero/NaN gains (#672
+        // class). Reject — keep existing PID, surface as "Autotune Failed".
+        if (!std::isfinite(Kp) || !std::isfinite(Ki) || !std::isfinite(Kd) || !std::isfinite(Kf) || Kp <= 0.0f ||
+            (Kp + Ki + Kd) <= 0.0f) {
+            ESP_LOGW(LOG_TAG, "Rejecting autotune result: invalid gains, preserving existing PID");
+            autotuning = false;
+            pluginManager->trigger("controller:autotune:failed");
+            return;
+        }
+        char pid[64];
+        // Store in simplified format with combined Kf
+        snprintf(pid, sizeof(pid), "%.3f,%.3f,%.3f,%.3f", Kp, Ki, Kd, Kf);
+        settings.setPid(String(pid));
+        pluginManager->trigger("controller:autotune:result");
+        autotuning = false;
+    });
+    comms.onVolumetricMeasurement(
+        [this](float value) { onVolumetricMeasurement(value, VolumetricMeasurementSource::FLOW_ESTIMATION); });
+    comms.onTofMeasurement([this](uint32_t value) {
+        tofDistance = static_cast<int>(value);
+        ESP_LOGV(LOG_TAG, "Received new TOF distance: %d", tofDistance);
+        pluginManager->trigger("controller:tof:change", "value", tofDistance);
+    });
+    pluginManager->trigger("controller:bluetooth:init");
+}
+
+void Controller::onSystemInfo(const char *hardware, const char *version, uint32_t protocolVersion, bool dimming, bool pressure,
+                              bool ledControl, bool tof, vector<uint32_t> addons) {
+    const bool mismatch = protocolVersion != gm_proto::PROTOCOL_VERSION;
+    systemInfo = SystemInfo{.hardware = String(hardware),
+                            .version = String(version),
+                            .capabilities =
+                                SystemCapabilities{
+                                    .dimming = dimming,
+                                    .pressure = pressure,
+                                    .ledControl = ledControl,
+                                    .tof = tof,
+                                    .addons = addons,
+                                },
+                            .protocolVersion = protocolVersion,
+                            .protocolMismatch = mismatch};
+    ESP_LOGI(LOG_TAG, "System info: %s %s (proto=%u local=%u dm=%d ps=%d led=%d tof=%d)", hardware, version, protocolVersion,
+             gm_proto::PROTOCOL_VERSION, dimming, pressure, ledControl, tof);
+    if (mismatch) {
+        ESP_LOGW(LOG_TAG, "Protocol version mismatch: controller=%u display=%u -- control inhibited, OTA only", protocolVersion,
+                 gm_proto::PROTOCOL_VERSION);
+        pluginManager->trigger("controller:protocol:mismatch", "value", static_cast<int>(protocolVersion));
+    } else {
+        setPressureScale();
+        setPidSettings();
+        setPumpModelCoeffs();
+        configResendUntil = millis() + CONFIG_RESEND_WINDOW_MS;
+        lastConfigResend = millis();
+        settleResendAt = millis() + STATE_SETTLE_RESEND_MS;
+    }
+
+    if (!loaded) {
+        loaded = true;
+        if (!mismatch && settings.getStartupMode() == MODE_STANDBY)
+            activateStandby();
+        pluginManager->trigger("controller:ready");
+        setMode(settings.getStartupMode());
+    }
+    pluginManager->trigger("controller:bluetooth:connect");
+}
+
+void Controller::onIncompatibleController(const String &infoJson) {
+    waitingForController = false;
+
+    JsonDocument doc;
+    DeserializationError err = deserializeJson(doc, infoJson);
+    if (err) {
+        ESP_LOGW(LOG_TAG, "Incompatible controller, no readable info (%s)", err.c_str());
+        onSystemInfo("Legacy controller", "0.0.0", 0, false, false, false, false, {});
+        return;
+    }
+    String hardware = doc["hw"].as<String>();
+    String version = doc["v"].as<String>();
+    if (hardware.isEmpty())
+        hardware = "Legacy controller";
+    if (version.isEmpty())
+        version = "0.0.0";
+    onSystemInfo(hardware.c_str(), version.c_str(), 0, doc["cp"]["dm"].as<bool>(), doc["cp"]["ps"].as<bool>(),
+                 doc["cp"]["led"].as<bool>(), doc["cp"]["tof"].as<bool>(), {});
+}
+
+void Controller::setupWifi() {
+    // Generate and persist a WPA2 AP password on first start
+    if (settings.getWifiApPassword().isEmpty()) {
+        settings.setWifiApPassword(generateShortID(DEFAULT_WIFI_AP_PASSWORD_LENGTH));
+    }
+
+    if (settings.getWifiSsid() != "" && settings.getWifiPassword() != "") {
+        WiFi.setHostname(settings.getMdnsName().c_str());
+        WiFi.mode(WIFI_STA);
+        WiFi.setAutoReconnect(true);
+        WiFi.config(INADDR_NONE, INADDR_NONE, INADDR_NONE, INADDR_NONE);
+
+        WiFi.onEvent(
+            [this](WiFiEvent_t, WiFiEventInfo_t info) {
+                const auto &g = info.got_ip.ip_info;
+                const uint32_t ip = g.ip.addr;
+                const uint32_t gw = g.gw.addr;
+                ESP_LOGI(LOG_TAG, "STA got IP: %u.%u.%u.%u gw=%u.%u.%u.%u", (unsigned)(ip & 0xff), (unsigned)((ip >> 8) & 0xff),
+                         (unsigned)((ip >> 16) & 0xff), (unsigned)((ip >> 24) & 0xff), (unsigned)(gw & 0xff),
+                         (unsigned)((gw >> 8) & 0xff), (unsigned)((gw >> 16) & 0xff), (unsigned)((gw >> 24) & 0xff));
+                wifiConnectedPending = true;
+            },
+            WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_GOT_IP);
+        WiFi.onEvent(
+            [](WiFiEvent_t, WiFiEventInfo_t info) {
+                const auto &c = info.wifi_sta_connected;
+                ESP_LOGI(LOG_TAG, "STA connected: ssid=%.*s bssid=%02x:%02x:%02x:%02x:%02x:%02x ch=%u authmode=%u",
+                         (int)c.ssid_len, c.ssid, c.bssid[0], c.bssid[1], c.bssid[2], c.bssid[3], c.bssid[4], c.bssid[5],
+                         c.channel, c.authmode);
+            },
+            WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_CONNECTED);
+        WiFi.onEvent(
+            [this](WiFiEvent_t, WiFiEventInfo_t info) {
+                const auto &d = info.wifi_sta_disconnected;
+                const char *name = WiFi.disconnectReasonName(static_cast<wifi_err_reason_t>(d.reason));
+                ESP_LOGW(LOG_TAG, "STA disconnected: reason=%u (%s) bssid=%02x:%02x:%02x:%02x:%02x:%02x ssid=%.*s", d.reason,
+                         name && *name ? name : "vendor/unknown", d.bssid[0], d.bssid[1], d.bssid[2], d.bssid[3], d.bssid[4],
+                         d.bssid[5], (int)d.ssid_len, d.ssid);
+                wifiDisconnectedPending = true;
+            },
+            WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_DISCONNECTED);
+        WiFi.onEvent([](WiFiEvent_t, WiFiEventInfo_t) { ESP_LOGW(LOG_TAG, "STA lost IP"); },
+                     WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_LOST_IP);
+        WiFi.onEvent(
+            [](WiFiEvent_t, WiFiEventInfo_t info) {
+                ESP_LOGW(LOG_TAG, "STA authmode changed: %u -> %u", info.wifi_sta_authmode_change.old_mode,
+                         info.wifi_sta_authmode_change.new_mode);
+            },
+            WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_AUTHMODE_CHANGE);
+
+        WiFi.begin(settings.getWifiSsid(), settings.getWifiPassword());
+        WiFi.setTxPower(WIFI_POWER_19_5dBm);
+        for (int attempts = 0; attempts < WIFI_CONNECT_ATTEMPTS; attempts++) {
+            if (WiFi.status() == WL_CONNECTED) {
+                break;
+            }
+            delay(500);
+            Serial.print(".");
+        }
+        Serial.println("");
+        if (WiFi.status() == WL_CONNECTED) {
+            ESP_LOGI(LOG_TAG, "Connected to %s with IP address %s", settings.getWifiSsid().c_str(),
+                     WiFi.localIP().toString().c_str());
+            configTzTime(resolve_timezone(settings.getTimezone()), NTP_SERVER);
+            setenv("TZ", resolve_timezone(settings.getTimezone()), 1);
+            tzset();
+            sntp_set_sync_mode(SNTP_SYNC_MODE_SMOOTH);
+            sntp_setservername(0, NTP_SERVER);
+            sntp_init();
+        } else {
+            WiFi.disconnect(true, true);
+            ESP_LOGI(LOG_TAG, "Timed out while connecting to WiFi");
+            Serial.println("Timed out while connecting to WiFi");
+        }
+    }
+    if (WiFi.status() != WL_CONNECTED) {
+        isApConnection = true;
+        const String apPassword = settings.getWifiApPassword();
+        // WPA2 requires >= 8 chars; fall back to an open AP if somehow shorter.
+        const bool secured = apPassword.length() >= WIFI_AP_PASSWORD_MIN_LENGTH;
+        WiFi.mode(WIFI_AP);
+        WiFi.softAPConfig(WIFI_AP_IP, WIFI_AP_IP, WIFI_SUBNET_MASK);
+        WiFi.softAP(WIFI_AP_SSID, secured ? apPassword.c_str() : nullptr);
+        WiFi.setTxPower(WIFI_POWER_19_5dBm);
+        // Credentials block so headless users can read the AP login from serial.
+        ESP_LOGI(LOG_TAG, "========================================");
+        ESP_LOGI(LOG_TAG, "  WiFi Access Point started");
+        ESP_LOGI(LOG_TAG, "  SSID:     %s", WIFI_AP_SSID);
+        if (secured) {
+            ESP_LOGI(LOG_TAG, "  Password: %s", apPassword.c_str());
+        } else {
+            ESP_LOGI(LOG_TAG, "  Password: <open network>");
+        }
+        ESP_LOGI(LOG_TAG, "  Web UI:   http://%s/", WIFI_AP_IP.toString().c_str());
+        ESP_LOGI(LOG_TAG, "========================================");
+    }
+
+    pluginManager->on("ota:update:start", [this](Event const &) { this->updating = true; });
+    pluginManager->on("ota:update:end", [this](Event const &) { this->updating = false; });
+
+    // STA path: STA_GOT_IP handler already set wifiConnectedPending; loop()
+    // dispatches controller:wifi:connect from there. AP path has no STA_GOT_IP,
+    // so it needs the explicit trigger here.
+    if (isApConnection) {
+        pluginManager->trigger("controller:wifi:connect", "AP", 1);
+    }
+}
+
+void Controller::loop() {
+    // Act on WiFi link-state changes flagged by the (small-stack) event task here
+    // on the main loop. Disconnect before connect so a flap is ordered correctly.
+    if (wifiDisconnectedPending) {
+        wifiDisconnectedPending = false;
+        pluginManager->trigger("controller:wifi:disconnect");
+    }
+    if (wifiConnectedPending) {
+        wifiConnectedPending = false;
+        pluginManager->trigger("controller:wifi:connect", "AP", isApConnection ? 1 : 0);
+    }
+
+    warnings.loop();
+    pluginManager->loop();
+    buttons.loop(millis()); // deferred combo presses + long-press timing
+
+    if (screenReady && !initialized) {
+        connect();
+    }
+
+    if (initialized) {
+        comms.loop(); // drive the comms send pump + retransmit
+        // Stop + tare go out on the fast interval; the switch back starts only once the link is quiet (or after a cap).
+        if (relaxPending && (comms.isIdle() || millis() - relaxRequestedAt > RELAX_TIMEOUT_MS)) {
+            relaxPending = false;
+            std::lock_guard<std::recursive_mutex> guard(processMutex);
+            applyConnectionPriority();
+        }
+    }
+
+    unsigned long now = millis();
+
+    // A config burst right after a reconnect can be lost in the unstable BLE window,
+    // and a spurious ACK then stops the reliable layer retrying. Re-send until it lands.
+    if (comms.isConnected() && now < configResendUntil && (now - lastConfigResend) >= CONFIG_RESEND_INTERVAL_MS) {
+        setPressureScale();
+        setPidSettings();
+        setPumpModelCoeffs();
+        lastConfigResend = now;
+    }
+
+    // Frames sent right after a connect can get lost, so re-send the full state once the link has settled.
+    if (settleResendAt != 0 && now >= settleResendAt) {
+        settleResendAt = 0;
+        requestStateResend();
+    }
+    // A dropped frame, a reconnect or the settle timer asked for a full state re-send (control + plugin state such as LEDs).
+    if (comms.isConnected() && stateResendPending.exchange(false)) {
+        controlStateSent = false;
+        pluginManager->trigger("controller:state:resend");
+    }
+
+    // If BLE scanning has been running for a while without finding the controller,
+    // notify the UI so it can update the startup label accordingly.
+    if (!waitingForController && initialized && !comms.isConnected() &&
+        (now - connectStartTime) > CONTROLLER_WAITING_TIMEOUT_MS) {
+        waitingForController = true;
+        pluginManager->trigger("controller:bluetooth:waiting");
+    }
+
+    if (comms.isReadyForConnection() && comms.connectToServer()) {
+        waitingForController = false;
+    }
+}
+
+void Controller::loopLogic() {
+    if (isErrorState()) {
+        loopControl();
+        return;
+    }
+
+    // Check if steam is ready
+    if (mode == MODE_STEAM && !steamReady && currentTemp + 5.f > getTargetTemp()) {
+        activate();
+        steamReady = true;
+    }
+
+    // Process lifecycle under the lock (GM-147); events and NVS writes deferred past unlock.
+    std::vector<const char *> events;
+    double newBrewDelay = -1.0;
+    double newGrindDelay = -1.0;
+    bool processEnded = false;
+    {
+        std::lock_guard<std::recursive_mutex> guard(processMutex);
+
+        // Handle current process
+        if (currentProcess != nullptr) {
+            updateLastAction();
+            if (currentProcess->getType() == MODE_BREW) {
+                auto brewProcess = static_cast<BrewProcess *>(currentProcess);
+                brewProcess->updatePressure(pressure);
+                brewProcess->updateFlow(currentPumpFlow);
+                brewProcess->updateWaterPumped(currentWaterPumped);
+            }
+            currentProcess->progress();
+            if (!isActiveLocked()) {
+                deactivateLocked(events);
+                processEnded = true;
+            }
+        }
+
+        // Handle last process - Calculate auto delay
+        if (lastProcess != nullptr && !lastProcess->isComplete()) {
+            lastProcess->progress();
+        }
+        if (lastProcess != nullptr && lastProcess->isComplete() && !processCompleted && settings.isDelayAdjust()) {
+            processCompleted = true;
+            if (lastProcess->getType() == MODE_BREW) {
+                if (auto *brewProcess = static_cast<BrewProcess *>(lastProcess);
+                    brewProcess->target == ProcessTarget::VOLUMETRIC) {
+                    newBrewDelay = brewProcess->getNewDelayTime();
+                }
+            } else if (lastProcess->getType() == MODE_GRIND) {
+                if (auto *grindProcess = static_cast<GrindProcess *>(lastProcess);
+                    grindProcess->target == ProcessTarget::VOLUMETRIC) {
+                    newGrindDelay = grindProcess->getNewDelayTime();
+                }
+            }
+        }
+    }
+    if (processEnded)
+        afterDeactivate();
+    dispatchEvents(events);
+    if (newBrewDelay >= 0) {
+        settings.setBrewDelay(newBrewDelay);
+    }
+    if (newGrindDelay >= 0) {
+        settings.setGrindDelay(newGrindDelay);
+    }
+
+    unsigned long now = millis();
+
+    if (grindActiveUntil != 0 && now > grindActiveUntil)
+        deactivateGrind();
+    if (mode != MODE_STANDBY && settings.getStandbyTimeout() > 0 && now > lastAction + settings.getStandbyTimeout())
+        activateStandby();
+
+    loopControl();
+}
+
+void Controller::loopControl() {
+    if (initialized) {
+        unsigned long now = millis();
+
+        // Keepalive: updateControl() only sends control deltas now, so a steady-state
+        // session would otherwise go silent. A periodic ping keeps the controller's
+        // connection watchdog fed (sent in all states, including error). Skip it for
+        // an incompatible controller -- it can't parse the frame anyway.
+        if (comms.isConnected() && !systemInfo.protocolMismatch && now - lastPing >= PING_INTERVAL) {
+            comms.sendPing();
+            lastPing = now;
+        }
+
+        updateControl();
+    }
+}
+
+bool Controller::isUpdating() const { return updating; }
+
+bool Controller::isAutotuning() const { return autotuning; }
+
+bool Controller::isReady() const { return !isUpdating() && !isErrorState() && !isAutotuning(); }
+
+const char *systemStateKey(SystemState state) {
+    static const char *const KEYS[] = {"starting", "waiting", "ready", "updating", "autotuning", "mismatch", "error"};
+    return KEYS[state];
+}
+
+SystemState Controller::getSystemState() const {
+    if (isUpdating())
+        return SYSTEM_UPDATING;
+    if (isAutotuning())
+        return SYSTEM_AUTOTUNING;
+    if (systemInfo.protocolMismatch)
+        return SYSTEM_PROTOCOL_MISMATCH;
+    if (isErrorState())
+        return SYSTEM_ERROR;
+    if (!comms.isConnected())
+        return loaded || waitingForController ? SYSTEM_WAITING_CONTROLLER : SYSTEM_STARTING; // lost vs never had it
+    return SYSTEM_READY;
+}
+
+String Controller::getSystemStateMessage() const {
+    switch (getSystemState()) {
+    case SYSTEM_UPDATING:
+        return "Updating...";
+    case SYSTEM_AUTOTUNING:
+        return "Autotuning...";
+    case SYSTEM_PROTOCOL_MISMATCH:
+        return systemInfo.protocolVersion > gm_proto::PROTOCOL_VERSION ? "Version mismatch, update display"
+                                                                       : "Version mismatch, update controller";
+    case SYSTEM_ERROR:
+        if (error == ERROR_CODE_ZERO_CROSS) return "Zero-cross fault, restart controller";
+        return error == ERROR_CODE_RUNAWAY ? "Temperature error, restart..." : "Unknown error";
+    case SYSTEM_WAITING_CONTROLLER:
+        return "Waiting for controller...";
+    case SYSTEM_STARTING:
+        return "Starting...";
+    default:
+        return "";
+    }
+}
+
+bool Controller::isVolumetricAvailable() const {
+#ifdef NIGHTLY_BUILD
+    return isBluetoothScaleHealthy() || systemInfo.capabilities.dimming;
+#else
+    return isBluetoothScaleHealthy();
+#endif
+}
+
+void Controller::autotune(int testTime, int samples, int heaterWattage) {
+    if (isActive() || !isReady()) {
+        return;
+    }
+    if (mode != MODE_STANDBY) {
+        activateStandby();
+    }
+    autotuning = true;
+    comms.sendAutotune(testTime, samples, heaterWattage);
+    pluginManager->trigger("controller:autotune:start");
+}
+
+void Controller::startProcess(Process *process) {
+    std::vector<const char *> events;
+    {
+        std::lock_guard<std::recursive_mutex> guard(processMutex);
+        startProcessLocked(process, events);
+    }
+    updateControl(); // queue the pump/valve command now instead of on the next logic cycle
+    dispatchEvents(events);
+}
+
+void Controller::startProcessLocked(Process *process, std::vector<const char *> &events) {
+    if (isActiveLocked() || !isReady()) {
+        delete process;
+        return;
+    }
+    processCompleted = false;
+    this->currentProcess = process;
+    applyConnectionPriority(); // shot started -> tight BLE interval
+    events.push_back("controller:process:start");
+    updateLastAction();
+}
+
+void Controller::dispatchEvents(const std::vector<const char *> &events) {
+    for (const auto *eventId : events) {
+        pluginManager->trigger(eventId);
+    }
+}
+
+void Controller::applyConnectionPriority(bool force) {
+    const bool lowLatency = currentProcess != nullptr;
+    if (force || lowLatency != connLowLatency) {
+        connLowLatency = lowLatency;
+        comms.setLowLatency(lowLatency);
+        esp_coex_preference_set(lowLatency ? ESP_COEX_PREFER_BT : ESP_COEX_PREFER_WIFI);
+    }
+}
+
+float Controller::getTargetTemp() const {
+    switch (mode) {
+    case MODE_BREW:
+    case MODE_GRIND: {
+        std::lock_guard<std::recursive_mutex> guard(processMutex);
+        Process *proc = currentProcess;
+        if (proc != nullptr && proc->isActive() && proc->getType() == MODE_BREW) {
+            auto brewProcess = static_cast<BrewProcess *>(proc);
+            return brewProcess->getTemperature();
+        }
+        return profileManager->getSelectedProfile().temperature;
+    }
+    case MODE_STEAM:
+        return settings.getTargetSteamTemp();
+    case MODE_WATER:
+        return settings.getTargetWaterTemp();
+    default:
+        return 0;
+    }
+}
+
+void Controller::setTargetTemp(float temperature) {
+    pluginManager->trigger("boiler:targetTemperature:change", "value", temperature);
+    switch (mode) {
+    case MODE_BREW:
+    case MODE_GRIND:
+        profileManager->getSelectedProfile().temperature = temperature;
+        break;
+    case MODE_STEAM:
+        settings.setTargetSteamTemp(static_cast<int>(temperature));
+        break;
+    case MODE_WATER:
+        settings.setTargetWaterTemp(static_cast<int>(temperature));
+        break;
+    default:;
+    }
+    updateLastAction();
+}
+
+void Controller::setPressureScale(void) {
+    if (systemInfo.capabilities.pressure) {
+        comms.sendPressureScale(settings.getPressureScaling());
+    }
+}
+
+void Controller::setPumpModelCoeffs(void) {
+    if (systemInfo.capabilities.dimming) {
+        // Default missing coeffs to NaN so a two-value "a,b" string keeps its
+        // flow-measurement semantics (c,d NaN) on the controller side.
+        float coeffs[4];
+        parseFloatCsv(settings.getPumpModelCoeffs(), coeffs, 4, NAN);
+        bool gearpumpEnabled = systemInfo.capabilities.hasAddon(7);
+        // Slip is gear-pump only; send zeros otherwise so it stays a no-op.
+        float slip[4] = {0.0f, 0.0f, 0.0f, 0.0f};
+        if (gearpumpEnabled) {
+            parseFloatCsv(settings.getPumpSlipCoeffs(), slip, 4, 0.0f);
+        }
+        comms.sendPumpSettings(coeffs[0], coeffs[1], coeffs[2], coeffs[3],
+                               gearpumpEnabled ? settings.getCommutationGain() : DEFAULT_COMMUTATION_GAIN,
+                               gearpumpEnabled ? settings.getConvergenceGain() : DEFAULT_CONVERGENCE_GAIN,
+                               gearpumpEnabled ? settings.getIntegralGain() : DEFAULT_INTEGRAL_GAIN, settings.getMaxPumpPower(),
+                               slip[0], slip[1], slip[2], slip[3]);
+    }
+}
+
+void Controller::setPidSettings() {
+    float pid[4];
+    parseFloatCsv(settings.getPid(), pid, 4, 0.0f);
+    comms.sendPidSettings(pid[0], pid[1], pid[2], pid[3]);
+}
+
+int Controller::getTargetGrindDuration() const { return settings.getTargetGrindDuration(); }
+
+void Controller::setTargetGrindDuration(int duration) {
+    Event event = pluginManager->trigger("controller:grindDuration:change", "value", duration);
+    settings.setTargetGrindDuration(event.getInt("value"));
+    updateLastAction();
+}
+
+void Controller::setTargetGrindVolume(double volume) {
+    Event event = pluginManager->trigger("controller:grindVolume:change", "value", static_cast<float>(volume));
+    settings.setTargetGrindVolume(event.getFloat("value"));
+    updateLastAction();
+}
+
+void Controller::raiseTemp() {
+    float temp = getTargetTemp();
+    temp = constrain(temp + 1.0f, MIN_TEMP, MAX_TEMP);
+    setTargetTemp(temp);
+}
+
+void Controller::lowerTemp() {
+    float temp = getTargetTemp();
+    temp = constrain(temp - 1.0f, MIN_TEMP, MAX_TEMP);
+    setTargetTemp(temp);
+}
+
+void Controller::raiseBrewTarget() {
+    if (isVolumetricAvailable() && profileManager->getSelectedProfile().isVolumetric()) {
+        profileManager->getSelectedProfile().adjustVolumetricTarget(1);
+    } else {
+        profileManager->getSelectedProfile().adjustDuration(1);
+    }
+    handleProfileUpdate();
+}
+
+void Controller::lowerBrewTarget() {
+    if (isVolumetricAvailable() && profileManager->getSelectedProfile().isVolumetric()) {
+        profileManager->getSelectedProfile().adjustVolumetricTarget(-1);
+    } else {
+        profileManager->getSelectedProfile().adjustDuration(-1);
+    }
+    handleProfileUpdate();
+}
+
+void Controller::raiseGrindTarget() {
+    if (settings.isVolumetricTarget() && isVolumetricAvailable()) {
+        double newTarget = settings.getTargetGrindVolume() + 0.5;
+        if (newTarget > BREW_MAX_VOLUMETRIC) {
+            newTarget = BREW_MAX_VOLUMETRIC;
+        }
+        setTargetGrindVolume(newTarget);
+    } else {
+        int newDuration = getTargetGrindDuration() + 1000;
+        if (newDuration > BREW_MAX_DURATION_MS) {
+            newDuration = BREW_MAX_DURATION_MS;
+        }
+        setTargetGrindDuration(newDuration);
+    }
+}
+
+void Controller::lowerGrindTarget() {
+    if (settings.isVolumetricTarget() && isVolumetricAvailable()) {
+        double newTarget = settings.getTargetGrindVolume() - 0.5;
+        if (newTarget < BREW_MIN_VOLUMETRIC) {
+            newTarget = BREW_MIN_VOLUMETRIC;
+        }
+        setTargetGrindVolume(newTarget);
+    } else {
+        int newDuration = getTargetGrindDuration() - 1000;
+        if (newDuration < BREW_MIN_DURATION_MS) {
+            newDuration = BREW_MIN_DURATION_MS;
+        }
+        setTargetGrindDuration(newDuration);
+    }
+}
+
+void Controller::updateControl() {
+    // Never drive a controller whose protocol version we don't match -- the
+    // commands could be misinterpreted (OTA recovery still works; see onSystemInfo).
+    if (systemInfo.protocolMismatch) {
+        return;
+    }
+
+    // Hold the process lock across the deref: deactivate()/clear() on other tasks
+    // can delete the process mid-computation (GM-147). comms sends are queued
+    // (pumped from comms.loop()), so no cross-task blocking happens under the lock.
+    std::lock_guard<std::recursive_mutex> guard(processMutex);
+    Process *proc = currentProcess;
+    bool active = isActiveLocked();
+
+    float targetTemp = getTargetTemp();
+    if (targetTemp > .0f) {
+        targetTemp = targetTemp + static_cast<float>(settings.getTemperatureOffset());
+    }
+
+    bool altRelayActive = false;
+    if (active && proc->isAltRelayActive()) {
+        if (proc->getType() == MODE_GRIND && settings.getAltRelayFunction() == ALT_RELAY_GRIND) {
+            altRelayActive = true;
+        }
+    }
+
+    // Build the per-component commands, then deliver boiler + pump + valve + alt
+    // together in a single batched frame so the controller applies them as one
+    // atomic update.
+    BoilerCommand boiler;
+    boiler.index = 0;
+    boiler.setpoint = targetTemp;
+    PumpCommand pump;
+    pump.index = 0;
+    RelayCommand relay; // index 0 = brew valve
+    relay.index = 0;
+
+    bool handled = false;
+    if (active && systemInfo.capabilities.pressure) {
+        if (proc->getType() == MODE_STEAM) {
+            targetPressure = settings.getSteamPumpCutoff();
+            targetFlow = proc->getPumpValue() * 0.1f;
+            relay.open = false;
+            pump.mode = PumpControlMode::Flow; // flow target, pressure as the limit
+            pump.flow = targetFlow;
+            pump.pressure = targetPressure;
+            handled = true;
+        } else if (proc->getType() == MODE_BREW) {
+            auto *brewProcess = static_cast<BrewProcess *>(proc);
+            if (brewProcess->isAdvancedPump()) {
+                const bool pressureTarget = brewProcess->getPumpTarget() == PumpTarget::PUMP_TARGET_PRESSURE;
+                relay.open = brewProcess->isRelayActive();
+                pump.mode = pressureTarget ? PumpControlMode::Pressure : PumpControlMode::Flow;
+                // Mushroom-valve machines lose the cracking pressure before the puck; command the sensor-side value
+                pump.pressure = brewProcess->getPumpPressure() + settings.getPressureOffset();
+                pump.flow = brewProcess->getPumpFlow();
+                targetPressure = brewProcess->getPumpPressure();
+                targetFlow = brewProcess->getPumpFlow();
+                handled = true;
+            }
+        }
+    }
+
+    if (!handled) {
+        targetPressure = 0.0f;
+        targetFlow = 0.0f;
+        relay.open = active && proc->isRelayActive();
+        pump.mode = PumpControlMode::Power;
+        pump.power = active ? proc->getPumpValue() : 0;
+    }
+
+    // Only send components that changed since the last update. The controller is
+    // stateful and every message is acknowledged, so re-sending unchanged values
+    // each cycle is unnecessary; a periodic ping (see loop()) keeps the watchdog
+    // fed when nothing changes. controlStateSent is cleared to force a full resend.
+    gm::Payload batch[4];
+    size_t count = 0;
+    const bool full = !controlStateSent.exchange(true); // claim the flag first so a concurrent reset is never lost
+    if (full || boiler != lastBoiler)
+        batch[count++] = comms.buildBoilerControl(boiler.index, boiler.mode, boiler.setpoint);
+    if (full || pump != lastPump)
+        batch[count++] = comms.buildPumpControl(pump.index, pump.mode, pump.power, pump.pressure, pump.flow);
+    if (full || relay != lastRelay)
+        batch[count++] = comms.buildRelayControl(relay.index, relay.open); // index 0 = brew valve
+    if (full || altRelayActive != lastAlt)
+        batch[count++] = comms.buildRelayControl(1, altRelayActive); // index 1 = alt relay
+
+    if (count > 0)
+        comms.sendBatch(batch, count);
+
+    lastBoiler = boiler;
+    lastPump = pump;
+    lastRelay = relay;
+    lastAlt = altRelayActive;
+}
+
+void Controller::activate(bool ignoreWarnings) {
+    // Never create a process while startup is incomplete or the controller is
+    // absent. The UI can be reached by tapping through the startup screen, and
+    // previously its Start action ran against a half-initialized BLE session.
+    if (isActive() || !loaded || !comms.isConnected() || !isReady())
+        return;
+    // An error-level warning turns the start into a confirmation request; the UIs answer with activate(true).
+    if (mode == MODE_BREW && !ignoreWarnings && warnings.hasError()) {
+        pluginManager->trigger("controller:brew:confirm");
+        return;
+    }
+    clear();
+    comms.tare();
+    currentWaterPumped = 0.0f;
+    if (isVolumetricAvailable()) {
+#ifdef NIGHTLY_BUILD
+        currentVolumetricSource =
+            isBluetoothScaleHealthy() ? VolumetricMeasurementSource::BLUETOOTH : VolumetricMeasurementSource::FLOW_ESTIMATION;
+#else
+        currentVolumetricSource = VolumetricMeasurementSource::BLUETOOTH;
+#endif
+        if (mode == MODE_BREW) {
+            pluginManager->trigger("controller:brew:prestart");
+            delay(200);
+        }
+    }
+    switch (mode) {
+    case MODE_BREW:
+        startProcess(new BrewProcess(profileManager->getSelectedProfile(),
+                                     profileManager->getSelectedProfile().isVolumetric() && isVolumetricAvailable()
+                                         ? ProcessTarget::VOLUMETRIC
+                                         : ProcessTarget::TIME,
+                                     settings.getBrewDelay()));
+        break;
+    case MODE_STEAM:
+        startProcess(new SteamProcess(STEAM_SAFETY_DURATION_MS, settings.getSteamPumpPercentage()));
+        break;
+    case MODE_WATER:
+        startProcess(new PumpProcess());
+        break;
+    default:;
+    }
+    bool brewStarted;
+    {
+        std::lock_guard<std::recursive_mutex> guard(processMutex);
+        brewStarted = currentProcess != nullptr && currentProcess->getType() == MODE_BREW;
+    }
+    if (brewStarted) {
+        pluginManager->trigger("controller:brew:start");
+    }
+}
+
+// A UI declined the brew confirmation; every UI showing it dismisses.
+void Controller::cancelBrewConfirm() { pluginManager->trigger("controller:brew:confirm:cancel"); }
+
+void Controller::deactivate() {
+    std::vector<const char *> events;
+    {
+        std::lock_guard<std::recursive_mutex> guard(processMutex);
+        deactivateLocked(events);
+    }
+    if (!events.empty())
+        afterDeactivate();
+    dispatchEvents(events);
+}
+
+// Runs for every ended process, stopped by hand or finished on its own: stop command, tare, then relax once they are ACKed.
+void Controller::afterDeactivate() {
+    updateControl();
+    comms.tare();
+    relaxPending = true;
+    relaxRequestedAt = millis();
+}
+
+void Controller::deactivateLocked(std::vector<const char *> &events) {
+    if (currentProcess == nullptr) {
+        return;
+    }
+    delete lastProcess;
+    lastProcess = currentProcess;
+    currentProcess = nullptr;
+    bool utility = false;
+    if (lastProcess->getType() == MODE_BREW) {
+        utility = static_cast<BrewProcess *>(lastProcess)->isUtility();
+        if (!utility)
+            flushPending = true; // a shot leaves grounds behind, a flush does not
+        events.push_back("controller:brew:end");
+    } else if (lastProcess->getType() == MODE_GRIND) {
+        events.push_back("controller:grind:end");
+    }
+    events.push_back("controller:process:end");
+    updateLastAction();
+    if (utility)
+        clearLocked(events); // a flush has nothing to show, skip the finished screen
+}
+
+void Controller::clear() {
+    std::vector<const char *> events;
+    {
+        std::lock_guard<std::recursive_mutex> guard(processMutex);
+        clearLocked(events);
+    }
+    dispatchEvents(events);
+}
+
+void Controller::clearLocked(std::vector<const char *> &events) {
+    processCompleted = true;
+    if (lastProcess != nullptr && lastProcess->getType() == MODE_BREW) {
+        events.push_back("controller:brew:clear");
+    }
+    delete lastProcess;
+    lastProcess = nullptr;
+    currentVolumetricSource = VolumetricMeasurementSource::INACTIVE;
+}
+
+void Controller::activateGrind() {
+    pluginManager->trigger("controller:grind:start");
+    if (isGrindActive())
+        return;
+    clear();
+    if (settings.isVolumetricTarget() && isVolumetricAvailable()) {
+        currentVolumetricSource = VolumetricMeasurementSource::BLUETOOTH;
+        startProcess(new GrindProcess(ProcessTarget::VOLUMETRIC, 0, settings.getTargetGrindVolume(), settings.getGrindDelay()));
+    } else {
+        startProcess(
+            new GrindProcess(ProcessTarget::TIME, settings.getTargetGrindDuration(), settings.getTargetGrindVolume(), 0.0));
+    }
+}
+
+void Controller::deactivateGrind() {
+    deactivate();
+    clear();
+}
+
+void Controller::activateStandby() {
+    setMode(MODE_STANDBY);
+    deactivate();
+}
+
+void Controller::deactivateStandby() {
+    deactivate();
+    setMode(MODE_BREW);
+}
+
+bool Controller::isActive() const {
+    std::lock_guard<std::recursive_mutex> guard(processMutex);
+    return isActiveLocked();
+}
+
+bool Controller::isGrindActive() const {
+    std::lock_guard<std::recursive_mutex> guard(processMutex);
+    return currentProcess != nullptr && currentProcess->isActive() && currentProcess->getType() == MODE_GRIND;
+}
+
+bool Controller::isBrewActive() const {
+    std::lock_guard<std::recursive_mutex> guard(processMutex);
+    return currentProcess != nullptr && currentProcess->isActive() && currentProcess->getType() == MODE_BREW;
+}
+
+int Controller::getMode() const { return mode; }
+
+void Controller::setMode(int newMode) {
+    Event modeEvent = pluginManager->trigger("controller:mode:change", "value", newMode);
+    const int previousMode = mode;
+    mode = modeEvent.getInt("value");
+    if (mode == MODE_BREW && previousMode != MODE_BREW)
+        flushPending = true; // entering brew mode, including wake-up from standby
+    steamReady = false;
+
+    updateLastAction();
+    setTargetTemp(getTargetTemp());
+    setPidSettings();
+}
+
+void Controller::onTempRead(float temperature) {
+    float temp = temperature - static_cast<float>(settings.getTemperatureOffset());
+    Event event = pluginManager->trigger("boiler:currentTemperature:change", "value", temp);
+    currentTemp = event.getFloat("value");
+}
+
+void Controller::onPressureRead(float pressure) {
+    float p = pressure;
+    // Only a running brew opens the grouphead valve, so only then does the mushroom valve eat its cracking pressure
+    if (isBrewActive())
+        p = std::max(0.0f, p - settings.getPressureOffset());
+    Event event = pluginManager->trigger("boiler:pressure:change", "value", p);
+    this->pressure = event.getFloat("value");
+}
+
+void Controller::updateLastAction() { lastAction = millis(); }
+
+void Controller::onOTAUpdate() {
+    activateStandby();
+    updating = true;
+}
+
+void Controller::onProfileSave() const { profileManager->saveProfile(profileManager->getSelectedProfile()); }
+
+void Controller::onProfileSaveAsNew() {
+    Profile &profile = profileManager->getSelectedProfile();
+    profile.label = "Copy of " + profileManager->getSelectedProfile().label;
+    profile.id = generateShortID();
+    settings.setSelectedProfile(profile.id);
+    profileManager->saveProfile(profileManager->getSelectedProfile());
+    profileManager->addFavoritedProfile(profile.id);
+}
+
+void Controller::onVolumetricMeasurement(double measurement, VolumetricMeasurementSource source) {
+    if (source == VolumetricMeasurementSource::FLOW_ESTIMATION) {
+        currentCoffeeVolume = static_cast<float>(measurement);
+    }
+    pluginManager->trigger(source == VolumetricMeasurementSource::FLOW_ESTIMATION
+                               ? F("controller:volumetric-measurement:estimation:change")
+                               : F("controller:volumetric-measurement:bluetooth:change"),
+                           "value", static_cast<float>(measurement));
+    if (source == VolumetricMeasurementSource::BLUETOOTH) {
+        lastBluetoothMeasurement = millis();
+    }
+
+    if (currentVolumetricSource != source) {
+        ESP_LOGD(LOG_TAG, "Ignoring volumetric measurement, source does not match");
+        return;
+    }
+    // This callback fires from the NimBLE task on core 0; deactivate()/clear() on
+    // other tasks can delete the processes, so hold the lock across the deref (GM-147).
+    std::lock_guard<std::recursive_mutex> guard(processMutex);
+    if (currentProcess != nullptr) {
+        currentProcess->updateVolume(measurement);
+    }
+    if (lastProcess != nullptr && !lastProcess->isComplete()) {
+        lastProcess->updateVolume(measurement);
+    }
+}
+
+bool Controller::isBluetoothScaleHealthy() const {
+    unsigned long timeSinceLastBluetooth = millis() - lastBluetoothMeasurement;
+    return (timeSinceLastBluetooth < BLUETOOTH_GRACE_PERIOD_MS) || volumetricOverride;
+}
+
+void Controller::onFlush() {
+    // Allocate outside the lock; reachable from the UI, AsyncTCP and BLE tasks (GM-147).
+    const int duration = settings.getFlushDuration();
+    Profile profile = FLUSH_PROFILE;
+    profile.phases[0].duration = duration > 0 ? duration : FLUSH_HOLD_MAX_DURATION_S; // 0 = hold, capped
+    auto *flush = new BrewProcess(profile, ProcessTarget::TIME, settings.getBrewDelay());
+    flush->holdPhase = duration == 0; // pump phase ends on onFlushRelease(), the drain phase still runs
+    std::vector<const char *> events;
+    {
+        std::lock_guard<std::recursive_mutex> guard(processMutex);
+        if (isActiveLocked()) {
+            delete flush;
+            return;
+        }
+        clearLocked(events);
+        startProcessLocked(flush, events);
+        flushPending = false;
+        events.push_back("controller:brew:start");
+    }
+    updateControl(); // same immediate send as startProcess()
+    dispatchEvents(events);
+}
+
+// Every hold-to-flush source (physical button, touch, web) funnels its release through here.
+void Controller::onFlushRelease() {
+    std::lock_guard<std::recursive_mutex> guard(processMutex);
+    if (currentProcess != nullptr && currentProcess->getType() == MODE_BREW) {
+        static_cast<BrewProcess *>(currentProcess)->release();
+    }
+}
+
+void Controller::onVolumetricDelete() {
+    if (profileManager->getSelectedProfile().isVolumetric()) {
+        profileManager->getSelectedProfile().removeVolumetricTarget();
+    }
+}
+
+// A long press on a momentary button that starts a shot (brew or a profile) flushes instead.
+static bool longPressFlushes(const String &behavior) {
+    return behavior != "" && behavior != "none" && behavior != "steam" && behavior != "water" && behavior != "flush";
+}
+
+ButtonHandler::Config Controller::buttonConfig() const {
+    ButtonHandler::Config cfg;
+    cfg.momentary = settings.isMomentaryButtons();
+    const bool holdFlush = settings.getFlushDuration() == 0;
+    for (uint8_t i = 0; i < ButtonHandler::BUTTON_COUNT; i++) {
+        const String behavior = settings.getButtonBehavior(i);
+        cfg.longPress[i] = cfg.momentary && longPressFlushes(behavior);
+        cfg.clickOnPress[i] = holdFlush && behavior == "flush"; // a hold-to-flush has to start on press
+    }
+    // Only pay the combo window when the virtual third button does something
+    const String third = settings.getButtonBehavior(ButtonHandler::COMBO_BUTTON);
+    cfg.combo = third != "" && third != "none";
+    return cfg;
+}
+
+void Controller::onButtonEvent(uint8_t index, ButtonHandler::Event event) {
+    using Event = ButtonHandler::Event;
+    const String behavior = settings.getButtonBehavior(index);
+    ESP_LOGV(LOG_TAG, "Button %d event %d, behavior: %s", index, static_cast<int>(event), behavior.c_str());
+    switch (event) {
+    case Event::PRESS:
+    case Event::CLICK:
+        runButtonBehavior(behavior, true);
+        break;
+    case Event::RELEASE:
+        runButtonBehavior(behavior, false);
+        break;
+    case Event::LONG_PRESS:
+        handleFlushButton(true);
+        break;
+    case Event::LONG_PRESS_END:
+        handleFlushButton(false);
+        break;
+    case Event::CLICK_END: // momentary release only matters for a hold-to-flush
+        if (behavior == "flush")
+            onFlushRelease();
+        break;
+    }
+}
+
+void Controller::runButtonBehavior(const String &behavior, bool pressed) {
+    if (behavior == "" || behavior == "none") {
+        return;
+    }
+    if (behavior == "brew") {
+        handleBrewButton(pressed);
+    } else if (behavior == "steam") {
+        handleSteamButton(pressed);
+    } else if (behavior == "water") {
+        handleWaterButton(pressed);
+    } else if (behavior == "flush") {
+        handleFlushButton(pressed);
+    } else {
+        handleProfileButton(pressed, behavior); // anything else is a profile id
+    }
+}
+
+void Controller::handleBrewButton(bool pressed) {
+    if (!pressed) { // latching switch flipped off
+        if (getMode() == MODE_BREW) {
+            deactivate();
+            clear();
+        } else if (getMode() == MODE_WATER) {
+            deactivate();
+        }
+        return;
+    }
+    switch (getMode()) {
+    case MODE_STANDBY:
+        deactivateStandby();
+        break;
+    case MODE_BREW:
+        if (!isActive()) {
+            activate();
+        } else if (settings.isMomentaryButtons()) { // second press stops the shot
+            deactivate();
+            clear();
+        }
+        break;
+    case MODE_WATER:
+        activate();
+        break;
+    case MODE_STEAM:
+        deactivate();
+        setMode(MODE_BREW);
+        break;
+    default:
+        break;
+    }
+}
+
+void Controller::handleSteamButton(bool pressed) {
+    if (pressed) {
+        if (getMode() != MODE_STEAM) {
+            setMode(MODE_STEAM);
+        } else if (settings.isMomentaryButtons()) { // second press leaves steam mode
+            deactivate();
+            setMode(MODE_BREW);
+        }
+    } else if (getMode() == MODE_STEAM) {
+        deactivate();
+        setMode(MODE_BREW);
+    }
+    if (!settings.isMomentaryButtons()) {
+        steamSwitchOn = pressed; // the "steam switch left on" warning only makes sense for a latching switch
+    }
+}
+
+void Controller::handleWaterButton(bool pressed) {
+    if (pressed) {
+        if (getMode() != MODE_WATER) {
+            setMode(MODE_WATER);
+        } else if (!isActive()) {
+            activate();
+        } else if (settings.isMomentaryButtons()) { // second press stops the water
+            deactivate();
+        }
+    } else if (getMode() == MODE_WATER && isActive()) {
+        deactivate();
+    }
+}
+
+void Controller::handleFlushButton(bool pressed) {
+    if (!pressed) {
+        onFlushRelease(); // ends a hold-to-flush, otherwise nothing: a release must not cut a flush short
+        return;
+    }
+    if (getMode() == MODE_STANDBY) {
+        deactivateStandby();
+    }
+    if (getMode() != MODE_BREW && !isActive()) {
+        setMode(MODE_BREW); // land in brew mode so the flush UI renders, never mid-process
+    }
+    onFlush(); // no-op while a process runs, so repeated presses don't queue
+}
+
+void Controller::handleProfileButton(bool pressed, const String &id) {
+    if (!pressed) { // latching switch flipped off
+        deactivate();
+        clear();
+        return;
+    }
+    if (getMode() == MODE_STANDBY) {
+        deactivateStandby();
+        return;
+    }
+    if (getMode() != MODE_BREW) {
+        setMode(MODE_BREW);
+    }
+    if (isActive()) { // pressing again stops the running shot
+        deactivate();
+        clear();
+        return;
+    }
+    std::vector<String> profileIds = profileManager->listProfiles();
+    if (std::find(profileIds.begin(), profileIds.end(), id) != profileIds.end()) {
+        profileManager->selectProfile(id);
+        activate();
+    }
+}
+
+void Controller::handleProfileUpdate() {
+    pluginManager->trigger("boiler:targetTemperature:change", "value", profileManager->getSelectedProfile().temperature);
+    pluginManager->trigger("controller:targetDuration:change", "value", profileManager->getSelectedProfile().getTotalDuration());
+    pluginManager->trigger("controller:targetVolume:change", "value", profileManager->getSelectedProfile().getTotalVolume());
+}
+
+void Controller::loopLogicTask(void *arg) {
+    TickType_t lastWake = xTaskGetTickCount();
+    auto *controller = static_cast<Controller *>(arg);
+    while (true) {
+        controller->loopLogic();
+        xTaskDelayUntil(&lastWake, pdMS_TO_TICKS(controller->getMode() == MODE_STANDBY ? 1000 : PROGRESS_INTERVAL));
+    }
+}
