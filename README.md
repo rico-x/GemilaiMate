@@ -11,12 +11,12 @@ Carrier содержит только низковольтные цепи, 90×4
 ## Начать здесь
 
 1. [Статус проверок и открытые вопросы](docs/validation.md).
-2. [Комплектующие](docs/components.md), [сборка и крепление](docs/assembly.md), [интерфейсы платы](docs/interfaces.md), [подключение в машине: схема, 3D и жгуты](docs/wiring.html).
+2. [Комплектующие](docs/components.md), [сборка и крепление](docs/assembly.md), [интерфейсы платы](docs/interfaces.md), [подключение в машине: схема, 3D и жгуты](https://rico-x.github.io/GemilaiMate/wiring.html) ([файл в репозитории](docs/wiring.html)).
 3. [Низковольтный стенд](docs/bench.md) и [прошивка через USB](docs/flashing.md).
 4. [Производство и бюджет](docs/manufacturing.md).
 5. [Сборка исходников и сопровождение](docs/development.md).
 
-Текущие артефакты: [релиз v0.1.0](https://github.com/Rico-X/GemilaiMate/releases/tag/v0.1.0). Репозиторий закрытый, для загрузки нужен доступ к нему. Сетевое OTA отключено; устанавливать согласованную пару controller/display через USB.
+Текущие артефакты: [релиз v0.1.0](https://github.com/Rico-X/GemilaiMate/releases/tag/v0.1.0). Схема подключения открывается в браузере на [GitHub Pages](https://rico-x.github.io/GemilaiMate/wiring.html). Сетевое OTA отключено; устанавливать согласованную пару controller/display через USB.
 
 | Путь | Содержание |
 |---|---|
