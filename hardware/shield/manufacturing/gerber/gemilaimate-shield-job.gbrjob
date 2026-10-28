@@ -5,13 +5,13 @@
       "Application": "Pcbnew",
       "Version": "10.0.7-10.0.7~ubuntu26.04.1"
     },
-    "CreationDate": "2026-10-28T22:05:13+03:00"
+    "CreationDate": "2026-10-29T00:02:26+03:00"
   },
   "GeneralSpecs": {
     "ProjectId": {
       "Name": "gemilaimate-shield",
       "GUID": "67656d69-6c61-4696-9d61-74652d736869",
-      "Revision": "0.2.3"
+      "Revision": "0.2.4"
     },
     "Size": {
       "X": 90.05,

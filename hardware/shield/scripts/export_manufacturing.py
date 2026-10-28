@@ -59,5 +59,5 @@ pth=[pa for fp in board.GetFootprints() for pa in fp.Pads() if pa.GetAttribute()
 assert all(pa.GetLayerSet().Contains(p.F_Mask) and pa.GetLayerSet().Contains(p.B_Mask) for pa in pth), 'THT mask openings missing'
 stats['pth_mask_front_openings']=len(pth);stats['pth_mask_back_openings']=len(pth)
 (out/'board-stats.json').write_text(json.dumps(stats,indent=2))
-from silk_clearance import audit_protected_labels
-audit_protected_labels(board,out)
+from silk_clearance import audit_silkscreen
+audit_silkscreen(board,out)

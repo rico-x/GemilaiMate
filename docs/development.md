@@ -24,7 +24,7 @@ KiCad 10.0.7 использован для текущих производств
 
 ## Второй аппаратный вариант shield
 
-Carrier v0.1 сохраняется в hardware/carrier. Shield v0.2.3 — в hardware/shield; файл gemilaimate-shield.kicad_pro открывается отдельно, со своими локальными библиотеками. Общая прошивка остаётся v0.1.0, исходники firmware не менялись.
+Carrier v0.1 сохраняется в hardware/carrier. Shield v0.2.4 — в hardware/shield; файл gemilaimate-shield.kicad_pro открывается отдельно, со своими локальными библиотеками. Общая прошивка остаётся v0.1.0, исходники firmware не менялись.
 
 Проверка: `.venv/bin/python tools/check_project.py` проверяет оба варианта. Для восстановления shield из актуального carrier: KiCad Python запускает `hardware/shield/scripts/make_shield.py`, затем `route_shield.py`; обычный Python запускает `make_schematic.py`. Полный электрический/CAM экспорт: `.venv/bin/python tools/export_shield.py --kicad-cli /path/to/kicad-cli --kicad-python /path/to/kicad-python`. Скрипт останавливается при любом ERC/DRC/unconnected/parity и формирует отдельный prototype ZIP.
 
@@ -43,3 +43,7 @@ env -u DISPLAY .venv/bin/python tools/rebuild_shield.py --kicad-python /usr/bin/
 ```
 
 `kicad_runtime.py` imports wx but does not create wx.App on Linux without DISPLAY: wxGTK may abort before a Python exception can be caught. Graphical macOS initialization is preserved. The rebuild checks pad-1 shape, silk outlines/labels, nominal module/plug/cable/M3 envelopes, ERC/DRC/parity, CAM outputs and both pages. Real parts, external power-module placement, retention and machine fit remain unverified.
+
+`silk_clearance.py` enumerates every visible front/back silk text and footprint field, requiring its native bounding box to clear every via by 0.15 mm. `check_shield.py` independently compares the report inventory with PCB text objects, so adding a label requires no whitelist update. Track clearance remains mandatory for DC+, MAX31855 and ROBOTDYN CABLE only; other track overlap counts are informational. This cosmetic check supplements the unchanged electrical DRC.
+
+Run `python tools/test_silk_clearance.py` in a Python environment with KiCad's `pcbnew` and `sexpdata`. The four regressions restore the old J2/CH1 positions, add an unlisted back-side label over a via and remove a report entry. All must be rejected; the working PCB is never saved or modified by these tests.

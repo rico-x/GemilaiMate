@@ -6,9 +6,9 @@
 	(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing)")
 	(tags "capacitor")
 	(property "Reference" "C3"
-		(at 0 -1.68 0)
+		(at 2.3 -0.16 0)
 		(layer "F.SilkS")
-		(uuid "c7059e76-9354-49fe-a9cb-b2f27693c35c")
+		(uuid "71b72126-ac2d-456a-8dda-ce55b411a5eb")
 		(effects
 			(font
 				(size 0.8 0.8)
@@ -20,7 +20,7 @@
 		(at 0 1.68 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "4a9c4d15-46cb-44b3-8a10-c0d6a6160bdc")
+		(uuid "f20af31f-edee-4d69-9815-868b3f14aba6")
 		(effects
 			(font
 				(size 1 1)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "38927571-2e56-43fd-a43c-b1078ddad193")
+		(uuid "06740470-6163-4f0e-859e-5d8fe04c6568")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "9b592ada-4105-44e8-bfb0-b50a388ab416")
+		(uuid "5ce622ca-230f-4e6e-b257-9ff73e42b3fe")
 		(effects
 			(font
 				(size 1.27 1.27)

@@ -2,6 +2,7 @@
 """Check the active shield variant and pin-layout invariants without hardware."""
 from pathlib import Path
 import argparse,csv,hashlib,json,math,subprocess,sys
+from collections import Counter
 import sexpdata as sx
 R=Path(__file__).resolve().parents[1];H=R/'hardware/shield'
 def check_usb_access(d):
@@ -95,6 +96,39 @@ def check_harness_housings():
    assert 'pin 1 RED' in note and 'Not mechanically keyed' in note
   assert 'positions 2/4 EMPTY' in rows['J6 harness housing']['Assembly_notes'] if variant=='shield' else 'consecutive pins 1,2,3' in rows['J6 harness housing']['Assembly_notes']
 
+def expected_silk_labels(board):
+ tree=sx.loads(board)
+ field=lambda n,k:next((x for x in n if isinstance(x,list) and x and str(x[0])==k),None)
+ def visible(n):
+  for group in [n,field(n,'effects') or []]:
+   if any((isinstance(x,sx.Symbol) and str(x)=='hide') or (isinstance(x,list) and x and str(x[0])=='hide' and (len(x)==1 or str(x[1])=='yes')) for x in group):return False
+  return True
+ def key(owner,n,text):
+  layer=field(n,'layer')
+  return (owner,layer[1],text) if layer and layer[1] in ['F.SilkS','B.SilkS'] and visible(n) else None
+ result=[]
+ for n in tree:
+  if not isinstance(n,list) or not n:continue
+  if str(n[0]) in ['gr_text','gr_text_box']:
+   k=key('BOARD',n,n[1])
+   if k:result.append(k)
+  elif str(n[0])=='footprint':
+   owner=next(x[2] for x in n if isinstance(x,list) and len(x)>2 and str(x[0])=='property' and x[1]=='Reference')
+   for t in n:
+    if isinstance(t,list) and len(t)>2 and str(t[0]) in ['property','fp_text','fp_text_box']:
+     k=key(owner,t,t[1] if str(t[0])=='fp_text_box' else t[2])
+     if k:result.append(k)
+ return Counter(result)
+
+def check_silk_report(board,report,pcb_sha):
+ assert report['pcb_sha256']==pcb_sha and report['margin_mm']>=.15
+ actual=Counter((r['owner'],r['layer'],r['text']) for r in report['labels'])
+ assert actual==expected_silk_labels(board),'Silk report must cover every visible PCB/footprint silk text'
+ assert all(r['via_overlaps']==0 for r in report['labels']),'A visible silkscreen text overlaps a via'
+ checked=[r for r in report['labels'] if r['track_check_required']]
+ assert {r['text'] for r in checked}=={'MAX31855','ROBOTDYN CABLE','DC+'}
+ assert all(r['side_track_overlaps']==0 for r in checked)
+
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--write-report',action='store_true');args=ap.parse_args()
  d=json.loads((H/'design.json').read_text());parts={c['ref']:c for c in d['parts']}
@@ -114,9 +148,7 @@ def main():
  stats=json.loads((H/'board-stats.json').read_text())
  assert stats['pcb_sha256']==hashlib.sha256((H/'gemilaimate-shield.kicad_pcb').read_bytes()).hexdigest()
  silk=json.loads((H/'silk-clearance.json').read_text())
- assert silk['pcb_sha256']==stats['pcb_sha256'] and silk['margin_mm']>=.15
- assert {r['text'] for r in silk['protected_labels']}=={'MAX31855','ROBOTDYN CABLE','DC+'}
- assert all(r['via_overlaps']==r['front_track_overlaps']==0 for r in silk['protected_labels'])
+ check_silk_report(board,silk,stats['pcb_sha256'])
  assert stats['pth_mask_front_openings']==stats['pth_pad_sites_including_alternative_row']
  assert stats['pth_mask_back_openings']==stats['pth_pad_sites_including_alternative_row']
  for suffix in ['F_Mask.gts','B_Mask.gbs']:
@@ -155,7 +187,8 @@ def main():
  subprocess.run([sys.executable,str(H/'scripts/verify_netlist.py')],check=True,stdout=subprocess.DEVNULL)
  subprocess.run([sys.executable,str(R/'tools/build_shield_page.py'),'--check'],check=True,stdout=subprocess.DEVNULL)
  report=dict(revision=d['revision'],pcb_sha256=stats['pcb_sha256'],nominal_module_plug_cable_envelopes='PASS',
-             marking_checks='PASS: square pad 1, endpoint words follow physical pad X, labels next to own rows, full outlines; selected labels clear of front tracks/vias',
+             marking_checks='PASS: square pad 1, endpoint words follow physical pad X, labels next to own rows, full outlines; all visible front/back texts clear of vias; selected track checks retained',
+             visible_silk_texts_checked=len(silk['labels']),
              harness_housings='Single marked housings: shield J5 1x4 / J6 1x5 (2/4 empty); carrier J5 1x4 / J6 1x3. Unkeyed: verify orientation before power.',
              populated_mating_connector_profiles=['J1','J4','J8','J9','J5','J6'],
              mounting_head_max_diameter_mm=5.5,washers_allowed=False,

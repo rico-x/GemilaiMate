@@ -6,7 +6,7 @@
 	(property "Reference" "JP3"
 		(at 2.54 -2.77 0)
 		(layer "F.SilkS")
-		(uuid "14b686a3-dcdb-4e89-b824-f67587deb639")
+		(uuid "4c1c6508-2013-47a6-86f5-60d271e7e238")
 		(effects
 			(font
 				(size 1 1)
@@ -18,7 +18,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "0d5e9f65-1127-43d1-a7ca-1a0df67bb949")
+		(uuid "3cec191d-d0cb-4dfe-ae50-c793657dbeb5")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -29,7 +29,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "848810e2-35bd-470a-a23a-41ec395dcb75")
+		(uuid "1f1db70f-c521-42df-8acd-f3603cf08a98")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -40,7 +40,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "b66dba15-81a0-4483-9d9d-859150f74923")
+		(uuid "8dd69eaa-74d4-4748-9c05-d1107a9a9e8a")
 		(effects
 			(font
 				(size 1.27 1.27)

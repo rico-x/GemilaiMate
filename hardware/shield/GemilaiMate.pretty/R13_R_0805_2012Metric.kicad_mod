@@ -6,9 +6,9 @@
 	(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 	(tags "resistor")
 	(property "Reference" "R13"
-		(at 0 -1.65 0)
+		(at -1.37 -1.65 0)
 		(layer "F.SilkS")
-		(uuid "0f7b70af-b8e7-4c05-b095-228d983cd30c")
+		(uuid "0eae12bb-2755-4f08-8b81-aa9f21d63ad2")
 		(effects
 			(font
 				(size 0.8 0.8)
@@ -20,7 +20,7 @@
 		(at 0 1.65 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "1a47d2c5-6a3e-499a-90e0-1e0d3719f608")
+		(uuid "ffd72bde-6720-4395-a074-b57a3174647e")
 		(effects
 			(font
 				(size 1 1)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "737b8957-52d0-4236-ad3a-dadf30c180b4")
+		(uuid "131e8176-773a-4e86-944c-3e485a305201")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "1ec329a3-d61e-470e-bda8-b302ef7ab7c8")
+		(uuid "5577c414-5755-45a8-b34f-69595b22004b")
 		(effects
 			(font
 				(size 1.27 1.27)

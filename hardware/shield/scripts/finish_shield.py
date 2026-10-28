@@ -8,7 +8,7 @@ import pcbnew as p
 H=Path(__file__).resolve().parents[1]
 from make_3d_models import box
 B=p.LoadBoard(str(H/'gemilaimate-shield.kicad_pcb'))
-tb=B.GetTitleBlock();tb.SetRevision('0.2.3');tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate('2026-10-28');B.SetTitleBlock(tb)
+tb=B.GetTitleBlock();tb.SetRevision('0.2.4');tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate('2026-10-28');B.SetTitleBlock(tb)
 for item in B.GetDrawings():
     if isinstance(item,p.PCB_TEXT) and item.GetLayer()==p.B_SilkS and abs(p.ToMM(item.GetPosition().x)-32)<.01 and abs(p.ToMM(item.GetPosition().y)-23)<.01:
         item.SetText('github.com/Rico-X/GemilaiMate')

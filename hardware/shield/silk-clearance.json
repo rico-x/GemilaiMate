@@ -1,24 +1,212 @@
 {
-  "pcb_sha256": "e80e513f8f654071dc02ea406befdba88b79b1d221ce6a509eb9f014293041a2",
+  "pcb_sha256": "6200d0f35a6dd55d35aa5c924cf5189cf100ca9c58ec85bcffbf30a33d4bb74e",
   "margin_mm": 0.15,
-  "protected_labels": [
+  "scope": "all visible front/back silkscreen texts, including footprint fields",
+  "via_check": "all labels",
+  "track_check": "selected front labels only; other track counts are informational",
+  "labels": [
     {
-      "text": "DC+",
+      "owner": "BOARD",
+      "text": "Gemilai adaptation: Rico-X",
+      "layer": "B.SilkS",
       "position_mm": [
-        80.5,
-        49.53
+        32.0,
+        20.0
       ],
       "bbox_mm": [
-        79.104762,
-        48.8514,
-        81.895238,
-        50.2086
+        22.436428,
+        19.21025,
+        41.563573,
+        20.78975
       ],
       "via_overlaps": 0,
-      "front_track_overlaps": 0
+      "side_track_overlaps": 1,
+      "track_check_required": false
     },
     {
+      "owner": "BOARD",
+      "text": "GemilaiMate v0.2.4 SHIELD - PROTOTYPE",
+      "layer": "B.SilkS",
+      "position_mm": [
+        32.0,
+        18.3
+      ],
+      "bbox_mm": [
+        16.136905,
+        17.45175,
+        47.863096,
+        19.14825
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 7,
+      "track_check_required": false
+    },
+    {
+      "owner": "BOARD",
+      "text": "github.com/Rico-X/GemilaiMate",
+      "layer": "B.SilkS",
+      "position_mm": [
+        32.0,
+        27.0
+      ],
+      "bbox_mm": [
+        20.700713,
+        26.21025,
+        43.299287,
+        27.78975
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 2,
+      "track_check_required": false
+    },
+    {
+      "owner": "BOARD",
+      "text": "1",
+      "layer": "F.SilkS",
+      "position_mm": [
+        68.75,
+        8.89
+      ],
+      "bbox_mm": [
+        68.224048,
+        8.15875,
+        69.275953,
+        9.62125
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "BOARD",
+      "text": "A",
+      "layer": "F.SilkS",
+      "position_mm": [
+        7.0,
+        31.75
+      ],
+      "bbox_mm": [
+        6.512143,
+        31.01875,
+        7.487857,
+        32.48125
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "BOARD",
+      "text": "ADS1115 BLUE",
+      "layer": "F.SilkS",
+      "position_mm": [
+        16.5,
+        43.7
+      ],
+      "bbox_mm": [
+        11.942857,
+        43.0214,
+        21.057144,
+        44.3786
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 1,
+      "track_check_required": false
+    },
+    {
+      "owner": "BOARD",
+      "text": "B",
+      "layer": "F.SilkS",
+      "position_mm": [
+        7.0,
+        34.29
+      ],
+      "bbox_mm": [
+        6.455,
+        33.55875,
+        7.545,
+        35.02125
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "BOARD",
+      "text": "BUTTONS",
+      "layer": "F.SilkS",
+      "position_mm": [
+        32.0,
+        73.1
+      ],
+      "bbox_mm": [
+        29.252381,
+        72.4214,
+        34.747619,
+        73.7786
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "BOARD",
+      "text": "CJMCU-0102",
+      "layer": "F.SilkS",
+      "position_mm": [
+        42.0,
+        43.7
+      ],
+      "bbox_mm": [
+        37.9,
+        43.0214,
+        46.100001,
+        44.3786
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "BOARD",
+      "text": "GemilaiMate v0.2.4 SHIELD - PROTOTYPE",
+      "layer": "F.SilkS",
+      "position_mm": [
+        30.0,
+        20.0
+      ],
+      "bbox_mm": [
+        17.264523,
+        19.26875,
+        42.735477,
+        20.73125
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 1,
+      "track_check_required": false
+    },
+    {
+      "owner": "BOARD",
+      "text": "LOW VOLTAGE ONLY",
+      "layer": "F.SilkS",
+      "position_mm": [
+        30.0,
+        27.5
+      ],
+      "bbox_mm": [
+        24.045477,
+        26.76875,
+        35.954524,
+        28.23125
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 1,
+      "track_check_required": false
+    },
+    {
+      "owner": "BOARD",
       "text": "MAX31855",
+      "layer": "F.SilkS",
       "position_mm": [
         65.706,
         43.5
@@ -30,10 +218,49 @@
         44.1786
       ],
       "via_overlaps": 0,
-      "front_track_overlaps": 0
+      "side_track_overlaps": 0,
+      "track_check_required": true
     },
     {
+      "owner": "BOARD",
+      "text": "NO MAINS ON BOARD",
+      "layer": "F.SilkS",
+      "position_mm": [
+        40.0,
+        41.0
+      ],
+      "bbox_mm": [
+        33.557144,
+        40.3214,
+        46.442857,
+        41.6786
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 2,
+      "track_check_required": false
+    },
+    {
+      "owner": "BOARD",
+      "text": "PRESSURE",
+      "layer": "F.SilkS",
+      "position_mm": [
+        10.3,
+        73.1
+      ],
+      "bbox_mm": [
+        7.095238,
+        72.4214,
+        13.504763,
+        73.7786
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "BOARD",
       "text": "ROBOTDYN CABLE",
+      "layer": "F.SilkS",
       "position_mm": [
         45.72,
         66.8
@@ -45,7 +272,854 @@
         67.4786
       ],
       "via_overlaps": 0,
-      "front_track_overlaps": 0
+      "side_track_overlaps": 0,
+      "track_check_required": true
+    },
+    {
+      "owner": "BOARD",
+      "text": "Rico-X",
+      "layer": "F.SilkS",
+      "position_mm": [
+        30.0,
+        21.7
+      ],
+      "bbox_mm": [
+        27.683572,
+        20.96875,
+        32.316429,
+        22.43125
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 1,
+      "track_check_required": false
+    },
+    {
+      "owner": "C1",
+      "text": "C1",
+      "layer": "F.SilkS",
+      "position_mm": [
+        81.28,
+        13.56
+      ],
+      "bbox_mm": [
+        80.429048,
+        12.9165,
+        82.130953,
+        14.2035
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 3,
+      "track_check_required": false
+    },
+    {
+      "owner": "C2",
+      "text": "C2",
+      "layer": "F.SilkS",
+      "position_mm": [
+        53.34,
+        22.45
+      ],
+      "bbox_mm": [
+        52.489048,
+        21.8065,
+        54.190953,
+        23.0935
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 6,
+      "track_check_required": false
+    },
+    {
+      "owner": "C3",
+      "text": "C3",
+      "layer": "F.SilkS",
+      "position_mm": [
+        78.5,
+        10.0
+      ],
+      "bbox_mm": [
+        77.649048,
+        9.3565,
+        79.350953,
+        10.6435
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "C4",
+      "text": "C4",
+      "layer": "F.SilkS",
+      "position_mm": [
+        53.34,
+        36.42
+      ],
+      "bbox_mm": [
+        52.489048,
+        35.7765,
+        54.190953,
+        37.0635
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 3,
+      "track_check_required": false
+    },
+    {
+      "owner": "C5",
+      "text": "C5",
+      "layer": "F.SilkS",
+      "position_mm": [
+        68.58,
+        41.0
+      ],
+      "bbox_mm": [
+        67.729048,
+        40.3565,
+        69.430953,
+        41.6435
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 9,
+      "track_check_required": false
+    },
+    {
+      "owner": "C6",
+      "text": "C6",
+      "layer": "F.SilkS",
+      "position_mm": [
+        22.86,
+        66.7
+      ],
+      "bbox_mm": [
+        22.009048,
+        66.0565,
+        23.710953,
+        67.3435
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "J1",
+      "text": "J1",
+      "layer": "F.SilkS",
+      "position_mm": [
+        10.16,
+        1.04
+      ],
+      "bbox_mm": [
+        9.177857,
+        0.19175,
+        11.142143,
+        1.88825
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "J10",
+      "text": "J10",
+      "layer": "F.SilkS",
+      "position_mm": [
+        86.36,
+        2.31
+      ],
+      "bbox_mm": [
+        84.901667,
+        1.46175,
+        87.818334,
+        3.15825
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 2,
+      "track_check_required": false
+    },
+    {
+      "owner": "J2",
+      "text": "1",
+      "layer": "F.SilkS",
+      "position_mm": [
+        5.08,
+        61.0
+      ],
+      "bbox_mm": [
+        4.599048,
+        60.3214,
+        5.560953,
+        61.6786
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "J2",
+      "text": "J2",
+      "layer": "F.SilkS",
+      "position_mm": [
+        16.51,
+        46.86
+      ],
+      "bbox_mm": [
+        15.724286,
+        46.1814,
+        17.295715,
+        47.5386
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "J2",
+      "text": "VDD ... A3",
+      "layer": "F.SilkS",
+      "position_mm": [
+        16.51,
+        59.6
+      ],
+      "bbox_mm": [
+        13.362382,
+        58.9214,
+        19.657619,
+        60.2786
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 1,
+      "track_check_required": false
+    },
+    {
+      "owner": "J3",
+      "text": "1",
+      "layer": "F.SilkS",
+      "position_mm": [
+        77.5,
+        46.1
+      ],
+      "bbox_mm": [
+        77.019048,
+        45.4214,
+        77.980953,
+        46.7786
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "J3",
+      "text": "CLK ... VIN",
+      "layer": "F.SilkS",
+      "position_mm": [
+        68.58,
+        72.0
+      ],
+      "bbox_mm": [
+        65.222858,
+        71.3214,
+        71.937142,
+        72.6786
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "J3",
+      "text": "J3",
+      "layer": "F.SilkS",
+      "position_mm": [
+        68.58,
+        46.1
+      ],
+      "bbox_mm": [
+        67.794286,
+        45.4214,
+        69.365715,
+        46.7786
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 1,
+      "track_check_required": false
+    },
+    {
+      "owner": "J4",
+      "text": "J4",
+      "layer": "F.SilkS",
+      "position_mm": [
+        11.43,
+        67.079999
+      ],
+      "bbox_mm": [
+        10.447857,
+        66.231749,
+        12.412143,
+        67.928249
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 1,
+      "track_check_required": false
+    },
+    {
+      "owner": "J5",
+      "text": "1",
+      "layer": "F.SilkS",
+      "position_mm": [
+        41.91,
+        73.3
+      ],
+      "bbox_mm": [
+        41.429048,
+        72.6214,
+        42.390953,
+        73.9786
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 1,
+      "track_check_required": false
+    },
+    {
+      "owner": "J5",
+      "text": "J5",
+      "layer": "F.SilkS",
+      "position_mm": [
+        52.4,
+        71.12
+      ],
+      "bbox_mm": [
+        51.614286,
+        70.4414,
+        53.185715,
+        71.7986
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "J6",
+      "text": "1",
+      "layer": "F.SilkS",
+      "position_mm": [
+        88.5,
+        48.1
+      ],
+      "bbox_mm": [
+        88.019048,
+        47.4214,
+        88.980953,
+        48.7786
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "J6",
+      "text": "CH1",
+      "layer": "F.SilkS",
+      "position_mm": [
+        80.5,
+        60.96
+      ],
+      "bbox_mm": [
+        79.2,
+        60.2814,
+        81.8,
+        61.6386
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "J6",
+      "text": "DC+",
+      "layer": "F.SilkS",
+      "position_mm": [
+        80.5,
+        49.53
+      ],
+      "bbox_mm": [
+        79.104762,
+        48.8514,
+        81.895238,
+        50.2086
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": true
+    },
+    {
+      "owner": "J6",
+      "text": "DC-",
+      "layer": "F.SilkS",
+      "position_mm": [
+        80.5,
+        55.88
+      ],
+      "bbox_mm": [
+        79.104762,
+        55.2014,
+        81.895238,
+        56.5586
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 1,
+      "track_check_required": false
+    },
+    {
+      "owner": "J6",
+      "text": "J6",
+      "layer": "F.SilkS",
+      "position_mm": [
+        86.36,
+        48.13
+      ],
+      "bbox_mm": [
+        85.574286,
+        47.4514,
+        87.145715,
+        48.8086
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "J7",
+      "text": "1",
+      "layer": "F.SilkS",
+      "position_mm": [
+        36.83,
+        61.0
+      ],
+      "bbox_mm": [
+        36.349048,
+        60.3214,
+        37.310953,
+        61.6786
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 1,
+      "track_check_required": false
+    },
+    {
+      "owner": "J7",
+      "text": "A 3V3",
+      "layer": "F.SilkS",
+      "position_mm": [
+        42.0,
+        61.0
+      ],
+      "bbox_mm": [
+        40.147619,
+        60.3214,
+        43.852381,
+        61.6786
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "J7",
+      "text": "B 5V",
+      "layer": "F.SilkS",
+      "position_mm": [
+        42.0,
+        53.3
+      ],
+      "bbox_mm": [
+        40.471429,
+        52.6214,
+        43.528572,
+        53.9786
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "J7",
+      "text": "J7",
+      "layer": "F.SilkS",
+      "position_mm": [
+        41.91,
+        48.13
+      ],
+      "bbox_mm": [
+        41.124286,
+        47.4514,
+        42.695715,
+        48.8086
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "J8",
+      "text": "J8",
+      "layer": "F.SilkS",
+      "position_mm": [
+        31.75,
+        67.0
+      ],
+      "bbox_mm": [
+        30.919286,
+        66.26875,
+        32.580715,
+        67.73125
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "J9",
+      "text": "J9",
+      "layer": "F.SilkS",
+      "position_mm": [
+        25.4,
+        1.04
+      ],
+      "bbox_mm": [
+        24.417857,
+        0.19175,
+        26.382143,
+        1.88825
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "JP1",
+      "text": "JP1",
+      "layer": "F.SilkS",
+      "position_mm": [
+        17.78,
+        1.04
+      ],
+      "bbox_mm": [
+        16.297857,
+        0.19175,
+        19.262143,
+        1.88825
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "JP3",
+      "text": "JP3",
+      "layer": "F.SilkS",
+      "position_mm": [
+        57.15,
+        1.04
+      ],
+      "bbox_mm": [
+        55.667857,
+        0.19175,
+        58.632143,
+        1.88825
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 2,
+      "track_check_required": false
+    },
+    {
+      "owner": "R1",
+      "text": "R1",
+      "layer": "F.SilkS",
+      "position_mm": [
+        43.18,
+        22.48
+      ],
+      "bbox_mm": [
+        42.329048,
+        21.8365,
+        44.030953,
+        23.1235
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 1,
+      "track_check_required": false
+    },
+    {
+      "owner": "R10",
+      "text": "R10",
+      "layer": "F.SilkS",
+      "position_mm": [
+        73.025001,
+        0.89
+      ],
+      "bbox_mm": [
+        71.793096,
+        0.2465,
+        74.256906,
+        1.5335
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 2,
+      "track_check_required": false
+    },
+    {
+      "owner": "R11",
+      "text": "R11",
+      "layer": "F.SilkS",
+      "position_mm": [
+        81.28,
+        8.51
+      ],
+      "bbox_mm": [
+        80.048095,
+        7.8665,
+        82.511905,
+        9.1535
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 1,
+      "track_check_required": false
+    },
+    {
+      "owner": "R12",
+      "text": "R12",
+      "layer": "F.SilkS",
+      "position_mm": [
+        17.780001,
+        68.2
+      ],
+      "bbox_mm": [
+        16.548096,
+        67.5565,
+        19.011906,
+        68.8435
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 1,
+      "track_check_required": false
+    },
+    {
+      "owner": "R13",
+      "text": "R13",
+      "layer": "F.SilkS",
+      "position_mm": [
+        69.75,
+        33.91
+      ],
+      "bbox_mm": [
+        68.518095,
+        33.2665,
+        70.981905,
+        34.5535
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 3,
+      "track_check_required": false
+    },
+    {
+      "owner": "R2",
+      "text": "R2",
+      "layer": "F.SilkS",
+      "position_mm": [
+        48.26,
+        22.48
+      ],
+      "bbox_mm": [
+        47.409048,
+        21.8365,
+        49.110953,
+        23.1235
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 2,
+      "track_check_required": false
+    },
+    {
+      "owner": "R3",
+      "text": "R3",
+      "layer": "F.SilkS",
+      "position_mm": [
+        22.86,
+        13.59
+      ],
+      "bbox_mm": [
+        22.009048,
+        12.9465,
+        23.710953,
+        14.2335
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 2,
+      "track_check_required": false
+    },
+    {
+      "owner": "R4",
+      "text": "R4",
+      "layer": "F.SilkS",
+      "position_mm": [
+        12.7,
+        13.59
+      ],
+      "bbox_mm": [
+        11.849048,
+        12.9465,
+        13.550953,
+        14.2335
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 1,
+      "track_check_required": false
+    },
+    {
+      "owner": "R5",
+      "text": "R5",
+      "layer": "F.SilkS",
+      "position_mm": [
+        27.94,
+        13.59
+      ],
+      "bbox_mm": [
+        27.089048,
+        12.9465,
+        28.790953,
+        14.2335
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 2,
+      "track_check_required": false
+    },
+    {
+      "owner": "R6",
+      "text": "R6",
+      "layer": "F.SilkS",
+      "position_mm": [
+        43.18,
+        36.45
+      ],
+      "bbox_mm": [
+        42.329048,
+        35.8065,
+        44.030953,
+        37.0935
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 3,
+      "track_check_required": false
+    },
+    {
+      "owner": "R7",
+      "text": "R7",
+      "layer": "F.SilkS",
+      "position_mm": [
+        58.42,
+        36.45
+      ],
+      "bbox_mm": [
+        57.569048,
+        35.8065,
+        59.270953,
+        37.0935
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 2,
+      "track_check_required": false
+    },
+    {
+      "owner": "R8",
+      "text": "R8",
+      "layer": "F.SilkS",
+      "position_mm": [
+        48.26,
+        36.45
+      ],
+      "bbox_mm": [
+        47.409048,
+        35.8065,
+        49.110953,
+        37.0935
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 4,
+      "track_check_required": false
+    },
+    {
+      "owner": "R9",
+      "text": "R9",
+      "layer": "F.SilkS",
+      "position_mm": [
+        63.5,
+        36.45
+      ],
+      "bbox_mm": [
+        62.649048,
+        35.8065,
+        64.350953,
+        37.0935
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "U1",
+      "text": "U1",
+      "layer": "F.SilkS",
+      "position_mm": [
+        36.17,
+        6.12
+      ],
+      "bbox_mm": [
+        35.045,
+        5.27175,
+        37.295,
+        6.96825
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "U2",
+      "text": "U2",
+      "layer": "F.SilkS",
+      "position_mm": [
+        85.09,
+        17.0
+      ],
+      "bbox_mm": [
+        83.965,
+        16.15175,
+        86.215,
+        17.84825
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 0,
+      "track_check_required": false
+    },
+    {
+      "owner": "U3",
+      "text": "U3",
+      "layer": "F.SilkS",
+      "position_mm": [
+        79.5,
+        1.3
+      ],
+      "bbox_mm": [
+        78.63,
+        0.6565,
+        80.37,
+        1.9435
+      ],
+      "via_overlaps": 0,
+      "side_track_overlaps": 12,
+      "track_check_required": false
     }
   ]
 }

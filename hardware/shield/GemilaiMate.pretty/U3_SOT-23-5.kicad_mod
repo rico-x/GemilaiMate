@@ -6,9 +6,9 @@
 	(descr "SOT, 5 Pin (JEDEC MO-178 Var AA https://www.jedec.org/document_search?search_api_views_fulltext=MO-178)")
 	(tags "SOT TO_SOT_SMD")
 	(property "Reference" "U3"
-		(at 0 -2.4 0)
+		(at 2.03 -3.78 0)
 		(layer "F.SilkS")
-		(uuid "08d2c47a-9ebc-4144-bcc7-cb3d10ff0f0a")
+		(uuid "47cc509c-b862-4cf7-b54b-52b20dcbba2d")
 		(effects
 			(font
 				(size 0.8 0.8)
@@ -20,7 +20,7 @@
 		(at 0 2.4 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "dc9162f5-535a-475a-8ed0-893433f55cfd")
+		(uuid "6bcda4f2-cfc8-4155-8c14-b8639bffc28c")
 		(effects
 			(font
 				(size 1 1)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "a6a8f9ab-d2c3-4615-a1e6-40b0de5592b6")
+		(uuid "d5b87250-a392-47bd-b303-d2f2b216afd3")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "453918b7-7f89-449e-b20a-7d4d0360c1aa")
+		(uuid "6811f472-d6bf-41bc-ba76-2ddbb3523d6c")
 		(effects
 			(font
 				(size 1.27 1.27)

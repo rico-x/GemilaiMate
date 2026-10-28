@@ -1,8 +1,9 @@
 {
-  "revision": "0.2.3 SHIELD PROTOTYPE 90x75",
-  "pcb_sha256": "e80e513f8f654071dc02ea406befdba88b79b1d221ce6a509eb9f014293041a2",
+  "revision": "0.2.4 SHIELD PROTOTYPE 90x75",
+  "pcb_sha256": "6200d0f35a6dd55d35aa5c924cf5189cf100ca9c58ec85bcffbf30a33d4bb74e",
   "nominal_module_plug_cable_envelopes": "PASS",
-  "marking_checks": "PASS: square pad 1, endpoint words follow physical pad X, labels next to own rows, full outlines; selected labels clear of front tracks/vias",
+  "marking_checks": "PASS: square pad 1, endpoint words follow physical pad X, labels next to own rows, full outlines; all visible front/back texts clear of vias; selected track checks retained",
+  "visible_silk_texts_checked": 62,
   "harness_housings": "Single marked housings: shield J5 1x4 / J6 1x5 (2/4 empty); carrier J5 1x4 / J6 1x3. Unkeyed: verify orientation before power.",
   "populated_mating_connector_profiles": [
     "J1",
