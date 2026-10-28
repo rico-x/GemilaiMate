@@ -4,6 +4,16 @@ import wx
 _app=wx.App(False)
 import pcbnew as p
 out=Path(__file__).resolve().parents[1];m=out/'manufacturing';d=json.loads((out/'design.json').read_text());board=p.LoadBoard(str(out/'gemilaimate-shield.kicad_pcb'))
+# Match the physical KiCad pad coordinates, including alternative ESP rows,
+# against the design used for assembly and mechanical access checks.
+for c in d['parts']:
+ fp=next(fp for fp in board.GetFootprints() if fp.GetReference()==c['ref'])
+ expected={(round(pa['x'],5),round(pa['y'],5)):pa for pa in c.get('physical_pads',c['pins'])}
+ actual={(round(p.ToMM(pa.GetPosition().x),5),round(p.ToMM(pa.GetPosition().y),5)):pa for pa in fp.Pads()}
+ assert actual.keys()==expected.keys(), 'PCB/design pad position mismatch: '+c['ref']
+ for xy,pa in actual.items():
+  # Unused pins in the alternative ESP row are unnumbered NPTH guides.
+  assert pa.GetNumber()==expected[xy]['number'] or (not expected[xy]['net'] and not pa.GetNumber() and pa.GetAttribute()==p.PAD_ATTRIB_NPTH), 'PCB/design pad numbering mismatch: '+c['ref']
 for t in board.GetTracks():
  if isinstance(t,p.PCB_VIA):t.SetFrontTentingMode(p.TENTING_MODE_TENTED);t.SetBackTentingMode(p.TENTING_MODE_TENTED)
 p.SaveBoard(str(out/'gemilaimate-shield.kicad_pcb'),board)
@@ -25,7 +35,7 @@ csvout('BOM-THT.csv',['Reference','Quantity_per_board','Description','Assembly_n
  ['J2',1,'1x10 female 2.54mm >=8.5mm','ADS1115 Blue; ten pins, ADDR wired GND'],
  ['J7',2,'1x5 female 2.54mm >=8.5mm','CJMCU-0102 rows 12.70mm ASSUMED; extra G left NC'],
  ['J3',1,'1x6 female 2.54mm >=8.5mm','MAX31855 VIN,3Vo NC,GND,DO,CS,CLK'],
- ['J5',1,'1x4 female 2.54mm >=8.5mm','RobotDyn control dock; power body outward; fit unverified'],
+ ['J5',1,'1x4 female 2.54mm >=8.5mm','Bottom edge, pin 1 LEFT in top view; RobotDyn outward DOWN; preserve left USB corridor; fit unverified'],
  ['J6',1,'1x5 female 2.54mm >=8.5mm','SSR input pins 1/3/5; input terminal rework required for direct docking'],
  ['J1 J9 JP1',3,'1x2 male 2.54mm','Power/display/USB disconnect'],
  ['J4 J10 JP3',3,'1x3 male 2.54mm','Pressure / unused heater / MAX VIN select'],

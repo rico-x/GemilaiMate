@@ -1,5 +1,5 @@
 Drill report for gemilaimate-shield.kicad_pcb
-Created on 2026-10-28T16:46:48
+Created on 2026-10-28T19:57:51
 
 Copper Layer Stackup:
     =============================================================
@@ -10,10 +10,10 @@ Copper Layer Stackup:
 Drill file 'gemilaimate-shield-PTH.drl' contains
     plated through holes:
     =============================================================
-    T1  0.300mm  0.0118"  (75 holes))
+    T1  0.300mm  0.0118"  (84 holes))
     T2  1.000mm  0.0394"  (121 holes))
 
-    Total plated holes count 196
+    Total plated holes count 205
 
 
 Drill file 'gemilaimate-shield-NPTH.drl' contains

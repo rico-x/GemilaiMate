@@ -23,6 +23,8 @@ pads=[];by_net={};smd_locations=[]
 for fp in sorted(BOARD.GetFootprints(),key=lambda f:(f.GetReference(),f.GetPosition().x,f.GetPosition().y)):
  for pad in sorted(fp.Pads(),key=lambda pa:(pa.GetNumber(),pa.GetPosition().x,pa.GetPosition().y)):
   pos=pad.GetPosition();name=pad.GetNetname()
+  if name.startswith('unconnected-'):
+   pad.SetNetCode(0);name=''
   x,y=p.ToMM(pos.x),p.ToMM(pos.y);hx,hy=p.ToMM(pad.GetSize().x)/2,p.ToMM(pad.GetSize().y)/2
   layers=(0,1) if pad.GetAttribute()!=p.PAD_ATTRIB_SMD else (0,)
   pads.append((x,y,hx,hy,name,layers,pad.GetShape()==p.PAD_SHAPE_CIRCLE))
@@ -150,11 +152,48 @@ for number,pins in sorted(groups.items()):
  if nn!='GND':
   assert nn not in preconnected
   preconnected[nn]=set(path)|{idx(x,y0,1),idx(x,y1,1)}
+
+# Give every SMD terminal a short, tented escape via before routing long
+# branches. Otherwise a previously routed supply can surround a fine SMD
+# pad even though the rest of this two-layer board is largely empty.
+# These are ordinary vias OUTSIDE all pads, not a via-in-pad process.
+escapes={}
+for cx,cy,hx,hy,nn,layers,is_circle in sorted(pads,key=lambda a:(a[1],a[0],a[4])):
+ if layers!=(0,) or not nn:continue
+ sx,sy=grid(cx),grid(cy);m=blocked(nn,.2032);vm=blocked(nn,.7)
+ candidates=[(0,12),(0,-12),(12,0),(-12,0),(0,16),(0,-16),(16,0),(-16,0),
+             (8,12),(-8,12),(8,-12),(-8,-12),(12,8),(-12,8),(12,-8),(-12,-8)]
+ placed=False
+ for dx,dy in candidates:
+  vx,vy=sx+dx,sy+dy;x,y=vx*GRID,vy*GRID
+  if not (0<=vx<NX and 0<=vy<NY) or vm[idx(vx,vy,0)] or vm[idx(vx,vy,1)]:continue
+  if any(abs(x-px)<phx+.4 and abs(y-py)<phy+.4 for px,py,phx,phy,pn,pls,pc in pads):continue
+  if any(math.hypot(x-v['x']*GRID,y-v['y']*GRID)<1.05 for v in vias):continue
+  path=[idx(sx,sy,0)]
+  xx,yy=sx,sy
+  # Try both L-shaped escapes. No layer change is allowed until the via.
+  for vertical_first in (True,False):
+   xx,yy=sx,sy;path=[idx(xx,yy,0)]
+   for axis in ((1,0) if vertical_first else (0,1)):
+    end=vy if axis else vx
+    while (yy if axis else xx)!=end:
+     if axis:yy+=1 if yy<end else -1
+     else:xx+=1 if xx<end else -1
+     path.append(idx(xx,yy,0))
+   if all(not m[a] for a in path):break
+  else:continue
+  add_path(path+[idx(vx,vy,1)],nn,.2032)
+  escapes[(nn,sx,sy)]=(vx,vy,(0,1));placed=True;break
+ if not placed:raise SystemExit(f'No safe SMD escape for {nn} at {cx},{cy}')
+for nn,points in by_net.items():
+ by_net[nn]=[escapes.get((nn,x,y),(x,y,layers)) for x,y,layers in points]
+print('SMD escapes:',len(escapes),'outside-pad vias',flush=True)
 started=time.time()
 # Signals first; power last is a separate, wider route. Choose short local
 # signals before long bus crossings. Plated through-hole pads join both layers.
 def priority(nn):
- ranks={'GND':-100,'ZC_SCHMITT_IN':-9,'PUMP_ZC':-8,'ZC_RAW':-7,'VALVE_3V3':-6,'HEATER_3V3':-5,'SCL_3V3':-4,'SDA_3V3':-4,'+3V3':-3,'+5V':-3,'DEV_5V':2}
+ # Route narrow SMD escapes before wide supply branches can enclose them.
+ ranks={'GND':-100,'ZC_SCHMITT_IN':-9,'PUMP_ZC':-8,'STEAM':-8,'BREW':-8,'STEAM_CONTACT':-8,'BREW_CONTACT':-8,'VALVE_IN':-8,'VALVE_5V':-8,'HEATER_5V':-8,'BOARD_ID':-8,'ZC_RAW':-7,'VALVE_3V3':-6,'HEATER_3V3':-5,'SCL_3V3':-4,'SDA_3V3':-4,'+3V3':-3,'+5V':-3,'DEV_5V':2}
  pts=by_net[nn]
  span=max(q[0] for q in pts)-min(q[0] for q in pts)+max(q[1] for q in pts)-min(q[1] for q in pts)
  return ranks.get(nn,1),span,nn
@@ -202,3 +241,4 @@ p.ZONE_FILLER(BOARD).Fill(BOARD.Zones())
 p.SaveBoard(str(OUT/'gemilaimate-shield.kicad_pcb'),BOARD)
 (OUT/'routing.json').write_text(json.dumps(dict(failures=fail,segments=len(tracks),vias=len(vias),elapsed_seconds=time.time()-started),indent=2))
 print('FINISHED',len(fail),'failures',flush=True)
+if fail:raise SystemExit('Routing incomplete; do not export for fabrication')

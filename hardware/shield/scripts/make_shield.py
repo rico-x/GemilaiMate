@@ -1,4 +1,4 @@
-"""Convert the baseline v0.1 PCB to the v0.2 socket carrier.
+"""Convert the baseline v0.1 PCB to the v0.2.1 socket carrier.
 
 Read the active sibling carrier v0.1 with KiCad's pcbnew Python. Module geometry
 is an explicit prototype profile, not a claim about a received clone.
@@ -13,7 +13,7 @@ H=Path(__file__).resolve().parents[1]
 BASE=H.parent/'carrier'
 B=p.LoadBoard(str(BASE/'gemilaimate-carrier.kicad_pcb'))
 D=json.loads((BASE/'design.json').read_text())
-tb=B.GetTitleBlock();tb.SetRevision('0.2');tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate('2026-10-28');B.SetTitleBlock(tb)
+tb=B.GetTitleBlock();tb.SetRevision('0.2.1');tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate('2026-10-28');B.SetTitleBlock(tb)
 for net in B.GetNetsByNetcode().values():
     if net.GetNetname().startswith('/'):
         net.SetNetname(net.GetNetname()[1:])
@@ -122,12 +122,12 @@ socket('J3','MAX31855 VIN SOCKET 1x6',
             outline_mm=[20.32,22.86],socket_height_mm=8.5))
 
 socket('J5','ROBOTDYN EDGE DOCK 1x4',
-       [(i+1,2.54,17.78+i*pitch,nn,pn) for i,(nn,pn) in enumerate([('+5V','VCC5V'),('GND','GND'),('ZC_RAW','ZC5V'),('PUMP_PWM','PSM3V3')])],
-       [1.27,16.51,3.81,26.67],[[1.27,16.51,3.81,26.67]],
+       [(i+1,41.91+i*pitch,71.12,nn,pn) for i,(nn,pn) in enumerate([('+5V','VCC5V'),('GND','GND'),('ZC_RAW','ZC5V'),('PUMP_PWM','PSM3V3')])],
+       [40.64,69.85,50.8,72.39],[[40.64,69.85,50.8,72.39]],
        dict(model='RobotDyn 16A Standard edge interface',geometry_status='electrical order from selected seller image; mechanical dock and pin direction not measured',
             url='https://aliexpress.ru/item/1005001965951718.html?sku_id=12000044296027587',
-            source_notes='Seller image states 60x42 mm; power body must extend outward from carrier, supported on common frame. No mains routing on carrier.',
-            outline_mm=[60,42],socket_height_mm=8.5,requires_mechanical_fit_check=True))
+            source_notes='Seller image states 60x42 mm. Bottom-edge dock, pin 1 LEFT in top view. Power body must extend below the board on its own support, clear of the left-side USB access corridor. Actual header offset/direction remains unmeasured. No mains routing on carrier.',
+            outline_mm=[60,42],socket_height_mm=8.5,dock_outward='bottom',requires_mechanical_fit_check=True))
 
 ssr=[('+5V','DC_PLUS'),(None,'SPACER_NC'),('GND','DC_MINUS'),(None,'SPACER_NC'),('VALVE_IN','CH1')]
 socket('J6','SSR EDGE DOCK 1x5 USE 1-3-5',
@@ -148,7 +148,7 @@ for item in B.GetDrawings():
     elif isinstance(item,p.PCB_TEXT):
         txt=item.GetText()
         if txt=='1' and abs(p.ToMM(item.GetPosition().x)-67)<.1 and abs(p.ToMM(item.GetPosition().y)-8.89)<.1:item.SetPosition(V(68.75,8.89))
-        if 'GemilaiMate' in txt: item.SetText('GemilaiMate v0.2 SHIELD - PROTOTYPE')
+        if txt.startswith('GemilaiMate v'): item.SetText('GemilaiMate v0.2.1 SHIELD - PROTOTYPE')
         if p.ToMM(item.GetPosition().y)>43:
             item.Move(V(0,HEIGHT-46-1))
 for x,y in [(3,72),(87,72)]:
@@ -161,7 +161,18 @@ for x,y in [(3,72),(87,72)]:
 for txt,x,y in [('ADS1115 BLUE',16.5,45.2),('CJMCU-0102',42,45.2),('MAX31855 VIN',68.5,44.6),('PRESSURE',9,73.1),('BUTTONS',32,73.1),('NO MAINS ON CARRIER',46,43.18)]:
     t=p.PCB_TEXT(B);t.SetText(txt);t.SetPosition(V(x,y));t.SetLayer(p.F_SilkS)
     t.SetTextSize(V(.8,.8));t.SetTextThickness(p.FromMM(.12));B.Add(t)
-D.update(revision='0.2 SHIELD PROTOTYPE 90x75',size_mm=[W,HEIGHT],
+# A mechanical access envelope, NOT a copper keepout or measured cable model.
+# It reserves 30 mm outside the left edge and the full height of both USB
+# ports, including a conservative plug-width allowance, in plan projection.
+usb_access=dict(name='ESP32 dual USB plug access',rect_mm=[-30,7.62,4.8,35.56],
+                status='design allowance; actual plug/cable and enclosure unmeasured',
+                access_from='left',owner='U1')
+for aa,bb in [((-30,7.62),(4.8,7.62)),((4.8,7.62),(4.8,35.56)),((4.8,35.56),(-30,35.56)),((-30,35.56),(-30,7.62))]:
+    shape(B,aa,bb,p.Dwgs_User,.15)
+t=p.PCB_TEXT(B);t.SetText('USB PLUG ACCESS - KEEP FREE');t.SetPosition(V(-13,6));t.SetLayer(p.Dwgs_User)
+t.SetTextSize(V(1,1));t.SetTextThickness(p.FromMM(.15));B.Add(t)
+D.update(revision='0.2.1 SHIELD PROTOTYPE 90x75',size_mm=[W,HEIGHT],
+         mechanical_access=[usb_access],
          module_headers_unmeasured=True,manufacturing_release=False)
 D['mounts_mm'] += [[3,72],[87,72]]
 (H/'design.json').write_text(json.dumps(D,ensure_ascii=False,indent=2)+'\n')

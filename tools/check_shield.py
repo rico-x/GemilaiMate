@@ -3,10 +3,30 @@
 from pathlib import Path
 import csv,hashlib,json,subprocess,sys
 R=Path(__file__).resolve().parents[1];H=R/'hardware/shield'
+def check_usb_access(d):
+ parts={c['ref']:c for c in d['parts']}
+ access=d['mechanical_access']
+ assert len(access)==1 and access[0]['owner']=='U1'
+ zone=access[0]['rect_mm']
+ assert zone==[-30,7.62,4.8,35.56] and access[0]['access_from']=='left'
+ for ref,c in parts.items():
+  if ref=='U1':continue
+  b=c['rect']
+  assert not (max(b[0],zone[0])<min(b[2],zone[2]) and max(b[1],zone[1])<min(b[3],zone[3])), f'{ref} blocks USB access'
+ dock=parts['J5'];pins=dock['pins']
+ assert dock['module_profile']['dock_outward']=='bottom'
+ assert [p['net'] for p in pins]==['+5V','GND','ZC_RAW','PUMP_PWM']
+ assert all(abs(p['y']-71.12)<1e-6 for p in pins)
+ assert all(abs(p['x']-(41.91+i*2.54))<1e-6 for i,p in enumerate(pins))
+ assert dock['rect'][1]-zone[3]>30
+
 def main():
  d=json.loads((H/'design.json').read_text());parts={c['ref']:c for c in d['parts']}
+ check_usb_access(d)
  assert d['size_mm']==[90,75] and len(parts)==34
  assert d['module_headers_unmeasured'] is True
+ board=(H/'gemilaimate-shield.kicad_pcb').read_text()
+ assert 'github.com/Rico-X/GemilaiMate' in board and 'Rico-X' in board
  stats=json.loads((H/'board-stats.json').read_text())
  assert stats['pcb_sha256']==hashlib.sha256((H/'gemilaimate-shield.kicad_pcb').read_bytes()).hexdigest()
  assert stats['pth_mask_front_openings']==stats['pth_pad_sites_including_alternative_row']

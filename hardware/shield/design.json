@@ -1,5 +1,5 @@
 {
-  "revision": "0.2 SHIELD PROTOTYPE 90x75",
+  "revision": "0.2.1 SHIELD PROTOTYPE 90x75",
   "size_mm": [
     90,
     75
@@ -912,43 +912,43 @@
     {
       "ref": "J5",
       "value": "ROBOTDYN EDGE DOCK 1x4",
-      "x": 2.54,
-      "y": 17.78,
+      "x": 41.91,
+      "y": 71.12,
       "pins": [
         {
           "number": "1",
-          "x": 2.54,
-          "y": 17.78,
+          "x": 41.91,
+          "y": 71.12,
           "net": "+5V",
           "name": "VCC5V"
         },
         {
           "number": "2",
-          "x": 2.54,
-          "y": 20.32,
+          "x": 44.449999999999996,
+          "y": 71.12,
           "net": "GND",
           "name": "GND"
         },
         {
           "number": "3",
-          "x": 2.54,
-          "y": 22.86,
+          "x": 46.989999999999995,
+          "y": 71.12,
           "net": "ZC_RAW",
           "name": "ZC5V"
         },
         {
           "number": "4",
-          "x": 2.54,
-          "y": 25.400000000000002,
+          "x": 49.529999999999994,
+          "y": 71.12,
           "net": "PUMP_PWM",
           "name": "PSM3V3"
         }
       ],
       "rect": [
-        1.27,
-        16.51,
-        3.81,
-        26.67
+        40.64,
+        69.85,
+        50.8,
+        72.39
       ],
       "kind": "module_socket",
       "footprint": "GemilaiMate:J5_socket_shield",
@@ -956,12 +956,13 @@
         "model": "RobotDyn 16A Standard edge interface",
         "geometry_status": "electrical order from selected seller image; mechanical dock and pin direction not measured",
         "url": "https://aliexpress.ru/item/1005001965951718.html?sku_id=12000044296027587",
-        "source_notes": "Seller image states 60x42 mm; power body must extend outward from carrier, supported on common frame. No mains routing on carrier.",
+        "source_notes": "Seller image states 60x42 mm. Bottom-edge dock, pin 1 LEFT in top view. Power body must extend below the board on its own support, clear of the left-side USB access corridor. Actual header offset/direction remains unmeasured. No mains routing on carrier.",
         "outline_mm": [
           60,
           42
         ],
         "socket_height_mm": 8.5,
+        "dock_outward": "bottom",
         "requires_mechanical_fit_check": true
       }
     },
@@ -2190,6 +2191,20 @@
   "firmware_ref": "v0.1.0",
   "hardware_tested": false,
   "mount_positions_in_machine_verified": false,
+  "mechanical_access": [
+    {
+      "name": "ESP32 dual USB plug access",
+      "rect_mm": [
+        -30,
+        7.62,
+        4.8,
+        35.56
+      ],
+      "status": "design allowance; actual plug/cable and enclosure unmeasured",
+      "access_from": "left",
+      "owner": "U1"
+    }
+  ],
   "module_headers_unmeasured": true,
   "manufacturing_release": false
 }

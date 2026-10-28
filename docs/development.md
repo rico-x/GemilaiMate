@@ -24,7 +24,7 @@ KiCad 10.0.7 использован для текущих производств
 
 ## Второй аппаратный вариант shield
 
-Carrier v0.1 сохраняется в hardware/carrier. Shield v0.2 — в hardware/shield; файл gemilaimate-shield.kicad_pro открывается отдельно, со своими локальными библиотеками. Общая прошивка остаётся v0.1.0, исходники firmware не менялись.
+Carrier v0.1 сохраняется в hardware/carrier. Shield v0.2.1 — в hardware/shield; файл gemilaimate-shield.kicad_pro открывается отдельно, со своими локальными библиотеками. Общая прошивка остаётся v0.1.0, исходники firmware не менялись.
 
 Проверка: `.venv/bin/python tools/check_project.py` проверяет оба варианта. Для восстановления shield из актуального carrier: KiCad Python запускает `hardware/shield/scripts/make_shield.py`, затем `route_shield.py`; обычный Python запускает `make_schematic.py`. Полный электрический/CAM экспорт: `.venv/bin/python tools/export_shield.py --kicad-cli /path/to/kicad-cli --kicad-python /path/to/kicad-python`. Скрипт останавливается при любом ERC/DRC/unconnected/parity и формирует отдельный prototype ZIP.
 

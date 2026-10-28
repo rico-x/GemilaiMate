@@ -8,10 +8,17 @@ import pcbnew as p
 H=Path(__file__).resolve().parents[1]
 from make_3d_models import box
 B=p.LoadBoard(str(H/'gemilaimate-shield.kicad_pcb'))
-tb=B.GetTitleBlock();tb.SetRevision('0.2');tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate('2026-10-28');B.SetTitleBlock(tb)
+tb=B.GetTitleBlock();tb.SetRevision('0.2.1');tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate('2026-10-28');B.SetTitleBlock(tb)
 for item in B.GetDrawings():
+    if isinstance(item,p.PCB_TEXT) and item.GetLayer()==p.B_SilkS and abs(p.ToMM(item.GetPosition().x)-32)<.01 and abs(p.ToMM(item.GetPosition().y)-23)<.01:
+        item.SetText('github.com/Rico-X/GemilaiMate')
     if isinstance(item,p.PCB_TEXT) and item.GetText()=='1' and abs(p.ToMM(item.GetPosition().x)-67)<.1 and abs(p.ToMM(item.GetPosition().y)-8.89)<.1:
         item.SetPosition(p.VECTOR2I(p.FromMM(68.75),p.FromMM(8.89)))
+# Mark the revised dock orientation on the manufactured board, not only in docs.
+for label,x,y in [('ROBOTDYN',45.72,66.7),('1',41.91,73.3)]:
+    if not any(isinstance(t,p.PCB_TEXT) and t.GetText()==label and abs(p.ToMM(t.GetPosition().x)-x)<.01 and abs(p.ToMM(t.GetPosition().y)-y)<.01 for t in B.GetDrawings()):
+        t=p.PCB_TEXT(B);t.SetText(label);t.SetPosition(p.VECTOR2I(p.FromMM(x),p.FromMM(y)))
+        t.SetLayer(p.F_SilkS);t.SetTextSize(p.VECTOR2I(p.FromMM(.8),p.FromMM(.8)));t.SetTextThickness(p.FromMM(.12));B.Add(t)
 mapping=json.loads((H/'schematic-pad-nets.json').read_text())
 for n in B.GetNetsByNetcode().values():
     if n.GetNetname() and not n.GetNetname().startswith('/'):
@@ -27,6 +34,19 @@ for fp in B.GetFootprints():
         if nn not in nets:
             n=p.NETINFO_ITEM(B,nn);B.Add(n);nets[nn]=n
         pad.SetNet(nets[nn])
+
+# A branch may reach an SMD escape on its front side and never use the
+# bottom layer. Remove that now-redundant via instead of waiving dangling
+# via DRC. Unconnected schematic pins must never acquire routed copper.
+for t in list(B.GetTracks()):
+    if t.GetNetname().lstrip('/').startswith('unconnected-'):B.Delete(t)
+B.BuildConnectivity()
+connectivity=B.GetConnectivity();unused=[]
+for t in B.GetTracks():
+    if isinstance(t,p.PCB_VIA) and t.GetNetname()!='/GND':
+        if not (connectivity.IsConnectedOnLayer(t,p.F_Cu) and connectivity.IsConnectedOnLayer(t,p.B_Cu)):unused.append(t)
+for t in unused:B.Delete(t)
+print('Removed unused single-layer escape vias:',len(unused))
 
 d=json.loads((H/'design.json').read_text())
 colors={'J2':'0.02 0.20 0.35','J7':'0.32 0.08 0.40','J3':'0.03 0.20 0.45'}

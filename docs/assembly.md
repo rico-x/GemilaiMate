@@ -1,6 +1,6 @@
 # Сборка carrier v0.1
 
-Этот документ описывает **carrier v0.1**. Для второго варианта см. [shield v0.2](shield.md): его разъёмы J2/J3/J6/J7 имеют другую распиновку.
+Этот документ описывает **carrier v0.1**. Для второго варианта см. [shield v0.2.1](shield.md): его разъёмы J2/J3/J6/J7 имеют другую распиновку.
 
 ![Carrier в сборе, 3D-вид](../hardware/carrier/previews/assembled-3d-front.png)
 

@@ -40,9 +40,9 @@ def main():
   cairosvg.svg2png(url=str(pv/(name+'.svg')),write_to=str(pv/(name+'.png')),output_width=1800)
  for name,view in [('assembled-3d-front',['--rotate','-55,0,-30','--perspective','--zoom','0.95','--floor']),('assembled-3d-top',[])]:
   run('pcb','render','--side','top','--quality','high','--background','opaque','-w','1800','-h','1200',*view,'-o',pv/(name+'.png'),pcb)
- archive=m/'gemilaimate-shield-v0.2-prototype.zip'
+ archive=m/'gemilaimate-shield-v0.2.1-prototype.zip'
  with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
   for f in sorted(g.iterdir()):z.write(f,f.name)
- (m/'manifest.json').write_text(json.dumps({'variant':'shield-v0.2-prototype','size_mm':[90,75],'pcb_sha256':hashlib.sha256(pcb.read_bytes()).hexdigest(),'archive_sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'physical_assembly_verified':False,'module_clone_geometry_verified':False},indent=2)+'\n')
+ (m/'manifest.json').write_text(json.dumps({'variant':'shield-v0.2.1-prototype','size_mm':[90,75],'pcb_sha256':hashlib.sha256(pcb.read_bytes()).hexdigest(),'archive_sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'physical_assembly_verified':False,'module_clone_geometry_verified':False},indent=2)+'\n')
  print('PASS Shield electrical/CAM export. Geometry is nominal; no physical fit or hardware test claimed.')
 if __name__=='__main__':main()
