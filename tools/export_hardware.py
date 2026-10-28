@@ -22,6 +22,9 @@ def main():
  for name,layers in [('board-top','F.Cu,F.Mask,F.Silkscreen,Edge.Cuts'),('board-bottom','B.Cu,B.Mask,B.Silkscreen,Edge.Cuts'),('assembly-top','F.Fab,F.Silkscreen,Edge.Cuts')]:
   run(['pcb','export','svg','--layers',layers,'--mode-single','--page-size-mode','2','--exclude-drawing-sheet','-o',str(pv/(name+'.svg'))]+(['--mirror'] if name=='board-bottom' else [])+[pcb])
  run(['sch','export','svg','-o',str(pv)+'/',sch])
+ subprocess.run([sys.executable,str(H/'scripts/make_3d_models.py')],check=True)
+ for name,view in [('assembled-3d-front',['--rotate','-55,0,-30','--perspective','--zoom','0.95','--floor','-h','1500']),('assembled-3d-back',['--rotate','-55,0,145','--perspective','--zoom','0.95','--floor','-h','1500']),('assembled-3d-top',['-h','1400'])]:
+  run(['pcb','render','--side','top','--quality','high','--background','opaque','-w','2400']+view+['-o',str(pv/(name+'.png')),pcb])
  with zipfile.ZipFile(m/'gerber-drill.zip','w',zipfile.ZIP_DEFLATED) as z:
   for p in sorted(g.iterdir()):z.write(p,p.name)
  print('Current hardware export passed ERC/DRC/parity and 13 GPIO checks')

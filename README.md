@@ -28,6 +28,8 @@ Carrier содержит только низковольтные цепи, 90×4
 
 ![Разводка прототипа GemilaiMate](hardware/carrier/previews/board-top.png)
 
+![Carrier в сборе, 3D-вид с упрощённым DevKit](hardware/carrier/previews/assembled-3d-front.png)
+
 Открывать в KiCad: [`hardware/carrier/gemilaimate-carrier.kicad_pro`](hardware/carrier/gemilaimate-carrier.kicad_pro). Шаблон: [`mounting-template-1to1.pdf`](hardware/carrier/mounting-template-1to1.pdf). Перед изготовлением сверить реальный ESP32 с шаблоном и просвет ≥5 мм под ним.
 
 Адаптация под Gemilai, carrier и сопровождение: **Rico-X**. Код основан на GaggiMate авторства jniebuhr и участников проекта; изменения и лицензии указаны в [NOTICE](NOTICE.md) и [LICENSE](LICENSE.md). Это независимая адаптация, без заявления о проверенной совместимости или одобрении исходными авторами.

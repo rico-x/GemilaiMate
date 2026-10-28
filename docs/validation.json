@@ -23,13 +23,15 @@
   "modified_ui_eslint": true,
   "pdf_pages_visually_reviewed": 2,
   "build_does_not_require_git_or_parent_checkout": true,
-  "pcb_sha256": "dfd4c211bd05bddf13110bd3bf884e0e9dac9d7ae5df36853eb8e614cceb64c3",
+  "pcb_sha256": "fff67f20457e643025c4498ee4508c624f1ea126591f991efd140c280541c63d",
   "source_tree_sha256": "31656ed1c9c89883b8ff7bfa59d2b353c98c985c185ad17f21083d6fd1815058",
   "firmware_sizes": {
     "controller": 703744,
     "display": 3373392
   },
   "unchanged_copper_geometry_verified": true,
+  "pcb_3d_models_added_after_v0_1_0": true,
+  "gerber_drill_unchanged_by_3d_models": true,
   "github_ci": {
     "url": "https://github.com/rico-x/GemilaiMate/actions/runs/40653238272",
     "conclusion": "success",

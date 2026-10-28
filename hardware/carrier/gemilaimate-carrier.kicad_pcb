@@ -230,6 +230,17 @@
 			(uuid "c2076176-9ce6-4473-94ef-862b648e2e7a")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:J7_header"
 		(layer "F.Cu")
@@ -455,6 +466,17 @@
 			(uuid "fac2c2bc-7bd1-4654-8c77-744dc5bb900e")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x08_P2.54mm_Vertical.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
+			)
+		)
 	)
 	(footprint "GemilaiMate:C5_C_0805_2012Metric"
 		(layer "F.Cu")
@@ -592,6 +614,17 @@
 			(uuid "e21e105d-a7e1-4224-a258-80a47fb7e71b")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:R11_R_0805_2012Metric"
 		(layer "F.Cu")
@@ -728,6 +761,17 @@
 			(uuid "8f102981-43f5-4839-80e7-a83a5edcf6ed")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:C1_C_0805_2012Metric"
 		(layer "F.Cu")
@@ -865,6 +909,17 @@
 			(uuid "0622b9e7-420d-4746-9c28-dfd08139681b")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:J3_header"
 		(layer "F.Cu")
@@ -1063,6 +1118,17 @@
 			(uuid "cd2caa12-1300-4ed1-aeaa-69063641a795")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x05_P2.54mm_Vertical.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
+			)
+		)
 	)
 	(footprint ""
 		(layer "F.Cu")
@@ -1258,6 +1324,17 @@
 			(uuid "15e27b7a-518e-47fa-9b40-56b9b32e0fbd")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:C2_C_0805_2012Metric"
 		(layer "F.Cu")
@@ -1395,6 +1472,17 @@
 			(uuid "18f943f0-2dfb-4988-8784-9a2b37e565c4")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:R10_R_0805_2012Metric"
 		(layer "F.Cu")
@@ -1531,6 +1619,17 @@
 			(uuid "60cfd0cf-0e5b-455f-84bd-5d2f29416cb4")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:R3_R_0805_2012Metric"
 		(layer "F.Cu")
@@ -1668,6 +1767,17 @@
 			(uuid "eb7f9815-b1a3-4ba4-9b33-215a148ca554")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:J5_header"
 		(layer "F.Cu")
@@ -1857,6 +1967,17 @@
 			(uuid "2afab56c-cf8b-49da-bcbc-d35f8a7e8e36")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x04_P2.54mm_Vertical.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
+			)
+		)
 	)
 	(footprint "GemilaiMate:J2_header"
 		(layer "F.Cu")
@@ -2065,6 +2186,17 @@
 			(uuid "8b3a5dd3-105c-4473-bb94-47c875e3d52b")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x06_P2.54mm_Vertical.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
+			)
+		)
 	)
 	(footprint "GemilaiMate:J4_header"
 		(layer "F.Cu")
@@ -2245,6 +2377,17 @@
 			(uuid "efb70041-9908-4ea7-963d-f33b8e53c9e8")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x03_P2.54mm_Vertical.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
+			)
+		)
 	)
 	(footprint "GemilaiMate:C4_C_0805_2012Metric"
 		(layer "F.Cu")
@@ -2382,6 +2525,17 @@
 			(uuid "31eb8800-2819-44ea-a54c-07dac2b95e9b")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:R6_R_0805_2012Metric"
 		(layer "F.Cu")
@@ -2518,6 +2672,17 @@
 			(uuid "562f414d-58f7-44ff-8284-cf9548af58e3")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:R13_R_0805_2012Metric"
 		(layer "F.Cu")
@@ -2654,6 +2819,17 @@
 			(uuid "f639abc1-bda5-4531-8b03-f732b140cd99")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:R1_R_0805_2012Metric"
 		(layer "F.Cu")
@@ -2790,6 +2966,17 @@
 			(uuid "dafb37c6-3e83-4ff0-b2e5-a4c9a0bea2e6")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:U2_DIP14"
 		(layer "F.Cu")
@@ -3072,6 +3259,17 @@
 			(uuid "f84978df-b52a-46f1-bd70-abb635b37e68")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Package_DIP.3dshapes/DIP-14_W7.62mm.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:C6_C_0805_2012Metric"
 		(layer "F.Cu")
@@ -3209,6 +3407,17 @@
 			(uuid "16030840-2d60-4a9a-956e-06907f0bf495")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:R9_R_0805_2012Metric"
 		(layer "F.Cu")
@@ -3345,6 +3554,17 @@
 			(uuid "fb472f1e-ec21-46cb-a854-b9fac2354978")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:JP3_header"
 		(layer "F.Cu")
@@ -3524,6 +3744,28 @@
 			(uuid "0826bce4-4e93-47f6-b16b-e626d2069fa7")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x03_P2.54mm_Vertical.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
+			)
+		)
+		(model "${KIPRJMOD}/GemilaiMate.3dshapes/Jumper_Cap_P2.54mm.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:C3_C_0805_2012Metric"
 		(layer "F.Cu")
@@ -3661,6 +3903,17 @@
 			(uuid "8ea265b4-dc5a-45e8-bd6b-28f51dfec345")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:J6_header"
 		(layer "F.Cu")
@@ -3841,6 +4094,17 @@
 			(uuid "33d6f1ae-345f-40a5-940f-056ebc9d48ea")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x03_P2.54mm_Vertical.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
+			)
+		)
 	)
 	(footprint "GemilaiMate:J9_header"
 		(layer "F.Cu")
@@ -4012,6 +4276,17 @@
 			(uuid "fbb83fe4-bc0e-4f49-aafc-9b68a770c6c2")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x02_P2.54mm_Vertical.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
+			)
+		)
 	)
 	(footprint "GemilaiMate:R5_R_0805_2012Metric"
 		(layer "F.Cu")
@@ -4149,6 +4424,17 @@
 			(uuid "c027d85f-bb8a-4f07-af77-7393c973bf20")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:J8_header"
 		(layer "F.Cu")
@@ -4339,6 +4625,17 @@
 			(uuid "e0fe9ff5-a413-4a3c-95f2-9278a1c534ea")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x04_P2.54mm_Vertical.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
+			)
+		)
 	)
 	(footprint "GemilaiMate:R12_R_0805_2012Metric"
 		(layer "F.Cu")
@@ -4475,6 +4772,17 @@
 			(uuid "530899b2-41a3-46bc-8116-315f52bb678d")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:R7_R_0805_2012Metric"
 		(layer "F.Cu")
@@ -4611,6 +4919,17 @@
 			(uuid "5fe7a89c-e098-4063-9c99-ef37d1329e28")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:R4_R_0805_2012Metric"
 		(layer "F.Cu")
@@ -4748,6 +5067,17 @@
 			(uuid "4daa5f2a-a441-4d1c-94a4-e1bcca1655f4")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:J1_header"
 		(layer "F.Cu")
@@ -4919,6 +5249,17 @@
 			(uuid "e73688c4-ff95-406d-a75a-31b945eb6021")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x02_P2.54mm_Vertical.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
+			)
+		)
 	)
 	(footprint "GemilaiMate:U1_ESP32"
 		(layer "F.Cu")
@@ -5705,6 +6046,50 @@
 			(uuid "3768958f-eebf-4032-aa51-3378aeacc6bb")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_1x22_P2.54mm_Vertical.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 90)
+			)
+		)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_1x22_P2.54mm_Vertical.step"
+			(offset
+				(xyz 0 -22.86 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 90)
+			)
+		)
+		(model "${KIPRJMOD}/GemilaiMate.3dshapes/DevKit_ESP32-S3_N8R8_simplified.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+		(model "${KICAD10_3DMODEL_DIR}/RF_Module.3dshapes/ESP32-S3-WROOM-1.step"
+			(offset
+				(xyz -11.45 -11.43 12.64)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 90)
+			)
+		)
 	)
 	(footprint "GemilaiMate:U3_SOT-23-5"
 		(layer "F.Cu")
@@ -6078,6 +6463,17 @@
 			(uuid "ab4bc6b1-f777-44e2-877d-42ed7e23a3ad")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23-5.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint ""
 		(layer "F.Cu")
@@ -6307,6 +6703,28 @@
 			(uuid "6d249413-b464-47af-af68-851b2bbce2cb")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x02_P2.54mm_Vertical.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 -90)
+			)
+		)
+		(model "${KIPRJMOD}/GemilaiMate.3dshapes/Jumper_Cap_P2.54mm.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "GemilaiMate:J10_header"
 		(layer "F.Cu")
@@ -6487,6 +6905,17 @@
 			(uuid "391f386b-62d8-4692-ada4-e40d35d0bb1e")
 		)
 		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x03_P2.54mm_Vertical.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(gr_line
 		(start 0 0)
