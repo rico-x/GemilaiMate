@@ -1,4 +1,4 @@
-<title>Подключение GemilaiMate</title>
+<title>%%TITLE%%</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,6 +87,8 @@ figcaption { font-size: 13px; color: var(--muted); max-width: 80ch; }
 .dev-sub, .pcb-title, .pcb-note { font: 500 11px var(--mono); fill: var(--pcb-ink); opacity: .85; }
 .conn-lab { font: 600 12px var(--mono); fill: var(--pcb-ink); }
 .jumper { fill: #e8be22; }
+.keep { fill: none; stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 6 4; }
+.keep-lab { font: 600 11px var(--mono); fill: var(--accent); }
 .fuse { fill: var(--sheet); stroke: var(--wL); stroke-width: 2; }
 .junction { fill: var(--ink); }
 .tee { fill: var(--sheet); stroke: var(--wwater); stroke-width: 2.5; }
@@ -141,6 +143,7 @@ aside.info .kicker { font: 600 11px var(--mono); text-transform: uppercase; lett
   padding: 1px 6px; white-space: nowrap; pointer-events: none; }
 .lbl3.machine { border-style: dashed; }
 .lbl3.conn { font: 600 11px var(--mono); background: var(--pcb); color: var(--pcb-ink); border-color: var(--pcb); }
+.lbl3.keep { font: 600 11px var(--mono); color: var(--accent); border: 1px dashed var(--accent); }
 .lbls-off .lbl3 { display: none; }
 .tip { position: absolute; pointer-events: none; background: var(--sheet); border: 1.5px solid var(--ink); padding: 6px 9px;
   font: 500 12px/1.4 var(--mono); max-width: 280px; display: none; z-index: 2; }
@@ -175,11 +178,11 @@ aside.info .kicker { font: 600 11px var(--mono); text-transform: uppercase; lett
 
 <div class="wrap">
   <header class="titleblock">
-    <h1>Подключение GemilaiMate</h1>
-    <div class="stamp">Прототип · не собран · сеть по референсу</div>
-    <p>Жгуты carrier: цельный корпус J5 1×4 и J6 1×3 с гнездовыми контактами и красной меткой контакта 1. Отдельные одноконтактные вилки не использовать. Корпуса без ключа: до питания проверить ориентацию и прозвонить цепи. Корпус J6 shield 1×5 здесь не применяется.</p>
-    <nav><a href="shield.html">Второй вариант: shield v0.2.4 · 90×75 мм</a></nav>
-    <div class="meta">GemilaiMate v%%VERSION%% · carrier v0.1 · Gemilai 3007Z · %%NH%% низковольтных жгутов, %%NW%% проводов</div>
+    <h1>%%H1%%</h1>
+    <div class="stamp">%%STAMP%%</div>
+    <p>%%LEAD%%</p>
+    <nav>%%NAV%%</nav>
+    <div class="meta">%%META%%</div>
   </header>
 
   <nav class="tabs" role="tablist" aria-label="Вид">
@@ -192,7 +195,7 @@ aside.info .kicker { font: 600 11px var(--mono); text-transform: uppercase; lett
     <div class="sheet-row">
       <figure>
         <div class="draw">%%SVG%%</div>
-        <figcaption>Каждый провод идёт от контакта разъёма carrier к выводу модуля в том порядке, как на модуле. Перекрещенные пары в жгутах J2 и J8 — так и должно быть: порядок выводов на модулях отличается от порядка на carrier. Сетевая часть заштрихована.</figcaption>
+        <figcaption>%%CAPTION%%</figcaption>
       </figure>
       <aside class="info" aria-live="polite">
         <div class="kicker">Жгут</div>
@@ -220,7 +223,7 @@ aside.info .kicker { font: 600 11px var(--mono); text-transform: uppercase; lett
       <span class="ctl-note">Вращение — перетаскивание, масштаб — колесо или щипок. Наведите на провод, чтобы увидеть его жгут.</span>
     </div>
     <div id="view3d"><div class="tip" id="tip"></div></div>
-    <p class="ctl-note">Плата carrier, разъёмы и DevKit — в реальном масштабе. Модули и узлы машины — примерные габариты, размещение условное: замеров Gemilai 3007Z нет.</p>
+    <p class="ctl-note">%%NOTE3D%%</p>
   </section>
 
   <section class="panel" id="p-harness" role="tabpanel" aria-labelledby="tab-harness" hidden>
@@ -230,18 +233,9 @@ aside.info .kicker { font: 600 11px var(--mono); text-transform: uppercase; lett
   <section class="rules">
     <h2>Перед подключением</h2>
     <ol>
-      <li><b>JP1 1–2</b> в рабочем режиме. Для USB-прошивки контроллера JP1 снять, внешние 5 В и USB не объединять.</li>
-      <li><b>JP3 1–2</b> — Vin модуля MAX31855 от 5 В. Вывод 3Vo никуда не подключать.</li>
-      <li><b>J10</b> не подключать: нагрев остаётся на штатной плате.</li>
-      <li><b>J8</b> — только независимые сухие контакты на GND. Штатную цепь кнопок не подключать, пока не выяснены её схема и изоляция.</li>
-      <li><b>J2</b>: порядок выводов ADS1115 другой. J2.5 → A0, J2.6 → ADDR; ALRT и A1–A3 свободны.</li>
-      <li><b>J7</b>: выводы TXS0102 подключать по маркировке модуля, а не по порядку на разъёме.</li>
-      <li><b>J9</b>: кабель USB-C только для питания дисплея. VBUS и GND определить прозвонкой, а не по цвету жил.</li>
-      <li><b>J5</b>: Z-C — логический сигнал 0–5 В. Z-C и PSM свить с GND и вести отдельно от сетевых проводов.</li>
-      <li><b>Термопара</b>: спай изолирован от корпуса (прозвонить), полярность T+ / T− по маркировке.</li>
-      <li><b>230 В</b>: только на обесточенной машине, с сохранением штатных защит и PE. Низковольтные жгуты не связывать с сетевыми.</li>
+      %%RULES%%
     </ol>
-    <p class="src">Страница генерируется <code>tools/build_wiring_page.py</code> из hardware/carrier/connections.csv; пояснения — по docs/interfaces.md, docs/assembly.md и docs/bench.md. Сетевая часть — по переделке Turin Legato V2 (GaggiMate, обсуждение #222).</p>
+    <p class="src">%%SRC%%</p>
   </section>
 </div>
 
@@ -333,15 +327,15 @@ function init3d() {
   const camera = new THREE.PerspectiveCamera(36, 1, 1, 4000);
   const controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true; controls.dampingFactor = 0.1; controls.maxPolarAngle = Math.PI * 0.49;
-  const VIEWS = { iso: [[-30, 230, 300], [10, 0, 8]], top: [[10, 470, 1], [10, 0, 8]] };
+  const B = DATA.board, VIEWS = B.views;
   function setView(v) { camera.position.set(...VIEWS[v][0]); controls.target.set(...VIEWS[v][1]); controls.update(); }
   setView('iso');
 
   scene.add(new THREE.HemisphereLight(0xffffff, 0x445048, 0.75));
   const sun = new THREE.DirectionalLight(0xffffff, 0.7); sun.position.set(-120, 260, 160); scene.add(sun);
   const fill = new THREE.DirectionalLight(0xffffff, 0.25); fill.position.set(200, 120, -200); scene.add(fill);
-  const ground = new THREE.Mesh(new THREE.PlaneGeometry(520, 360), new THREE.MeshLambertMaterial({ color: 0xcccccc }));
-  ground.rotation.x = -Math.PI / 2; ground.position.set(15, -0.2, 10); scene.add(ground);
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(B.ground[0], B.ground[1]), new THREE.MeshLambertMaterial({ color: 0xcccccc }));
+  ground.rotation.x = -Math.PI / 2; ground.position.set(B.ground[2], -0.2, B.ground[3]); scene.add(ground);
   function applyTheme() {
     renderer.setClearColor(new THREE.Color(css('--scene') || '#dfe5e2'));
     ground.material.color.set(css('--ground') || '#cfd8d4');
@@ -359,15 +353,27 @@ function init3d() {
     const o = new THREE.CSS2DObject(el); o.position.set(x, y, z); scene.add(o); return o;
   }
 
-  /* carrier: real 90 x 46 mm board, textured with the KiCad top view */
+  /* board: real size, textured with the KiCad top view */
   const pcbSide = mat(0x2d5b3d);
   const top = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.7 });
   new THREE.TextureLoader().load('%%BOARD_TEX%%', t => { t.anisotropy = 4; top.map = t; top.needsUpdate = true; renderer.render(scene, camera); });
-  const board = new THREE.Mesh(new THREE.BoxGeometry(90, 1.6, 46), [pcbSide, pcbSide, top, pcbSide, pcbSide, pcbSide]);
+  const board = new THREE.Mesh(new THREE.BoxGeometry(B.size[0], 1.6, B.size[1]), [pcbSide, pcbSide, top, pcbSide, pcbSide, pcbSide]);
   board.position.set(0, 0.8, 0); scene.add(board);
   const black = mat(0x18191b), gold = metal(0xc9a227), yellow = mat(0xe8be22);
+  /* one strip per pin row: a two-row breakout gets two separate sockets */
+  function strips(pts) {
+    const zs = [...new Set(pts.map(p => p[1]))], xs = new Set(pts.map(p => p[0]));
+    const rows = zs.length > 1 && xs.size > 1 ? zs.map(z => pts.filter(p => p[1] === z)) : [pts];
+    return rows.map(r => { const x = r.map(p => p[0]), z = r.map(p => p[1]); return [Math.min(...x), Math.min(...z), Math.max(...x), Math.max(...z)]; });
+  }
+  const sockets = new Set(B.sockets);
   for (const [ref, pins] of Object.entries(DATA.conns)) {
-    const pts = Object.values(pins), xs = pts.map(p => p[0]), zs = pts.map(p => p[1]);
+    const pts = Object.values(pins);
+    if (sockets.has(ref)) {
+      for (const [x0, z0, x1, z1] of strips(pts)) box(x1 - x0 + 2.54, B.socketH, z1 - z0 + 2.54, black, (x0 + x1) / 2, 1.6 + B.socketH / 2, (z0 + z1) / 2);
+      continue;
+    }
+    const xs = pts.map(p => p[0]), zs = pts.map(p => p[1]);
     const x0 = Math.min(...xs), x1 = Math.max(...xs), z0 = Math.min(...zs), z1 = Math.max(...zs);
     box(x1 - x0 + 2.54, 2.5, z1 - z0 + 2.54, black, (x0 + x1) / 2, 1.6 + 1.25, (z0 + z1) / 2);
     for (const [px, pz] of pts) cyl(0.32, 8, gold, px, 1.6 + 4, pz);
@@ -376,33 +382,59 @@ function init3d() {
     const p1 = DATA.conns[ref][a], p2 = DATA.conns[ref][b];
     box(Math.abs(p2[0] - p1[0]) + 2.6, 6, 2.6, yellow, (p1[0] + p2[0]) / 2, 1.6 + 2.5 + 3, p1[1]);
   }
+  /* mated cable plugs: nominal housings, red mark at contact 1 */
+  for (const p of B.plugs) {
+    const [x0, z0, x1, z1] = p.box;
+    box(x1 - x0, p.y1 - p.y0, z1 - z0, mat(0x2b2e31), (x0 + x1) / 2, 1.6 + (p.y0 + p.y1) / 2, (z0 + z1) / 2);
+    if (p.pin1) box(2, 0.5, 2, mat(0xd0342c), p.pin1[0], 1.6 + p.y1 + 0.25, p.pin1[1]);
+  }
+  /* M3 heads at the PCB mounts */
+  for (const [x, z] of B.mounts) cyl(B.headD / 2, 2.2, mat(0xeeeadf), x, 1.6 + 1.1, z);
+  /* access corridors that must stay free */
+  for (const k of B.keep) {
+    const [x0, z0, x1, z1] = k.box;
+    box(x1 - x0, k.h, z1 - z0, new THREE.MeshStandardMaterial({ color: 0x1f9e74, transparent: true, opacity: 0.2, depthWrite: false }), (x0 + x1) / 2, k.h / 2, (z0 + z1) / 2);
+    label(k.t, (x0 + x1) / 2, k.h + 5, (z0 + z1) / 2, 'keep');
+  }
   /* DevKit on sockets (simplified body, real module footprint) */
-  box(55.9, 8.5, 2.5, black, -6.67, 1.6 + 4.25, -14.11);
-  box(55.9, 8.5, 2.5, black, -6.67, 1.6 + 4.25, 8.75);
-  box(62.8, 1.6, 28, mat(0x16191c), -10.1, 1.6 + 8.5 + 2.54 + 0.8, -2.68);
-  box(18, 3.1, 25.5, metal(0x9aa1a6), 8.6, 1.6 + 8.5 + 2.54 + 1.6 + 1.55, -2.68);
-  for (const dz of [-5.2, 5.2]) box(7.4, 3.2, 8.9, metal(0xb9bec2), -38.2, 1.6 + 8.5 + 2.54 + 1.6 + 1.6, -2.68 + dz);
-  label('carrier v0.1 · ESP32-S3', -12, 24, 4, 'conn');
+  const dk = B.devkit, dkY = 1.6 + 8.5 + 2.54, dkZ = (dk.zTop + dk.zRow) / 2;
+  box(55.9, 8.5, 2.5, black, dk.x, 1.6 + 4.25, dk.zTop);
+  box(55.9, 8.5, 2.5, black, dk.x, 1.6 + 4.25, dk.zRow);
+  box(62.8, 1.6, 28, mat(0x16191c), dk.x - 3.43, dkY + 0.8, dkZ);
+  box(18, 3.1, 25.5, metal(0x9aa1a6), dk.x + 15.27, dkY + 1.6 + 1.55, dkZ);
+  for (const dz of [-5.2, 5.2]) box(7.4, 3.2, 8.9, metal(0xb9bec2), dk.x - 31.53, dkY + 1.6 + 1.6, dkZ + dz);
+  label(B.label, ...B.labelPos, 'conn');
   for (const [ref, pins] of Object.entries(DATA.conns)) {
     const p = Object.values(pins)[0];
     if (!byH[ref] && ref !== 'J10') continue;
-    label(ref === 'J10' ? 'J10 — не подключать' : ref, p[0] + (ref === 'J10' ? 16 : 0), 13, p[1] + (p[1] < 0 ? -3 : 3), 'conn');
+    label(ref === 'J10' ? 'J10 — не подключать' : ref, p[0] + (ref === 'J10' ? 16 : (B.labelDx[ref] || 0)), B.connLabelY, p[1] + (p[1] < 0 ? -3 : 3), 'conn');
   }
 
   /* modules */
   const mainsGroup = [];
   for (const [id, m] of Object.entries(DATA.mods)) {
-    const [cx, cz] = m.c, [w, d, h] = m.size, col = new THREE.Color(m.color);
+    const [cx, cz] = m.c, [w, d, h] = m.size, col = new THREE.Color(m.color), s = m.flip ? -1 : 1;
     const add = o => { if (m.machine) mainsGroup.push(o); return o; };
-    if (m.shape === 'disk') {
+    if (m.shape === 'onboard') {
+      /* breakout standing in shield sockets: header plastic, PCB, chip, optional terminal block */
+      const [x0, z0, x1, z1] = m.rect, y0 = 1.6 + B.socketH + 2.54;
+      for (const [a0, b0, a1, b1] of strips(Object.values(DATA.conns[m.ref])))
+        box(a1 - a0 + 2.54, 2.54, b1 - b0 + 2.54, black, (a0 + a1) / 2, 1.6 + B.socketH + 1.27, (b0 + b1) / 2);
+      box(x1 - x0, 1.6, z1 - z0, mat(col), cx, y0 + 0.8, cz);
+      box(Math.min(6, w * 0.3), 1.4, Math.min(5, d * 0.3), black, cx, y0 + 2.3, cz);
+      if (m.terminal) {
+        const [t0, u0, t1, u1] = m.terminal;
+        box(t1 - t0, h - y0 - 1.6, u1 - u0, mat(0x2b8a3e), (t0 + t1) / 2, (h + y0 + 1.6) / 2, (u0 + u1) / 2);
+      }
+    } else if (m.shape === 'disk') {
       cyl(w / 2, h, mat(col), cx, h / 2, cz);
       cyl(w / 2 - 5, 0.4, mat(0x1b3a58), cx, h + 0.2, cz);
       box(9, 3.2, 7, metal(0xb9bec2), cx, 3, cz + w / 2);
     } else if (m.shape === 'dimmer') {
       box(w, 1.6, d, mat(col), cx, 0.8, cz);
-      box(w * 0.42, h, d * 0.42, mat(0x111214), cx + w * 0.18, h / 2, cz - d * 0.05);
-      box(w * 0.5, 9, 8, mat(0x2b8a3e), cx, 4.5, cz - d / 2 + 5);
-      box(10, 2.5, 4, black, cx - w * 0.1, 2.9, cz + d / 2 - 3);
+      box(w * 0.42, h, d * 0.42, mat(0x111214), cx + w * 0.18, h / 2, cz - s * d * 0.05);
+      box(w * 0.5, 9, 8, mat(0x2b8a3e), cx, 4.5, cz - s * (d / 2 - 5));
+      box(10, 2.5, 4, black, cx - w * 0.1, 2.9, cz + s * (d / 2 - 3));
     } else if (m.shape === 'ssr') {
       box(w, 1.6, d, mat(col), cx, 0.8, cz);
       box(w * 0.7, h, d * 0.35, mat(0x111214), cx - 2, h / 2, cz);
@@ -415,7 +447,7 @@ function init3d() {
       cyl(5, 4, mat(0xd8dcde), cx - 6, 4, cz); cyl(5, 4, mat(0xd8dcde), cx + 6, 4, cz);
     } else if (m.shape === 'sensor') {
       cyl(w / 2, d, metal(col), cx, w / 2, cz, [Math.PI / 2, 0, 0]);
-      box(12, 10, 10, black, cx, w / 2, cz + d / 2 + 4);
+      box(12, 10, 10, black, cx, w / 2, cz + s * (d / 2 + 4));
     } else if (m.shape === 'pump') {
       add(cyl(d / 2, w, mat(col), cx, d / 2, cz, [0, 0, Math.PI / 2]));
       add(cyl(6, 14, metal(0xb9bec2), cx + w / 2 + 6, d / 2, cz, [0, 0, Math.PI / 2]));
@@ -441,17 +473,20 @@ function init3d() {
   const pickable = [];
   const pinPos = (end, isConn) => {
     if (typeof end === 'string') return new THREE.Vector3(...srcPins[end]);
-    if (isConn) { const p = DATA.conns[end[0]][end[1]]; return new THREE.Vector3(p[0], 9.6, p[1]); }
+    if (isConn) { const p = DATA.conns[end[0]][end[1]]; return new THREE.Vector3(p[0], B.wireY[end[0]] ?? 9.6, p[1]); }
     const p = DATA.mods[end[0]].pins[end[1]]; return new THREE.Vector3(p[0], p[1] + 0.6, p[2]);
   };
-  function tube(a, b, kind, r, lift, info, spread) {
+  /* via: plan-view waypoints [x, z] that keep a long run around the board instead of over it */
+  function tube(a, b, kind, r, lift, info, spread, via) {
     const up1 = Math.max(10, lift), mid = a.clone().add(b).multiplyScalar(0.5);
-    const pts = [a, a.clone().add(new THREE.Vector3(0, up1, 0)),
+    const pts = via ? [a, a.clone().add(new THREE.Vector3(0, up1, 0)), ...via.map(v => new THREE.Vector3(v[0], up1 + 6, v[1])),
+      b.clone().add(new THREE.Vector3(0, up1 * 0.7, 0)), b]
+      : [a, a.clone().add(new THREE.Vector3(0, up1, 0)),
       mid.clone().add(new THREE.Vector3(spread || 0, up1 + 8 + a.distanceTo(b) * 0.08, 0)),
       b.clone().add(new THREE.Vector3(0, up1 * 0.7, 0)), b];
     const curve = new THREE.CatmullRomCurve3(pts, false, 'centripetal');
     const m = new THREE.MeshStandardMaterial({ color: COLORS[kind], roughness: 0.45, transparent: true, opacity: kind === 'water' ? 0.55 : (kind === 'stock' ? 0.7 : 1) });
-    const o = new THREE.Mesh(new THREE.TubeGeometry(curve, 64, r, 8, false), m);
+    const o = new THREE.Mesh(new THREE.TubeGeometry(curve, via ? 160 : 64, r, 8, false), m);
     o.userData = info; scene.add(o); pickable.push(o); return o;
   }
   const idx = {};
@@ -463,7 +498,7 @@ function init3d() {
   for (const w of DATA.mains) {
     const a = pinPos(w.a, false), b = pinPos(w.b, false);
     const r = w.kind === 'water' ? 1.4 : (w.kind === 'tc' ? 0.45 : (w.kind === 'stock' ? 0.6 : 0.9));
-    const o = tube(a, b, w.kind, r, 18, { h: w.h, text: w.title, sub: DATA.labels[w.kind] || 'штатный выход, проверить' }, 0);
+    const o = tube(a, b, w.kind, r, 18, { h: w.h, text: w.title, sub: DATA.labels[w.kind] || 'штатный выход, проверить' }, 0, w.via);
     if (w.kind !== 'tc') mainsGroup.push(o);
   }
   srcObj.forEach(o => mainsGroup.push(o));
