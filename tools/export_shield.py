@@ -41,7 +41,8 @@ def main():
   os.environ['DYLD_FALLBACK_LIBRARY_PATH']=':'.join(['/opt/homebrew/lib','/usr/local/lib',os.environ.get('DYLD_FALLBACK_LIBRARY_PATH','')])
  import cairosvg
  for name in ['board-top','board-bottom','assembly-top','orientation-silkscreen']:
-  cairosvg.svg2png(url=str(pv/(name+'.svg')),write_to=str(pv/(name+'.png')),output_width=1800)
+  cairosvg.svg2png(url=str(pv/(name+'.svg')),write_to=str(pv/(name+'.png')),output_width=1800,
+                  background_color='#18352b' if name=='orientation-silkscreen' else None)
  for name,view in [('assembled-3d-front',['--rotate','-55,0,-30','--perspective','--zoom','0.95','--floor']),('assembled-3d-top',[])]:
   run('pcb','render','--side','top','--quality','high','--background','opaque','-w','1800','-h','1200',*view,'-o',pv/(name+'.png'),pcb)
  archive=m/'gemilaimate-shield-v0.2.2-prototype.zip'
