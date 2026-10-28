@@ -9,7 +9,7 @@ def build():
  svg=['<svg xmlns="http://www.w3.org/2000/svg" width="150mm" height="110mm" viewBox="0 0 150 110">',
  '<rect width="150" height="110" fill="white"/>',
  '<g font-family="Arial,sans-serif" fill="#183132">',
- '<text x="7" y="4" font-size="2.6">GemilaiMate shield v0.2.2 - 90 x 75 mm</text>',
+ '<text x="7" y="4" font-size="2.6">GemilaiMate shield v0.2.3 - 90 x 75 mm</text>',
  '<text x="7" y="8" font-size="1.7">PRINT 100% - NOMINAL CLONE GEOMETRY - Rico-X</text>',
  '<g transform="translate(35,12)"><rect width="90" height="75" fill="#f6f9f3" stroke="#1d4b40" stroke-width=".2"/>']
  for access in d['mechanical_access']:
@@ -31,7 +31,7 @@ def build():
   svg.append(f'<circle cx="{x}" cy="{y}" r="1.6" fill="white" stroke="#1d4b40" stroke-width=".18"/>')
  a,b,e,f=d['rf_keepout'];svg.append(f'<rect x="{a}" y="{b}" width="{e-a}" height="{f-b}" fill="none" stroke="#238d89" stroke-dasharray="1,.7" stroke-width=".18"/>')
  svg+=['<path d="M45.72 73v5 l-1 -1 m1 1 l1 -1" stroke="#183132" stroke-width=".25" fill="none"/><text x="45.72" y="81" text-anchor="middle" font-size="1.7">J5: 4 control wires, external RobotDyn</text>',
- '</g><text x="15" y="97" font-size="1.9">1:1 fit template. Red ring: pin 1. Check real modules, plugs and enclosure.</text>',
+ '</g><text x="15" y="97" font-size="1.9">1:1 fit template. Red square: pin 1. Check real modules, plugs and enclosure.</text>',
  '<path d="M10 98v4 M10 100h100 M110 98v4" stroke="#183132" stroke-width=".2" fill="none"/>',
  '<text x="60" y="105" text-anchor="middle" font-size="2">100 mm calibration line</text></g></svg>']
  svg=''.join(svg)

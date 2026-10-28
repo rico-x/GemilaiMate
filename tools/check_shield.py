@@ -59,6 +59,41 @@ def check_markings(board,d):
   a,b,c,e=part['rect'];corners=[(a,b),(c,b),(c,e),(a,e)]
   expected={frozenset((tuple(round(v,4) for v in corners[i]),tuple(round(v,4) for v in corners[(i+1)%4]))) for i in range(4)}
   assert expected<=lines,ref+' missing full F.SilkS outline'
+  labels={n[2]:n for n in fp if isinstance(n,list) and len(n)>2 and str(n[0])=='fp_text' and field(n,'layer')[1]=='F.SilkS'}
+  pad_x={p[1]:float(field(p,'at')[1])+ox for p in fp if isinstance(p,list) and len(p)>3 and str(p[0])=='pad' and p[1]}
+  if ref in ['J2','J3']:
+   # Derive the endpoint order from physical PCB pad X, independently of
+   # the declared list of expected label strings.
+   endpoint_labels=[text for text in labels if ' ... ' in text]
+   assert len(endpoint_labels)==1
+   endpoints=sorted(pad_x,key=pad_x.get)
+   names={p['number']:p['name'] for p in part['pins']}
+   expected_names=[names[endpoints[0]],names[endpoints[-1]]]
+   assert endpoint_labels[0].split(' ... ')==expected_names,ref+' label order disagrees with physical pad X'
+   at_label=field(labels[endpoint_labels[0]],'at')
+   assert len(at_label)<4 or float(at_label[3])==0,ref+' endpoint label must read left to right'
+  if ref in ['J2','J7']:
+   # Assembly labels belong inside their own module and next to its row,
+   # not over the cable connectors on the bottom edge.
+   for text,n in labels.items():
+    x,y=point(n,'at')
+    assert a<x<c and b<y<e,ref+' label is outside its own module outline'
+   x,y=point(labels['1'],'at');pin1=next(p for p in part['pins'] if p['number']=='1')
+   assert abs(x-pin1['x'])<.2 and 0<pin1['y']-y<3,ref+' pin-1 label is not next to pad 1'
+  if ref=='J7':
+   y_a=point(labels['A 3V3'],'at')[1];y_b=point(labels['B 5V'],'at')[1]
+   pins={p['number']:p for p in part['pins']}
+   assert 0<pins['1']['y']-y_a<3 and 0<y_b-pins['6']['y']<3,'J7 row labels are not next to their rows'
+
+def check_harness_housings():
+ for variant,gender,j6_size in [('shield','MALE','1x5'),('carrier','FEMALE','1x3')]:
+  rows={r['Reference']:r for r in csv.DictReader((R/'hardware'/variant/'manufacturing/BOM-THT.csv').open())}
+  for ref,size in [('J5','1x4'),('J6',j6_size)]:
+   row=rows[ref+' harness housing'];desc=row['Description'];note=row['Assembly_notes']
+   assert row['Quantity_per_board']=='1' and desc.startswith('Single '+size)
+   assert 'with '+gender+' crimp contacts' in desc
+   assert 'pin 1 RED' in note and 'Not mechanically keyed' in note
+  assert 'positions 2/4 EMPTY' in rows['J6 harness housing']['Assembly_notes'] if variant=='shield' else 'consecutive pins 1,2,3' in rows['J6 harness housing']['Assembly_notes']
 
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--write-report',action='store_true');args=ap.parse_args()
@@ -75,8 +110,13 @@ def main():
  board=(H/'gemilaimate-shield.kicad_pcb').read_text()
  assert 'github.com/Rico-X/GemilaiMate' in board and 'Rico-X' in board
  check_markings(board,d)
+ check_harness_housings()
  stats=json.loads((H/'board-stats.json').read_text())
  assert stats['pcb_sha256']==hashlib.sha256((H/'gemilaimate-shield.kicad_pcb').read_bytes()).hexdigest()
+ silk=json.loads((H/'silk-clearance.json').read_text())
+ assert silk['pcb_sha256']==stats['pcb_sha256'] and silk['margin_mm']>=.15
+ assert {r['text'] for r in silk['protected_labels']}=={'MAX31855','ROBOTDYN CABLE','DC+'}
+ assert all(r['via_overlaps']==r['front_track_overlaps']==0 for r in silk['protected_labels'])
  assert stats['pth_mask_front_openings']==stats['pth_pad_sites_including_alternative_row']
  assert stats['pth_mask_back_openings']==stats['pth_pad_sites_including_alternative_row']
  for suffix in ['F_Mask.gts','B_Mask.gbs']:
@@ -115,7 +155,8 @@ def main():
  subprocess.run([sys.executable,str(H/'scripts/verify_netlist.py')],check=True,stdout=subprocess.DEVNULL)
  subprocess.run([sys.executable,str(R/'tools/build_shield_page.py'),'--check'],check=True,stdout=subprocess.DEVNULL)
  report=dict(revision=d['revision'],pcb_sha256=stats['pcb_sha256'],nominal_module_plug_cable_envelopes='PASS',
-             marking_checks='PASS: square pad 1, label 1, full F.SilkS outline and pin-function labels',
+             marking_checks='PASS: square pad 1, endpoint words follow physical pad X, labels next to own rows, full outlines; selected labels clear of front tracks/vias',
+             harness_housings='Single marked housings: shield J5 1x4 / J6 1x5 (2/4 empty); carrier J5 1x4 / J6 1x3. Unkeyed: verify orientation before power.',
              populated_mating_connector_profiles=['J1','J4','J8','J9','J5','J6'],
              mounting_head_max_diameter_mm=5.5,washers_allowed=False,
              external_power_modules='NOT PLACED: J5 and J6 use control wires; separate retention required',

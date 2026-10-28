@@ -86,7 +86,7 @@ for i,c in enumerate(d['parts']):
    labels.append(f'(label {q(pin["net"])}(at {lx} {py} 0){effects(.9,"right bottom" if xx<0 else "left bottom")}(uuid {q(uid())}))')
 
 doc=f'''(kicad_sch(version 20250114)(generator "eeschema")(uuid {q(rootid)})(paper "A2")
- (title_block(title "GemilaiMate - LOW VOLTAGE carrier / Rico-X")(date "2026-10-28")(rev "0.2.2 SHIELD - PROTOTYPE")
+ (title_block(title "GemilaiMate - LOW VOLTAGE carrier / Rico-X")(date "2026-10-28")(rev "0.2.3 SHIELD - PROTOTYPE")
  (comment 1 "Breakouts in dedicated sockets; J5/J6 wired controls to separate power modules. No mains on board.")
  (comment 2 "Module pin geometry and machine volume remain UNMEASURED. NOT RELEASED FOR FABRICATION.")
  (comment 3 "JP1 open for USB; R13 = removable 0R valve buffer link.")

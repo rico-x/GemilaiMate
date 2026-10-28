@@ -43,6 +43,8 @@ csvout('BOM-THT.csv',['Reference','Quantity_per_board','Description','Assembly_n
  ['JP1 JP3 shunts',2,'2.54mm removable shunt','Open JP1 for USB'],
  ['Module-side headers',1,'1x10 + (2 x 1x5) + 1x6 male 2.54mm','TXS uses TWO independent 1x5 rows; 12.70mm spacing ASSUMED until measured, not a standard 2x5 block'],
  ['J5 J6 control harnesses',1,'4 + 3 flexible control wires; male 2.54mm contacts at shield','RobotDyn original header and SSR original input terminal; do not remove SSR screw terminals'],
+ ['J5 harness housing',1,'Single 1x4 Dupont 2.54mm housing with MALE crimp contacts','Populate 1,2,3,4; mark pin 1 RED on housing and align with square PCB pad 1. One housing, no loose single-pole plugs. Not mechanically keyed.'],
+ ['J6 harness housing',1,'Single 1x5 Dupont 2.54mm housing with MALE crimp contacts','Populate 1,3,5 ONLY; positions 2/4 EMPTY. Mark pin 1 RED; one housing, no loose single-pole plugs. Not mechanically keyed.'],
  ['Mechanical retention',1,'Insulating tray, adjustable padded keepers and underside supports','Use existing four PCB mounts; retain each module PCB edge independently per docs/retention.md'],
  ['PCB fasteners',4,'M3 nylon or insulated head <=5.5mm; no washers','J4 moved right by 1.27mm; respect mating-plug allowance and check real hardware'],
 ])
@@ -57,3 +59,5 @@ pth=[pa for fp in board.GetFootprints() for pa in fp.Pads() if pa.GetAttribute()
 assert all(pa.GetLayerSet().Contains(p.F_Mask) and pa.GetLayerSet().Contains(p.B_Mask) for pa in pth), 'THT mask openings missing'
 stats['pth_mask_front_openings']=len(pth);stats['pth_mask_back_openings']=len(pth)
 (out/'board-stats.json').write_text(json.dumps(stats,indent=2))
+from silk_clearance import audit_protected_labels
+audit_protected_labels(board,out)

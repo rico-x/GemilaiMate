@@ -1,11 +1,11 @@
 {
-  "variant": "shield-v0.2.2-prototype",
+  "variant": "shield-v0.2.3-prototype",
   "size_mm": [
     90,
     75
   ],
-  "pcb_sha256": "fb138cb06c1b0c2370d1649e95a9eb33aee9c497e3100022a5b71b11908a1e4e",
-  "archive_sha256": "4102f3c535f50e462ff928ea13d026ddea702c7aac3cd79d55f0e9bbc85d2457",
+  "pcb_sha256": "e80e513f8f654071dc02ea406befdba88b79b1d221ce6a509eb9f014293041a2",
+  "archive_sha256": "61b848401ddc08a40fad44b3eedba6428d0ab6279cd1fe407f835e868d2a4181",
   "physical_assembly_verified": false,
   "module_clone_geometry_verified": false,
   "external_controls": "J5 four wires; J6 three wires; no direct power-module docking",

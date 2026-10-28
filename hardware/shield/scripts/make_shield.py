@@ -1,4 +1,4 @@
-"""Convert the baseline v0.1 PCB to the v0.2.2 socket carrier.
+"""Convert the baseline v0.1 PCB to the v0.2.3 socket carrier.
 
 Read the active sibling carrier v0.1 with KiCad's pcbnew Python. Module geometry
 is an explicit prototype profile, not a claim about a received clone.
@@ -13,7 +13,7 @@ H=Path(__file__).resolve().parents[1]
 BASE=H.parent/'carrier'
 B=p.LoadBoard(str(BASE/'gemilaimate-carrier.kicad_pcb'))
 D=json.loads((BASE/'design.json').read_text())
-tb=B.GetTitleBlock();tb.SetRevision('0.2.2');tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate('2026-10-28');B.SetTitleBlock(tb)
+tb=B.GetTitleBlock();tb.SetRevision('0.2.3');tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate('2026-10-28');B.SetTitleBlock(tb)
 for net in B.GetNetsByNetcode().values():
     if net.GetNetname().startswith('/'):
         net.SetNetname(net.GetNetname()[1:])
@@ -58,11 +58,11 @@ def rectangle(fp,rect,layer,margin=0):
 
 profiles=[]
 socket_labels={
- 'J2':[('1',3.4,66.7),('VDD ... A3',16.51,66.7)],
- 'J3':[('1',77.5,46.1),('VIN ... CLK',68.58,72.0)],
+ 'J2':[('1',5.08,61.0),('VDD ... A3',16.51,61.0)],
+ 'J3':[('1',77.5,46.1),('CLK ... VIN',68.58,72.0)],
  'J5':[('1',41.91,73.3)],
- 'J6':[('1',88.5,48.1),('DC+',82.5,50.8),('DC-',82.5,55.88),('CH1',82.5,60.96)],
- 'J7':[('1',35.6,66.6),('A 3V3',43,66.6),('B 5V',42,46.5)],
+ 'J6':[('1',88.5,48.1),('DC+',80.5,49.53),('DC-',82.5,55.88),('CH1',82.5,60.96)],
+ 'J7':[('1',36.83,61.0),('A 3V3',42,61.0),('B 5V',42,53.3)],
 }
 def socket(ref,value,pins,body,socket_boxes,meta):
     old=fps[ref];B.Remove(old)
@@ -84,6 +84,7 @@ def socket(ref,value,pins,body,socket_boxes,meta):
     rectangle(fp,body,p.F_Fab)
     # Full nominal module outline, or the cable connector body for J5/J6.
     rectangle(fp,body,p.F_SilkS)
+    if ref=='J6':shape(fp,(82.4,49.53),(84.3,50.8),p.F_SilkS,.1)
     for label,x,y in socket_labels[ref]:
         t=p.PCB_TEXT(fp);t.SetText(label);t.SetPosition(V(x,y));t.SetLayer(p.F_SilkS)
         t.SetTextSize(V(.8,.8));t.SetTextThickness(p.FromMM(.12));fp.Add(t)
@@ -163,7 +164,7 @@ for item in B.GetDrawings():
     elif isinstance(item,p.PCB_TEXT):
         txt=item.GetText()
         if txt=='1' and abs(p.ToMM(item.GetPosition().x)-67)<.1 and abs(p.ToMM(item.GetPosition().y)-8.89)<.1:item.SetPosition(V(68.75,8.89))
-        if txt.startswith('GemilaiMate v'): item.SetText('GemilaiMate v0.2.2 SHIELD - PROTOTYPE')
+        if txt.startswith('GemilaiMate v'): item.SetText('GemilaiMate v0.2.3 SHIELD - PROTOTYPE')
         if p.ToMM(item.GetPosition().y)>43:
             item.Move(V(0,HEIGHT-46-1))
 for x,y in [(3,72),(87,72)]:
@@ -173,7 +174,7 @@ for x,y in [(3,72),(87,72)]:
     fp.Reference().SetVisible(False);fp.Value().SetVisible(False)
 
 # Compact legible front labels, grouped on the free strip between MCU and modules.
-for txt,x,y in [('ADS1115 BLUE',16.5,45.2),('CJMCU-0102',42,45.2),('MAX31855 VIN',68.5,44.6),('PRESSURE',10.3,73.1),('BUTTONS',32,73.1),('NO MAINS ON BOARD',46,43.18)]:
+for txt,x,y in [('ADS1115 BLUE',16.5,45.2),('CJMCU-0102',42,45.2),('MAX31855',65.706,43.5),('PRESSURE',10.3,73.1),('BUTTONS',32,73.1),('NO MAINS ON BOARD',46,43.18)]:
     t=p.PCB_TEXT(B);t.SetText(txt);t.SetPosition(V(x,y));t.SetLayer(p.F_SilkS)
     t.SetTextSize(V(.8,.8));t.SetTextThickness(p.FromMM(.12));B.Add(t)
 # A mechanical access envelope, NOT a copper keepout or measured cable model.
@@ -186,7 +187,7 @@ for aa,bb in [((-30,7.62),(4.8,7.62)),((4.8,7.62),(4.8,35.56)),((4.8,35.56),(-30
     shape(B,aa,bb,p.Dwgs_User,.15)
 t=p.PCB_TEXT(B);t.SetText('USB PLUG ACCESS - KEEP FREE');t.SetPosition(V(-13,6));t.SetLayer(p.Dwgs_User)
 t.SetTextSize(V(1,1));t.SetTextThickness(p.FromMM(.15));B.Add(t)
-D.update(revision='0.2.2 SHIELD PROTOTYPE 90x75',size_mm=[W,HEIGHT],
+D.update(revision='0.2.3 SHIELD PROTOTYPE 90x75',size_mm=[W,HEIGHT],
          mechanical_access=[usb_access],
          module_headers_unmeasured=True,manufacturing_release=False)
 D['mounts_mm'] += [[3,72],[87,72]]

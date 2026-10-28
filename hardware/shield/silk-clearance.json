@@ -1,0 +1,51 @@
+{
+  "pcb_sha256": "e80e513f8f654071dc02ea406befdba88b79b1d221ce6a509eb9f014293041a2",
+  "margin_mm": 0.15,
+  "protected_labels": [
+    {
+      "text": "DC+",
+      "position_mm": [
+        80.5,
+        49.53
+      ],
+      "bbox_mm": [
+        79.104762,
+        48.8514,
+        81.895238,
+        50.2086
+      ],
+      "via_overlaps": 0,
+      "front_track_overlaps": 0
+    },
+    {
+      "text": "MAX31855",
+      "position_mm": [
+        65.706,
+        43.5
+      ],
+      "bbox_mm": [
+        62.520285,
+        42.8214,
+        68.891715,
+        44.1786
+      ],
+      "via_overlaps": 0,
+      "front_track_overlaps": 0
+    },
+    {
+      "text": "ROBOTDYN CABLE",
+      "position_mm": [
+        45.72,
+        66.8
+      ],
+      "bbox_mm": [
+        40.381905,
+        66.1214,
+        51.058095,
+        67.4786
+      ],
+      "via_overlaps": 0,
+      "front_track_overlaps": 0
+    }
+  ]
+}

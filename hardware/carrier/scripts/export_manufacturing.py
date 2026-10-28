@@ -24,6 +24,8 @@ csvout('BOM-THT.csv',['Reference','Quantity_per_board','Description','Assembly_n
  ['J1 J9 JP1',3,'1x2 male 2.54mm','JP1 removable jumper'],
  ['J4 J6 J10 JP3',4,'1x3 male 2.54mm','J10 unused; JP3 one removable jumper'],
  ['J5 J8',2,'1x4 male 2.54mm','Cable pin order in connections.csv'],
+ ['J5 harness housing',1,'Single 1x4 Dupont 2.54mm housing with FEMALE crimp contacts','Populate 1,2,3,4; mark pin 1 RED on housing and align with PCB pin 1. One housing, no loose single-pole plugs. Not mechanically keyed.'],
+ ['J6 harness housing',1,'Single 1x3 Dupont 2.54mm housing with FEMALE crimp contacts','Carrier J6 uses consecutive pins 1,2,3; NOT the shield 1/3/5 housing. Mark pin 1 RED; no loose single-pole plugs. Not mechanically keyed.'],
  ['J3',1,'1x5 male 2.54mm','MAX module VIN selection'],
  ['J2',1,'1x6 male 2.54mm','ADS1115 A0; ADDR=GND'],
  ['J7',1,'1x8 male 2.54mm','One TXS0102 for I2C only'],

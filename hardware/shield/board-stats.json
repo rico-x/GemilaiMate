@@ -14,7 +14,7 @@
   "pth_pad_sites_including_alternative_row": 121,
   "npth_sites": 17,
   "all_vias_tented": true,
-  "pcb_sha256": "fb138cb06c1b0c2370d1649e95a9eb33aee9c497e3100022a5b71b11908a1e4e",
+  "pcb_sha256": "e80e513f8f654071dc02ea406befdba88b79b1d221ce6a509eb9f014293041a2",
   "pth_mask_front_openings": 121,
   "pth_mask_back_openings": 121
 }

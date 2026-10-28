@@ -200,7 +200,7 @@
       "socket_height_mm": 8.5,
       "silk_labels": [
         "1",
-        "VIN ... CLK"
+        "CLK ... VIN"
       ],
       "pin1_shape": "rect",
       "body_outline_layer": "F.SilkS",

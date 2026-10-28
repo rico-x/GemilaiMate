@@ -1,5 +1,5 @@
 {
-  "revision": "0.2.2 SHIELD PROTOTYPE 90x75",
+  "revision": "0.2.3 SHIELD PROTOTYPE 90x75",
   "size_mm": [
     90,
     75
@@ -1330,7 +1330,7 @@
         "socket_height_mm": 8.5,
         "silk_labels": [
           "1",
-          "VIN ... CLK"
+          "CLK ... VIN"
         ],
         "pin1_shape": "rect",
         "body_outline_layer": "F.SilkS"
