@@ -36,10 +36,19 @@ WIRE_LABEL = {"5v": "+5 В", "3v3": "+3,3 В", "gnd": "GND", "data": "I²C / SPI
 MAINS_ROWS = [
     ("M1", "Сеть L → T2A → БП L; сеть N → БП N", "L, N", "AWG18; предохранитель T2A в держателе 5×20"),
     ("M2", "Сеть L, N → RobotDyn AC-IN", "L, N", "AWG18; N нужен диммеру для детектора нуля"),
-    ("M3", "RobotDyn LOAD → клемма помпы", "коммутируемая L", "AWG18; параллельно штатному выходу через Y-переходник"),
-    ("M4", "Сеть L → SSR → клемма клапана Brew", "L, коммутируемая L", "AWG18; RC-снаббер по месту; ток SSR ≤ 2 А"),
-    ("—", "PE, нагрев, пар, термоблок", "—", "без изменений, штатная плата"),
+    ("M3", "RobotDyn LOAD → переключатель, «GM» полюса помпы", "коммутируемая L", "AWG18"),
+    ("M4", "Сеть L → SSR → переключатель, «GM» полюса клапана", "L, коммутируемая L", "AWG18; ток SSR ≤ 2 А"),
+    ("M5", "Штатные выходы помпы и клапана → «штат» своих полюсов", "коммутируемая L",
+     "AWG18; штатные разъёмы снять с помпы и клапана и надеть на переходники, провода не резать"),
+    ("M6", "Общие выводы полюсов → помпа и катушка клапана Brew", "коммутируемая L", "AWG18; RC-снаббер параллельно катушке — по месту"),
+    ("—", "PE, N помпы и клапана, нагрев, пар, термоблок", "—", "без изменений, штатная плата"),
 ]
+
+# Mode switch: one E-TEN1322 toggle, two poles (ON-OFF-ON). Each pole: C to the load, «штат» to the stock output,
+# «GM» to RobotDyn / SSR. The middle position disconnects pump and valve from both.
+SWITCH_RULE = ("<b>Переключатель режима</b> E-TEN1322: 2 полюса ВКЛ-ВЫКЛ-ВКЛ, 15 А 250 В~, отверстие M12. «Штат» — помпа "
+               "и клапан от штатной платы, «GM» — от RobotDyn и SSR, середина — отключены от обоих (первая проверка в машине "
+               "без воды). Переключать без пролива. Положения подписать, винтовые клеммы закрыть.")
 
 # =====================================================================================================
 # carrier v0.1: all modules on harnesses
@@ -76,14 +85,20 @@ M_CARRIER = {
              pins={"DC+": (930, 735), "DC−": (948, 735), "CH1": (966, 735), "L": (1050, 765), "OUT": (1050, 800)},
              d3=dict(c=(80, 76), size=(26, 34, 18), color="#1f5fa8", shape="ssr")),
  "pump": dict(t="Помпа", s="вибрационная", box=(1090, 190, 150, 70), zone="machine",
-              pins={"L": (1110, 190)},
+              pins={"L": (1240, 225)},
               d3=dict(c=(168, -86), size=(95, 40, 40), color="#2e3a2f", shape="pump")),
- "stock": dict(t="Штатная плата Gemilai", s="нагрев · пар · термоблок — без изменений", box=(1090, 420, 290, 130), zone="machine",
+ "stock": dict(t="Штатная плата Gemilai", s="нагрев и пар — без изменений", box=(1090, 420, 190, 130), zone="machine",
                pins={"PUMP": (1160, 420), "VALVE": (1170, 550)},
                d3=dict(c=(168, 4), size=(80, 55, 2), color="#2f6d3a", shape="pcb")),
  "valve": dict(t="Клапан Brew (3WV)", s="катушка 230 В", box=(1090, 760, 150, 80), zone="machine",
-               pins={"L": (1090, 800)},
+               pins={"L": (1240, 800)},
                d3=dict(c=(162, 86), size=(30, 28, 38), color="#a7adb1", shape="valve")),
+ "swp": dict(t="Режим", s="полюс помпы", box=(1290, 175, 95, 100), zone="mains",
+             pins={"GM": (1338, 175), "C": (1290, 225), "штат": (1338, 275)},
+             d3=dict(c=(212, -7), size=(16, 14, 14), color="#d9622b", shape="toggle", label="Переключатель режима")),
+ "swv": dict(t="Режим", s="полюс клапана", box=(1290, 750, 95, 100), zone="mains",
+             pins={"штат": (1338, 750), "C": (1290, 800), "GM": (1338, 850)},
+             d3=dict(c=(212, 7), size=(16, 14, 14), color="#d9622b", shape="box", nolabel=True)),
  "boiler": dict(t="Бойлер", s="термопара в M3 сверху", box=(690, 905, 170, 75), zone="machine",
                 pins={"TC": (755, 905)},
                 d3=dict(c=(-112, 112), size=(56, 56, 42), color="#c4c8cb", shape="boiler")),
@@ -115,7 +130,7 @@ H_CARRIER = [
 
 # mains / machine links (reference architecture)
 L_BUS, N_BUS, L_COL = 60, 95, 1065
-WATER = [(800, 200), (800, 178), (1262, 178), (1262, 214)]
+WATER = [(800, 200), (800, 178), (1140, 178)]
 
 def carrier():
     rev = shield_revision()
@@ -135,39 +150,47 @@ def carrier():
             dict(id="M1", t="N → БП", kind="N", pts=[(350, N_BUS), (350, 160)]),
             dict(id="M2", t="L → RobotDyn AC-IN", kind="L", pts=[(630, L_BUS), (630, 160)]),
             dict(id="M2", t="N → RobotDyn AC-IN", kind="N", pts=[(655, N_BUS), (655, 160)]),
-            dict(id="M3", t="RobotDyn LOAD → помпа", kind="load", pts=[(715, 160), (715, 135), (1110, 135), (1110, 190)]),
+            dict(id="M3", t="RobotDyn LOAD → переключатель, GM", kind="load", pts=[(715, 160), (715, 135), (1338, 135), (1338, 175)]),
             dict(id="M4", t="L → SSR", kind="L", pts=[(L_COL, L_BUS), (L_COL, 765), (1050, 765)]),
-            dict(id="M4", t="SSR → клапан", kind="load", pts=[(1050, 800), (1090, 800)]),
+            dict(id="M4", t="SSR → переключатель, GM", kind="load", pts=[(1050, 800), (1070, 800), (1070, 868), (1338, 868), (1338, 850)]),
+            dict(id="M6", t="переключатель → помпа", kind="load", pts=[(1290, 225), (1240, 225)]),
+            dict(id="M6", t="переключатель → клапан", kind="load", pts=[(1290, 800), (1240, 800)]),
         ],
         bus=[dict(kind="L", pts=[(205, L_BUS), (L_COL, L_BUS)]), dict(kind="N", pts=[(205, N_BUS), (655, N_BUS)])],
         junctions=[(320, L_BUS), (630, L_BUS), (350, N_BUS), (L_COL, L_BUS)],
-        stock=[dict(t="штатный выход помпы ∥", pts=[(1160, 420), (1160, 260)], lab=(1170, 345)),
-               dict(t="штатный выход клапана ∥", pts=[(1170, 550), (1170, 760)], lab=(1180, 660))],
-        decor=[f'<text class="note-lab" x="1180" y="{660 + 15}">Y-переходник, проверить</text>',
-               f'<text class="note-lab" x="1170" y="{345 + 15}">Y-переходник, проверить</text>',
+        stock=[dict(t="M5: штатный выход помпы → переключатель", pts=[(1160, 420), (1160, 330), (1338, 330), (1338, 275)]),
+               dict(t="M5: штатный выход клапана → переключатель", pts=[(1170, 550), (1170, 640), (1338, 640), (1338, 750)])],
+        decor=['<text class="note-lab" x="1168" y="385">штатный выход помпы</text>',
+               '<text class="note-lab" x="1168" y="399">разъём снять с помпы</text>',
+               '<text class="note-lab" x="1178" y="600">штатный выход клапана</text>',
+               '<text class="note-lab" x="1178" y="614">разъём снять с клапана</text>',
+               '<polyline class="mech" points="1375,275 1375,750"/>',
+               '<text class="note-lab" transform="translate(1389,512) rotate(-90)" text-anchor="middle">один переключатель, два полюса</text>',
                f'<polyline class="w w-water" points="{route(WATER)}"/>',
-               '<circle cx="1262" cy="225" r="10" class="tee"/><text class="note-lab" x="1278" y="222">тройник</text>'
-               '<text class="note-lab" x="1278" y="237">помпа → OPV</text>',
+               '<circle cx="1150" cy="178" r="10" class="tee"/><text class="note-lab" x="1166" y="182">тройник: помпа → OPV</text>',
                '<text class="note-lab" x="905" y="172">вода, G1/4</text>',
                '<polyline class="w w-tc" points="735,830 735,905"/><polyline class="w w-tc" points="775,830 775,905"/>',
                '<text class="note-lab" x="784" y="872">термопара K</text>'],
         devkit_dx=0, board_extra=[],
         titles=[(68.5, 31, "carrier v0.1"), (68.5, 33.6, "90 × 46 мм")],
-        notes=['<text class="note-lab" x="1110" y="858">RC-снаббер параллельно катушке — по месту</text>',
+        notes=['<text class="note-lab" x="1092" y="735">RC-снаббер параллельно</text>',
+               '<text class="note-lab" x="1092" y="749">катушке — по месту</text>',
                '<text class="note-lab" x="1110" y="282">N помпы и клапана — штатные</text>'],
         d3_mains=[
             dict(h="M1", title="Сеть → БП", a="src:L", b=["psu", "L"], kind="L"),
             dict(h="M1", title="Сеть → БП", a="src:N", b=["psu", "N"], kind="N"),
             dict(h="M2", title="Сеть → RobotDyn AC-IN", a="src:L", b=["rd", "AC-IN L"], kind="L"),
             dict(h="M2", title="Сеть → RobotDyn AC-IN", a="src:N", b=["rd", "AC-IN N"], kind="N"),
-            dict(h="M3", title="RobotDyn LOAD → помпа", a=["rd", "LOAD"], b=["pump", "L"], kind="load"),
+            dict(h="M3", title="RobotDyn LOAD → переключатель, GM", a=["rd", "LOAD"], b=["swp", "GM"], kind="load"),
             dict(h="M4", title="Сеть → SSR", a="src:L", b=["ssr", "L"], kind="L"),
-            dict(h="M4", title="SSR → клапан", a=["ssr", "OUT"], b=["valve", "L"], kind="load"),
+            dict(h="M4", title="SSR → переключатель, GM", a=["ssr", "OUT"], b=["swv", "GM"], kind="load"),
+            dict(h="M6", title="Переключатель → помпа", a=["swp", "C"], b=["pump", "L"], kind="load"),
+            dict(h="M6", title="Переключатель → клапан", a=["swv", "C"], b=["valve", "L"], kind="load"),
             dict(h="TC", title="Термопара K → бойлер", a=["max", "T+"], b=["boiler", "TC"], kind="tc"),
             dict(h="TC", title="Термопара K → бойлер", a=["max", "T−"], b=["boiler", "TC"], kind="tc"),
             dict(h="W", title="Вода: датчик → тройник помпа/OPV", a=["ps", "G1/4"], b=["pump", "L"], kind="water"),
-            dict(h="S", title="Штатный выход помпы (∥, проверить)", a=["stock", "PUMP"], b=["pump", "L"], kind="stock"),
-            dict(h="S", title="Штатный выход клапана (∥, проверить)", a=["stock", "VALVE"], b=["valve", "L"], kind="stock"),
+            dict(h="M5", title="Штатный выход помпы → переключатель, штат", a=["stock", "PUMP"], b=["swp", "штат"], kind="stock"),
+            dict(h="M5", title="Штатный выход клапана → переключатель, штат", a=["stock", "VALVE"], b=["swv", "штат"], kind="stock"),
         ],
         src=[-150, -10],
         board3d=dict(label="carrier v0.1 · ESP32-S3", labelPos=[-12, 24, 4], connLabelY=13, labelDx={},
@@ -195,11 +218,12 @@ def carrier():
                 "<b>J9</b>: кабель USB-C только для питания дисплея. VBUS и GND определить прозвонкой, а не по цвету жил.",
                 "<b>J5</b>: Z-C — логический сигнал 0–5 В. Z-C и PSM свить с GND и вести отдельно от сетевых проводов.",
                 "<b>Термопара</b>: спай изолирован от корпуса (прозвонить), полярность T+ / T− по маркировке.",
+                SWITCH_RULE,
                 "<b>230 В</b>: только на обесточенной машине, с сохранением штатных защит и PE. Низковольтные жгуты не связывать с сетевыми.",
             ],
             SRC="Страница генерируется <code>tools/build_wiring_page.py</code> из hardware/carrier/connections.csv; "
                 "пояснения — по docs/interfaces.md, docs/assembly.md и docs/bench.md. Сетевая часть — по переделке "
-                "Turin Legato V2 (GaggiMate, обсуждение #222)."),
+                "Turin Legato V2 (GaggiMate, обсуждение #222), с переключателем режима вместо параллельного подключения."),
     )
 
 # =====================================================================================================
@@ -234,13 +258,19 @@ M_SHIELD = {
                 pins={"TC": (885, 905)},
                 d3=dict(c=(80, 100), size=(56, 56, 42), color="#c4c8cb", shape="boiler")),
  "stock": dict(t="Штатная плата Gemilai", s="нагрев · пар · термоблок", box=(1185, 400, 200, 130), zone="machine",
-               pins={"PUMP": (1370, 530), "VALVE": (1215, 530)},
+               pins={"PUMP": (1378, 530), "VALVE": (1335, 530)},
                d3=dict(c=(170, -40), size=(80, 55, 2), color="#2f6d3a", shape="pcb")),
- "valve": dict(t="Клапан Brew (3WV)", s="катушка 230 В", box=(1185, 715, 120, 80), zone="machine",
-               pins={"L": (1185, 760)},
+ "valve": dict(t="Клапан Brew", s="катушка 230 В", box=(1185, 715, 100, 80), zone="machine",
+               pins={"L": (1285, 755)},
                d3=dict(c=(160, 40), size=(30, 28, 38), color="#a7adb1", shape="valve")),
+ "swv": dict(t="Режим", s="клапан", box=(1295, 705, 73, 100), zone="mains",
+             pins={"штат": (1335, 705), "C": (1295, 755), "GM": (1335, 805)},
+             d3=dict(c=(212, 50), size=(16, 14, 14), color="#d9622b", shape="toggle", label="Переключатель режима")),
+ "swp": dict(t="Режим", s="помпа", box=(1295, 885, 73, 100), zone="mains",
+             pins={"штат": (1368, 900), "GM": (1295, 960), "C": (1335, 985)},
+             d3=dict(c=(212, 64), size=(16, 14, 14), color="#d9622b", shape="box", nolabel=True)),
  "pump": dict(t="Помпа", s="вибрационная", box=(1185, 1005, 195, 70), zone="machine",
-              pins={"L": (1185, 1040)},
+              pins={"L": (1335, 1005)},
               d3=dict(c=(165, 115), size=(95, 40, 40), color="#2e3a2f", shape="pump")),
 }
 
@@ -329,16 +359,21 @@ def shield():
             dict(id="M1", t="N → БП", kind="N", pts=[(350, N_BUS), (350, 160)]),
             dict(id="M2", t="N → RobotDyn AC-IN", kind="N", pts=[(150, 118), (150, 1020), (662, 1020)]),
             dict(id="M2", t="L → RobotDyn AC-IN", kind="L", pts=[(120, 118), (120, 1040), (662, 1040)]),
-            dict(id="M3", t="RobotDyn LOAD → помпа", kind="load", pts=[(802, 1040), (1185, 1040)]),
+            dict(id="M3", t="RobotDyn LOAD → переключатель, GM", kind="load", pts=[(802, 1040), (1150, 1040), (1150, 960), (1295, 960)]),
             dict(id="M4", t="L → SSR", kind="L", pts=[(1160, L_BUS), (1160, 700), (1145, 700)]),
-            dict(id="M4", t="SSR → клапан", kind="load", pts=[(1145, 760), (1185, 760)]),
+            dict(id="M4", t="SSR → переключатель, GM", kind="load", pts=[(1145, 760), (1170, 760), (1170, 825), (1335, 825), (1335, 805)]),
+            dict(id="M6", t="переключатель → клапан", kind="load", pts=[(1295, 755), (1285, 755)]),
+            dict(id="M6", t="переключатель → помпа", kind="load", pts=[(1335, 985), (1335, 1005)]),
         ],
         bus=[dict(kind="L", pts=[(205, L_BUS), (1160, L_BUS)]), dict(kind="N", pts=[(205, N_BUS), (350, N_BUS)])],
         junctions=[(320, L_BUS), (1160, L_BUS)],
-        stock=[dict(t="штатный выход помпы ∥", pts=[(1370, 530), (1370, 1005)], lab=(1240, 900)),
-               dict(t="штатный выход клапана ∥", pts=[(1215, 530), (1215, 715)], lab=(1225, 620))],
-        decor=['<text class="note-lab" x="1240" y="915">Y-переходник, проверить</text>',
-               '<text class="note-lab" x="1225" y="635">Y-переходник, проверить</text>',
+        stock=[dict(t="M5: штатный выход клапана → переключатель", pts=[(1335, 530), (1335, 705)]),
+               dict(t="M5: штатный выход помпы → переключатель", pts=[(1378, 530), (1378, 900), (1368, 900)])],
+        decor=['<text class="note-lab" x="1327" y="600" text-anchor="end">штатный выход клапана</text>',
+               '<text class="note-lab" x="1327" y="614" text-anchor="end">разъём снять с клапана</text>',
+               '<text class="note-lab" transform="translate(1374,617) rotate(-90)" text-anchor="middle">штатный выход помпы</text>',
+               '<polyline class="mech" points="1355,805 1355,885"/>',
+               '<text class="note-lab" x="1349" y="849" text-anchor="end">один переключатель</text>',
                '<text class="bus-label L" x="104" y="140">L</text><text class="bus-label N" x="156" y="140">N</text>',
                f'<polyline class="w w-water" points="{route([(450, 990), (426, 990)])}"/>',
                '<text class="note-lab" x="420" y="994" text-anchor="end">вода G1/4 → тройник помпа/OPV</text>',
@@ -347,22 +382,24 @@ def shield():
                f'<text class="note-lab" x="{tcx[1] + 9:.1f}" y="872">термопара K</text>'],
         devkit_dx=devkit_dx(SH / "connections.csv") - devkit_dx(REPO / "hardware/carrier/connections.csv"), board_extra=extra,
         titles=[(68.5, 31, f"shield v{rev}"), (68.5, 33.6, f"{W} × {Hh} мм")],
-        notes=['<text class="note-lab" x="1185" y="812">RC-снаббер параллельно катушке</text>',
-               '<text class="note-lab" x="1185" y="826">— по месту</text>',
+        notes=['<text class="note-lab" x="1185" y="690">RC-снаббер параллельно</text>',
+               '<text class="note-lab" x="1185" y="704">катушке — по месту</text>',
                '<text class="note-lab" x="1185" y="1092">N помпы и клапана — штатные</text>'],
         d3_mains=[
             dict(h="M1", title="Сеть → БП", a="src:L", b=["psu", "L"], kind="L"),
             dict(h="M1", title="Сеть → БП", a="src:N", b=["psu", "N"], kind="N"),
             dict(h="M2", title="Сеть → RobotDyn AC-IN", a="src:L", b=["rd", "AC-IN L"], kind="L", via=[[-150, 150]]),
             dict(h="M2", title="Сеть → RobotDyn AC-IN", a="src:N", b=["rd", "AC-IN N"], kind="N", via=[[-143, 143]]),
-            dict(h="M3", title="RobotDyn LOAD → помпа", a=["rd", "LOAD"], b=["pump", "L"], kind="load"),
+            dict(h="M3", title="RobotDyn LOAD → переключатель, GM", a=["rd", "LOAD"], b=["swp", "GM"], kind="load"),
             dict(h="M4", title="Сеть → SSR", a="src:L", b=["ssr", "L"], kind="L", via=[[-140, -150], [125, -150], [125, 0]]),
-            dict(h="M4", title="SSR → клапан", a=["ssr", "OUT"], b=["valve", "L"], kind="load"),
+            dict(h="M4", title="SSR → переключатель, GM", a=["ssr", "OUT"], b=["swv", "GM"], kind="load"),
+            dict(h="M6", title="Переключатель → клапан", a=["swv", "C"], b=["valve", "L"], kind="load"),
+            dict(h="M6", title="Переключатель → помпа", a=["swp", "C"], b=["pump", "L"], kind="load"),
             dict(h="TC", title="Термопара K → бойлер", a=["max", "T+"], b=["boiler", "TC"], kind="tc"),
             dict(h="TC", title="Термопара K → бойлер", a=["max", "T−"], b=["boiler", "TC"], kind="tc"),
             dict(h="W", title="Вода: датчик → тройник помпа/OPV", a=["ps", "G1/4"], b=["pump", "L"], kind="water", via=[[-60, 168], [110, 168]]),
-            dict(h="S", title="Штатный выход помпы (∥, проверить)", a=["stock", "PUMP"], b=["pump", "L"], kind="stock"),
-            dict(h="S", title="Штатный выход клапана (∥, проверить)", a=["stock", "VALVE"], b=["valve", "L"], kind="stock"),
+            dict(h="M5", title="Штатный выход клапана → переключатель, штат", a=["stock", "VALVE"], b=["swv", "штат"], kind="stock"),
+            dict(h="M5", title="Штатный выход помпы → переключатель, штат", a=["stock", "PUMP"], b=["swp", "штат"], kind="stock"),
         ],
         src=[-140, -60],
         board3d=dict(label=f"shield v{rev} · ESP32-S3", labelPos=[-5, 27, -17], connLabelY=25, labelDx={"J6": 7},
@@ -403,12 +440,13 @@ def shield():
                 "<b>J9</b>: кабель USB-C только для питания дисплея. VBUS и GND определить прозвонкой, а не по цвету жил.",
                 "<b>USB</b>: слева от ESP32 держать свободным коридор −30…4,8 мм для штекеров обоих портов.",
                 "<b>Крепёж</b>: четыре M3 с головкой ≤ 5,5 мм, без шайб; модули — прижимами по docs/retention.md.",
+                SWITCH_RULE,
                 "<b>230 В</b>: только на обесточенной машине. RobotDyn и SSR — на собственных опорах, не над платой; "
                 "низковольтные жгуты не связывать с сетевыми.",
             ],
             SRC="Страница генерируется <code>tools/build_wiring_page.py</code> из hardware/shield/connections.csv и "
                 "design.json; пояснения — по docs/shield.md, docs/harnesses.md и docs/retention.md. Сетевая часть — по "
-                "переделке Turin Legato V2 (GaggiMate, обсуждение #222)."),
+                "переделке Turin Legato V2 (GaggiMate, обсуждение #222), с переключателем режима вместо параллельного подключения."),
     )
 
 # =====================================================================================================
@@ -487,7 +525,7 @@ def svg(v):
         a(f'<circle cx="{x}" cy="{y}" r="3.6" class="junction"/>')
     # stock outputs (dashed, to verify)
     for s in v["stock"]:
-        a(f'<polyline class="w stock" points="{route(s["pts"])}"/><text class="note-lab" x="{s["lab"][0]}" y="{s["lab"][1]}">{esc(s["t"])}</text>')
+        a(f'<polyline class="w stock" points="{route(s["pts"])}"><title>{esc(s["t"])}</title></polyline>')
     # water, thermocouple and other notes of this layout
     for d in v["decor"]:
         a(d)
@@ -538,7 +576,7 @@ def svg(v):
         a('</g>')
     # modules
     for mid, m in M.items():
-        cls = {"lv": "box", "straddle": "box", "machine": "box machine"}[m["zone"]]
+        cls = {"lv": "box", "straddle": "box", "mains": "box", "machine": "box machine"}[m["zone"]]
         if "circle" in m:
             cx, cy, rr = m["circle"]
             a(f'<g class="module" data-m="{mid}"><circle cx="{cx}" cy="{cy}" r="{rr}" class="{cls} round"/>'
@@ -603,9 +641,10 @@ def tables(v):
              '<span class="to">по референсной переделке</span></header><div class="tbl"><table><thead><tr><th>№</th><th>Соединение</th><th>Провод</th><th>Примечание</th></tr></thead><tbody>')
     for a_, b, c, d in MAINS_ROWS:
         o.append(f'<tr><td class="mono">{a_}</td><td>{esc(b)}</td><td>{esc(c)}</td><td>{esc(d)}</td></tr>')
-    o.append('</tbody></table></div><p class="hnote">Схема повторяет переделку Turin Legato V2 из обсуждения GaggiMate #222. '
-             'Для Gemilai 3007Z клеммы, защиту и поведение штатных выходов нужно проверить по конкретной машине. '
-             'Все работы — на обесточенной машине.</p></section>')
+    o.append('</tbody></table></div><p class="hnote">Питание и диммер — по переделке Turin Legato V2 из обсуждения GaggiMate #222. '
+             'Вместо параллельного подключения к штатным выходам помпа и клапан идут через переключатель режима E-TEN1322: '
+             'одновременно управлять ими штатная плата и GemilaiMate не могут. Для Gemilai 3007Z клеммы, защиту и поведение '
+             'штатных выходов нужно проверить по конкретной машине. Все работы — на обесточенной машине.</p></section>')
     return "".join(o)
 
 # ---------- 3D data ----------
@@ -623,10 +662,11 @@ def d3data(v):
         for pn, (px, py) in m["pins"].items():
             fx = (px - bx) / bw - 0.5; fz = (py - by) / bh - 0.5
             pins[pn] = [round(d["c"][0] + fx * w, 2), round(h, 2), round(d["c"][1] + fz * dpt, 2)]
-        mods[mid] = dict(t=m["t"], s=m["s"], c=d["c"], size=d["size"], color=d["color"], shape=d["shape"], pins=pins,
-                         machine=m["zone"] == "machine")
-        if d.get("flip"):
-            mods[mid]["flip"] = True
+        mods[mid] = dict(t=d.get("label", m["t"]), s=m["s"], c=d["c"], size=d["size"], color=d["color"], shape=d["shape"],
+                         pins=pins, machine=m["zone"] in ("machine", "mains"))
+        for flag in ("flip", "nolabel"):
+            if d.get(flag):
+                mods[mid][flag] = True
     for ob in v["onboard"]:
         a, b, c, e = ob["rect"]
         mod = dict(t=ob["t"], s=ob["s"], c=[round((a + c) / 2 - cx0, 2), round((b + e) / 2 - cz0, 2)],

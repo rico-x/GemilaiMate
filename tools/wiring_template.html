@@ -105,6 +105,7 @@ figcaption { font-size: 13px; color: var(--muted); max-width: 80ch; }
 .w-tc { stroke: var(--wtc); stroke-width: 2.8; } .w-water { stroke: var(--wwater); stroke-dasharray: 2 6; stroke-width: 3.4; }
 .bus, .mains { stroke-width: 3.2; }
 .stock { stroke: var(--wstock); stroke-dasharray: 3 5; stroke-width: 2; }
+.mech { fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-dasharray: 1 4; stroke-linecap: round; }
 .harness { cursor: pointer; outline: none; }
 .scheme.dim .harness, .scheme.dim .mains, .scheme.dim .bus { opacity: .14; }
 .scheme.dim .harness.on { opacity: 1; }
@@ -117,6 +118,7 @@ figcaption { font-size: 13px; color: var(--muted); max-width: 80ch; }
 .sw-analog { border-color: var(--wanalog); } .sw-pump { border-color: var(--wpump); } .sw-valve { border-color: var(--wvalve); } .sw-btn { border-color: var(--wbtn); }
 .sw-L { border-color: var(--wL); } .sw-N { border-color: var(--wN); } .sw-load { border-color: var(--wload); border-top-style: dashed; }
 .sw-tc { border-color: var(--wtc); } .sw-water { border-color: var(--wwater); border-top-style: dotted; } .sw-stock { border-color: var(--wstock); border-top-style: dashed; }
+.sw-mech { border-color: var(--ink); border-top-width: 2px; border-top-style: dotted; }
 
 aside.info { border: 1.5px solid var(--ink); background: var(--paper); padding: 14px; display: grid; gap: 10px 24px; align-content: start; min-width: 0;
   grid-template-columns: minmax(0, 300px) minmax(0, 1fr); grid-template-areas: "k t" "h t" "c n"; }
@@ -210,7 +212,7 @@ aside.info .kicker { font: 600 11px var(--mono); text-transform: uppercase; lett
       <span><i class="sw sw-data"></i>I²C / SPI</span><span><i class="sw sw-analog"></i>давление</span><span><i class="sw sw-pump"></i>помпа ZC / PSM</span>
       <span><i class="sw sw-valve"></i>клапан</span><span><i class="sw sw-btn"></i>кнопки</span><span><i class="sw sw-tc"></i>термопара K</span>
       <span><i class="sw sw-L"></i>сеть L</span><span><i class="sw sw-N"></i>сеть N</span><span><i class="sw sw-load"></i>коммутируемая L</span>
-      <span><i class="sw sw-stock"></i>штатный выход, проверить</span><span><i class="sw sw-water"></i>вода</span>
+      <span><i class="sw sw-stock"></i>штатный выход, проверить</span><span><i class="sw sw-mech"></i>полюса одного переключателя</span><span><i class="sw sw-water"></i>вода</span>
     </div>
   </section>
 
@@ -456,10 +458,15 @@ function init3d() {
       add(cyl(12, h - 12, mat(0x1d1f22), cx, 12 + (h - 12) / 2, cz));
     } else if (m.shape === 'boiler') {
       add(cyl(w / 2, h, metal(col), cx, h / 2, cz));
+    } else if (m.shape === 'toggle') {
+      /* panel toggle: body, M12 bushing and lever; the second pole is a plain body next to it */
+      add(box(w, h, d, mat(col), cx, h / 2, cz));
+      add(cyl(6, 5, metal(0xb9bec2), cx, h + 2.5, cz + d / 2));
+      add(cyl(1.6, 14, metal(0xd8dcde), cx, h + 11, cz + d / 2, [0.35, 0, 0]));
     } else {
       add(box(w, h, d, mat(col), cx, h / 2, cz));
     }
-    label(m.t, cx, h + 10, cz, m.machine ? 'machine' : '');
+    if (!m.nolabel) label(m.t, cx, h + 10, cz, m.machine ? 'machine' : '');
   }
   /* mains terminal block */
   const src = DATA.src;
