@@ -4,8 +4,8 @@
     90,
     75
   ],
-  "pcb_sha256": "6200d0f35a6dd55d35aa5c924cf5189cf100ca9c58ec85bcffbf30a33d4bb74e",
-  "archive_sha256": "769230c6b25806004de184b73bafaae5e9db9ce10c90afac6514d060989c7336",
+  "pcb_sha256": "cbc22d08cb2d2ff43125234939215797cb939e6b9ccc194dcb19dbb36b40de8b",
+  "archive_sha256": "09ee244d7e6e7252300b77b1a50b3d97cfbf210fc41377a6fba1188927b9b29b",
   "physical_assembly_verified": false,
   "module_clone_geometry_verified": false,
   "external_controls": "J5 four wires; J6 three wires; no direct power-module docking",

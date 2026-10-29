@@ -1,9 +1,10 @@
 """Two-layer grid router; KiCad DRC, not this router, is the final authority."""
 import json, math, heapq, itertools, random, time
 from pathlib import Path
-from kicad_runtime import application
+from kicad_runtime import application,seed_uuids
 _app=application()
 import pcbnew as p
+seed_uuids('route_shield')
 
 OUT=Path(__file__).resolve().parents[1]
 SPEC=json.loads((OUT/'design.json').read_text())
@@ -239,6 +240,7 @@ for fp in sorted(BOARD.GetFootprints(),key=lambda f:(f.GetReference(),f.GetPosit
   if pad.GetNetname()=='GND':pad.SetLocalZoneConnection(p.ZONE_CONNECTION_FULL)
 p.ZONE_FILLER(BOARD).Fill(BOARD.Zones())
 p.SaveBoard(str(OUT/'gemilaimate-shield.kicad_pcb'),BOARD)
-(OUT/'routing.json').write_text(json.dumps(dict(failures=fail,segments=len(tracks),vias=len(vias),elapsed_seconds=time.time()-started),indent=2))
-print('FINISHED',len(fail),'failures',flush=True)
+# Elapsed time is printed, not stored: routing.json must not change between identical rebuilds.
+(OUT/'routing.json').write_text(json.dumps(dict(failures=fail,segments=len(tracks),vias=len(vias)),indent=2))
+print('FINISHED',len(fail),'failures','seconds',round(time.time()-started,1),flush=True)
 if fail:raise SystemExit('Routing incomplete; do not export for fabrication')

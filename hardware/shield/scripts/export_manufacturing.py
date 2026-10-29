@@ -1,8 +1,9 @@
 from pathlib import Path
 import csv,json,hashlib
-from kicad_runtime import application
+from kicad_runtime import application,seed_uuids
 _app=application()
 import pcbnew as p
+seed_uuids('export_manufacturing')
 out=Path(__file__).resolve().parents[1];m=out/'manufacturing';d=json.loads((out/'design.json').read_text());board=p.LoadBoard(str(out/'gemilaimate-shield.kicad_pcb'))
 # Match the physical KiCad pad coordinates, including alternative ESP rows,
 # against the design used for assembly and mechanical access checks.

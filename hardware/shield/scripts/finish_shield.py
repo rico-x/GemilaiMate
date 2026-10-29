@@ -1,14 +1,16 @@
 """Align saved PCB to schematic and assign nominal module/socket 3D models."""
 import json, math
 from pathlib import Path
-from kicad_runtime import application
+from kicad_runtime import application,seed_uuids
 _app=application()
 import pcbnew as p
+seed_uuids('finish_shield')
+from revision import REVISION,DATE
 
 H=Path(__file__).resolve().parents[1]
 from make_3d_models import box
 B=p.LoadBoard(str(H/'gemilaimate-shield.kicad_pcb'))
-tb=B.GetTitleBlock();tb.SetRevision('0.2.4');tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate('2026-10-28');B.SetTitleBlock(tb)
+tb=B.GetTitleBlock();tb.SetRevision(REVISION);tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate(DATE);B.SetTitleBlock(tb)
 for item in B.GetDrawings():
     if isinstance(item,p.PCB_TEXT) and item.GetLayer()==p.B_SilkS and abs(p.ToMM(item.GetPosition().x)-32)<.01 and abs(p.ToMM(item.GetPosition().y)-23)<.01:
         item.SetText('github.com/Rico-X/GemilaiMate')

@@ -33,3 +33,23 @@ jobs:
       - name: Additional native tests
         working-directory: firmware
         run: pio test -e native
+  hardware:
+    name: KiCad 10 reproduction
+    runs-on: ubuntu-latest
+    container:
+      image: kicad/kicad:10.0.7
+      options: --user root
+    steps:
+      - name: Install git and Python checks
+        run: |
+          apt-get update -qq
+          apt-get install -y -qq git python3-pip >/dev/null
+          python3 -m pip install -q --break-system-packages sexpdata==1.0.2
+      - uses: actions/checkout@v7.0.1
+      - name: Committed CAM matches fresh ERC/DRC and export
+        run: python3 tools/verify_cam.py
+      - name: Scripts reproduce the committed shield
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          env -u DISPLAY python3 tools/rebuild_shield.py --kicad-python python3 --kicad-cli kicad-cli --no-previews
+          python3 tools/compare_shield_rebuild.py

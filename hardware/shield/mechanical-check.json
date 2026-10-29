@@ -1,6 +1,6 @@
 {
   "revision": "0.2.4 SHIELD PROTOTYPE 90x75",
-  "pcb_sha256": "6200d0f35a6dd55d35aa5c924cf5189cf100ca9c58ec85bcffbf30a33d4bb74e",
+  "pcb_sha256": "cbc22d08cb2d2ff43125234939215797cb939e6b9ccc194dcb19dbb36b40de8b",
   "nominal_module_plug_cable_envelopes": "PASS",
   "marking_checks": "PASS: square pad 1, endpoint words follow physical pad X, labels next to own rows, full outlines; all visible front/back texts clear of vias; selected track checks retained",
   "visible_silk_texts_checked": 62,

@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Check the active shield variant and pin-layout invariants without hardware."""
 from pathlib import Path
-import argparse,csv,hashlib,json,math,subprocess,sys
+import argparse,csv,hashlib,json,math,re,subprocess,sys
 from collections import Counter
 import sexpdata as sx
 R=Path(__file__).resolve().parents[1];H=R/'hardware/shield'
+sys.path.insert(0,str(H/'scripts'))
+from revision import REVISION,DATE,ARCHIVE
 def check_usb_access(d):
  parts={c['ref']:c for c in d['parts']}
  access=d['mechanical_access']
@@ -129,6 +131,18 @@ def check_silk_report(board,report,pcb_sha):
  assert {r['text'] for r in checked}=={'MAX31855','ROBOTDYN CABLE','DC+'}
  assert all(r['side_track_overlaps']==0 for r in checked)
 
+def check_revision(board,design):
+ """revision.json is the only place to bump the shield; everything else must follow it."""
+ assert design['revision'].split()[0]==REVISION,f"design.json is {design['revision'].split()[0]}, revision.json is {REVISION}: run tools/rebuild_shield.py"
+ assert f'(rev "{REVISION}")' in board and f'(date "{DATE}")' in board,'PCB title block differs from revision.json'
+ assert f'(rev "{REVISION} SHIELD - PROTOTYPE")' in (H/'gemilaimate-shield.kicad_sch').read_text()
+ zips=sorted(z.name for z in (H/'manufacturing').glob('gemilaimate-shield-v*-prototype.zip'))
+ assert zips==[ARCHIVE],f'Expected only {ARCHIVE}, found {zips}'
+ assert json.loads((H/'manufacturing/manifest.json').read_text())['variant']==f'shield-v{REVISION}-prototype'
+ docs=[R/'README.md',*sorted((R/'docs').glob('*.md')),*sorted((H/'manufacturing').glob('*.md'))]
+ stale=[f'{f.relative_to(R)}: v{v}' for f in docs for v in re.findall(r'[Ss]hield[ -]v(\d+\.\d+\.\d+)',f.read_text()) if v!=REVISION]
+ assert not stale,f'Docs name a shield revision other than v{REVISION} (revision.json): '+', '.join(stale)
+
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--write-report',action='store_true');args=ap.parse_args()
  d=json.loads((H/'design.json').read_text());parts={c['ref']:c for c in d['parts']}
@@ -144,6 +158,7 @@ def main():
  board=(H/'gemilaimate-shield.kicad_pcb').read_text()
  assert 'github.com/Rico-X/GemilaiMate' in board and 'Rico-X' in board
  check_markings(board,d)
+ check_revision(board,d)
  check_harness_housings()
  stats=json.loads((H/'board-stats.json').read_text())
  assert stats['pcb_sha256']==hashlib.sha256((H/'gemilaimate-shield.kicad_pcb').read_bytes()).hexdigest()

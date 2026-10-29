@@ -3,13 +3,15 @@
 from pathlib import Path
 import json,html,base64,argparse,sys
 R=Path(__file__).resolve().parents[1];H=R/'hardware/shield'
+sys.path.insert(0,str(H/'scripts'))
+from revision import REVISION
 def build():
  d=json.loads((H/'design.json').read_text());esc=html.escape
  colors={'J2':'#c9e6f0','J3':'#d1e7f4','J7':'#e6d5ee','U1':'#d8dedb','U2':'#dce3e5'}
  svg=['<svg xmlns="http://www.w3.org/2000/svg" width="150mm" height="110mm" viewBox="0 0 150 110">',
  '<rect width="150" height="110" fill="white"/>',
  '<g font-family="Arial,sans-serif" fill="#183132">',
- '<text x="7" y="4" font-size="2.6">GemilaiMate shield v0.2.4 - 90 x 75 mm</text>',
+ f'<text x="7" y="4" font-size="2.6">GemilaiMate shield v{REVISION} - 90 x 75 mm</text>',
  '<text x="7" y="8" font-size="1.7">PRINT 100% - NOMINAL CLONE GEOMETRY - Rico-X</text>',
  '<g transform="translate(35,12)"><rect width="90" height="75" fill="#f6f9f3" stroke="#1d4b40" stroke-width=".2"/>']
  for access in d['mechanical_access']:
@@ -45,7 +47,7 @@ def build():
   if not p.exists():return '<p>Рендер пока не экспортирован.</p>'
   return '<img alt="Номинальная сборка shield" src="data:image/png;base64,'+base64.b64encode(p.read_bytes()).decode()+'">'
  page=(R/'tools/shield_template.html').read_text()
- page=page.replace('%%FRONT%%',img('assembled-3d-front.png')).replace('%%TOP%%',img('assembled-3d-top.png')).replace('%%MARKINGS%%',img('orientation-silkscreen.png')).replace('%%FIT%%',svg).replace('%%TABLES%%',''.join(rows))
+ page=page.replace('%%FRONT%%',img('assembled-3d-front.png')).replace('%%TOP%%',img('assembled-3d-top.png')).replace('%%MARKINGS%%',img('orientation-silkscreen.png')).replace('%%FIT%%',svg).replace('%%TABLES%%',''.join(rows)).replace('%%REVISION%%',REVISION)
  return svg,page
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--check',action='store_true');a=ap.parse_args()

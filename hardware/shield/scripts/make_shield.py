@@ -1,19 +1,21 @@
-"""Convert the baseline v0.1 PCB to the v0.2.4 socket carrier.
+"""Convert the baseline v0.1 PCB to the socket shield (revision in revision.json).
 
 Read the active sibling carrier v0.1 with KiCad's pcbnew Python. Module geometry
 is an explicit prototype profile, not a claim about a received clone.
 """
 from pathlib import Path
 import json, csv
-from kicad_runtime import application
+from kicad_runtime import application,seed_uuids
 _app=application()
 import pcbnew as p
+seed_uuids('make_shield')
+from revision import REVISION,DATE
 
 H=Path(__file__).resolve().parents[1]
 BASE=H.parent/'carrier'
 B=p.LoadBoard(str(BASE/'gemilaimate-carrier.kicad_pcb'))
 D=json.loads((BASE/'design.json').read_text())
-tb=B.GetTitleBlock();tb.SetRevision('0.2.4');tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate('2026-10-28');B.SetTitleBlock(tb)
+tb=B.GetTitleBlock();tb.SetRevision(REVISION);tb.SetTitle('GemilaiMate Shield - Rico-X');tb.SetDate(DATE);B.SetTitleBlock(tb)
 for net in B.GetNetsByNetcode().values():
     if net.GetNetname().startswith('/'):
         net.SetNetname(net.GetNetname()[1:])
@@ -166,7 +168,7 @@ for item in B.GetDrawings():
     elif isinstance(item,p.PCB_TEXT):
         txt=item.GetText()
         if txt=='1' and abs(p.ToMM(item.GetPosition().x)-67)<.1 and abs(p.ToMM(item.GetPosition().y)-8.89)<.1:item.SetPosition(V(68.75,8.89))
-        if txt.startswith('GemilaiMate v'): item.SetText('GemilaiMate v0.2.4 SHIELD - PROTOTYPE')
+        if txt.startswith('GemilaiMate v'): item.SetText(f'GemilaiMate v{REVISION} SHIELD - PROTOTYPE')
         if item.GetLayer()==p.B_SilkS and txt.startswith('GemilaiMate v'):item.SetPosition(V(32,18.3))
         if item.GetLayer()==p.B_SilkS and txt.startswith('github.com/'):item.SetPosition(V(32,27))
         if p.ToMM(item.GetPosition().y)>43:
@@ -191,7 +193,7 @@ for aa,bb in [((-30,7.62),(4.8,7.62)),((4.8,7.62),(4.8,35.56)),((4.8,35.56),(-30
     shape(B,aa,bb,p.Dwgs_User,.15)
 t=p.PCB_TEXT(B);t.SetText('USB PLUG ACCESS - KEEP FREE');t.SetPosition(V(-13,6));t.SetLayer(p.Dwgs_User)
 t.SetTextSize(V(1,1));t.SetTextThickness(p.FromMM(.15));B.Add(t)
-D.update(revision='0.2.4 SHIELD PROTOTYPE 90x75',size_mm=[W,HEIGHT],
+D.update(revision=f'{REVISION} SHIELD PROTOTYPE 90x75',size_mm=[W,HEIGHT],
          mechanical_access=[usb_access],
          module_headers_unmeasured=True,manufacturing_release=False)
 D['mounts_mm'] += [[3,72],[87,72]]

@@ -44,6 +44,24 @@ env -u DISPLAY .venv/bin/python tools/rebuild_shield.py --kicad-python /usr/bin/
 
 `kicad_runtime.py` imports wx but does not create wx.App on Linux without DISPLAY: wxGTK may abort before a Python exception can be caught. Graphical macOS initialization is preserved. The rebuild checks pad-1 shape, silk outlines/labels, nominal module/plug/cable/M3 envelopes, ERC/DRC/parity, CAM outputs and both pages. Real parts, external power-module placement, retention and machine fit remain unverified.
 
+### Ревизия и воспроизводимость shield
+
+Номер ревизии и дата проекта shield задаются только в [hardware/shield/revision.json](../hardware/shield/revision.json). Скрипты берут их для штампа PCB и схемы, надписи на плате, имени архива, manifest и страниц. `check_shield.py` падает, если в README, docs или `hardware/shield/manufacturing/*.md` упоминается другая версия shield или рядом лежит архив прежней ревизии. Повышение ревизии: правка revision.json, полная пересборка, затем исправление текстов, на которые укажет проверка.
+
+Пересборка из неизменённых исходников на той же сборке KiCad даёт побайтно те же файлы:
+- UUID новых объектов KiCad задаются от имени скрипта через `KIID.SeedGenerator`, в схеме — от позиционного обозначения и контакта;
+- метки времени в Gerber, Excellon, отчётах ERC/DRC, netlist и SVG приводятся к дате из revision.json;
+- ZIP собирается с фиксированными датами записей;
+- 3D-рендеры перерисовываются только при изменении PCB (`previews/renders.json`), так как трассировщик лучей не повторяем.
+
+Поэтому дифф ревизии показывает только реальные изменения.
+
+Проверки:
+- `tools/verify_cam.py` (нужен только kicad-cli): свежие ERC/DRC сохранённых carrier и shield без нарушений, Gerber/Excellon, выгруженные сейчас из сохранённых PCB, совпадают с закоммиченными, архив и manifest shield согласованы.
+- `tools/compare_shield_rebuild.py` после `rebuild_shield.py`: рабочее дерево совпадает с HEAD с точностью до сборки KiCad и меток времени. Если отличается сам файл платы, он сравнивается через pcbnew: дорожки, переходы, площадки и тексты точно, площадь заливок до 0,01 мм².
+
+CI-задача «KiCad 10 reproduction» в контейнере `kicad/kicad:10.0.7` выполняет обе проверки, пересобирая shield с `--no-previews`.
+
 `silk_clearance.py` enumerates every visible front/back silk text and footprint field, requiring its native bounding box to clear every via by 0.15 mm. `check_shield.py` independently compares the report inventory with PCB text objects, so adding a label requires no whitelist update. Track clearance remains mandatory for DC+, MAX31855 and ROBOTDYN CABLE only; other track overlap counts are informational. This cosmetic check supplements the unchanged electrical DRC.
 
 Run `python tools/test_silk_clearance.py` in a Python environment with KiCad's `pcbnew` and `sexpdata`. The four regressions restore the old J2/CH1 positions, add an unlisted back-side label over a via and remove a report entry. All must be rejected; the working PCB is never saved or modified by these tests.

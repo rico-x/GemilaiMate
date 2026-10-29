@@ -211,7 +211,7 @@ def shield_design():
     return json.loads((SH / "design.json").read_text())
 
 def shield_revision():
-    return shield_design()["revision"].split()[0]
+    return json.loads((SH / "revision.json").read_text())["revision"]
 
 SSR_Y = [390 + y * S for y in (50.8, 55.88, 60.96)]     # J6 contacts 1/3/5: SSR inputs face them directly
 M_SHIELD = {

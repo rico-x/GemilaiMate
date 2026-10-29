@@ -3,9 +3,12 @@ from pathlib import Path
 
 OUT=Path(__file__).resolve().parents[1]
 d=json.loads((OUT/'design.json').read_text())
-uid=lambda:str(uuid.uuid4())
+# Content-keyed UUIDs: a rebuild reproduces the schematic, its netlist and the PCB symbol paths.
+NAMESPACE=uuid.uuid5(uuid.NAMESPACE_URL,'https://github.com/Rico-X/GemilaiMate/hardware/shield')
+uid=lambda key:str(uuid.uuid5(NAMESPACE,key))
+from revision import REVISION,DATE
 q=lambda s:json.dumps(str(s),ensure_ascii=False)
-rootid=uid()
+rootid=uid('root')
 libs=[];placed=[];wires=[];labels=[];nc=[]
 net_counts={}
 for c in d['parts']:
@@ -70,23 +73,23 @@ for i,c in enumerate(d['parts']):
   (property "Footprint" {q(c['footprint'])} (at 0 0 0) (effects(font(size 1.27 1.27))(hide yes)))
   (symbol {q(ref+'_0_1')} {shape})
   (symbol {q(ref+'_1_1')} {''.join(ps)}))''')
- symbolid=uid()
+ symbolid=uid('symbol:'+ref)
  placed.append(f'''(symbol(lib_id {q(lid)})(at {sx} {sy} 0)(unit 1)(in_bom yes)(on_board yes)(dnp no)(uuid {q(symbolid)})
   (property "Reference" {q(ref)}(at {sx} {sy-height/2-2.54} 0){effects()})
   (property "Value" {q(c['value'])}(at {sx} {sy+height/2+2.54} 0){effects(.9)})
   (property "Footprint" {q(c['footprint'])}(at {sx} {sy} 0)(effects(font(size 1.27 1.27))(hide yes)))
   (instances(project "gemilaimate-shield"(path {q('/'+rootid)}(reference {q(ref)})(unit 1)))))''')
  for xx,dy,pin in coords:
-  px,py=sx+xx,sy+dy
+  px,py=sx+xx,sy+dy;key=ref+':'+pin['number']
   if not pin['net']:
-   nc.append(f'(no_connect(at {px} {py})(uuid {q(uid())}))')
+   nc.append(f'(no_connect(at {px} {py})(uuid {q(uid("no_connect:"+key))}))')
   else:
    lx=px+(-7.62 if xx<0 else 7.62)
-   wires.append(f'(wire(pts(xy {px} {py})(xy {lx} {py}))(stroke(width 0)(type default))(uuid {q(uid())}))')
-   labels.append(f'(label {q(pin["net"])}(at {lx} {py} 0){effects(.9,"right bottom" if xx<0 else "left bottom")}(uuid {q(uid())}))')
+   wires.append(f'(wire(pts(xy {px} {py})(xy {lx} {py}))(stroke(width 0)(type default))(uuid {q(uid("wire:"+key))}))')
+   labels.append(f'(label {q(pin["net"])}(at {lx} {py} 0){effects(.9,"right bottom" if xx<0 else "left bottom")}(uuid {q(uid("label:"+key))}))')
 
 doc=f'''(kicad_sch(version 20250114)(generator "eeschema")(uuid {q(rootid)})(paper "A2")
- (title_block(title "GemilaiMate - LOW VOLTAGE carrier / Rico-X")(date "2026-10-28")(rev "0.2.4 SHIELD - PROTOTYPE")
+ (title_block(title "GemilaiMate - LOW VOLTAGE carrier / Rico-X")(date "{DATE}")(rev "{REVISION} SHIELD - PROTOTYPE")
  (comment 1 "Breakouts in dedicated sockets; J5/J6 wired controls to separate power modules. No mains on board.")
  (comment 2 "Module pin geometry and machine volume remain UNMEASURED. NOT RELEASED FOR FABRICATION.")
  (comment 3 "JP1 open for USB; R13 = removable 0R valve buffer link.")
