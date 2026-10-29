@@ -10,6 +10,8 @@ using distance_callback_t = std::function<void(int)>;
 class DistanceSensor {
   public:
     DistanceSensor(SoftWireBus *bus, distance_callback_t callback);
+    // True if a VL53L0X answers on the bus; leaves it ranging.
+    bool isAvailable();
     void setup();
     bool isHealthy() const { return healthy; }
 

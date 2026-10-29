@@ -210,6 +210,7 @@ export default class ApiService {
     if (has('cd')) capabilities.dimming = message.cd;
     if (has('cp')) capabilities.pressure = message.cp;
     if (has('led')) capabilities.ledControl = message.led;
+    if (has('tofc')) capabilities.tof = message.tofc;
     if (has('gp')) capabilities.gearpumpAddon = !!message.gp;
 
     // Only telemetry frames extend the chart history; state-only frames would duplicate points.

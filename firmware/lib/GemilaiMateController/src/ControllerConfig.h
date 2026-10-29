@@ -72,8 +72,10 @@ const ControllerConfig GEMILAI_3007Z = {.name = "GemilaiMate Gemilai 3007Z",
                                       .scaleSclPin = 17,
                                       .scaleSdaPin = 18,
                                       .scaleSda1Pin = 39,
-                                      .sunriseSclPin = 44,
-                                      .sunriseSdaPin = 43,
+                                      // Peripheral port (VL53L0X water level) on free DevKit pins U1.9/U1.8, hand-wired:
+                                      // GPIO43/44 carry the DevKit USB-UART bridge and the boot log.
+                                      .sunriseSclPin = 16,
+                                      .sunriseSdaPin = 15,
                                       .ext1Pin = 1,
                                       .ext2Pin = 2,
                                       .ext3Pin = 8,

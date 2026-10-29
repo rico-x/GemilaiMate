@@ -359,6 +359,7 @@ void WebSocketHandler::publishState(unsigned long now) {
     doc["cd"] = caps.dimming;
     doc["gp"] = caps.hasAddon(7);
     doc["led"] = caps.ledControl;
+    doc["tofc"] = caps.tof;
     doc["tw"] = profile.getTotalVolume(); // total target weight for the process
     doc["bta"] = controller->isVolumetricAvailable() ? 1 : 0;
     doc["bt"] = controller->isVolumetricAvailable() && profile.isVolumetric() ? 1 : 0;

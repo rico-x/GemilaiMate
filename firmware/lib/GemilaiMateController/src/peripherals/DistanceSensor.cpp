@@ -14,6 +14,11 @@ DistanceSensor::DistanceSensor(SoftWireBus *bus, distance_callback_t callback) :
     this->tof = new VL53L0X(bus->wire());
 }
 
+bool DistanceSensor::isAvailable() {
+    SoftWireBus::Guard guard(bus);
+    return guard && initSensor() && checkIdentity();
+}
+
 void DistanceSensor::setup() {
     {
         SoftWireBus::Guard guard(bus);

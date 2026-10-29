@@ -61,6 +61,8 @@ void GemilaiMateController::setup() {
     albaComms->setRxBuffer(albaSwRxBuffer, sizeof(albaSwRxBuffer));
     albaComms->setTimeout_ms(200);
     albaComms->setDelay_us(20);
+    // A hand-wired sensor may come without pull-ups, and open pins must not read as an ACK.
+    albaComms->enablePullups(true);
     albaComms->begin();
     albaBus = new SoftWireBus(albaComms);
     this->ledController = new LedController(albaBus);
@@ -69,6 +71,9 @@ void GemilaiMateController::setup() {
         _config.capabilites.ledControls = true;
         _config.capabilites.tof = true;
         _comms.onLedControl([this](uint8_t channel, uint8_t brightness) { ledController->setChannel(channel, brightness); });
+    } else if (this->distanceSensor->isAvailable()) {
+        // A bare VL53L0X without the LED board still reports the water level.
+        _config.capabilites.tof = true;
     }
 
     gm::DeviceCapabilities capabilities = gemilaimate_Capabilities_init_zero;

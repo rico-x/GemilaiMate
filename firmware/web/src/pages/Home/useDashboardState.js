@@ -48,11 +48,12 @@ export function useDashboardState() {
 
   // ── water level (Alba) ────────────────────────────────────
   const ledControl = caps?.ledControl || false;
+  const tankSensor = ledControl || caps?.tof || false;
   const emptyTankDistance = settings?.emptyTankDistance || 0;
   const fullTankDistance = settings?.fullTankDistance || 0;
   const albaCalibrated = emptyTankDistance > 0 && fullTankDistance > 0;
   const waterLevelPercent =
-    ledControl && albaCalibrated
+    tankSensor && albaCalibrated
       ? Math.max(
           0,
           Math.min(

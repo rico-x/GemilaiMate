@@ -8,6 +8,8 @@ import { faCrosshairs } from '@fortawesome/free-solid-svg-icons/faCrosshairs';
 import { InputGroupField, SettingsFormField } from '../../../components/SettingsFormField.jsx';
 
 const ledControl = computed(() => machine.value.capabilities.ledControl);
+// A VL53L0X reports the water level with or without the Alba LED board.
+const tankSensor = computed(() => ledControl.value || machine.value.capabilities.tof);
 const pressureAvailable = computed(() => machine.value.capabilities.pressure);
 const tofDistance = computed(() => machine.value.status.tofDistance);
 
@@ -290,8 +292,8 @@ export function MachineTab({ formData, onChange, setField }) {
         </div>
       </Section>
       {/* Alba Settings */}
-      {ledControl.value && (
-        <Section title='Alba Settings' className='h-full'>
+      {tankSensor.value && (
+        <Section title={ledControl.value ? 'Alba Settings' : 'Water Tank'} className='h-full'>
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             <TankDistanceField
               id='emptyTankDistance'
@@ -308,54 +310,58 @@ export function MachineTab({ formData, onChange, setField }) {
               onUseCurrent={() => setField('fullTankDistance', tofDistance.value)}
             />
           </div>
-          <div className='border-base-content/5 mt-6 grid grid-cols-1 gap-4 border-t pt-6 md:grid-cols-4'>
-            <SunriseColorField
-              id='sunriseIdle'
-              label='Idle Color'
-              value={formData.sunriseIdle}
-              fallback='#00ffff'
-              onChange={onChange('sunriseIdle')}
-            />
-            <SunriseColorField
-              id='sunriseActive'
-              label='Brew Color'
-              value={formData.sunriseActive}
-              fallback='#0000ff'
-              onChange={onChange('sunriseActive')}
-            />
-            <SunriseColorField
-              id='sunriseFinished'
-              label='Finished Color'
-              value={formData.sunriseFinished}
-              fallback='#00ff00'
-              onChange={onChange('sunriseFinished')}
-            />
-            <SunriseColorField
-              id='sunriseError'
-              label='Error Color'
-              value={formData.sunriseError}
-              fallback='#ff0000'
-              onChange={onChange('sunriseError')}
-            />
-          </div>
-          <SettingsFormField
-            label={`External LED (${((formData.sunriseExtBrightness / 255) * 100).toFixed(0)}%)`}
-            htmlFor='sunriseExtBrightness'
-            className='mt-4'
-            noMargin
-          >
-            <input
-              id='sunriseExtBrightness'
-              name='sunriseExtBrightness'
-              type='range'
-              className='range w-full'
-              min={0}
-              max={255}
-              step={1}
-              value={formData.sunriseExtBrightness}
-              onChange={onChange('sunriseExtBrightness')}
-            />
-          </SettingsFormField>
+          {ledControl.value && (
+            <>
+              <div className='border-base-content/5 mt-6 grid grid-cols-1 gap-4 border-t pt-6 md:grid-cols-4'>
+                <SunriseColorField
+                  id='sunriseIdle'
+                  label='Idle Color'
+                  value={formData.sunriseIdle}
+                  fallback='#00ffff'
+                  onChange={onChange('sunriseIdle')}
+                />
+                <SunriseColorField
+                  id='sunriseActive'
+                  label='Brew Color'
+                  value={formData.sunriseActive}
+                  fallback='#0000ff'
+                  onChange={onChange('sunriseActive')}
+                />
+                <SunriseColorField
+                  id='sunriseFinished'
+                  label='Finished Color'
+                  value={formData.sunriseFinished}
+                  fallback='#00ff00'
+                  onChange={onChange('sunriseFinished')}
+                />
+                <SunriseColorField
+                  id='sunriseError'
+                  label='Error Color'
+                  value={formData.sunriseError}
+                  fallback='#ff0000'
+                  onChange={onChange('sunriseError')}
+                />
+              </div>
+              <SettingsFormField
+                label={`External LED (${((formData.sunriseExtBrightness / 255) * 100).toFixed(0)}%)`}
+                htmlFor='sunriseExtBrightness'
+                className='mt-4'
+                noMargin
+              >
+                <input
+                  id='sunriseExtBrightness'
+                  name='sunriseExtBrightness'
+                  type='range'
+                  className='range w-full'
+                  min={0}
+                  max={255}
+                  step={1}
+                  value={formData.sunriseExtBrightness}
+                  onChange={onChange('sunriseExtBrightness')}
+                />
+              </SettingsFormField>
+            </>
+          )}
         </Section>
       )}
     </div>
