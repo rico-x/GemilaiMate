@@ -3370,77 +3370,6 @@
       ]
     },
     {
-      "ref": "JP_TC",
-      "value": "TC VIN 5V-3V3",
-      "footprint": "GemilaiMateCompact:PinHeader_1x03_P2.54mm_Vertical",
-      "x": 36.0,
-      "y": 28.5,
-      "rotation": 90.0,
-      "side": "front",
-      "nets": {
-        "1": "+5V_CORE",
-        "2": "TC_VIN",
-        "3": "+3V3"
-      },
-      "names": {},
-      "pin_types": {},
-      "mpn": "TC VIN 5V-3V3",
-      "datasheet": "",
-      "section": "Temperature",
-      "dnp": false,
-      "designator": "JP1",
-      "source_footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
-      "pins": [
-        {
-          "number": "1",
-          "name": "1",
-          "net": "+5V_CORE",
-          "type": "passive",
-          "x": 36.0,
-          "y": 28.5
-        },
-        {
-          "number": "2",
-          "name": "2",
-          "net": "TC_VIN",
-          "type": "passive",
-          "x": 38.54,
-          "y": 28.5
-        },
-        {
-          "number": "3",
-          "name": "3",
-          "net": "+3V3",
-          "type": "passive",
-          "x": 41.08,
-          "y": 28.5
-        }
-      ],
-      "physical_pads": [
-        {
-          "number": "1",
-          "x": 36.0,
-          "y": 28.5,
-          "net": "+5V_CORE",
-          "smd": false
-        },
-        {
-          "number": "2",
-          "x": 38.54,
-          "y": 28.5,
-          "net": "TC_VIN",
-          "smd": false
-        },
-        {
-          "number": "3",
-          "x": 41.08,
-          "y": 28.5,
-          "net": "+3V3",
-          "smd": false
-        }
-      ]
-    },
-    {
       "ref": "R_ZCPU",
       "value": "10k 1%",
       "footprint": "GemilaiMateCompact:R_0603_1608Metric",
@@ -6484,10 +6413,10 @@
     {
       "ref": "J_PWR",
       "value": "5V INPUT",
-      "footprint": "GemilaiMateCompact:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
-      "x": 28.5,
-      "y": 4.05,
-      "rotation": 0.0,
+      "footprint": "GemilaiMateCompact:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "x": 34.25,
+      "y": 12.75,
+      "rotation": 90.0,
       "side": "back",
       "nets": {
         "1": "EXT_IN",
@@ -6503,37 +6432,37 @@
       "section": "Connectors",
       "dnp": false,
       "designator": "J4",
-      "source_footprint": "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
+      "source_footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
       "pins": [
         {
           "number": "1",
           "name": "5V_IN",
           "net": "EXT_IN",
           "type": "passive",
-          "x": 28.5,
-          "y": 4.05
+          "x": 34.25,
+          "y": 12.75
         },
         {
           "number": "2",
           "name": "GND",
           "net": "GND",
           "type": "passive",
-          "x": 30.5,
-          "y": 4.05
+          "x": 34.25,
+          "y": 10.25
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 28.5,
-          "y": 4.05,
+          "x": 34.25,
+          "y": 12.75,
           "net": "EXT_IN",
           "smd": false
         },
         {
           "number": "2",
-          "x": 30.5,
-          "y": 4.05,
+          "x": 34.25,
+          "y": 10.25,
           "net": "GND",
           "smd": false
         }
@@ -7126,8 +7055,8 @@
       "nets": {
         "1": "+3V3",
         "2": "GND",
-        "3": "ALBA_SDA",
-        "4": "ALBA_SCL"
+        "3": "EXT_SDA",
+        "4": "EXT_SCL"
       },
       "names": {
         "1": "3V3",
@@ -7162,7 +7091,7 @@
         {
           "number": "3",
           "name": "SDA",
-          "net": "ALBA_SDA",
+          "net": "EXT_SDA",
           "type": "passive",
           "x": 36.0,
           "y": 34.05
@@ -7170,7 +7099,7 @@
         {
           "number": "4",
           "name": "SCL",
-          "net": "ALBA_SCL",
+          "net": "EXT_SCL",
           "type": "passive",
           "x": 38.0,
           "y": 34.05
@@ -7195,14 +7124,14 @@
           "number": "3",
           "x": 36.0,
           "y": 34.05,
-          "net": "ALBA_SDA",
+          "net": "EXT_SDA",
           "smd": false
         },
         {
           "number": "4",
           "x": 38.0,
           "y": 34.05,
-          "net": "ALBA_SCL",
+          "net": "EXT_SCL",
           "smd": false
         }
       ]
@@ -7218,8 +7147,8 @@
       "nets": {
         "1": "+5V_EXT",
         "2": "GND",
-        "3": "ALBA_SDA",
-        "4": "ALBA_SCL"
+        "3": "EXT_SDA",
+        "4": "EXT_SCL"
       },
       "names": {
         "1": "5V_EXT",
@@ -7254,7 +7183,7 @@
         {
           "number": "3",
           "name": "SDA",
-          "net": "ALBA_SDA",
+          "net": "EXT_SDA",
           "type": "passive",
           "x": 62.05,
           "y": 23.0
@@ -7262,7 +7191,7 @@
         {
           "number": "4",
           "name": "SCL",
-          "net": "ALBA_SCL",
+          "net": "EXT_SCL",
           "type": "passive",
           "x": 62.05,
           "y": 21.0
@@ -7287,14 +7216,14 @@
           "number": "3",
           "x": 62.05,
           "y": 23.0,
-          "net": "ALBA_SDA",
+          "net": "EXT_SDA",
           "smd": false
         },
         {
           "number": "4",
           "x": 62.05,
           "y": 21.0,
-          "net": "ALBA_SCL",
+          "net": "EXT_SCL",
           "smd": false
         }
       ]
@@ -8390,6 +8319,226 @@
           "smd": true
         }
       ]
+    },
+    {
+      "ref": "R_EXTSDA",
+      "value": "470R 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 36.0,
+      "y": 36.75,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "ALBA_SDA",
+        "2": "EXT_SDA"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-07470RL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R41",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "ALBA_SDA",
+          "type": "passive",
+          "x": 36.0,
+          "y": 37.575
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "EXT_SDA",
+          "type": "passive",
+          "x": 36.0,
+          "y": 35.925
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 36.0,
+          "y": 37.575,
+          "net": "ALBA_SDA",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 36.0,
+          "y": 35.925,
+          "net": "EXT_SDA",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_EXTSCL",
+      "value": "470R 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 39.5,
+      "y": 30.25,
+      "rotation": -90.0,
+      "side": "front",
+      "nets": {
+        "1": "ALBA_SCL",
+        "2": "EXT_SCL"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-07470RL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R42",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "ALBA_SCL",
+          "type": "passive",
+          "x": 39.5,
+          "y": 29.425
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "EXT_SCL",
+          "type": "passive",
+          "x": 39.5,
+          "y": 31.075
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 39.5,
+          "y": 29.425,
+          "net": "ALBA_SCL",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 39.5,
+          "y": 31.075,
+          "net": "EXT_SCL",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_TC3V3",
+      "value": "0R",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 56.5,
+      "y": 21.0,
+      "rotation": -90.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "TC_VIN"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603JR-070RL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R43",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 56.5,
+          "y": 20.175
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "TC_VIN",
+          "type": "passive",
+          "x": 56.5,
+          "y": 21.825
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 56.5,
+          "y": 20.175,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 56.5,
+          "y": 21.825,
+          "net": "TC_VIN",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_TC5V",
+      "value": "0R",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 58.75,
+      "y": 23.0,
+      "rotation": -90.0,
+      "side": "front",
+      "nets": {
+        "1": "+5V_CORE",
+        "2": "TC_VIN"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603JR-070RL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": true,
+      "designator": "R44",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+5V_CORE",
+          "type": "passive",
+          "x": 58.75,
+          "y": 22.175
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "TC_VIN",
+          "type": "passive",
+          "x": 58.75,
+          "y": 23.825
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 58.75,
+          "y": 22.175,
+          "net": "+5V_CORE",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 58.75,
+          "y": 23.825,
+          "net": "TC_VIN",
+          "smd": true
+        }
+      ]
     }
   ],
   "nominal_assembly_bounds_mm": [
@@ -8424,7 +8573,7 @@
       "module_thickness_mm": 1.6
     }
   },
-  "parts_count": 103,
+  "parts_count": 106,
   "power_flags": [
     "GND",
     "EXT_IN",

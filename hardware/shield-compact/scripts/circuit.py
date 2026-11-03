@@ -119,8 +119,6 @@ c('C_PRESS','100nF 50V X7R',(25.5,44),'PRESSURE')
 part('J_TC','MAX31855 SOCKET','GemilaiMateCompact:MAX31855_socket',(56.5,24),
      dict(enumerate(['TC_VIN',None,'GND','TC_DO','TC_CS','TC_SCK'],1)),
      dict(enumerate(['VIN','3Vo_NC','GND','DO','CS','CLK'],1)),section='Temperature')
-part('JP_TC','TC VIN 5V-3V3','Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical',
-     (36,40),{1:'+5V_CORE',2:'TC_VIN',3:'+3V3'},angle=90,section='Temperature')
 
 # ZC input: 5.5 V tolerant, non-inverting, with an external pull-up.
 r('R_ZCPU','10k 1%',(34.5,43),'+5V_EXT','ZC_RAW')
@@ -188,7 +186,10 @@ for ch,xy in [(4,(59,41)),(5,(59,36))]:
          {1:'LED_GATE'+str(ch),2:'GND',3:'LED'+str(ch)+'_DRAIN'},
          {1:'G',2:'S',3:'D'},section='Alba')
 
-header('J_PWR','5V INPUT',(61,18),['EXT_IN','GND'],['5V_IN','GND'],angle=90)
+# Supply input is the only JST XH: no PH plug of this board mates with it, and
+# the PSU plug cannot enter the PH display port that bypasses F_EXT.
+part('J_PWR','5V INPUT','Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical',(61,18),
+     {1:'EXT_IN',2:'GND'},{1:'5V_IN',2:'GND'},angle=90,side='back',section='Connectors')
 header('J_DISPLAY','DISPLAY 5V',(52,3),['+5V_EXT','GND'],['5V_EXT','GND'],angle=180)
 header('J_PRESS','PRESSURE',(20,47),['+5V_EXT','GND','PRESSURE_RAW'],['5V','GND','OUT'])
 header('J_BUTTONS','BUTTONS',(26,47),['BREW_RAW','STEAM_RAW','GND','GND'],['BREW','STEAM','GND','GND'])
@@ -198,9 +199,10 @@ header('J_PUMP','ROBOTDYN',(37,48),['+5V_EXT','GND','ZC_RAW','PUMP_OUT',None,Non
 header('J_VALVE','VALVE SSR',(63,32),['+5V_EXT','GND','VALVE_5V'],['5V','GND','IN'],angle=90)
 header('J_HEAT','HEATER UNUSED',(52,41),['+5V_EXT','GND','HEATER_5V'],['5V','GND','IN'],angle=180,dnp=True)
 header('J_ALT','ALT SSR',(49,48),['+5V_EXT','GND','ALT_5V'],['5V','GND','IN'],angle=180)
-header('J_TOF','VL53L0X 3V3',(34,36),['+3V3','GND','ALBA_SDA','ALBA_SCL'],['3V3','GND','SDA','SCL'],angle=90)
+# Off-board I2C goes through 470R: 5 V on a miswired plug cannot drive GPIO43/44 hard.
+header('J_TOF','VL53L0X 3V3',(34,36),['+3V3','GND','EXT_SDA','EXT_SCL'],['3V3','GND','SDA','SCL'],angle=90)
 # External Alba lights load the external 5 V bus, not the LDO/ADS/TXS core rail.
-header('J_ALBA','EXTERNAL ALBA',(63,24),['+5V_EXT','GND','ALBA_SDA','ALBA_SCL'],['5V_EXT','GND','SDA','SCL'],angle=90)
+header('J_ALBA','EXTERNAL ALBA',(63,24),['+5V_EXT','GND','EXT_SDA','EXT_SCL'],['5V_EXT','GND','SDA','SCL'],angle=90)
 header('J_RGBW','RGBW CA',(63,12),['+5V_EXT','RGBW0','RGBW1','RGBW2','RGBW3'],['5V_CA','R','G','B','W'],angle=90)
 header('J_LIGHT','LIGHTS 200mA TOTAL',(63,44),['+5V_EXT','LED4_DRAIN','LED5_DRAIN'],['5V','CH4_NEG','CH5_NEG'],angle=90)
 part('J_SCALE','SCALE 3V3','Connector_PinHeader_1.27mm:PinHeader_1x05_P1.27mm_Vertical',(32,40),
@@ -221,6 +223,13 @@ for i,(net,xy) in enumerate([('STRAP3',(28,14)),('STRAP45',(26,8)),('STRAP46',(2
 part('D_TVS','SMAJ5.0A','Diode_SMD:D_SMA',(43,6),{1:'+5V_EXT',2:'GND'},{1:'K',2:'A'},
      section='Power',datasheet='https://www.littelfuse.com/products/tvs-diodes/surface-mount/smaj')
 c('C_EXT','10uF 10V X7R',(41,3),'+5V_EXT',large=True)
+# Series resistors for the off-board I2C ports J_TOF / J_ALBA.
+r('R_EXTSDA','470R 1%',(33,30),'ALBA_SDA','EXT_SDA')
+r('R_EXTSCL','470R 1%',(33,32),'ALBA_SCL','EXT_SCL')
+# MAX31855 VIN defaults to 3.3 V, safe for bare and regulated breakouts and never
+# lets 5 V logic reach the ESP32. 5 V needs a deliberate 0R swap, not a loose jumper.
+r('R_TC3V3','0R',(36,40),'+3V3','TC_VIN')
+r('R_TC5V','0R',(36,42),'+5V_CORE','TC_VIN',dnp=True)
 
 # Numeric KiCad designators; logical aliases remain stable for generators and
 # readable connection tables, independently of physical placement.
@@ -235,7 +244,7 @@ for component in PARTS:
 # Procurement examples; substitute only after checking value, dielectric,
 # voltage and the exact package. No marketplace seller is implied by an MPN.
 _res={'5.1k 1%':'5K1L','22R 1%':'22RL','10k 1%':'10KL','1.2k 1%':'1K2L','1k 1%':'1KL',
-      '100k 1%':'100KL','47k 1%':'47KL','4.7k 1%':'4K7L','180R 1%':'180RL','100R 1%':'100RL'}
+      '100k 1%':'100KL','47k 1%':'47KL','4.7k 1%':'4K7L','180R 1%':'180RL','100R 1%':'100RL','470R 1%':'470RL'}
 _caps={'10uF 10V X7R':'GRM31CR71A106KA01L','100nF 50V X7R':'GRM188R71H104KA93D',
        '1uF 16V X7R':'GRM188R71C105KA12D','10nF 50V C0G':'GRM1885C1H103JA01D'}
 for component in PARTS:

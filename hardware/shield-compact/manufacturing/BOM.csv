@@ -32,7 +32,6 @@ J2,J_ADS,ADS1115 BLUE SOCKET,ADS1115 BLUE SOCKET,GemilaiMateCompact:ADS1115_sock
 R11,R_PRESS,1k 1%,RC0603FR-071KL,GemilaiMateCompact:R_0603_1608Metric,front,0,1,5
 C9,C_PRESS,100nF 50V X7R,GRM188R71H104KA93D,GemilaiMateCompact:C_0603_1608Metric,front,0,1,5
 J3,J_TC,MAX31855 SOCKET,MAX31855 SOCKET,GemilaiMateCompact:MAX31855_socket,front,0,1,5
-JP1,JP_TC,TC VIN 5V-3V3,TC VIN 5V-3V3,GemilaiMateCompact:PinHeader_1x03_P2.54mm_Vertical,front,0,1,5
 R12,R_ZCPU,10k 1%,RC0603FR-0710KL,GemilaiMateCompact:R_0603_1608Metric,front,0,1,5
 R13,R_ZCS,1k 1%,RC0603FR-071KL,GemilaiMateCompact:R_0603_1608Metric,front,0,1,5
 U5,U_ZC,SN74LVC1G17DBVR,SN74LVC1G17DBVR,GemilaiMateCompact:SOT-23-5,front,0,1,5
@@ -75,7 +74,7 @@ Q2,Q_LED4,AO3400A,AO3400A,GemilaiMateCompact:SOT-23,front,0,1,5
 R39,R_GATE5,100R 1%,RC0603FR-07100RL,GemilaiMateCompact:R_0603_1608Metric,front,0,1,5
 R40,R_GPD5,100k 1%,RC0603FR-07100KL,GemilaiMateCompact:R_0603_1608Metric,front,0,1,5
 Q3,Q_LED5,AO3400A,AO3400A,GemilaiMateCompact:SOT-23,front,0,1,5
-J4,J_PWR,5V INPUT,5V INPUT,GemilaiMateCompact:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical,back,0,1,5
+J4,J_PWR,5V INPUT,5V INPUT,GemilaiMateCompact:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,back,0,1,5
 J5,J_DISPLAY,DISPLAY 5V,DISPLAY 5V,GemilaiMateCompact:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical,back,0,1,5
 J6,J_PRESS,PRESSURE,PRESSURE,GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical,back,0,1,5
 J7,J_BUTTONS,BUTTONS,BUTTONS,GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical,back,0,1,5
@@ -92,3 +91,7 @@ J17,J_EXT,EXT 3V3,EXT 3V3,GemilaiMateCompact:PinHeader_2x05_P1.27mm_Vertical,fro
 J18,J_FREE,FREE GPIO 3V3,FREE GPIO 3V3,GemilaiMateCompact:PinHeader_1x06_P1.27mm_Vertical,front,1,0,0
 D3,D_TVS,SMAJ5.0A,SMAJ5.0A,GemilaiMateCompact:D_SMA,front,0,1,5
 C16,C_EXT,10uF 10V X7R,GRM31CR71A106KA01L,GemilaiMateCompact:C_1206_3216Metric,front,0,1,5
+R41,R_EXTSDA,470R 1%,RC0603FR-07470RL,GemilaiMateCompact:R_0603_1608Metric,front,0,1,5
+R42,R_EXTSCL,470R 1%,RC0603FR-07470RL,GemilaiMateCompact:R_0603_1608Metric,front,0,1,5
+R43,R_TC3V3,0R,RC0603JR-070RL,GemilaiMateCompact:R_0603_1608Metric,front,0,1,5
+R44,R_TC5V,0R,RC0603JR-070RL,GemilaiMateCompact:R_0603_1608Metric,front,1,0,0

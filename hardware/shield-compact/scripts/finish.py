@@ -31,11 +31,11 @@ for obj in objects[:len(tracks)]:
  if isinstance(t,p.PCB_VIA) or t.IsLocked():continue
  a,b=t.GetStart(),t.GetEnd();line=LineString([(mm(a.x),mm(a.y)),(mm(b.x),mm(b.y))])
  limit=.8 if t.GetNetname() in power else .35
- bounds=line.bounds;edge=min(bounds[0],bounds[1],65-bounds[2],50-bounds[3]);limit=min(limit,2*(edge-.31))
+ bounds=line.bounds;edge=min(bounds[0],bounds[1],65-bounds[2],50-bounds[3]);limit=min(limit,2*(edge-.41))
  for other in objects:
   if other['net']==obj['net'] or other is obj or (other['layer'] is not None and other['layer']!=obj['layer']):continue
   # 0.01mm extra geometric margin beyond the nominal net-class clearance.
-  distance=line.distance(other['shape']);clear=.27 if isinstance(other['item'],p.PAD) and other['item'].GetAttribute()==p.PAD_ATTRIB_NPTH else .21
+  distance=line.distance(other['shape']);clear=.31 if isinstance(other['item'],p.PAD) and other['item'].GetAttribute()==p.PAD_ATTRIB_NPTH else .21
   limit=min(limit,2*(distance-clear))
  width=max(mm(t.GetWidth()),math.floor((limit+1e-8)/.05)*.05)
  if width>mm(t.GetWidth())+.001:
@@ -85,7 +85,8 @@ obstacles[p.F_SilkS].append([2.175,40.115,12.775,50.335])  # USB metal housing m
 labels=[]
 def overlaps(a,b):return a[0]<b[2] and b[0]<a[2] and a[1]<b[3] and b[1]<a[3]
 def label(text,layer,candidates,size=.7,required=True,owner='BOARD'):
- t=p.PCB_TEXT(B);t.SetText(text);t.SetLayer(layer);t.SetTextSize(V(size,size));t.SetTextThickness(p.FromMM(.12));t.SetMirrored(layer==p.B_SilkS)
+ size=max(size,1.0)  # budget fabs: 1.0 mm characters with 0.15 mm strokes stay legible
+ t=p.PCB_TEXT(B);t.SetText(text);t.SetLayer(layer);t.SetTextSize(V(size,size));t.SetTextThickness(p.FromMM(.15));t.SetMirrored(layer==p.B_SilkS)
  for x,y,angle in candidates:
   t.SetPosition(V(x,y));t.SetTextAngle(p.EDA_ANGLE(angle,p.DEGREES_T));b=rect(t)
   if b[0]<.35 or b[1]<.35 or b[2]>64.65 or b[3]>49.65:continue
@@ -113,26 +114,48 @@ for alias in ['J_ADS','J_TC']:
   if c['nets'][num] is None:name='NC'
   # The square pad and a separate nearby 1 mark the first contact.
   x,y=mm(pad.GetPosition().x),mm(pad.GetPosition().y)
-  candidates=[(x,y+sign*dy/10,angle) for angle in [0,90] for dy in range(16,80) for sign in [-1,1]]
+  # Directly above/below the pin first; a sideways shift below half the 2.54 mm
+  # pitch still names this pin when vias crowd it (USB corridor at the ADS row).
+  candidates=[(x+dx,y+sign*dy/10,angle) for dx in [0,.25,-.25,.5,-.5,.75,-.75,1,-1] for angle in [0,90] for dy in range(16,80) for sign in [-1,1]]
   label(name,p.F_SilkS,candidates,.6,required=name!='NC',owner=c['designator']+'.'+num)
 for alias in ['J_ADS','J_TC']:
  c=next(c for c in D['parts'] if c['ref']==alias);f=F[c['designator']];a=next(a for a in f.Pads() if a.GetNumber()=='1');x,y=mm(a.GetPosition().x),mm(a.GetPosition().y)
- label('1',p.F_SilkS,near(x+(-1.8 if alias=='J_ADS' else 1.8),y,radius=1),.6,owner=c['designator']+'.PIN1')
-for c in D['parts']:
- if c['section']!='Connectors':continue
- f=F[c['designator']];a=next(a for a in f.Pads() if a.GetNumber()=='1');x,y=mm(a.GetPosition().x),mm(a.GetPosition().y)
- label(c['designator']+':1',p.B_SilkS,near(x,y-1.8,radius=3),.65,owner=c['designator']+'.1')
+ side=-1.8 if alias=='J_ADS' else 1.8  # outside the row first, then above/below pin 1
+ label('1',p.F_SilkS,near(x+side,y,radius=1)+near(x+side,y,radius=2)+near(x,y-1.9,radius=.5)+near(x,y+1.9,radius=.5),.6,owner=c['designator']+'.PIN1')
+# The module name inside its body outline shows which side of the socket the
+# board goes: a module turned by 180 degrees covers the wrong area.
+for alias,name in [('J_ADS','ADS1115'),('J_TC','MAX31855')]:
+ a,b,e,g=D['module_sockets'][alias]['body_rect_mm'];cx,cy=(a+e)/2,(b+g)/2
+ inside=sorted([(a+ix*.5,b+iy*.5,angle) for angle in [0,90] for ix in range(int((e-a)*2)+1) for iy in range(int((g-b)*2)+1)],key=lambda q:(q[0]-cx)**2+(q[1]-cy)**2+q[2]/100)
+ des=next(c for c in D['parts'] if c['ref']==alias)['designator']
+ label(name,p.F_SilkS,inside,1.0,owner=des+'.BODY')
 # Several harnesses share a PH size: name the function next to each header.
-FUNCTION={'J_PWR':'5V IN','J_DISPLAY':'DISPLAY','J_PRESS':'PRESSURE','J_BUTTONS':'BUTTONS',
-          'J_PUMP':'ROBOTDYN','J_VALVE':'VALVE','J_HEAT':'HEATER DNP','J_ALT':'ALT',
-          'J_TOF':'TOF 3V3','J_ALBA':'ALBA','J_RGBW':'RGBW','J_LIGHT':'LIGHTS'}
+FUNCTION={'J_PWR':'5V IN','J_DISPLAY':'DISP','J_PRESS':'PRESS','J_BUTTONS':'BTN',
+          'J_PUMP':'PUMP','J_VALVE':'VALVE','J_HEAT':'HEAT','J_ALT':'ALT',
+          'J_TOF':'TOF','J_ALBA':'ALBA','J_RGBW':'RGBW','J_LIGHT':'LIGHT'}
 for c in D['parts']:
  if c['section']!='Connectors':continue
  f=F[c['designator']];xs=[mm(a.GetPosition().x) for a in f.Pads()];ys=[mm(a.GetPosition().y) for a in f.Pads()]
  cx,cy=(min(xs)+max(xs))/2,(min(ys)+max(ys))/2;text=c['designator']+' '+FUNCTION[c['ref']]
- row=[(cx,cy+d,0) for d in [-3.4,3.4,-4.4,4.4]] if max(xs)-min(xs)>=max(ys)-min(ys) else [(cx+d,cy,90) for d in [-3.4,3.4,-4.4,4.4]]
- candidates=[q for x,y,angle in row for q in near(x,y,angle,radius=4)]
+ along=0 if max(xs)-min(xs)>=max(ys)-min(ys) else 90
+ row=[(cx,cy+d,along) for d in [-3.4,3.4,-4.4,4.4]] if along==0 else [(cx+d,cy,along) for d in [-3.4,3.4,-4.4,4.4]]
+ candidates=[q for x,y,angle in row for q in near(x,y,angle,radius=4)]+[q for x,y,angle in row for q in near(x,y,90-along,radius=6)]
  label(text,p.B_SilkS,candidates,.7,owner=c['designator']+'.FUNCTION')
+def dot(layer,candidates,owner):
+ # Filled 1 mm pin-1 dot: the function label already carries the designator.
+ for x,y,_ in candidates:
+  b=[x-.5,y-.5,x+.5,y+.5]
+  if b[0]<.35 or b[1]<.35 or b[2]>64.65 or b[3]>49.65 or any(overlaps(b,o) for o in obstacles[layer]):continue
+  s=p.PCB_SHAPE(B);s.SetShape(p.SHAPE_T_CIRCLE);s.SetCenter(V(x,y));s.SetEnd(V(x+.5,y));s.SetFilled(True);s.SetWidth(p.FromMM(.15));s.SetLayer(layer);B.Add(s)
+  obstacles[layer].append([b[0]-.16,b[1]-.16,b[2]+.16,b[3]+.16])
+  labels.append(dict(text='PIN1 DOT',owner=owner,layer=B.GetLayerName(layer),position_mm=[x,y],rotation=0,bbox_mm=b,via_overlaps=0));return
+ raise RuntimeError('No room for pin-1 mark '+owner)
+for c in D['parts']:
+ if c['section']!='Connectors':continue
+ f=F[c['designator']];a=next(a for a in f.Pads() if a.GetNumber()=='1');x,y=mm(a.GetPosition().x),mm(a.GetPosition().y)
+ a2=next(a for a in f.Pads() if a.GetNumber()=='2');x2,y2=mm(a2.GetPosition().x),mm(a2.GetPosition().y)
+ closer=[q for q in near(x,y,radius=3) if math.dist(q[:2],(x,y))+.5<math.dist(q[:2],(x2,y2))]
+ dot(p.B_SilkS,sorted(closer,key=lambda q:math.dist(q[:2],(x,y))),c['designator']+'.1')
 # Add compact designators when there is space; the full assembly map always
 # includes every reference even when a small resistor has no clear silk site.
 missing=[]

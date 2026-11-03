@@ -1,8 +1,8 @@
 (export
 	(version "E")
 	(design
-		(source "/home/ubuntu/gm-fix/hardware/shield-compact/gemilaimate-compact.kicad_sch")
-		(date "2026-11-03T10:55:21")
+		(source "/home/ubuntu/gm-fab/hardware/shield-compact/gemilaimate-compact.kicad_sch")
+		(date "2026-11-03T11:33:36")
 		(tool "Eeschema 10.0.7-10.0.7~ubuntu26.04.1")
 		(sheet
 			(number "1")
@@ -900,10 +900,10 @@
 		(comp
 			(ref "J4")
 			(value "5V INPUT")
-			(footprint "GemilaiMateCompact:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical")
+			(footprint "GemilaiMateCompact:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical")
+					(name "Footprint") "GemilaiMateCompact:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -2421,12 +2421,12 @@
 			)
 		)
 		(comp
-			(ref "JP1")
-			(value "TC VIN 5V-3V3")
-			(footprint "GemilaiMateCompact:PinHeader_1x03_P2.54mm_Vertical")
+			(ref "R43")
+			(value "0R")
+			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:PinHeader_1x03_P2.54mm_Vertical")
+					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
 				(field
 					(name "Datasheet")
 				)
@@ -2436,7 +2436,7 @@
 			)
 			(libsource
 				(lib "GemilaiMateCompact")
-				(part "JP_TC")
+				(part "R_TC3V3")
 				(description "")
 			)
 			(property
@@ -2451,7 +2451,7 @@
 				(names "/MAX31855 socket/")
 				(tstamps "/4c9cb822-9b9e-59fc-9ff0-14cdff717ab8/")
 			)
-			(tstamps "09c00677-4585-5a60-9020-69bea152f01a")
+			(tstamps "c4f98b18-090d-5811-bdea-d49fc9bba37f")
 			(units
 				(unit
 					(name "A")
@@ -2462,8 +2462,54 @@
 						(pin
 							(num "2")
 						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R44")
+			(value "0R")
+			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(fields
+				(field
+					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "GemilaiMateCompact")
+				(part "R_TC5V")
+				(description "")
+			)
+			(property
+				(name "Sheetname")
+				(value "MAX31855 socket")
+			)
+			(property
+				(name "Sheetfile")
+				(value "temperature.kicad_sch")
+			)
+			(property
+				(name "dnp")
+			)
+			(sheetpath
+				(names "/MAX31855 socket/")
+				(tstamps "/4c9cb822-9b9e-59fc-9ff0-14cdff717ab8/")
+			)
+			(tstamps "c4a57393-0369-50b1-8be8-dd55d8be450b")
+			(units
+				(unit
+					(name "A")
+					(pins
 						(pin
-							(num "3")
+							(num "1")
+						)
+						(pin
+							(num "2")
 						)
 					)
 				)
@@ -4887,6 +4933,98 @@
 			)
 		)
 		(comp
+			(ref "R41")
+			(value "470R 1%")
+			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(fields
+				(field
+					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "GemilaiMateCompact")
+				(part "R_EXTSDA")
+				(description "")
+			)
+			(property
+				(name "Sheetname")
+				(value "PCA9634 and tank / lighting")
+			)
+			(property
+				(name "Sheetfile")
+				(value "alba.kicad_sch")
+			)
+			(sheetpath
+				(names "/PCA9634 and tank / lighting/")
+				(tstamps "/588b7a01-68e5-5c07-9373-007c9ef17211/")
+			)
+			(tstamps "49728c39-0e58-5fb2-9267-c7c663a34459")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R42")
+			(value "470R 1%")
+			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(fields
+				(field
+					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "GemilaiMateCompact")
+				(part "R_EXTSCL")
+				(description "")
+			)
+			(property
+				(name "Sheetname")
+				(value "PCA9634 and tank / lighting")
+			)
+			(property
+				(name "Sheetfile")
+				(value "alba.kicad_sch")
+			)
+			(sheetpath
+				(names "/PCA9634 and tank / lighting/")
+				(tstamps "/588b7a01-68e5-5c07-9373-007c9ef17211/")
+			)
+			(tstamps "ad5afe6e-07d0-5acf-b233-a8dda1fb80bd")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "U8")
 			(value "PCA9634PW")
 			(footprint "GemilaiMateCompact:TSSOP-20_4.4x6.5mm_P0.65mm")
@@ -6304,41 +6442,6 @@
 		)
 		(libpart
 			(lib "GemilaiMateCompact")
-			(part "JP_TC")
-			(fields
-				(field
-					(name "Reference") "JP1")
-				(field
-					(name "Value") "TC VIN 5V-3V3")
-				(field
-					(name "Footprint") "GemilaiMateCompact:PinHeader_1x03_P2.54mm_Vertical")
-				(field
-					(name "Datasheet")
-				)
-				(field
-					(name "Description")
-				)
-			)
-			(pins
-				(pin
-					(num "1")
-					(name "1")
-					(type "passive")
-				)
-				(pin
-					(num "2")
-					(name "2")
-					(type "passive")
-				)
-				(pin
-					(num "3")
-					(name "3")
-					(type "passive")
-				)
-			)
-		)
-		(libpart
-			(lib "GemilaiMateCompact")
 			(part "J_ADS")
 			(fields
 				(field
@@ -6836,7 +6939,7 @@
 				(field
 					(name "Value") "5V INPUT")
 				(field
-					(name "Footprint") "GemilaiMateCompact:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical")
+					(name "Footprint") "GemilaiMateCompact:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -7500,6 +7603,66 @@
 					(name "Reference") "R5")
 				(field
 					(name "Value") "10k 1%")
+				(field
+					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "GemilaiMateCompact")
+			(part "R_EXTSCL")
+			(fields
+				(field
+					(name "Reference") "R42")
+				(field
+					(name "Value") "470R 1%")
+				(field
+					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "GemilaiMateCompact")
+			(part "R_EXTSDA")
+			(fields
+				(field
+					(name "Reference") "R41")
+				(field
+					(name "Value") "470R 1%")
 				(field
 					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
 				(field
@@ -8340,6 +8503,66 @@
 					(name "Reference") "R28")
 				(field
 					(name "Value") "10k 1%")
+				(field
+					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "GemilaiMateCompact")
+			(part "R_TC3V3")
+			(fields
+				(field
+					(name "Reference") "R43")
+				(field
+					(name "Value") "0R")
+				(field
+					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "GemilaiMateCompact")
+			(part "R_TC5V")
+			(fields
+				(field
+					(name "Reference") "R44")
+				(field
+					(name "Value") "0R")
 				(field
 					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
 				(field
@@ -9541,12 +9764,6 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "JP1")
-				(pin "3")
-				(pinfunction "3_3")
-				(pintype "passive")
-			)
-			(node
 				(ref "R16")
 				(pin "1")
 				(pinfunction "1_1")
@@ -9572,6 +9789,12 @@
 			)
 			(node
 				(ref "R32")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R43")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -9672,7 +9895,7 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "JP1")
+				(ref "R44")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -9814,18 +10037,6 @@
 			(name "ALBA_SCL")
 			(class "Default")
 			(node
-				(ref "J12")
-				(pin "4")
-				(pinfunction "SCL_4")
-				(pintype "passive")
-			)
-			(node
-				(ref "J13")
-				(pin "4")
-				(pinfunction "SCL_4")
-				(pintype "passive")
-			)
-			(node
 				(ref "R29")
 				(pin "1")
 				(pinfunction "1_1")
@@ -9835,6 +10046,12 @@
 				(ref "R32")
 				(pin "2")
 				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R42")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -9855,18 +10072,6 @@
 			(name "ALBA_SDA")
 			(class "Default")
 			(node
-				(ref "J12")
-				(pin "3")
-				(pinfunction "SDA_3")
-				(pintype "passive")
-			)
-			(node
-				(ref "J13")
-				(pin "3")
-				(pinfunction "SDA_3")
-				(pintype "passive")
-			)
-			(node
 				(ref "R30")
 				(pin "1")
 				(pinfunction "1_1")
@@ -9876,6 +10081,12 @@
 				(ref "R31")
 				(pin "2")
 				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R41")
+				(pin "1")
+				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
@@ -10248,6 +10459,52 @@
 		)
 		(net
 			(code "23")
+			(name "EXT_SCL")
+			(class "Default")
+			(node
+				(ref "J12")
+				(pin "4")
+				(pinfunction "SCL_4")
+				(pintype "passive")
+			)
+			(node
+				(ref "J13")
+				(pin "4")
+				(pinfunction "SCL_4")
+				(pintype "passive")
+			)
+			(node
+				(ref "R42")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "24")
+			(name "EXT_SDA")
+			(class "Default")
+			(node
+				(ref "J12")
+				(pin "3")
+				(pinfunction "SDA_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "J13")
+				(pin "3")
+				(pinfunction "SDA_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "R41")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "25")
 			(name "GND")
 			(class "Default")
 			(node
@@ -10744,7 +11001,7 @@
 			)
 		)
 		(net
-			(code "24")
+			(code "26")
 			(name "GPIO5")
 			(class "Default")
 			(node
@@ -10761,7 +11018,7 @@
 			)
 		)
 		(net
-			(code "25")
+			(code "27")
 			(name "GPIO15")
 			(class "Default")
 			(node
@@ -10778,7 +11035,7 @@
 			)
 		)
 		(net
-			(code "26")
+			(code "28")
 			(name "GPIO16")
 			(class "Default")
 			(node
@@ -10795,7 +11052,7 @@
 			)
 		)
 		(net
-			(code "27")
+			(code "29")
 			(name "HEATER")
 			(class "Default")
 			(node
@@ -10818,7 +11075,7 @@
 			)
 		)
 		(net
-			(code "28")
+			(code "30")
 			(name "HEATER_5V")
 			(class "Default")
 			(node
@@ -10841,7 +11098,7 @@
 			)
 		)
 		(net
-			(code "29")
+			(code "31")
 			(name "I2C_OE")
 			(class "Default")
 			(node
@@ -10864,7 +11121,7 @@
 			)
 		)
 		(net
-			(code "30")
+			(code "32")
 			(name "LED4_DRAIN")
 			(class "Default")
 			(node
@@ -10881,7 +11138,7 @@
 			)
 		)
 		(net
-			(code "31")
+			(code "33")
 			(name "LED5_DRAIN")
 			(class "Default")
 			(node
@@ -10898,7 +11155,7 @@
 			)
 		)
 		(net
-			(code "32")
+			(code "34")
 			(name "LED_GATE4")
 			(class "Default")
 			(node
@@ -10921,7 +11178,7 @@
 			)
 		)
 		(net
-			(code "33")
+			(code "35")
 			(name "LED_GATE5")
 			(class "Default")
 			(node
@@ -10944,7 +11201,7 @@
 			)
 		)
 		(net
-			(code "34")
+			(code "36")
 			(name "OUTPUT_OE_N")
 			(class "Default")
 			(node
@@ -10985,7 +11242,7 @@
 			)
 		)
 		(net
-			(code "35")
+			(code "37")
 			(name "PCA_LED0")
 			(class "Default")
 			(node
@@ -11002,7 +11259,7 @@
 			)
 		)
 		(net
-			(code "36")
+			(code "38")
 			(name "PCA_LED1")
 			(class "Default")
 			(node
@@ -11019,7 +11276,7 @@
 			)
 		)
 		(net
-			(code "37")
+			(code "39")
 			(name "PCA_LED2")
 			(class "Default")
 			(node
@@ -11036,7 +11293,7 @@
 			)
 		)
 		(net
-			(code "38")
+			(code "40")
 			(name "PCA_LED3")
 			(class "Default")
 			(node
@@ -11053,7 +11310,7 @@
 			)
 		)
 		(net
-			(code "39")
+			(code "41")
 			(name "PCA_LED4")
 			(class "Default")
 			(node
@@ -11070,7 +11327,7 @@
 			)
 		)
 		(net
-			(code "40")
+			(code "42")
 			(name "PCA_LED5")
 			(class "Default")
 			(node
@@ -11087,7 +11344,7 @@
 			)
 		)
 		(net
-			(code "41")
+			(code "43")
 			(name "PCA_LED6")
 			(class "Default")
 			(node
@@ -11104,7 +11361,7 @@
 			)
 		)
 		(net
-			(code "42")
+			(code "44")
 			(name "PCA_LED7")
 			(class "Default")
 			(node
@@ -11121,7 +11378,7 @@
 			)
 		)
 		(net
-			(code "43")
+			(code "45")
 			(name "PCA_SCL")
 			(class "Default")
 			(node
@@ -11138,7 +11395,7 @@
 			)
 		)
 		(net
-			(code "44")
+			(code "46")
 			(name "PCA_SDA")
 			(class "Default")
 			(node
@@ -11155,7 +11412,7 @@
 			)
 		)
 		(net
-			(code "45")
+			(code "47")
 			(name "PRESSURE")
 			(class "Default")
 			(node
@@ -11178,7 +11435,7 @@
 			)
 		)
 		(net
-			(code "46")
+			(code "48")
 			(name "PRESSURE_RAW")
 			(class "Default")
 			(node
@@ -11195,7 +11452,7 @@
 			)
 		)
 		(net
-			(code "47")
+			(code "49")
 			(name "PUMP_OUT")
 			(class "Default")
 			(node
@@ -11218,7 +11475,7 @@
 			)
 		)
 		(net
-			(code "48")
+			(code "50")
 			(name "PUMP_PWM")
 			(class "Default")
 			(node
@@ -11241,7 +11498,7 @@
 			)
 		)
 		(net
-			(code "49")
+			(code "51")
 			(name "PUMP_ZC")
 			(class "Default")
 			(node
@@ -11258,7 +11515,7 @@
 			)
 		)
 		(net
-			(code "50")
+			(code "52")
 			(name "RGBW0")
 			(class "Default")
 			(node
@@ -11275,7 +11532,7 @@
 			)
 		)
 		(net
-			(code "51")
+			(code "53")
 			(name "RGBW1")
 			(class "Default")
 			(node
@@ -11292,7 +11549,7 @@
 			)
 		)
 		(net
-			(code "52")
+			(code "54")
 			(name "RGBW2")
 			(class "Default")
 			(node
@@ -11309,7 +11566,7 @@
 			)
 		)
 		(net
-			(code "53")
+			(code "55")
 			(name "RGBW3")
 			(class "Default")
 			(node
@@ -11326,7 +11583,7 @@
 			)
 		)
 		(net
-			(code "54")
+			(code "56")
 			(name "SCALE_CLK")
 			(class "Default")
 			(node
@@ -11343,7 +11600,7 @@
 			)
 		)
 		(net
-			(code "55")
+			(code "57")
 			(name "SCALE_DAT0")
 			(class "Default")
 			(node
@@ -11360,7 +11617,7 @@
 			)
 		)
 		(net
-			(code "56")
+			(code "58")
 			(name "SCALE_DAT1")
 			(class "Default")
 			(node
@@ -11377,7 +11634,7 @@
 			)
 		)
 		(net
-			(code "57")
+			(code "59")
 			(name "SCL_3V3")
 			(class "Default")
 			(node
@@ -11394,7 +11651,7 @@
 			)
 		)
 		(net
-			(code "58")
+			(code "60")
 			(name "SCL_5V")
 			(class "Default")
 			(node
@@ -11411,7 +11668,7 @@
 			)
 		)
 		(net
-			(code "59")
+			(code "61")
 			(name "SDA_3V3")
 			(class "Default")
 			(node
@@ -11428,7 +11685,7 @@
 			)
 		)
 		(net
-			(code "60")
+			(code "62")
 			(name "SDA_5V")
 			(class "Default")
 			(node
@@ -11445,7 +11702,7 @@
 			)
 		)
 		(net
-			(code "61")
+			(code "63")
 			(name "STEAM")
 			(class "Default")
 			(node
@@ -11474,7 +11731,7 @@
 			)
 		)
 		(net
-			(code "62")
+			(code "64")
 			(name "STEAM_RAW")
 			(class "Default")
 			(node
@@ -11491,7 +11748,7 @@
 			)
 		)
 		(net
-			(code "63")
+			(code "65")
 			(name "STRAP3")
 			(class "Default")
 			(node
@@ -11508,7 +11765,7 @@
 			)
 		)
 		(net
-			(code "64")
+			(code "66")
 			(name "STRAP45")
 			(class "Default")
 			(node
@@ -11525,7 +11782,7 @@
 			)
 		)
 		(net
-			(code "65")
+			(code "67")
 			(name "STRAP46")
 			(class "Default")
 			(node
@@ -11542,7 +11799,7 @@
 			)
 		)
 		(net
-			(code "66")
+			(code "68")
 			(name "TC_CS")
 			(class "Default")
 			(node
@@ -11559,7 +11816,7 @@
 			)
 		)
 		(net
-			(code "67")
+			(code "69")
 			(name "TC_DO")
 			(class "Default")
 			(node
@@ -11576,7 +11833,7 @@
 			)
 		)
 		(net
-			(code "68")
+			(code "70")
 			(name "TC_SCK")
 			(class "Default")
 			(node
@@ -11593,7 +11850,7 @@
 			)
 		)
 		(net
-			(code "69")
+			(code "71")
 			(name "TC_VIN")
 			(class "Default")
 			(node
@@ -11603,14 +11860,20 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "JP1")
+				(ref "R43")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R44")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 		)
 		(net
-			(code "70")
+			(code "72")
 			(name "USB_DM")
 			(class "Default")
 			(node
@@ -11645,7 +11908,7 @@
 			)
 		)
 		(net
-			(code "71")
+			(code "73")
 			(name "USB_DM_MCU")
 			(class "Default")
 			(node
@@ -11662,7 +11925,7 @@
 			)
 		)
 		(net
-			(code "72")
+			(code "74")
 			(name "USB_DP")
 			(class "Default")
 			(node
@@ -11697,7 +11960,7 @@
 			)
 		)
 		(net
-			(code "73")
+			(code "75")
 			(name "USB_DP_MCU")
 			(class "Default")
 			(node
@@ -11714,7 +11977,7 @@
 			)
 		)
 		(net
-			(code "74")
+			(code "76")
 			(name "USB_FUSED")
 			(class "Default")
 			(node
@@ -11731,7 +11994,7 @@
 			)
 		)
 		(net
-			(code "75")
+			(code "77")
 			(name "USB_VBUS")
 			(class "Default")
 			(node
@@ -11772,7 +12035,7 @@
 			)
 		)
 		(net
-			(code "76")
+			(code "78")
 			(name "VALVE")
 			(class "Default")
 			(node
@@ -11795,7 +12058,7 @@
 			)
 		)
 		(net
-			(code "77")
+			(code "79")
 			(name "VALVE_5V")
 			(class "Default")
 			(node
@@ -11818,7 +12081,7 @@
 			)
 		)
 		(net
-			(code "78")
+			(code "80")
 			(name "ZC_IN")
 			(class "Default")
 			(node
@@ -11835,7 +12098,7 @@
 			)
 		)
 		(net
-			(code "79")
+			(code "81")
 			(name "ZC_RAW")
 			(class "Default")
 			(node
@@ -11858,7 +12121,7 @@
 			)
 		)
 		(net
-			(code "80")
+			(code "82")
 			(name "unconnected-(J1-PadA8)")
 			(class "Default")
 			(node
@@ -11869,7 +12132,7 @@
 			)
 		)
 		(net
-			(code "81")
+			(code "83")
 			(name "unconnected-(J1-PadB8)")
 			(class "Default")
 			(node
@@ -11880,7 +12143,7 @@
 			)
 		)
 		(net
-			(code "82")
+			(code "84")
 			(name "unconnected-(J2-A1-Pad8)")
 			(class "Default")
 			(node
@@ -11891,7 +12154,7 @@
 			)
 		)
 		(net
-			(code "83")
+			(code "85")
 			(name "unconnected-(J2-A2-Pad9)")
 			(class "Default")
 			(node
@@ -11902,7 +12165,7 @@
 			)
 		)
 		(net
-			(code "84")
+			(code "86")
 			(name "unconnected-(J2-A3-Pad10)")
 			(class "Default")
 			(node
@@ -11913,7 +12176,7 @@
 			)
 		)
 		(net
-			(code "85")
+			(code "87")
 			(name "unconnected-(J2-ALRT-Pad6)")
 			(class "Default")
 			(node
@@ -11924,7 +12187,7 @@
 			)
 		)
 		(net
-			(code "86")
+			(code "88")
 			(name "unconnected-(J3-3Vo_NC-Pad2)")
 			(class "Default")
 			(node
@@ -11935,7 +12198,7 @@
 			)
 		)
 		(net
-			(code "87")
+			(code "89")
 			(name "unconnected-(J8-EMPTY-Pad5)")
 			(class "Default")
 			(node
@@ -11946,7 +12209,7 @@
 			)
 		)
 		(net
-			(code "88")
+			(code "90")
 			(name "unconnected-(J8-EMPTY-Pad6)")
 			(class "Default")
 			(node
@@ -11957,7 +12220,7 @@
 			)
 		)
 		(net
-			(code "89")
+			(code "91")
 			(name "unconnected-(U1-GPIO35-Pad28)")
 			(class "Default")
 			(node
@@ -11968,7 +12231,7 @@
 			)
 		)
 		(net
-			(code "90")
+			(code "92")
 			(name "unconnected-(U1-GPIO36-Pad29)")
 			(class "Default")
 			(node
@@ -11979,7 +12242,7 @@
 			)
 		)
 		(net
-			(code "91")
+			(code "93")
 			(name "unconnected-(U1-GPIO37-Pad30)")
 			(class "Default")
 			(node
@@ -11990,7 +12253,7 @@
 			)
 		)
 		(net
-			(code "92")
+			(code "94")
 			(name "unconnected-(U5-NC-Pad1)")
 			(class "Default")
 			(node
@@ -12001,7 +12264,7 @@
 			)
 		)
 		(net
-			(code "93")
+			(code "95")
 			(name "unconnected-(U7-4Y_NC-Pad11)")
 			(class "Default")
 			(node

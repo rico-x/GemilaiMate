@@ -53,12 +53,12 @@ def main():
   ['MAX31855 breakout, VIN/3Vo/GND/DO/CS/CLK',1,'Nominal 20.32x22.86mm; verify VIN regulator and thermocouple polarity'],
   ['ADS male header 1x10 2.54mm',1,'Module underside; standard plastic adds 2.54mm height'],
   ['MAX male header 1x6 2.54mm',1,'Module underside; verify pin order'],
-  ['JP_TC 2.54mm jumper cap',1,'Select 5V or 3V3 once for the actual breakout; never bridge all three pins'],
   ['M2 nylon fasteners and insulating supports',3,'Head <=4mm; allow underside PH plugs and cable bends'],
   ['External system',1,'Reuse matched display, pressure sensor, thermocouple, RobotDyn, SSR, isolated 5V PSU and harnesses per project docs; these are not SMD assembly items'],
   ['Optional VL53L0X and low-power RGBW/light loads',0,'Optional; 3.3V I2C, no direct LED strips on RGBW connector']])
  headers=[c for c in parts if c['section']=='Connectors' and not c['dnp']]
- table('HARNESSES.csv',['PCB_reference','Function','Housing','Contacts','Pin_1_to_N','Quantity_1_system'],[[c['designator'],c['value'],'PHR-'+str(len(c['nets'])),str(sum(1 for n in c['nets'].values() if n))+' x SPH-002T-P0.5L','; '.join(c['names'][str(i)] for i in range(1,len(c['nets'])+1)),1] for c in headers])
+ xh=lambda c:'JST_XH' in c['source_footprint']
+ table('HARNESSES.csv',['PCB_reference','Function','Housing','Contacts','Pin_1_to_N','Quantity_1_system'],[[c['designator'],c['value'],('XHP-' if xh(c) else 'PHR-')+str(len(c['nets'])),str(sum(1 for n in c['nets'].values() if n))+(' x SXH-001T-P0.6' if xh(c) else ' x SPH-002T-P0.5L'),'; '.join(c['names'][str(i)] for i in range(1,len(c['nets'])+1)),1] for c in headers])
  table('PINOUT.csv',['Reference','Alias','Pin','Function','Net','x_top_view_mm','y_top_view_mm'],[[c['designator'],c['ref'],p['number'],p['name'],p['net'] or 'NC',p['x'],p['y']] for c in parts for p in c['pins']])
  archive=m/'gemilaimate-compact-0.1.0-PROTOTYPE.zip'
  with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:

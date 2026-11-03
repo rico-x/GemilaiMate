@@ -1,8 +1,8 @@
 {
   "router": "Freerouting 2.5.0 / Java 25",
   "router_args": "-mp 100 -mt 8 --router.layers.routable=true,false,true,true --gui.enabled=false --usage_and_diagnostic_data.disable_analytics=true",
-  "dsn_normalized_sha256": "69d37af29d9e1b01428703bd0b18340b2bc8c7c00dcdfc3bd6eacd7b4c6d21db",
-  "ses_sha256": "7a58eae2b285075feaa563025eafb10842dd4831d87343c013d21886636edef0",
-  "accepted_pcb_sha256": "d061e8510537aa28d0ecb80d857a9d189345e1b378b7f4dacdb995d3e4d974d2",
+  "dsn_normalized_sha256": "93d1382b3fa2bac09b150c8790d31212c7dd36e9b96383d83455f696bf300c29",
+  "ses_sha256": "3cb3c637128248563c7c904f2b98fd7a77da689e1d9fd306226f99c3fb568711",
+  "accepted_pcb_sha256": "fa34e7ac10d307d9b5ae534aa87952809c2fedd90ece2db76480f80b8debaad8",
   "physical_tests": false
 }

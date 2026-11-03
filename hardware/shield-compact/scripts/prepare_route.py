@@ -63,6 +63,14 @@ route('USB_DM',[(6.525,32.3625),(6.525,34.6375)])
 route('USB_DP',[(8.425,32.3625),(8.425,34.6375)])
 # Ground return for the ESD array, next to its ground pad and layer transition.
 route('GND',[(7.475,34.6375),(7.475,35.75)],width=.4);via('GND',(7.475,35.75))
+# Budget fabs: copper 0.4 mm from the routed edge on every layer. The router adds
+# its 0.2 mm clearance to this 0.2 mm keepout band.
+for a,b,c,e in [(0,0,65,.2),(0,49.8,65,50),(0,0,.2,50),(64.8,0,65,50)]:
+ z=p.ZONE(B);z.SetIsRuleArea(True);z.SetDoNotAllowTracks(True);z.SetDoNotAllowVias(True)
+ z.SetDoNotAllowPads(False);z.SetDoNotAllowFootprints(False);z.SetDoNotAllowZoneFills(False)
+ z.SetLayerSet(p.LSET.AllCuMask());o=z.Outline();o.NewOutline()
+ for x,y in [(a,b),(c,b),(c,e),(a,e)]:o.Append(int(p.FromMM(x)),int(p.FromMM(y)))
+ B.Add(z)
 # Reserve a full ground layer. The autorouter may use F.Cu, In2.Cu and B.Cu.
 p.SaveBoard(str(H/'gemilaimate-compact.kicad_pcb'),B)
 text=(H/'gemilaimate-compact.kicad_pcb').read_text()

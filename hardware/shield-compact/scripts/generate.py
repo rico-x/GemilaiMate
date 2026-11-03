@@ -98,8 +98,9 @@ for c in SPEC['parts']:
         if not fp:raise RuntimeError('Missing footprint: '+c['footprint'])
     fp.SetReference(c['designator']);fp.SetValue(c['value'])
     for pad in fp.Pads():
-        # J_PUMP GND: routing leaves room for one F.Cu spoke only; J_HEAT is not fitted.
-        if c['ref'] in ['J_EXT','J_FREE','J_SCALE','J_HEAT','J_PUMP'] and c['nets'].get(pad.GetNumber())=='GND':pad.SetLocalZoneConnection(p.ZONE_CONNECTION_FULL)
+        # Harness GND pins join both GND layers solidly: routing between connector
+        # pins otherwise leaves F.Cu spokes on isolated islands (starved thermals).
+        if (c['ref'] in ['J_EXT','J_FREE','J_SCALE'] or c['section']=='Connectors') and c['nets'].get(pad.GetNumber())=='GND':pad.SetLocalZoneConnection(p.ZONE_CONNECTION_FULL)
         if c['ref']=='J_USB':pad.SetLocalClearance(p.FromMM(.15))
         if c['ref']=='U1' and pad.GetNumber()=='41':
             if pad.GetAttribute()==p.PAD_ATTRIB_PTH:
@@ -145,7 +146,7 @@ for index,(x,y) in enumerate(SPEC['mounts_mm'],1):
     fp=p.FOOTPRINT(B);fp.SetPosition(V(x,y));fp.SetReference('H'+str(index));fp.SetValue('M2 NYLON')
     fp.SetAttributes(p.FP_BOARD_ONLY | p.FP_EXCLUDE_FROM_POS_FILES | p.FP_EXCLUDE_FROM_BOM)
     pa=p.PAD(fp);pa.SetNumber('');pa.SetPosition(V(x,y));pa.SetAttribute(p.PAD_ATTRIB_NPTH)
-    pa.SetShape(p.PAD_SHAPE_CIRCLE);pa.SetSize(V(2.2,2.2));pa.SetDrillSize(V(2.2,2.2))
+    pa.SetShape(p.PAD_SHAPE_CIRCLE);pa.SetSize(V(2.2,2.2));pa.SetDrillSize(V(2.2,2.2));pa.SetLocalClearance(p.FromMM(.3))
     pa.SetLayerSet(p.LSET.AllCuMask());fp.Add(pa)
     fp.Reference().SetVisible(False);fp.Value().SetVisible(False);B.Add(fp)
 
@@ -176,8 +177,11 @@ SPEC['power_flags']=['GND','EXT_IN','USB_VBUS','USB_FUSED','+5V_EXT','+5V_CORE']
 (HERE/'design.json').write_text(json.dumps(SPEC,ensure_ascii=False,indent=2)+'\n')
 pro=json.loads((ROOT/'hardware/carrier/gemilaimate-carrier.kicad_pro').read_text())
 ds=pro['board']['design_settings']
+# Budget-fab margins (typical cheap 4-layer process plus reserve): edge, hole and
+# annular clearances and legible silkscreen are enforced by DRC, not by review.
 ds['rules'].update(min_clearance=.15,min_track_width=.2,min_via_diameter=.7,min_via_drill=.35,
-                   min_through_hole_diameter=.3,min_copper_edge_clearance=.3,min_hole_to_hole=.25,min_text_height=.6)
+                   min_through_hole_diameter=.3,min_copper_edge_clearance=.4,min_hole_clearance=.3,
+                   min_hole_to_hole=.5,min_via_annular_width=.15,min_text_height=1.0,min_text_thickness=.15)
 pro['meta']['filename']='gemilaimate-compact.kicad_pro'
 pro['board']['design_settings']['drc_exclusions']=[]
 pro['net_settings']['classes'][0].update(clearance=.2,track_width=.35,via_diameter=.7,via_drill=.35)
@@ -185,8 +189,11 @@ pro['net_settings']['classes'][0].update(clearance=.2,track_width=.35,via_diamet
 (HERE/'fp-lib-table').write_text('(fp_lib_table (version 7) (lib (name "GemilaiMateCompact") (type "KiCad") (uri "${KIPRJMOD}/GemilaiMateCompact.pretty") (options "") (descr "Local compact board footprints")))\n')
 (HERE/'gemilaimate-compact.kicad_dru').write_text("""(version 1)
 (rule "USB4085 fixed pin pitch"
- (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.FootprintReference == 'J1' && B.FootprintReference == 'J1'")
+ (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
  (constraint clearance (min 0.15mm)))
+(rule "USB4085 fixed hole pitch"
+ (condition "A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
+ (constraint hole_to_hole (min 0.45mm)))
 """)
 p.SaveBoard(str(HERE/'gemilaimate-compact.kicad_pcb'),B)
 print('Generated',SPEC['parts_count'],'components at',HERE,'- unrouted, not a manufacturing release')

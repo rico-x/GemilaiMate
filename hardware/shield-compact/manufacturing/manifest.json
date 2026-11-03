@@ -9,10 +9,10 @@
     50
   ],
   "copper_layers": 4,
-  "pcb_sha256": "d061e8510537aa28d0ecb80d857a9d189345e1b378b7f4dacdb995d3e4d974d2",
-  "archive_sha256": "037a26d648f75dbfed469dfdf1b526fcbf78a9b55e5674ec8b5c38491deec7c2",
+  "pcb_sha256": "fa34e7ac10d307d9b5ae534aa87952809c2fedd90ece2db76480f80b8debaad8",
+  "archive_sha256": "58e20d5ebbaee45f76b76549772cd319b6d02e2385c6828e43ac73a39f3fa828",
   "kicad_version": "10.0.7",
-  "smd_placements": 74,
+  "smd_placements": 77,
   "drc_violations": 0,
   "erc_violations": 0,
   "unconnected": 0,
