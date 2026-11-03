@@ -1,0 +1,15 @@
+#VRML V2.0 utf8
+Transform { translation -2.499999999999998 -3.7007874015748023 4.661417322834645 children Shape { appearance Appearance { material Material { diffuseColor 0.45 0.12 0.08 } } geometry Box { size 8.0 9.0 0.6299212598425197 } } }
+Transform { translation -0.0 0.0 1.6732283464566928 children Shape { appearance Appearance { material Material { diffuseColor 0.08 0.08 0.08 } } geometry Box { size 1.0 1.0 3.3464566929133857 } } }
+Transform { translation -0.0 0.0 3.8464566929133857 children Shape { appearance Appearance { material Material { diffuseColor 0.8 0.7 0.2 } } geometry Box { size 0.25196850393700787 0.25196850393700787 1.0 } } }
+Transform { translation -1.0 0.0 1.6732283464566928 children Shape { appearance Appearance { material Material { diffuseColor 0.08 0.08 0.08 } } geometry Box { size 1.0 1.0 3.3464566929133857 } } }
+Transform { translation -1.0 0.0 3.8464566929133857 children Shape { appearance Appearance { material Material { diffuseColor 0.8 0.7 0.2 } } geometry Box { size 0.25196850393700787 0.25196850393700787 1.0 } } }
+Transform { translation -2.0 0.0 1.6732283464566928 children Shape { appearance Appearance { material Material { diffuseColor 0.08 0.08 0.08 } } geometry Box { size 1.0 1.0 3.3464566929133857 } } }
+Transform { translation -2.0 0.0 3.8464566929133857 children Shape { appearance Appearance { material Material { diffuseColor 0.8 0.7 0.2 } } geometry Box { size 0.25196850393700787 0.25196850393700787 1.0 } } }
+Transform { translation -3.0 0.0 1.6732283464566928 children Shape { appearance Appearance { material Material { diffuseColor 0.08 0.08 0.08 } } geometry Box { size 1.0 1.0 3.3464566929133857 } } }
+Transform { translation -3.0 0.0 3.8464566929133857 children Shape { appearance Appearance { material Material { diffuseColor 0.8 0.7 0.2 } } geometry Box { size 0.25196850393700787 0.25196850393700787 1.0 } } }
+Transform { translation -4.0 0.0 1.6732283464566928 children Shape { appearance Appearance { material Material { diffuseColor 0.08 0.08 0.08 } } geometry Box { size 1.0 1.0 3.3464566929133857 } } }
+Transform { translation -4.0 0.0 3.8464566929133857 children Shape { appearance Appearance { material Material { diffuseColor 0.8 0.7 0.2 } } geometry Box { size 0.25196850393700787 0.25196850393700787 1.0 } } }
+Transform { translation -5.0 0.0 1.6732283464566928 children Shape { appearance Appearance { material Material { diffuseColor 0.08 0.08 0.08 } } geometry Box { size 1.0 1.0 3.3464566929133857 } } }
+Transform { translation -5.0 0.0 3.8464566929133857 children Shape { appearance Appearance { material Material { diffuseColor 0.8 0.7 0.2 } } geometry Box { size 0.25196850393700787 0.25196850393700787 1.0 } } }
+Transform { translation -2.499999999999998 -6.653543307086614 6.15748031496063 children Shape { appearance Appearance { material Material { diffuseColor 0.1 0.5 0.2 } } geometry Box { size 4.330708661417323 2.7559055118110236 2.3622047244094486 } } }

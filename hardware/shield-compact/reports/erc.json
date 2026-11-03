@@ -1,0 +1,77 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-11-03T10:15:45",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.7",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/e18dfb34-e273-5aaa-b2da-4a09dcb77710",
+            "violations": []
+        },
+        {
+            "path": "/USB-C and protected core power/",
+            "uuid_path": "/e18dfb34-e273-5aaa-b2da-4a09dcb77710/10327add-8c26-5136-88ec-ee153b46ebf9",
+            "violations": []
+        },
+        {
+            "path": "/ESP32-S3 and ID=3 / Boot/",
+            "uuid_path": "/e18dfb34-e273-5aaa-b2da-4a09dcb77710/66ff79ac-70a4-5400-8e35-d5219921cb79",
+            "violations": []
+        },
+        {
+            "path": "/ADS1115 and 3V3/5V I2C/",
+            "uuid_path": "/e18dfb34-e273-5aaa-b2da-4a09dcb77710/eb3532b7-4c0c-569a-8334-931d66668e8d",
+            "violations": []
+        },
+        {
+            "path": "/MAX31855 socket/",
+            "uuid_path": "/e18dfb34-e273-5aaa-b2da-4a09dcb77710/4c9cb822-9b9e-59fc-9ff0-14cdff717ab8",
+            "violations": []
+        },
+        {
+            "path": "/ZC and buffered external outputs/",
+            "uuid_path": "/e18dfb34-e273-5aaa-b2da-4a09dcb77710/d25dc9af-a3f1-5775-8983-f0e733830c57",
+            "violations": []
+        },
+        {
+            "path": "/Active-low dry contacts/",
+            "uuid_path": "/e18dfb34-e273-5aaa-b2da-4a09dcb77710/2fe4ffde-0953-5cb2-83e4-bef6beca0174",
+            "violations": []
+        },
+        {
+            "path": "/PCA9634 and tank / lighting/",
+            "uuid_path": "/e18dfb34-e273-5aaa-b2da-4a09dcb77710/588b7a01-68e5-5c07-9373-007c9ef17211",
+            "violations": []
+        },
+        {
+            "path": "/Reserved interfaces and free GPIO/",
+            "uuid_path": "/e18dfb34-e273-5aaa-b2da-4a09dcb77710/ff83d954-3f6f-5b79-94be-cc8bb8bae855",
+            "violations": []
+        }
+    ],
+    "source": "gemilaimate-compact.kicad_sch"
+}

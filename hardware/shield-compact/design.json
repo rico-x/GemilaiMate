@@ -1,0 +1,8289 @@
+{
+  "project": "GemilaiMate Compact Shield",
+  "revision": "0.1.0",
+  "date": "2026-11-03",
+  "size_mm": [
+    65,
+    50
+  ],
+  "copper_layers": 4,
+  "author": "Rico-X",
+  "repository": "https://github.com/Rico-X/GemilaiMate",
+  "hardware_tested": false,
+  "manufacturing_release": false,
+  "mains_on_board": false,
+  "board_id": 3,
+  "physical_flash_mb": 16,
+  "compatible_partition_flash_mb": 8,
+  "psram_mb": 8,
+  "peripheral_gpio": {
+    "sda": 43,
+    "scl": 44
+  },
+  "rf_keepout": [
+    5.5,
+    -8,
+    24.5,
+    -0.1
+  ],
+  "module_body": [
+    6,
+    -7.15,
+    24,
+    18.35
+  ],
+  "mounts_mm": [
+    [
+      28,
+      9
+    ],
+    [
+      15,
+      41
+    ],
+    [
+      53,
+      3
+    ]
+  ],
+  "firmware_target": "controller-compact",
+  "parts": [
+    {
+      "ref": "U1",
+      "value": "ESP32-S3-WROOM-1-N16R8",
+      "footprint": "GemilaiMateCompact:ESP32-S3-WROOM-1",
+      "x": 15.0,
+      "y": 6.35,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "GND",
+        "2": "+3V3",
+        "3": "EN",
+        "40": "GND",
+        "41": "GND",
+        "4": "TC_DO",
+        "5": "GPIO5",
+        "6": "TC_SCK",
+        "7": "TC_CS",
+        "8": "GPIO15",
+        "9": "GPIO16",
+        "10": "SCALE_CLK",
+        "11": "SCALE_DAT0",
+        "12": "EXT3",
+        "13": "USB_DM_MCU",
+        "14": "USB_DP_MCU",
+        "15": "STRAP3",
+        "16": "STRAP46",
+        "17": "PUMP_PWM",
+        "18": "VALVE",
+        "19": "BOARD_ID",
+        "20": "EXT4",
+        "21": "EXT5",
+        "22": "HEATER",
+        "23": "PUMP_ZC",
+        "24": "ALT",
+        "25": "STEAM",
+        "26": "STRAP45",
+        "27": "BOOT",
+        "28": null,
+        "29": null,
+        "30": null,
+        "31": "BREW",
+        "32": "SCALE_DAT1",
+        "33": "DETECT_EN",
+        "34": "SCL_3V3",
+        "35": "SDA_3V3",
+        "36": "ALBA_SCL",
+        "37": "ALBA_SDA",
+        "38": "EXT2",
+        "39": "EXT1"
+      },
+      "names": {
+        "4": "GPIO4",
+        "5": "GPIO5",
+        "6": "GPIO6",
+        "7": "GPIO7",
+        "8": "GPIO15",
+        "9": "GPIO16",
+        "10": "GPIO17",
+        "11": "GPIO18",
+        "12": "GPIO8",
+        "13": "GPIO19",
+        "14": "GPIO20",
+        "15": "GPIO3",
+        "16": "GPIO46",
+        "17": "GPIO9",
+        "18": "GPIO10",
+        "19": "GPIO11",
+        "20": "GPIO12",
+        "21": "GPIO13",
+        "22": "GPIO14",
+        "23": "GPIO21",
+        "24": "GPIO47",
+        "25": "GPIO48",
+        "26": "GPIO45",
+        "27": "GPIO0",
+        "28": "GPIO35",
+        "29": "GPIO36",
+        "30": "GPIO37",
+        "31": "GPIO38",
+        "32": "GPIO39",
+        "33": "GPIO40",
+        "34": "GPIO41",
+        "35": "GPIO42",
+        "36": "GPIO44",
+        "37": "GPIO43",
+        "38": "GPIO2",
+        "39": "GPIO1",
+        "1": "GND",
+        "2": "3V3",
+        "3": "EN",
+        "40": "GND",
+        "41": "EP_GND"
+      },
+      "pin_types": {
+        "4": "bidirectional",
+        "5": "bidirectional",
+        "6": "bidirectional",
+        "7": "bidirectional",
+        "8": "bidirectional",
+        "9": "bidirectional",
+        "10": "bidirectional",
+        "11": "bidirectional",
+        "12": "bidirectional",
+        "13": "bidirectional",
+        "14": "bidirectional",
+        "15": "bidirectional",
+        "16": "bidirectional",
+        "17": "bidirectional",
+        "18": "bidirectional",
+        "19": "bidirectional",
+        "20": "bidirectional",
+        "21": "bidirectional",
+        "22": "bidirectional",
+        "23": "bidirectional",
+        "24": "bidirectional",
+        "25": "bidirectional",
+        "26": "bidirectional",
+        "27": "bidirectional",
+        "28": "bidirectional",
+        "29": "bidirectional",
+        "30": "bidirectional",
+        "31": "bidirectional",
+        "32": "bidirectional",
+        "33": "bidirectional",
+        "34": "bidirectional",
+        "35": "bidirectional",
+        "36": "bidirectional",
+        "37": "bidirectional",
+        "38": "bidirectional",
+        "39": "bidirectional",
+        "1": "power_in",
+        "2": "power_in",
+        "3": "input",
+        "40": "power_in",
+        "41": "power_in"
+      },
+      "mpn": "ESP32-S3-WROOM-1-N16R8",
+      "datasheet": "https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+      "section": "MCU",
+      "dnp": false,
+      "designator": "U1",
+      "source_footprint": "RF_Module:ESP32-S3-WROOM-1",
+      "pins": [
+        {
+          "number": "1",
+          "name": "GND",
+          "net": "GND",
+          "type": "power_in",
+          "x": 6.25,
+          "y": 1.09
+        },
+        {
+          "number": "2",
+          "name": "3V3",
+          "net": "+3V3",
+          "type": "power_in",
+          "x": 6.25,
+          "y": 2.36
+        },
+        {
+          "number": "3",
+          "name": "EN",
+          "net": "EN",
+          "type": "input",
+          "x": 6.25,
+          "y": 3.63
+        },
+        {
+          "number": "4",
+          "name": "GPIO4",
+          "net": "TC_DO",
+          "type": "bidirectional",
+          "x": 6.25,
+          "y": 4.9
+        },
+        {
+          "number": "5",
+          "name": "GPIO5",
+          "net": "GPIO5",
+          "type": "bidirectional",
+          "x": 6.25,
+          "y": 6.17
+        },
+        {
+          "number": "6",
+          "name": "GPIO6",
+          "net": "TC_SCK",
+          "type": "bidirectional",
+          "x": 6.25,
+          "y": 7.44
+        },
+        {
+          "number": "7",
+          "name": "GPIO7",
+          "net": "TC_CS",
+          "type": "bidirectional",
+          "x": 6.25,
+          "y": 8.71
+        },
+        {
+          "number": "8",
+          "name": "GPIO15",
+          "net": "GPIO15",
+          "type": "bidirectional",
+          "x": 6.25,
+          "y": 9.98
+        },
+        {
+          "number": "9",
+          "name": "GPIO16",
+          "net": "GPIO16",
+          "type": "bidirectional",
+          "x": 6.25,
+          "y": 11.25
+        },
+        {
+          "number": "10",
+          "name": "GPIO17",
+          "net": "SCALE_CLK",
+          "type": "bidirectional",
+          "x": 6.25,
+          "y": 12.52
+        },
+        {
+          "number": "11",
+          "name": "GPIO18",
+          "net": "SCALE_DAT0",
+          "type": "bidirectional",
+          "x": 6.25,
+          "y": 13.79
+        },
+        {
+          "number": "12",
+          "name": "GPIO8",
+          "net": "EXT3",
+          "type": "bidirectional",
+          "x": 6.25,
+          "y": 15.06
+        },
+        {
+          "number": "13",
+          "name": "GPIO19",
+          "net": "USB_DM_MCU",
+          "type": "bidirectional",
+          "x": 6.25,
+          "y": 16.33
+        },
+        {
+          "number": "14",
+          "name": "GPIO20",
+          "net": "USB_DP_MCU",
+          "type": "bidirectional",
+          "x": 6.25,
+          "y": 17.6
+        },
+        {
+          "number": "15",
+          "name": "GPIO3",
+          "net": "STRAP3",
+          "type": "bidirectional",
+          "x": 8.015,
+          "y": 18.85
+        },
+        {
+          "number": "16",
+          "name": "GPIO46",
+          "net": "STRAP46",
+          "type": "bidirectional",
+          "x": 9.285,
+          "y": 18.85
+        },
+        {
+          "number": "17",
+          "name": "GPIO9",
+          "net": "PUMP_PWM",
+          "type": "bidirectional",
+          "x": 10.555,
+          "y": 18.85
+        },
+        {
+          "number": "18",
+          "name": "GPIO10",
+          "net": "VALVE",
+          "type": "bidirectional",
+          "x": 11.825,
+          "y": 18.85
+        },
+        {
+          "number": "19",
+          "name": "GPIO11",
+          "net": "BOARD_ID",
+          "type": "bidirectional",
+          "x": 13.095,
+          "y": 18.85
+        },
+        {
+          "number": "20",
+          "name": "GPIO12",
+          "net": "EXT4",
+          "type": "bidirectional",
+          "x": 14.365,
+          "y": 18.85
+        },
+        {
+          "number": "21",
+          "name": "GPIO13",
+          "net": "EXT5",
+          "type": "bidirectional",
+          "x": 15.635,
+          "y": 18.85
+        },
+        {
+          "number": "22",
+          "name": "GPIO14",
+          "net": "HEATER",
+          "type": "bidirectional",
+          "x": 16.905,
+          "y": 18.85
+        },
+        {
+          "number": "23",
+          "name": "GPIO21",
+          "net": "PUMP_ZC",
+          "type": "bidirectional",
+          "x": 18.175,
+          "y": 18.85
+        },
+        {
+          "number": "24",
+          "name": "GPIO47",
+          "net": "ALT",
+          "type": "bidirectional",
+          "x": 19.445,
+          "y": 18.85
+        },
+        {
+          "number": "25",
+          "name": "GPIO48",
+          "net": "STEAM",
+          "type": "bidirectional",
+          "x": 20.715,
+          "y": 18.85
+        },
+        {
+          "number": "26",
+          "name": "GPIO45",
+          "net": "STRAP45",
+          "type": "bidirectional",
+          "x": 21.985,
+          "y": 18.85
+        },
+        {
+          "number": "27",
+          "name": "GPIO0",
+          "net": "BOOT",
+          "type": "bidirectional",
+          "x": 23.75,
+          "y": 17.6
+        },
+        {
+          "number": "28",
+          "name": "GPIO35",
+          "net": null,
+          "type": "bidirectional",
+          "x": 23.75,
+          "y": 16.33
+        },
+        {
+          "number": "29",
+          "name": "GPIO36",
+          "net": null,
+          "type": "bidirectional",
+          "x": 23.75,
+          "y": 15.06
+        },
+        {
+          "number": "30",
+          "name": "GPIO37",
+          "net": null,
+          "type": "bidirectional",
+          "x": 23.75,
+          "y": 13.79
+        },
+        {
+          "number": "31",
+          "name": "GPIO38",
+          "net": "BREW",
+          "type": "bidirectional",
+          "x": 23.75,
+          "y": 12.52
+        },
+        {
+          "number": "32",
+          "name": "GPIO39",
+          "net": "SCALE_DAT1",
+          "type": "bidirectional",
+          "x": 23.75,
+          "y": 11.25
+        },
+        {
+          "number": "33",
+          "name": "GPIO40",
+          "net": "DETECT_EN",
+          "type": "bidirectional",
+          "x": 23.75,
+          "y": 9.98
+        },
+        {
+          "number": "34",
+          "name": "GPIO41",
+          "net": "SCL_3V3",
+          "type": "bidirectional",
+          "x": 23.75,
+          "y": 8.71
+        },
+        {
+          "number": "35",
+          "name": "GPIO42",
+          "net": "SDA_3V3",
+          "type": "bidirectional",
+          "x": 23.75,
+          "y": 7.44
+        },
+        {
+          "number": "36",
+          "name": "GPIO44",
+          "net": "ALBA_SCL",
+          "type": "bidirectional",
+          "x": 23.75,
+          "y": 6.17
+        },
+        {
+          "number": "37",
+          "name": "GPIO43",
+          "net": "ALBA_SDA",
+          "type": "bidirectional",
+          "x": 23.75,
+          "y": 4.9
+        },
+        {
+          "number": "38",
+          "name": "GPIO2",
+          "net": "EXT2",
+          "type": "bidirectional",
+          "x": 23.75,
+          "y": 3.63
+        },
+        {
+          "number": "39",
+          "name": "GPIO1",
+          "net": "EXT1",
+          "type": "bidirectional",
+          "x": 23.75,
+          "y": 2.36
+        },
+        {
+          "number": "40",
+          "name": "GND",
+          "net": "GND",
+          "type": "power_in",
+          "x": 23.75,
+          "y": 1.09
+        },
+        {
+          "number": "41",
+          "name": "EP_GND",
+          "net": "GND",
+          "type": "power_in",
+          "x": 12.1,
+          "y": 8.11
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 6.25,
+          "y": 1.09,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 6.25,
+          "y": 2.36,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "3",
+          "x": 6.25,
+          "y": 3.63,
+          "net": "EN",
+          "smd": true
+        },
+        {
+          "number": "4",
+          "x": 6.25,
+          "y": 4.9,
+          "net": "TC_DO",
+          "smd": true
+        },
+        {
+          "number": "5",
+          "x": 6.25,
+          "y": 6.17,
+          "net": "GPIO5",
+          "smd": true
+        },
+        {
+          "number": "6",
+          "x": 6.25,
+          "y": 7.44,
+          "net": "TC_SCK",
+          "smd": true
+        },
+        {
+          "number": "7",
+          "x": 6.25,
+          "y": 8.71,
+          "net": "TC_CS",
+          "smd": true
+        },
+        {
+          "number": "8",
+          "x": 6.25,
+          "y": 9.98,
+          "net": "GPIO15",
+          "smd": true
+        },
+        {
+          "number": "9",
+          "x": 6.25,
+          "y": 11.25,
+          "net": "GPIO16",
+          "smd": true
+        },
+        {
+          "number": "10",
+          "x": 6.25,
+          "y": 12.52,
+          "net": "SCALE_CLK",
+          "smd": true
+        },
+        {
+          "number": "11",
+          "x": 6.25,
+          "y": 13.79,
+          "net": "SCALE_DAT0",
+          "smd": true
+        },
+        {
+          "number": "12",
+          "x": 6.25,
+          "y": 15.06,
+          "net": "EXT3",
+          "smd": true
+        },
+        {
+          "number": "13",
+          "x": 6.25,
+          "y": 16.33,
+          "net": "USB_DM_MCU",
+          "smd": true
+        },
+        {
+          "number": "14",
+          "x": 6.25,
+          "y": 17.6,
+          "net": "USB_DP_MCU",
+          "smd": true
+        },
+        {
+          "number": "15",
+          "x": 8.015,
+          "y": 18.85,
+          "net": "STRAP3",
+          "smd": true
+        },
+        {
+          "number": "16",
+          "x": 9.285,
+          "y": 18.85,
+          "net": "STRAP46",
+          "smd": true
+        },
+        {
+          "number": "17",
+          "x": 10.555,
+          "y": 18.85,
+          "net": "PUMP_PWM",
+          "smd": true
+        },
+        {
+          "number": "18",
+          "x": 11.825,
+          "y": 18.85,
+          "net": "VALVE",
+          "smd": true
+        },
+        {
+          "number": "19",
+          "x": 13.095,
+          "y": 18.85,
+          "net": "BOARD_ID",
+          "smd": true
+        },
+        {
+          "number": "20",
+          "x": 14.365,
+          "y": 18.85,
+          "net": "EXT4",
+          "smd": true
+        },
+        {
+          "number": "21",
+          "x": 15.635,
+          "y": 18.85,
+          "net": "EXT5",
+          "smd": true
+        },
+        {
+          "number": "22",
+          "x": 16.905,
+          "y": 18.85,
+          "net": "HEATER",
+          "smd": true
+        },
+        {
+          "number": "23",
+          "x": 18.175,
+          "y": 18.85,
+          "net": "PUMP_ZC",
+          "smd": true
+        },
+        {
+          "number": "24",
+          "x": 19.445,
+          "y": 18.85,
+          "net": "ALT",
+          "smd": true
+        },
+        {
+          "number": "25",
+          "x": 20.715,
+          "y": 18.85,
+          "net": "STEAM",
+          "smd": true
+        },
+        {
+          "number": "26",
+          "x": 21.985,
+          "y": 18.85,
+          "net": "STRAP45",
+          "smd": true
+        },
+        {
+          "number": "27",
+          "x": 23.75,
+          "y": 17.6,
+          "net": "BOOT",
+          "smd": true
+        },
+        {
+          "number": "28",
+          "x": 23.75,
+          "y": 16.33,
+          "net": null,
+          "smd": true
+        },
+        {
+          "number": "29",
+          "x": 23.75,
+          "y": 15.06,
+          "net": null,
+          "smd": true
+        },
+        {
+          "number": "30",
+          "x": 23.75,
+          "y": 13.79,
+          "net": null,
+          "smd": true
+        },
+        {
+          "number": "31",
+          "x": 23.75,
+          "y": 12.52,
+          "net": "BREW",
+          "smd": true
+        },
+        {
+          "number": "32",
+          "x": 23.75,
+          "y": 11.25,
+          "net": "SCALE_DAT1",
+          "smd": true
+        },
+        {
+          "number": "33",
+          "x": 23.75,
+          "y": 9.98,
+          "net": "DETECT_EN",
+          "smd": true
+        },
+        {
+          "number": "34",
+          "x": 23.75,
+          "y": 8.71,
+          "net": "SCL_3V3",
+          "smd": true
+        },
+        {
+          "number": "35",
+          "x": 23.75,
+          "y": 7.44,
+          "net": "SDA_3V3",
+          "smd": true
+        },
+        {
+          "number": "36",
+          "x": 23.75,
+          "y": 6.17,
+          "net": "ALBA_SCL",
+          "smd": true
+        },
+        {
+          "number": "37",
+          "x": 23.75,
+          "y": 4.9,
+          "net": "ALBA_SDA",
+          "smd": true
+        },
+        {
+          "number": "38",
+          "x": 23.75,
+          "y": 3.63,
+          "net": "EXT2",
+          "smd": true
+        },
+        {
+          "number": "39",
+          "x": 23.75,
+          "y": 2.36,
+          "net": "EXT1",
+          "smd": true
+        },
+        {
+          "number": "40",
+          "x": 23.75,
+          "y": 1.09,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "41",
+          "x": 12.1,
+          "y": 8.11,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "41",
+          "x": 12.1,
+          "y": 9.51,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "41",
+          "x": 12.8,
+          "y": 7.41,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "41",
+          "x": 12.8,
+          "y": 8.81,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "41",
+          "x": 12.8,
+          "y": 10.21,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "41",
+          "x": 13.5,
+          "y": 8.11,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "41",
+          "x": 13.5,
+          "y": 8.81,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "41",
+          "x": 13.5,
+          "y": 9.51,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "41",
+          "x": 14.2,
+          "y": 7.41,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "41",
+          "x": 14.2,
+          "y": 8.81,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "41",
+          "x": 14.2,
+          "y": 10.21,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "41",
+          "x": 14.9,
+          "y": 8.11,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "41",
+          "x": 14.9,
+          "y": 9.51,
+          "net": "GND",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "J_USB",
+      "value": "USB4085-GF-A",
+      "footprint": "GemilaiMateCompact:USB_C_Receptacle_GCT_USB4085",
+      "x": 4.5,
+      "y": 41.2,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "A1": "GND",
+        "A12": "GND",
+        "B1": "GND",
+        "B12": "GND",
+        "SH": "GND",
+        "A4": "USB_VBUS",
+        "A9": "USB_VBUS",
+        "B4": "USB_VBUS",
+        "B9": "USB_VBUS",
+        "A5": "CC1",
+        "B5": "CC2",
+        "A6": "USB_DP",
+        "B6": "USB_DP",
+        "A7": "USB_DM",
+        "B7": "USB_DM",
+        "A8": null,
+        "B8": null
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "USB4085-GF-A",
+      "datasheet": "https://gct.co/connector/usb4085",
+      "section": "USB",
+      "dnp": false,
+      "designator": "J1",
+      "source_footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4085",
+      "pins": [
+        {
+          "number": "A1",
+          "name": "A1",
+          "net": "GND",
+          "type": "passive",
+          "x": 4.5,
+          "y": 41.2
+        },
+        {
+          "number": "A12",
+          "name": "A12",
+          "net": "GND",
+          "type": "passive",
+          "x": 10.45,
+          "y": 41.2
+        },
+        {
+          "number": "A4",
+          "name": "A4",
+          "net": "USB_VBUS",
+          "type": "passive",
+          "x": 5.35,
+          "y": 41.2
+        },
+        {
+          "number": "A5",
+          "name": "A5",
+          "net": "CC1",
+          "type": "passive",
+          "x": 6.2,
+          "y": 41.2
+        },
+        {
+          "number": "A6",
+          "name": "A6",
+          "net": "USB_DP",
+          "type": "passive",
+          "x": 7.05,
+          "y": 41.2
+        },
+        {
+          "number": "A7",
+          "name": "A7",
+          "net": "USB_DM",
+          "type": "passive",
+          "x": 7.9,
+          "y": 41.2
+        },
+        {
+          "number": "A8",
+          "name": "A8",
+          "net": null,
+          "type": "passive",
+          "x": 8.75,
+          "y": 41.2
+        },
+        {
+          "number": "A9",
+          "name": "A9",
+          "net": "USB_VBUS",
+          "type": "passive",
+          "x": 9.6,
+          "y": 41.2
+        },
+        {
+          "number": "B1",
+          "name": "B1",
+          "net": "GND",
+          "type": "passive",
+          "x": 10.45,
+          "y": 42.55
+        },
+        {
+          "number": "B12",
+          "name": "B12",
+          "net": "GND",
+          "type": "passive",
+          "x": 4.5,
+          "y": 42.55
+        },
+        {
+          "number": "B4",
+          "name": "B4",
+          "net": "USB_VBUS",
+          "type": "passive",
+          "x": 9.6,
+          "y": 42.55
+        },
+        {
+          "number": "B5",
+          "name": "B5",
+          "net": "CC2",
+          "type": "passive",
+          "x": 8.75,
+          "y": 42.55
+        },
+        {
+          "number": "B6",
+          "name": "B6",
+          "net": "USB_DP",
+          "type": "passive",
+          "x": 7.9,
+          "y": 42.55
+        },
+        {
+          "number": "B7",
+          "name": "B7",
+          "net": "USB_DM",
+          "type": "passive",
+          "x": 7.05,
+          "y": 42.55
+        },
+        {
+          "number": "B8",
+          "name": "B8",
+          "net": null,
+          "type": "passive",
+          "x": 6.2,
+          "y": 42.55
+        },
+        {
+          "number": "B9",
+          "name": "B9",
+          "net": "USB_VBUS",
+          "type": "passive",
+          "x": 5.35,
+          "y": 42.55
+        },
+        {
+          "number": "SH",
+          "name": "SH",
+          "net": "GND",
+          "type": "passive",
+          "x": 3.15,
+          "y": 42.18
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "A1",
+          "x": 4.5,
+          "y": 41.2,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "A4",
+          "x": 5.35,
+          "y": 41.2,
+          "net": "USB_VBUS",
+          "smd": false
+        },
+        {
+          "number": "A5",
+          "x": 6.2,
+          "y": 41.2,
+          "net": "CC1",
+          "smd": false
+        },
+        {
+          "number": "A6",
+          "x": 7.05,
+          "y": 41.2,
+          "net": "USB_DP",
+          "smd": false
+        },
+        {
+          "number": "A7",
+          "x": 7.9,
+          "y": 41.2,
+          "net": "USB_DM",
+          "smd": false
+        },
+        {
+          "number": "A8",
+          "x": 8.75,
+          "y": 41.2,
+          "net": null,
+          "smd": false
+        },
+        {
+          "number": "A9",
+          "x": 9.6,
+          "y": 41.2,
+          "net": "USB_VBUS",
+          "smd": false
+        },
+        {
+          "number": "A12",
+          "x": 10.45,
+          "y": 41.2,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "B1",
+          "x": 10.45,
+          "y": 42.55,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "B4",
+          "x": 9.6,
+          "y": 42.55,
+          "net": "USB_VBUS",
+          "smd": false
+        },
+        {
+          "number": "B5",
+          "x": 8.75,
+          "y": 42.55,
+          "net": "CC2",
+          "smd": false
+        },
+        {
+          "number": "B6",
+          "x": 7.9,
+          "y": 42.55,
+          "net": "USB_DP",
+          "smd": false
+        },
+        {
+          "number": "B7",
+          "x": 7.05,
+          "y": 42.55,
+          "net": "USB_DM",
+          "smd": false
+        },
+        {
+          "number": "B8",
+          "x": 6.2,
+          "y": 42.55,
+          "net": null,
+          "smd": false
+        },
+        {
+          "number": "B9",
+          "x": 5.35,
+          "y": 42.55,
+          "net": "USB_VBUS",
+          "smd": false
+        },
+        {
+          "number": "B12",
+          "x": 4.5,
+          "y": 42.55,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "SH",
+          "x": 3.15,
+          "y": 42.18,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "SH",
+          "x": 3.15,
+          "y": 45.56,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "SH",
+          "x": 11.8,
+          "y": 42.18,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "SH",
+          "x": 11.8,
+          "y": 45.56,
+          "net": "GND",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "R_CC1",
+      "value": "5.1k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 14.0,
+      "y": 35.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "CC1",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-075K1L",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R1",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "CC1",
+          "type": "passive",
+          "x": 13.175,
+          "y": 35.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 14.825,
+          "y": 35.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 13.175,
+          "y": 35.0,
+          "net": "CC1",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 14.825,
+          "y": 35.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_CC2",
+      "value": "5.1k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 17.5,
+      "y": 35.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "CC2",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-075K1L",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R2",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "CC2",
+          "type": "passive",
+          "x": 16.675,
+          "y": 35.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 18.325,
+          "y": 35.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 16.675,
+          "y": 35.0,
+          "net": "CC2",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 18.325,
+          "y": 35.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_USBP",
+      "value": "22R 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 3.5,
+      "y": 18.1,
+      "rotation": 180.0,
+      "side": "front",
+      "nets": {
+        "1": "USB_DP_MCU",
+        "2": "USB_DP"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0722RL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R3",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "USB_DP_MCU",
+          "type": "passive",
+          "x": 4.325,
+          "y": 18.1
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "USB_DP",
+          "type": "passive",
+          "x": 2.675,
+          "y": 18.1
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 4.325,
+          "y": 18.1,
+          "net": "USB_DP_MCU",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 2.675,
+          "y": 18.1,
+          "net": "USB_DP",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_USBM",
+      "value": "22R 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 3.5,
+      "y": 16.329999,
+      "rotation": 180.0,
+      "side": "front",
+      "nets": {
+        "1": "USB_DM_MCU",
+        "2": "USB_DM"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0722RL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R4",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "USB_DM_MCU",
+          "type": "passive",
+          "x": 4.325,
+          "y": 16.329999
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "USB_DM",
+          "type": "passive",
+          "x": 2.675,
+          "y": 16.329999
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 4.325,
+          "y": 16.329999,
+          "net": "USB_DM_MCU",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 2.675,
+          "y": 16.329999,
+          "net": "USB_DM",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "U_ESD",
+      "value": "USBLC6-2SC6",
+      "footprint": "GemilaiMateCompact:SOT-23-6",
+      "x": 7.475,
+      "y": 33.5,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "USB_DM",
+        "2": "GND",
+        "3": "USB_DP",
+        "4": "USB_DP",
+        "5": "USB_VBUS",
+        "6": "USB_DM"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "USBLC6-2SC6",
+      "datasheet": "https://www.st.com/resource/en/datasheet/usblc6-2.pdf",
+      "section": "USB",
+      "dnp": false,
+      "designator": "U2",
+      "source_footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "USB_DM",
+          "type": "passive",
+          "x": 6.525,
+          "y": 34.6375
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 7.475,
+          "y": 34.6375
+        },
+        {
+          "number": "3",
+          "name": "3",
+          "net": "USB_DP",
+          "type": "passive",
+          "x": 8.425,
+          "y": 34.6375
+        },
+        {
+          "number": "4",
+          "name": "4",
+          "net": "USB_DP",
+          "type": "passive",
+          "x": 8.425,
+          "y": 32.3625
+        },
+        {
+          "number": "5",
+          "name": "5",
+          "net": "USB_VBUS",
+          "type": "passive",
+          "x": 7.475,
+          "y": 32.3625
+        },
+        {
+          "number": "6",
+          "name": "6",
+          "net": "USB_DM",
+          "type": "passive",
+          "x": 6.525,
+          "y": 32.3625
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 6.525,
+          "y": 34.6375,
+          "net": "USB_DM",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 7.475,
+          "y": 34.6375,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "3",
+          "x": 8.425,
+          "y": 34.6375,
+          "net": "USB_DP",
+          "smd": true
+        },
+        {
+          "number": "4",
+          "x": 8.425,
+          "y": 32.3625,
+          "net": "USB_DP",
+          "smd": true
+        },
+        {
+          "number": "5",
+          "x": 7.475,
+          "y": 32.3625,
+          "net": "USB_VBUS",
+          "smd": true
+        },
+        {
+          "number": "6",
+          "x": 6.525,
+          "y": 32.3625,
+          "net": "USB_DM",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "F_USB",
+      "value": "1206L050YR 0.5A",
+      "footprint": "GemilaiMateCompact:Fuse_1206_3216Metric",
+      "x": 19.5,
+      "y": 40.5,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "USB_VBUS",
+        "2": "USB_FUSED"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "1206L050YR",
+      "datasheet": "",
+      "section": "Power",
+      "dnp": false,
+      "designator": "F1",
+      "source_footprint": "Fuse:Fuse_1206_3216Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "USB_VBUS",
+          "type": "passive",
+          "x": 18.1,
+          "y": 40.5
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "USB_FUSED",
+          "type": "passive",
+          "x": 20.9,
+          "y": 40.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 18.1,
+          "y": 40.5,
+          "net": "USB_VBUS",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 20.9,
+          "y": 40.5,
+          "net": "USB_FUSED",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "F_EXT",
+      "value": "1206L110/16 1.1A",
+      "footprint": "GemilaiMateCompact:Fuse_1206_3216Metric",
+      "x": 46.0,
+      "y": 3.5,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "EXT_IN",
+        "2": "+5V_EXT"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "1206L110/16WR",
+      "datasheet": "",
+      "section": "Power",
+      "dnp": false,
+      "designator": "F2",
+      "source_footprint": "Fuse:Fuse_1206_3216Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "EXT_IN",
+          "type": "passive",
+          "x": 44.6,
+          "y": 3.5
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "+5V_EXT",
+          "type": "passive",
+          "x": 47.4,
+          "y": 3.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 44.6,
+          "y": 3.5,
+          "net": "EXT_IN",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 47.4,
+          "y": 3.5,
+          "net": "+5V_EXT",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "D_USB",
+      "value": "SS14",
+      "footprint": "GemilaiMateCompact:D_SMA",
+      "x": 22.0,
+      "y": 44.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+5V_CORE",
+        "2": "USB_FUSED"
+      },
+      "names": {
+        "1": "K",
+        "2": "A"
+      },
+      "pin_types": {},
+      "mpn": "SS14-13-F",
+      "datasheet": "",
+      "section": "Power",
+      "dnp": false,
+      "designator": "D1",
+      "source_footprint": "Diode_SMD:D_SMA",
+      "pins": [
+        {
+          "number": "1",
+          "name": "K",
+          "net": "+5V_CORE",
+          "type": "passive",
+          "x": 20.0,
+          "y": 44.0
+        },
+        {
+          "number": "2",
+          "name": "A",
+          "net": "USB_FUSED",
+          "type": "passive",
+          "x": 24.0,
+          "y": 44.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 20.0,
+          "y": 44.0,
+          "net": "+5V_CORE",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 24.0,
+          "y": 44.0,
+          "net": "USB_FUSED",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "D_EXT",
+      "value": "SS14",
+      "footprint": "GemilaiMateCompact:D_SMA",
+      "x": 36.5,
+      "y": 7.5,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+5V_CORE",
+        "2": "+5V_EXT"
+      },
+      "names": {
+        "1": "K",
+        "2": "A"
+      },
+      "pin_types": {},
+      "mpn": "SS14-13-F",
+      "datasheet": "",
+      "section": "Power",
+      "dnp": false,
+      "designator": "D2",
+      "source_footprint": "Diode_SMD:D_SMA",
+      "pins": [
+        {
+          "number": "1",
+          "name": "K",
+          "net": "+5V_CORE",
+          "type": "passive",
+          "x": 34.5,
+          "y": 7.5
+        },
+        {
+          "number": "2",
+          "name": "A",
+          "net": "+5V_EXT",
+          "type": "passive",
+          "x": 38.5,
+          "y": 7.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 34.5,
+          "y": 7.5,
+          "net": "+5V_CORE",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 38.5,
+          "y": 7.5,
+          "net": "+5V_EXT",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "U_REG",
+      "value": "AP7361C-33E-13",
+      "footprint": "GemilaiMateCompact:SOT-223-3_TabPin2",
+      "x": 45.0,
+      "y": 9.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+5V_CORE",
+        "2": "GND",
+        "3": "+3V3"
+      },
+      "names": {
+        "1": "IN",
+        "2": "GND_TAB",
+        "3": "OUT"
+      },
+      "pin_types": {
+        "1": "power_in",
+        "2": "power_in",
+        "3": "power_out"
+      },
+      "mpn": "AP7361C-33E-13",
+      "datasheet": "https://www.diodes.com/datasheet/download/AP7361C.pdf",
+      "section": "Power",
+      "dnp": false,
+      "designator": "U3",
+      "source_footprint": "Package_TO_SOT_SMD:SOT-223-3_TabPin2",
+      "pins": [
+        {
+          "number": "1",
+          "name": "IN",
+          "net": "+5V_CORE",
+          "type": "power_in",
+          "x": 41.85,
+          "y": 6.7
+        },
+        {
+          "number": "2",
+          "name": "GND_TAB",
+          "net": "GND",
+          "type": "power_in",
+          "x": 41.85,
+          "y": 9.0
+        },
+        {
+          "number": "3",
+          "name": "OUT",
+          "net": "+3V3",
+          "type": "power_out",
+          "x": 41.85,
+          "y": 11.3
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 41.85,
+          "y": 6.7,
+          "net": "+5V_CORE",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 41.85,
+          "y": 9.0,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 48.15,
+          "y": 9.0,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "3",
+          "x": 41.85,
+          "y": 11.3,
+          "net": "+3V3",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_IN",
+      "value": "10uF 10V X7R",
+      "footprint": "GemilaiMateCompact:C_1206_3216Metric",
+      "x": 28.0,
+      "y": 12.5,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+5V_CORE",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM31CR71A106KA01L",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C1",
+      "source_footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+5V_CORE",
+          "type": "passive",
+          "x": 26.525,
+          "y": 12.5
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 29.475,
+          "y": 12.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 26.525,
+          "y": 12.5,
+          "net": "+5V_CORE",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 29.475,
+          "y": 12.5,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_OUT",
+      "value": "10uF 10V X7R",
+      "footprint": "GemilaiMateCompact:C_1206_3216Metric",
+      "x": 51.0,
+      "y": 8.0,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM31CR71A106KA01L",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C2",
+      "source_footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 51.0,
+          "y": 9.475
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 51.0,
+          "y": 6.525
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 51.0,
+          "y": 9.475,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 51.0,
+          "y": 6.525,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_MCU",
+      "value": "10uF 10V X7R",
+      "footprint": "GemilaiMateCompact:C_1206_3216Metric",
+      "x": 3.0,
+      "y": 7.5,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM31CR71A106KA01L",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C3",
+      "source_footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 3.0,
+          "y": 8.975
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 3.0,
+          "y": 6.025
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 3.0,
+          "y": 8.975,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 3.0,
+          "y": 6.025,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_MCUHF",
+      "value": "100nF 50V X7R",
+      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "x": 3.0,
+      "y": 2.5,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM188R71H104KA93D",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C4",
+      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 2.225,
+          "y": 2.5
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 3.775,
+          "y": 2.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 2.225,
+          "y": 2.5,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 3.775,
+          "y": 2.5,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_EN",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 4.0,
+      "y": 11.5,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "EN"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R5",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 4.0,
+          "y": 12.325
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "EN",
+          "type": "passive",
+          "x": 4.0,
+          "y": 10.675
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 4.0,
+          "y": 12.325,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 4.0,
+          "y": 10.675,
+          "net": "EN",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_EN",
+      "value": "1uF 16V X7R",
+      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "x": 3.5,
+      "y": 14.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "EN",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM188R71C105KA12D",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C5",
+      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "EN",
+          "type": "passive",
+          "x": 2.725,
+          "y": 14.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 4.275,
+          "y": 14.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 2.725,
+          "y": 14.0,
+          "net": "EN",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 4.275,
+          "y": 14.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_BOOT",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 26.5,
+      "y": 17.0,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "BOOT"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R6",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 26.5,
+          "y": 17.825
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "BOOT",
+          "type": "passive",
+          "x": 26.5,
+          "y": 16.175
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 26.5,
+          "y": 17.825,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 26.5,
+          "y": 16.175,
+          "net": "BOOT",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "SW_RESET",
+      "value": "RESET",
+      "footprint": "GemilaiMateCompact:SW_SPST_TL3342",
+      "x": 34.0,
+      "y": 17.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "EN",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "TL3342F160QG",
+      "datasheet": "",
+      "section": "Boot",
+      "dnp": false,
+      "designator": "SW1",
+      "source_footprint": "Button_Switch_SMD:SW_SPST_TL3342",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "EN",
+          "type": "passive",
+          "x": 30.85,
+          "y": 15.1
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 30.85,
+          "y": 18.9
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 30.85,
+          "y": 15.1,
+          "net": "EN",
+          "smd": true
+        },
+        {
+          "number": "1",
+          "x": 37.15,
+          "y": 15.1,
+          "net": "EN",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 30.85,
+          "y": 18.9,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 37.15,
+          "y": 18.9,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "SW_BOOT",
+      "value": "BOOT",
+      "footprint": "GemilaiMateCompact:SW_SPST_TL3342",
+      "x": 41.5,
+      "y": 17.0,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "BOOT",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "TL3342F160QG",
+      "datasheet": "",
+      "section": "Boot",
+      "dnp": false,
+      "designator": "SW2",
+      "source_footprint": "Button_Switch_SMD:SW_SPST_TL3342",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "BOOT",
+          "type": "passive",
+          "x": 39.6,
+          "y": 20.15
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 43.4,
+          "y": 20.15
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 39.6,
+          "y": 20.15,
+          "net": "BOOT",
+          "smd": true
+        },
+        {
+          "number": "1",
+          "x": 39.6,
+          "y": 13.85,
+          "net": "BOOT",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 43.4,
+          "y": 20.15,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 43.4,
+          "y": 13.85,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_ID_TOP",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 26.5,
+      "y": 6.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "DETECT_EN",
+        "2": "BOARD_ID"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R7",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "DETECT_EN",
+          "type": "passive",
+          "x": 25.675,
+          "y": 6.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "BOARD_ID",
+          "type": "passive",
+          "x": 27.325,
+          "y": 6.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 25.675,
+          "y": 6.0,
+          "net": "DETECT_EN",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 27.325,
+          "y": 6.0,
+          "net": "BOARD_ID",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_ID_LOW",
+      "value": "1.2k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 31.0,
+      "y": 7.5,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "BOARD_ID",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-071K2L",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R8",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "BOARD_ID",
+          "type": "passive",
+          "x": 31.0,
+          "y": 8.325
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 31.0,
+          "y": 6.675
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 31.0,
+          "y": 8.325,
+          "net": "BOARD_ID",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 31.0,
+          "y": 6.675,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_ID",
+      "value": "10nF 50V C0G",
+      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "x": 28.5,
+      "y": 15.5,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "BOARD_ID",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM1885C1H103JA01D",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C6",
+      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "BOARD_ID",
+          "type": "passive",
+          "x": 28.5,
+          "y": 16.275
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 28.5,
+          "y": 14.725
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 28.5,
+          "y": 16.275,
+          "net": "BOARD_ID",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 28.5,
+          "y": 14.725,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "U_LEVEL",
+      "value": "TXS0102DCTR",
+      "footprint": "GemilaiMateCompact:TXS0102_DCT_SSOP8",
+      "x": 29.0,
+      "y": 29.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "SDA_5V",
+        "2": "GND",
+        "3": "+3V3",
+        "4": "SDA_3V3",
+        "5": "SCL_3V3",
+        "6": "I2C_OE",
+        "7": "+5V_CORE",
+        "8": "SCL_5V"
+      },
+      "names": {
+        "1": "B2",
+        "2": "GND",
+        "3": "VCCA",
+        "4": "A2",
+        "5": "A1",
+        "6": "OE",
+        "7": "VCCB",
+        "8": "B1"
+      },
+      "pin_types": {
+        "2": "power_in",
+        "3": "power_in",
+        "7": "power_in",
+        "6": "input",
+        "1": "bidirectional",
+        "4": "bidirectional",
+        "5": "bidirectional",
+        "8": "bidirectional"
+      },
+      "mpn": "TXS0102DCTR",
+      "datasheet": "https://www.ti.com/lit/ds/symlink/txs0102.pdf",
+      "section": "ADC",
+      "dnp": false,
+      "designator": "U4",
+      "source_footprint": "GemilaiMateCompact:TXS0102_DCT_SSOP8",
+      "pins": [
+        {
+          "number": "1",
+          "name": "B2",
+          "net": "SDA_5V",
+          "type": "bidirectional",
+          "x": 27.1,
+          "y": 28.025
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND",
+          "type": "power_in",
+          "x": 27.1,
+          "y": 28.675
+        },
+        {
+          "number": "3",
+          "name": "VCCA",
+          "net": "+3V3",
+          "type": "power_in",
+          "x": 27.1,
+          "y": 29.325
+        },
+        {
+          "number": "4",
+          "name": "A2",
+          "net": "SDA_3V3",
+          "type": "bidirectional",
+          "x": 27.1,
+          "y": 29.975
+        },
+        {
+          "number": "5",
+          "name": "A1",
+          "net": "SCL_3V3",
+          "type": "bidirectional",
+          "x": 30.9,
+          "y": 29.975
+        },
+        {
+          "number": "6",
+          "name": "OE",
+          "net": "I2C_OE",
+          "type": "input",
+          "x": 30.9,
+          "y": 29.325
+        },
+        {
+          "number": "7",
+          "name": "VCCB",
+          "net": "+5V_CORE",
+          "type": "power_in",
+          "x": 30.9,
+          "y": 28.675
+        },
+        {
+          "number": "8",
+          "name": "B1",
+          "net": "SCL_5V",
+          "type": "bidirectional",
+          "x": 30.9,
+          "y": 28.025
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 27.1,
+          "y": 28.025,
+          "net": "SDA_5V",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 27.1,
+          "y": 28.675,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "3",
+          "x": 27.1,
+          "y": 29.325,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "4",
+          "x": 27.1,
+          "y": 29.975,
+          "net": "SDA_3V3",
+          "smd": true
+        },
+        {
+          "number": "5",
+          "x": 30.9,
+          "y": 29.975,
+          "net": "SCL_3V3",
+          "smd": true
+        },
+        {
+          "number": "6",
+          "x": 30.9,
+          "y": 29.325,
+          "net": "I2C_OE",
+          "smd": true
+        },
+        {
+          "number": "7",
+          "x": 30.9,
+          "y": 28.675,
+          "net": "+5V_CORE",
+          "smd": true
+        },
+        {
+          "number": "8",
+          "x": 30.9,
+          "y": 28.025,
+          "net": "SCL_5V",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_OE",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 31.5,
+      "y": 32.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "I2C_OE"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R9",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 30.675,
+          "y": 32.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "I2C_OE",
+          "type": "passive",
+          "x": 32.325,
+          "y": 32.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 30.675,
+          "y": 32.0,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 32.325,
+          "y": 32.0,
+          "net": "I2C_OE",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_OEPD",
+      "value": "100k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 28.0,
+      "y": 33.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "I2C_OE",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-07100KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R10",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "I2C_OE",
+          "type": "passive",
+          "x": 27.175,
+          "y": 33.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 28.825,
+          "y": 33.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 27.175,
+          "y": 33.0,
+          "net": "I2C_OE",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 28.825,
+          "y": 33.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_LVA",
+      "value": "100nF 50V X7R",
+      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "x": 26.0,
+      "y": 26.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM188R71H104KA93D",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C7",
+      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 25.225,
+          "y": 26.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 26.775,
+          "y": 26.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 25.225,
+          "y": 26.0,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 26.775,
+          "y": 26.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_LVB",
+      "value": "100nF 50V X7R",
+      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "x": 31.0,
+      "y": 25.5,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "+5V_CORE",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM188R71H104KA93D",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C8",
+      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+5V_CORE",
+          "type": "passive",
+          "x": 31.0,
+          "y": 26.275
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 31.0,
+          "y": 24.725
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 31.0,
+          "y": 26.275,
+          "net": "+5V_CORE",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 31.0,
+          "y": 24.725,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "J_ADS",
+      "value": "ADS1115 BLUE SOCKET",
+      "footprint": "GemilaiMateCompact:ADS1115_socket",
+      "x": 5.0,
+      "y": 37.5,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+5V_CORE",
+        "2": "GND",
+        "3": "SCL_5V",
+        "4": "SDA_5V",
+        "5": "GND",
+        "6": null,
+        "7": "PRESSURE",
+        "8": null,
+        "9": null,
+        "10": null
+      },
+      "names": {
+        "1": "VDD",
+        "2": "GND",
+        "3": "SCL",
+        "4": "SDA",
+        "5": "ADDR",
+        "6": "ALRT",
+        "7": "A0",
+        "8": "A1",
+        "9": "A2",
+        "10": "A3"
+      },
+      "pin_types": {},
+      "mpn": "ADS1115 BLUE SOCKET",
+      "datasheet": "",
+      "section": "ADC",
+      "dnp": false,
+      "designator": "J2",
+      "source_footprint": "GemilaiMateCompact:ADS1115_socket",
+      "pins": [
+        {
+          "number": "1",
+          "name": "VDD",
+          "net": "+5V_CORE",
+          "type": "passive",
+          "x": 5.0,
+          "y": 37.5
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND",
+          "type": "passive",
+          "x": 7.54,
+          "y": 37.5
+        },
+        {
+          "number": "3",
+          "name": "SCL",
+          "net": "SCL_5V",
+          "type": "passive",
+          "x": 10.08,
+          "y": 37.5
+        },
+        {
+          "number": "4",
+          "name": "SDA",
+          "net": "SDA_5V",
+          "type": "passive",
+          "x": 12.62,
+          "y": 37.5
+        },
+        {
+          "number": "5",
+          "name": "ADDR",
+          "net": "GND",
+          "type": "passive",
+          "x": 15.16,
+          "y": 37.5
+        },
+        {
+          "number": "6",
+          "name": "ALRT",
+          "net": null,
+          "type": "passive",
+          "x": 17.7,
+          "y": 37.5
+        },
+        {
+          "number": "7",
+          "name": "A0",
+          "net": "PRESSURE",
+          "type": "passive",
+          "x": 20.24,
+          "y": 37.5
+        },
+        {
+          "number": "8",
+          "name": "A1",
+          "net": null,
+          "type": "passive",
+          "x": 22.78,
+          "y": 37.5
+        },
+        {
+          "number": "9",
+          "name": "A2",
+          "net": null,
+          "type": "passive",
+          "x": 25.32,
+          "y": 37.5
+        },
+        {
+          "number": "10",
+          "name": "A3",
+          "net": null,
+          "type": "passive",
+          "x": 27.86,
+          "y": 37.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 5.0,
+          "y": 37.5,
+          "net": "+5V_CORE",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 7.54,
+          "y": 37.5,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 10.08,
+          "y": 37.5,
+          "net": "SCL_5V",
+          "smd": false
+        },
+        {
+          "number": "4",
+          "x": 12.62,
+          "y": 37.5,
+          "net": "SDA_5V",
+          "smd": false
+        },
+        {
+          "number": "5",
+          "x": 15.16,
+          "y": 37.5,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "6",
+          "x": 17.7,
+          "y": 37.5,
+          "net": null,
+          "smd": false
+        },
+        {
+          "number": "7",
+          "x": 20.24,
+          "y": 37.5,
+          "net": "PRESSURE",
+          "smd": false
+        },
+        {
+          "number": "8",
+          "x": 22.78,
+          "y": 37.5,
+          "net": null,
+          "smd": false
+        },
+        {
+          "number": "9",
+          "x": 25.32,
+          "y": 37.5,
+          "net": null,
+          "smd": false
+        },
+        {
+          "number": "10",
+          "x": 27.86,
+          "y": 37.5,
+          "net": null,
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "R_PRESS",
+      "value": "1k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 23.0,
+      "y": 40.5,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "PRESSURE_RAW",
+        "2": "PRESSURE"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-071KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R11",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "PRESSURE_RAW",
+          "type": "passive",
+          "x": 23.0,
+          "y": 41.325
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "PRESSURE",
+          "type": "passive",
+          "x": 23.0,
+          "y": 39.675
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 23.0,
+          "y": 41.325,
+          "net": "PRESSURE_RAW",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 23.0,
+          "y": 39.675,
+          "net": "PRESSURE",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_PRESS",
+      "value": "100nF 50V X7R",
+      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "x": 26.5,
+      "y": 44.0,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "PRESSURE",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM188R71H104KA93D",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C9",
+      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "PRESSURE",
+          "type": "passive",
+          "x": 26.5,
+          "y": 44.775
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 26.5,
+          "y": 43.225
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 26.5,
+          "y": 44.775,
+          "net": "PRESSURE",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 26.5,
+          "y": 43.225,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "J_TC",
+      "value": "MAX31855 SOCKET",
+      "footprint": "GemilaiMateCompact:MAX31855_socket",
+      "x": 56.5,
+      "y": 24.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "TC_VIN",
+        "2": null,
+        "3": "GND",
+        "4": "TC_DO",
+        "5": "TC_CS",
+        "6": "TC_SCK"
+      },
+      "names": {
+        "1": "VIN",
+        "2": "3Vo_NC",
+        "3": "GND",
+        "4": "DO",
+        "5": "CS",
+        "6": "CLK"
+      },
+      "pin_types": {},
+      "mpn": "MAX31855 SOCKET",
+      "datasheet": "",
+      "section": "Temperature",
+      "dnp": false,
+      "designator": "J3",
+      "source_footprint": "GemilaiMateCompact:MAX31855_socket",
+      "pins": [
+        {
+          "number": "1",
+          "name": "VIN",
+          "net": "TC_VIN",
+          "type": "passive",
+          "x": 56.5,
+          "y": 24.0
+        },
+        {
+          "number": "2",
+          "name": "3Vo_NC",
+          "net": null,
+          "type": "passive",
+          "x": 53.96,
+          "y": 24.0
+        },
+        {
+          "number": "3",
+          "name": "GND",
+          "net": "GND",
+          "type": "passive",
+          "x": 51.42,
+          "y": 24.0
+        },
+        {
+          "number": "4",
+          "name": "DO",
+          "net": "TC_DO",
+          "type": "passive",
+          "x": 48.88,
+          "y": 24.0
+        },
+        {
+          "number": "5",
+          "name": "CS",
+          "net": "TC_CS",
+          "type": "passive",
+          "x": 46.34,
+          "y": 24.0
+        },
+        {
+          "number": "6",
+          "name": "CLK",
+          "net": "TC_SCK",
+          "type": "passive",
+          "x": 43.8,
+          "y": 24.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 56.5,
+          "y": 24.0,
+          "net": "TC_VIN",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 53.96,
+          "y": 24.0,
+          "net": null,
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 51.42,
+          "y": 24.0,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "4",
+          "x": 48.88,
+          "y": 24.0,
+          "net": "TC_DO",
+          "smd": false
+        },
+        {
+          "number": "5",
+          "x": 46.34,
+          "y": 24.0,
+          "net": "TC_CS",
+          "smd": false
+        },
+        {
+          "number": "6",
+          "x": 43.8,
+          "y": 24.0,
+          "net": "TC_SCK",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "JP_TC",
+      "value": "TC VIN 5V-3V3",
+      "footprint": "GemilaiMateCompact:PinHeader_1x03_P2.54mm_Vertical",
+      "x": 36.0,
+      "y": 28.5,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "+5V_CORE",
+        "2": "TC_VIN",
+        "3": "+3V3"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "TC VIN 5V-3V3",
+      "datasheet": "",
+      "section": "Temperature",
+      "dnp": false,
+      "designator": "JP1",
+      "source_footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+5V_CORE",
+          "type": "passive",
+          "x": 36.0,
+          "y": 28.5
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "TC_VIN",
+          "type": "passive",
+          "x": 38.54,
+          "y": 28.5
+        },
+        {
+          "number": "3",
+          "name": "3",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 41.08,
+          "y": 28.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 36.0,
+          "y": 28.5,
+          "net": "+5V_CORE",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 38.54,
+          "y": 28.5,
+          "net": "TC_VIN",
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 41.08,
+          "y": 28.5,
+          "net": "+3V3",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "R_ZCPU",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 34.5,
+      "y": 43.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+5V_EXT",
+        "2": "ZC_RAW"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R12",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+5V_EXT",
+          "type": "passive",
+          "x": 33.675,
+          "y": 43.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "ZC_RAW",
+          "type": "passive",
+          "x": 35.325,
+          "y": 43.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 33.675,
+          "y": 43.0,
+          "net": "+5V_EXT",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 35.325,
+          "y": 43.0,
+          "net": "ZC_RAW",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_ZCS",
+      "value": "1k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 39.0,
+      "y": 43.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "ZC_RAW",
+        "2": "ZC_IN"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-071KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R13",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "ZC_RAW",
+          "type": "passive",
+          "x": 38.175,
+          "y": 43.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "ZC_IN",
+          "type": "passive",
+          "x": 39.825,
+          "y": 43.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 38.175,
+          "y": 43.0,
+          "net": "ZC_RAW",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 39.825,
+          "y": 43.0,
+          "net": "ZC_IN",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "U_ZC",
+      "value": "SN74LVC1G17DBVR",
+      "footprint": "GemilaiMateCompact:SOT-23-5",
+      "x": 40.5,
+      "y": 34.0,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": null,
+        "2": "ZC_IN",
+        "3": "GND",
+        "4": "PUMP_ZC",
+        "5": "+3V3"
+      },
+      "names": {
+        "1": "NC",
+        "2": "A",
+        "3": "GND",
+        "4": "Y",
+        "5": "VCC"
+      },
+      "pin_types": {
+        "2": "input",
+        "3": "power_in",
+        "4": "output",
+        "5": "power_in"
+      },
+      "mpn": "SN74LVC1G17DBVR",
+      "datasheet": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
+      "section": "Pump",
+      "dnp": false,
+      "designator": "U5",
+      "source_footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "pins": [
+        {
+          "number": "1",
+          "name": "NC",
+          "net": null,
+          "type": "passive",
+          "x": 39.55,
+          "y": 35.1375
+        },
+        {
+          "number": "2",
+          "name": "A",
+          "net": "ZC_IN",
+          "type": "input",
+          "x": 40.5,
+          "y": 35.1375
+        },
+        {
+          "number": "3",
+          "name": "GND",
+          "net": "GND",
+          "type": "power_in",
+          "x": 41.45,
+          "y": 35.1375
+        },
+        {
+          "number": "4",
+          "name": "Y",
+          "net": "PUMP_ZC",
+          "type": "output",
+          "x": 41.45,
+          "y": 32.8625
+        },
+        {
+          "number": "5",
+          "name": "VCC",
+          "net": "+3V3",
+          "type": "power_in",
+          "x": 39.55,
+          "y": 32.8625
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 39.55,
+          "y": 35.1375,
+          "net": null,
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 40.5,
+          "y": 35.1375,
+          "net": "ZC_IN",
+          "smd": true
+        },
+        {
+          "number": "3",
+          "x": 41.45,
+          "y": 35.1375,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "4",
+          "x": 41.45,
+          "y": 32.8625,
+          "net": "PUMP_ZC",
+          "smd": true
+        },
+        {
+          "number": "5",
+          "x": 39.55,
+          "y": 32.8625,
+          "net": "+3V3",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_ZC",
+      "value": "100nF 50V X7R",
+      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "x": 37.0,
+      "y": 31.5,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM188R71H104KA93D",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C10",
+      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 36.225,
+          "y": 31.5
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 37.775,
+          "y": 31.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 36.225,
+          "y": 31.5,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 37.775,
+          "y": 31.5,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_EXT_BASE",
+      "value": "47k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 53.0,
+      "y": 45.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+5V_EXT",
+        "2": "EXT_BASE"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0747KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R14",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+5V_EXT",
+          "type": "passive",
+          "x": 52.175,
+          "y": 45.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "EXT_BASE",
+          "type": "passive",
+          "x": 53.825,
+          "y": 45.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 52.175,
+          "y": 45.0,
+          "net": "+5V_EXT",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 53.825,
+          "y": 45.0,
+          "net": "EXT_BASE",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_EXT_PD",
+      "value": "100k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 57.0,
+      "y": 45.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "EXT_BASE",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-07100KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R15",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "EXT_BASE",
+          "type": "passive",
+          "x": 56.175,
+          "y": 45.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 57.825,
+          "y": 45.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 56.175,
+          "y": 45.0,
+          "net": "EXT_BASE",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 57.825,
+          "y": 45.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "Q_EXT",
+      "value": "MMBT3904",
+      "footprint": "GemilaiMateCompact:SOT-23",
+      "x": 48.5,
+      "y": 44.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "EXT_BASE",
+        "2": "GND",
+        "3": "OUTPUT_OE_N"
+      },
+      "names": {
+        "1": "B",
+        "2": "E",
+        "3": "C"
+      },
+      "pin_types": {},
+      "mpn": "MMBT3904",
+      "datasheet": "",
+      "section": "Outputs",
+      "dnp": false,
+      "designator": "Q1",
+      "source_footprint": "Package_TO_SOT_SMD:SOT-23",
+      "pins": [
+        {
+          "number": "1",
+          "name": "B",
+          "net": "EXT_BASE",
+          "type": "passive",
+          "x": 47.5625,
+          "y": 43.05
+        },
+        {
+          "number": "2",
+          "name": "E",
+          "net": "GND",
+          "type": "passive",
+          "x": 47.5625,
+          "y": 44.95
+        },
+        {
+          "number": "3",
+          "name": "C",
+          "net": "OUTPUT_OE_N",
+          "type": "passive",
+          "x": 49.4375,
+          "y": 44.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 47.5625,
+          "y": 43.05,
+          "net": "EXT_BASE",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 47.5625,
+          "y": 44.95,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "3",
+          "x": 49.4375,
+          "y": 44.0,
+          "net": "OUTPUT_OE_N",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_OEUP",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 44.0,
+      "y": 45.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "OUTPUT_OE_N"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R16",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 43.175,
+          "y": 45.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "OUTPUT_OE_N",
+          "type": "passive",
+          "x": 44.825,
+          "y": 45.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 43.175,
+          "y": 45.0,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 44.825,
+          "y": 45.0,
+          "net": "OUTPUT_OE_N",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "U_PUMP",
+      "value": "SN74LVC1G125DBVR",
+      "footprint": "GemilaiMateCompact:SOT-23-5",
+      "x": 39.5,
+      "y": 38.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "OUTPUT_OE_N",
+        "2": "PUMP_PWM",
+        "3": "GND",
+        "4": "PUMP_OUT",
+        "5": "+3V3"
+      },
+      "names": {
+        "1": "OE_N",
+        "2": "A",
+        "3": "GND",
+        "4": "Y",
+        "5": "VCC"
+      },
+      "pin_types": {
+        "1": "input",
+        "2": "input",
+        "3": "power_in",
+        "4": "tri_state",
+        "5": "power_in"
+      },
+      "mpn": "SN74LVC1G125DBVR",
+      "datasheet": "https://www.ti.com/lit/ds/symlink/sn74lvc1g125.pdf",
+      "section": "Outputs",
+      "dnp": false,
+      "designator": "U6",
+      "source_footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "pins": [
+        {
+          "number": "1",
+          "name": "OE_N",
+          "net": "OUTPUT_OE_N",
+          "type": "input",
+          "x": 38.3625,
+          "y": 37.05
+        },
+        {
+          "number": "2",
+          "name": "A",
+          "net": "PUMP_PWM",
+          "type": "input",
+          "x": 38.3625,
+          "y": 38.0
+        },
+        {
+          "number": "3",
+          "name": "GND",
+          "net": "GND",
+          "type": "power_in",
+          "x": 38.3625,
+          "y": 38.95
+        },
+        {
+          "number": "4",
+          "name": "Y",
+          "net": "PUMP_OUT",
+          "type": "tri_state",
+          "x": 40.6375,
+          "y": 38.95
+        },
+        {
+          "number": "5",
+          "name": "VCC",
+          "net": "+3V3",
+          "type": "power_in",
+          "x": 40.6375,
+          "y": 37.05
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 38.3625,
+          "y": 37.05,
+          "net": "OUTPUT_OE_N",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 38.3625,
+          "y": 38.0,
+          "net": "PUMP_PWM",
+          "smd": true
+        },
+        {
+          "number": "3",
+          "x": 38.3625,
+          "y": 38.95,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "4",
+          "x": 40.6375,
+          "y": 38.95,
+          "net": "PUMP_OUT",
+          "smd": true
+        },
+        {
+          "number": "5",
+          "x": 40.6375,
+          "y": 37.05,
+          "net": "+3V3",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "U_SSR",
+      "value": "SN74AHCT125PWR",
+      "footprint": "GemilaiMateCompact:TSSOP-14_4.4x5mm_P0.65mm",
+      "x": 53.0,
+      "y": 33.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "OUTPUT_OE_N",
+        "2": "VALVE",
+        "3": "VALVE_5V",
+        "4": "OUTPUT_OE_N",
+        "5": "HEATER",
+        "6": "HEATER_5V",
+        "7": "GND",
+        "8": "ALT_5V",
+        "9": "ALT",
+        "10": "OUTPUT_OE_N",
+        "11": null,
+        "12": "GND",
+        "13": "+5V_EXT",
+        "14": "+5V_EXT"
+      },
+      "names": {
+        "1": "1OE_N",
+        "2": "1A",
+        "3": "1Y",
+        "4": "2OE_N",
+        "5": "2A",
+        "6": "2Y",
+        "7": "GND",
+        "8": "3Y",
+        "9": "3A",
+        "10": "3OE_N",
+        "11": "4Y_NC",
+        "12": "4A",
+        "13": "4OE_N",
+        "14": "VCC"
+      },
+      "pin_types": {
+        "1": "input",
+        "2": "input",
+        "3": "tri_state",
+        "4": "input",
+        "5": "input",
+        "6": "tri_state",
+        "7": "power_in",
+        "8": "tri_state",
+        "9": "input",
+        "10": "input",
+        "11": "tri_state",
+        "12": "input",
+        "13": "input",
+        "14": "power_in"
+      },
+      "mpn": "SN74AHCT125PWR",
+      "datasheet": "https://www.ti.com/lit/ds/symlink/sn74ahct125.pdf",
+      "section": "Outputs",
+      "dnp": false,
+      "designator": "U7",
+      "source_footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1OE_N",
+          "net": "OUTPUT_OE_N",
+          "type": "input",
+          "x": 50.1375,
+          "y": 31.05
+        },
+        {
+          "number": "2",
+          "name": "1A",
+          "net": "VALVE",
+          "type": "input",
+          "x": 50.1375,
+          "y": 31.7
+        },
+        {
+          "number": "3",
+          "name": "1Y",
+          "net": "VALVE_5V",
+          "type": "tri_state",
+          "x": 50.1375,
+          "y": 32.35
+        },
+        {
+          "number": "4",
+          "name": "2OE_N",
+          "net": "OUTPUT_OE_N",
+          "type": "input",
+          "x": 50.1375,
+          "y": 33.0
+        },
+        {
+          "number": "5",
+          "name": "2A",
+          "net": "HEATER",
+          "type": "input",
+          "x": 50.1375,
+          "y": 33.65
+        },
+        {
+          "number": "6",
+          "name": "2Y",
+          "net": "HEATER_5V",
+          "type": "tri_state",
+          "x": 50.1375,
+          "y": 34.3
+        },
+        {
+          "number": "7",
+          "name": "GND",
+          "net": "GND",
+          "type": "power_in",
+          "x": 50.1375,
+          "y": 34.95
+        },
+        {
+          "number": "8",
+          "name": "3Y",
+          "net": "ALT_5V",
+          "type": "tri_state",
+          "x": 55.8625,
+          "y": 34.95
+        },
+        {
+          "number": "9",
+          "name": "3A",
+          "net": "ALT",
+          "type": "input",
+          "x": 55.8625,
+          "y": 34.3
+        },
+        {
+          "number": "10",
+          "name": "3OE_N",
+          "net": "OUTPUT_OE_N",
+          "type": "input",
+          "x": 55.8625,
+          "y": 33.65
+        },
+        {
+          "number": "11",
+          "name": "4Y_NC",
+          "net": null,
+          "type": "tri_state",
+          "x": 55.8625,
+          "y": 33.0
+        },
+        {
+          "number": "12",
+          "name": "4A",
+          "net": "GND",
+          "type": "input",
+          "x": 55.8625,
+          "y": 32.35
+        },
+        {
+          "number": "13",
+          "name": "4OE_N",
+          "net": "+5V_EXT",
+          "type": "input",
+          "x": 55.8625,
+          "y": 31.7
+        },
+        {
+          "number": "14",
+          "name": "VCC",
+          "net": "+5V_EXT",
+          "type": "power_in",
+          "x": 55.8625,
+          "y": 31.05
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 50.1375,
+          "y": 31.05,
+          "net": "OUTPUT_OE_N",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 50.1375,
+          "y": 31.7,
+          "net": "VALVE",
+          "smd": true
+        },
+        {
+          "number": "3",
+          "x": 50.1375,
+          "y": 32.35,
+          "net": "VALVE_5V",
+          "smd": true
+        },
+        {
+          "number": "4",
+          "x": 50.1375,
+          "y": 33.0,
+          "net": "OUTPUT_OE_N",
+          "smd": true
+        },
+        {
+          "number": "5",
+          "x": 50.1375,
+          "y": 33.65,
+          "net": "HEATER",
+          "smd": true
+        },
+        {
+          "number": "6",
+          "x": 50.1375,
+          "y": 34.3,
+          "net": "HEATER_5V",
+          "smd": true
+        },
+        {
+          "number": "7",
+          "x": 50.1375,
+          "y": 34.95,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "8",
+          "x": 55.8625,
+          "y": 34.95,
+          "net": "ALT_5V",
+          "smd": true
+        },
+        {
+          "number": "9",
+          "x": 55.8625,
+          "y": 34.3,
+          "net": "ALT",
+          "smd": true
+        },
+        {
+          "number": "10",
+          "x": 55.8625,
+          "y": 33.65,
+          "net": "OUTPUT_OE_N",
+          "smd": true
+        },
+        {
+          "number": "11",
+          "x": 55.8625,
+          "y": 33.0,
+          "net": null,
+          "smd": true
+        },
+        {
+          "number": "12",
+          "x": 55.8625,
+          "y": 32.35,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "13",
+          "x": 55.8625,
+          "y": 31.7,
+          "net": "+5V_EXT",
+          "smd": true
+        },
+        {
+          "number": "14",
+          "x": 55.8625,
+          "y": 31.05,
+          "net": "+5V_EXT",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_SSR",
+      "value": "100nF 50V X7R",
+      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "x": 58.0,
+      "y": 31.0,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "+5V_EXT",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM188R71H104KA93D",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C11",
+      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+5V_EXT",
+          "type": "passive",
+          "x": 58.0,
+          "y": 31.775
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 58.0,
+          "y": 30.225
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 58.0,
+          "y": 31.775,
+          "net": "+5V_EXT",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 58.0,
+          "y": 30.225,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_PUMP",
+      "value": "100nF 50V X7R",
+      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "x": 45.0,
+      "y": 38.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM188R71H104KA93D",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C12",
+      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 44.225,
+          "y": 38.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 45.775,
+          "y": 38.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 44.225,
+          "y": 38.0,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 45.775,
+          "y": 38.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_PD1",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 26.5,
+      "y": 20.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "PUMP_PWM",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R17",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "PUMP_PWM",
+          "type": "passive",
+          "x": 25.675,
+          "y": 20.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 27.325,
+          "y": 20.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 25.675,
+          "y": 20.0,
+          "net": "PUMP_PWM",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 27.325,
+          "y": 20.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_PD2",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 30.5,
+      "y": 22.0,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "VALVE",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R18",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "VALVE",
+          "type": "passive",
+          "x": 30.5,
+          "y": 22.825
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 30.5,
+          "y": 21.175
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 30.5,
+          "y": 22.825,
+          "net": "VALVE",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 30.5,
+          "y": 21.175,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_PD3",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 36.5,
+      "y": 21.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "HEATER",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R19",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "HEATER",
+          "type": "passive",
+          "x": 35.675,
+          "y": 21.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 37.325,
+          "y": 21.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 35.675,
+          "y": 21.0,
+          "net": "HEATER",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 37.325,
+          "y": 21.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_PD4",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 41.5,
+      "y": 23.0,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "ALT",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R20",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "ALT",
+          "type": "passive",
+          "x": 41.5,
+          "y": 23.825
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 41.5,
+          "y": 22.175
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 41.5,
+          "y": 23.825,
+          "net": "ALT",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 41.5,
+          "y": 22.175,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_PD5",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 40.0,
+      "y": 45.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "PUMP_OUT",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R21",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "PUMP_OUT",
+          "type": "passive",
+          "x": 39.175,
+          "y": 45.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 40.825,
+          "y": 45.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 39.175,
+          "y": 45.0,
+          "net": "PUMP_OUT",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 40.825,
+          "y": 45.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_OUT_VALVE",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 47.5,
+      "y": 30.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "VALVE_5V",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R22",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "VALVE_5V",
+          "type": "passive",
+          "x": 46.675,
+          "y": 30.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 48.325,
+          "y": 30.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 46.675,
+          "y": 30.0,
+          "net": "VALVE_5V",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 48.325,
+          "y": 30.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_OUT_HEATER",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 48.0,
+      "y": 33.0,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "HEATER_5V",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R23",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "HEATER_5V",
+          "type": "passive",
+          "x": 48.0,
+          "y": 33.825
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 48.0,
+          "y": 32.175
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 48.0,
+          "y": 33.825,
+          "net": "HEATER_5V",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 48.0,
+          "y": 32.175,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_OUT_ALT",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 47.5,
+      "y": 36.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "ALT_5V",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R24",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "ALT_5V",
+          "type": "passive",
+          "x": 46.675,
+          "y": 36.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 48.325,
+          "y": 36.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 46.675,
+          "y": 36.0,
+          "net": "ALT_5V",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 48.325,
+          "y": 36.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_BREW",
+      "value": "1k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 21.0,
+      "y": 33.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "BREW_RAW",
+        "2": "BREW"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-071KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R25",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "BREW_RAW",
+          "type": "passive",
+          "x": 20.175,
+          "y": 33.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "BREW",
+          "type": "passive",
+          "x": 21.825,
+          "y": 33.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 20.175,
+          "y": 33.0,
+          "net": "BREW_RAW",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 21.825,
+          "y": 33.0,
+          "net": "BREW",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_BREWPU",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 17.0,
+      "y": 33.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "BREW"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R26",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 16.175,
+          "y": 33.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "BREW",
+          "type": "passive",
+          "x": 17.825,
+          "y": 33.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 16.175,
+          "y": 33.0,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 17.825,
+          "y": 33.0,
+          "net": "BREW",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_BREW",
+      "value": "100nF 50V X7R",
+      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "x": 13.0,
+      "y": 33.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "BREW",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM188R71H104KA93D",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C13",
+      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "BREW",
+          "type": "passive",
+          "x": 12.225,
+          "y": 33.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 13.775,
+          "y": 33.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 12.225,
+          "y": 33.0,
+          "net": "BREW",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 13.775,
+          "y": 33.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_STEAM",
+      "value": "1k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 21.0,
+      "y": 29.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "STEAM_RAW",
+        "2": "STEAM"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-071KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R27",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "STEAM_RAW",
+          "type": "passive",
+          "x": 20.175,
+          "y": 29.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "STEAM",
+          "type": "passive",
+          "x": 21.825,
+          "y": 29.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 20.175,
+          "y": 29.0,
+          "net": "STEAM_RAW",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 21.825,
+          "y": 29.0,
+          "net": "STEAM",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_STEAMPU",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 17.0,
+      "y": 29.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "STEAM"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R28",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 16.175,
+          "y": 29.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "STEAM",
+          "type": "passive",
+          "x": 17.825,
+          "y": 29.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 16.175,
+          "y": 29.0,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 17.825,
+          "y": 29.0,
+          "net": "STEAM",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_STEAM",
+      "value": "100nF 50V X7R",
+      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "x": 13.0,
+      "y": 29.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "STEAM",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM188R71H104KA93D",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C14",
+      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "STEAM",
+          "type": "passive",
+          "x": 12.225,
+          "y": 29.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 13.775,
+          "y": 29.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 12.225,
+          "y": 29.0,
+          "net": "STEAM",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 13.775,
+          "y": 29.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "U_LED",
+      "value": "PCA9634PW",
+      "footprint": "GemilaiMateCompact:TSSOP-20_4.4x6.5mm_P0.65mm",
+      "x": 51.0,
+      "y": 18.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "GND",
+        "2": "GND",
+        "3": "GND",
+        "4": "GND",
+        "5": "GND",
+        "6": "PCA_LED0",
+        "7": "PCA_LED1",
+        "8": "PCA_LED2",
+        "9": "PCA_LED3",
+        "10": "GND",
+        "11": "PCA_LED4",
+        "12": "PCA_LED5",
+        "13": "PCA_LED6",
+        "14": "PCA_LED7",
+        "15": "GND",
+        "16": "GND",
+        "17": "GND",
+        "18": "PCA_SCL",
+        "19": "PCA_SDA",
+        "20": "+3V3"
+      },
+      "names": {
+        "1": "A0",
+        "2": "A1",
+        "3": "A2",
+        "4": "A3",
+        "5": "A4",
+        "6": "LED0",
+        "7": "LED1",
+        "8": "LED2",
+        "9": "LED3",
+        "10": "VSS",
+        "11": "LED4",
+        "12": "LED5",
+        "13": "LED6",
+        "14": "LED7",
+        "15": "OE_N",
+        "16": "A5",
+        "17": "A6",
+        "18": "SCL",
+        "19": "SDA",
+        "20": "VDD"
+      },
+      "pin_types": {
+        "1": "input",
+        "2": "input",
+        "3": "input",
+        "4": "input",
+        "5": "input",
+        "6": "open_collector",
+        "7": "open_collector",
+        "8": "open_collector",
+        "9": "open_collector",
+        "10": "power_in",
+        "11": "open_collector",
+        "12": "open_collector",
+        "13": "open_collector",
+        "14": "open_collector",
+        "15": "input",
+        "16": "input",
+        "17": "input",
+        "18": "input",
+        "19": "bidirectional",
+        "20": "power_in"
+      },
+      "mpn": "PCA9634PW,118",
+      "datasheet": "https://www.nxp.com/docs/en/data-sheet/PCA9634.pdf",
+      "section": "Alba",
+      "dnp": false,
+      "designator": "U8",
+      "source_footprint": "Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm",
+      "pins": [
+        {
+          "number": "1",
+          "name": "A0",
+          "net": "GND",
+          "type": "input",
+          "x": 48.1375,
+          "y": 15.075
+        },
+        {
+          "number": "2",
+          "name": "A1",
+          "net": "GND",
+          "type": "input",
+          "x": 48.1375,
+          "y": 15.725
+        },
+        {
+          "number": "3",
+          "name": "A2",
+          "net": "GND",
+          "type": "input",
+          "x": 48.1375,
+          "y": 16.375
+        },
+        {
+          "number": "4",
+          "name": "A3",
+          "net": "GND",
+          "type": "input",
+          "x": 48.1375,
+          "y": 17.025
+        },
+        {
+          "number": "5",
+          "name": "A4",
+          "net": "GND",
+          "type": "input",
+          "x": 48.1375,
+          "y": 17.675
+        },
+        {
+          "number": "6",
+          "name": "LED0",
+          "net": "PCA_LED0",
+          "type": "open_collector",
+          "x": 48.1375,
+          "y": 18.325
+        },
+        {
+          "number": "7",
+          "name": "LED1",
+          "net": "PCA_LED1",
+          "type": "open_collector",
+          "x": 48.1375,
+          "y": 18.975
+        },
+        {
+          "number": "8",
+          "name": "LED2",
+          "net": "PCA_LED2",
+          "type": "open_collector",
+          "x": 48.1375,
+          "y": 19.625
+        },
+        {
+          "number": "9",
+          "name": "LED3",
+          "net": "PCA_LED3",
+          "type": "open_collector",
+          "x": 48.1375,
+          "y": 20.275
+        },
+        {
+          "number": "10",
+          "name": "VSS",
+          "net": "GND",
+          "type": "power_in",
+          "x": 48.1375,
+          "y": 20.925
+        },
+        {
+          "number": "11",
+          "name": "LED4",
+          "net": "PCA_LED4",
+          "type": "open_collector",
+          "x": 53.8625,
+          "y": 20.925
+        },
+        {
+          "number": "12",
+          "name": "LED5",
+          "net": "PCA_LED5",
+          "type": "open_collector",
+          "x": 53.8625,
+          "y": 20.275
+        },
+        {
+          "number": "13",
+          "name": "LED6",
+          "net": "PCA_LED6",
+          "type": "open_collector",
+          "x": 53.8625,
+          "y": 19.625
+        },
+        {
+          "number": "14",
+          "name": "LED7",
+          "net": "PCA_LED7",
+          "type": "open_collector",
+          "x": 53.8625,
+          "y": 18.975
+        },
+        {
+          "number": "15",
+          "name": "OE_N",
+          "net": "GND",
+          "type": "input",
+          "x": 53.8625,
+          "y": 18.325
+        },
+        {
+          "number": "16",
+          "name": "A5",
+          "net": "GND",
+          "type": "input",
+          "x": 53.8625,
+          "y": 17.675
+        },
+        {
+          "number": "17",
+          "name": "A6",
+          "net": "GND",
+          "type": "input",
+          "x": 53.8625,
+          "y": 17.025
+        },
+        {
+          "number": "18",
+          "name": "SCL",
+          "net": "PCA_SCL",
+          "type": "input",
+          "x": 53.8625,
+          "y": 16.375
+        },
+        {
+          "number": "19",
+          "name": "SDA",
+          "net": "PCA_SDA",
+          "type": "bidirectional",
+          "x": 53.8625,
+          "y": 15.725
+        },
+        {
+          "number": "20",
+          "name": "VDD",
+          "net": "+3V3",
+          "type": "power_in",
+          "x": 53.8625,
+          "y": 15.075
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 48.1375,
+          "y": 15.075,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 48.1375,
+          "y": 15.725,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "3",
+          "x": 48.1375,
+          "y": 16.375,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "4",
+          "x": 48.1375,
+          "y": 17.025,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "5",
+          "x": 48.1375,
+          "y": 17.675,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "6",
+          "x": 48.1375,
+          "y": 18.325,
+          "net": "PCA_LED0",
+          "smd": true
+        },
+        {
+          "number": "7",
+          "x": 48.1375,
+          "y": 18.975,
+          "net": "PCA_LED1",
+          "smd": true
+        },
+        {
+          "number": "8",
+          "x": 48.1375,
+          "y": 19.625,
+          "net": "PCA_LED2",
+          "smd": true
+        },
+        {
+          "number": "9",
+          "x": 48.1375,
+          "y": 20.275,
+          "net": "PCA_LED3",
+          "smd": true
+        },
+        {
+          "number": "10",
+          "x": 48.1375,
+          "y": 20.925,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "11",
+          "x": 53.8625,
+          "y": 20.925,
+          "net": "PCA_LED4",
+          "smd": true
+        },
+        {
+          "number": "12",
+          "x": 53.8625,
+          "y": 20.275,
+          "net": "PCA_LED5",
+          "smd": true
+        },
+        {
+          "number": "13",
+          "x": 53.8625,
+          "y": 19.625,
+          "net": "PCA_LED6",
+          "smd": true
+        },
+        {
+          "number": "14",
+          "x": 53.8625,
+          "y": 18.975,
+          "net": "PCA_LED7",
+          "smd": true
+        },
+        {
+          "number": "15",
+          "x": 53.8625,
+          "y": 18.325,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "16",
+          "x": 53.8625,
+          "y": 17.675,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "17",
+          "x": 53.8625,
+          "y": 17.025,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "18",
+          "x": 53.8625,
+          "y": 16.375,
+          "net": "PCA_SCL",
+          "smd": true
+        },
+        {
+          "number": "19",
+          "x": 53.8625,
+          "y": 15.725,
+          "net": "PCA_SDA",
+          "smd": true
+        },
+        {
+          "number": "20",
+          "x": 53.8625,
+          "y": 15.075,
+          "net": "+3V3",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_PCACLK",
+      "value": "0R",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 44.5,
+      "y": 26.5,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "ALBA_SCL",
+        "2": "PCA_SCL"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603JR-070RL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R29",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "ALBA_SCL",
+          "type": "passive",
+          "x": 43.675,
+          "y": 26.5
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "PCA_SCL",
+          "type": "passive",
+          "x": 45.325,
+          "y": 26.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 43.675,
+          "y": 26.5,
+          "net": "ALBA_SCL",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 45.325,
+          "y": 26.5,
+          "net": "PCA_SCL",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_PCADAT",
+      "value": "0R",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 49.0,
+      "y": 26.5,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "ALBA_SDA",
+        "2": "PCA_SDA"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603JR-070RL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R30",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "ALBA_SDA",
+          "type": "passive",
+          "x": 48.175,
+          "y": 26.5
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "PCA_SDA",
+          "type": "passive",
+          "x": 49.825,
+          "y": 26.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 48.175,
+          "y": 26.5,
+          "net": "ALBA_SDA",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 49.825,
+          "y": 26.5,
+          "net": "PCA_SDA",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_PCA",
+      "value": "100nF 50V X7R",
+      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "x": 57.0,
+      "y": 17.5,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM188R71H104KA93D",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C15",
+      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 56.225,
+          "y": 17.5
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 57.775,
+          "y": 17.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 56.225,
+          "y": 17.5,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 57.775,
+          "y": 17.5,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_ALBASDA",
+      "value": "4.7k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 28.5,
+      "y": 22.5,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "ALBA_SDA"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-074K7L",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R31",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 28.5,
+          "y": 23.325
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "ALBA_SDA",
+          "type": "passive",
+          "x": 28.5,
+          "y": 21.675
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 28.5,
+          "y": 23.325,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 28.5,
+          "y": 21.675,
+          "net": "ALBA_SDA",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_ALBASCL",
+      "value": "4.7k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 33.0,
+      "y": 21.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "ALBA_SCL"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-074K7L",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R32",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 32.175,
+          "y": 21.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "ALBA_SCL",
+          "type": "passive",
+          "x": 33.825,
+          "y": 21.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 32.175,
+          "y": 21.0,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 33.825,
+          "y": 21.0,
+          "net": "ALBA_SCL",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_LED0",
+      "value": "180R 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 56.0,
+      "y": 6.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "PCA_LED0",
+        "2": "RGBW0"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-07180RL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R33",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "PCA_LED0",
+          "type": "passive",
+          "x": 55.175,
+          "y": 6.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "RGBW0",
+          "type": "passive",
+          "x": 56.825,
+          "y": 6.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 55.175,
+          "y": 6.0,
+          "net": "PCA_LED0",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 56.825,
+          "y": 6.0,
+          "net": "RGBW0",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_LED1",
+      "value": "180R 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 56.0,
+      "y": 9.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "PCA_LED1",
+        "2": "RGBW1"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-07180RL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R34",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "PCA_LED1",
+          "type": "passive",
+          "x": 55.175,
+          "y": 9.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "RGBW1",
+          "type": "passive",
+          "x": 56.825,
+          "y": 9.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 55.175,
+          "y": 9.0,
+          "net": "PCA_LED1",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 56.825,
+          "y": 9.0,
+          "net": "RGBW1",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_LED2",
+      "value": "180R 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 56.0,
+      "y": 12.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "PCA_LED2",
+        "2": "RGBW2"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-07180RL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R35",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "PCA_LED2",
+          "type": "passive",
+          "x": 55.175,
+          "y": 12.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "RGBW2",
+          "type": "passive",
+          "x": 56.825,
+          "y": 12.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 55.175,
+          "y": 12.0,
+          "net": "PCA_LED2",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 56.825,
+          "y": 12.0,
+          "net": "RGBW2",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_LED3",
+      "value": "180R 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 56.0,
+      "y": 15.0,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "PCA_LED3",
+        "2": "RGBW3"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-07180RL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R36",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "PCA_LED3",
+          "type": "passive",
+          "x": 56.0,
+          "y": 15.825
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "RGBW3",
+          "type": "passive",
+          "x": 56.0,
+          "y": 14.175
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 56.0,
+          "y": 15.825,
+          "net": "PCA_LED3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 56.0,
+          "y": 14.175,
+          "net": "RGBW3",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_GATE4",
+      "value": "100R 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 55.0,
+      "y": 41.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "PCA_LED4",
+        "2": "LED_GATE4"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-07100RL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R37",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "PCA_LED4",
+          "type": "passive",
+          "x": 54.175,
+          "y": 41.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "LED_GATE4",
+          "type": "passive",
+          "x": 55.825,
+          "y": 41.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 54.175,
+          "y": 41.0,
+          "net": "PCA_LED4",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 55.825,
+          "y": 41.0,
+          "net": "LED_GATE4",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_GPD4",
+      "value": "100k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 55.0,
+      "y": 43.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "LED_GATE4",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-07100KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R38",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "LED_GATE4",
+          "type": "passive",
+          "x": 54.175,
+          "y": 43.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 55.825,
+          "y": 43.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 54.175,
+          "y": 43.0,
+          "net": "LED_GATE4",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 55.825,
+          "y": 43.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "Q_LED4",
+      "value": "AO3400A",
+      "footprint": "GemilaiMateCompact:SOT-23",
+      "x": 59.0,
+      "y": 41.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "LED_GATE4",
+        "2": "GND",
+        "3": "LED4_DRAIN"
+      },
+      "names": {
+        "1": "G",
+        "2": "S",
+        "3": "D"
+      },
+      "pin_types": {},
+      "mpn": "AO3400A",
+      "datasheet": "",
+      "section": "Alba",
+      "dnp": false,
+      "designator": "Q2",
+      "source_footprint": "Package_TO_SOT_SMD:SOT-23",
+      "pins": [
+        {
+          "number": "1",
+          "name": "G",
+          "net": "LED_GATE4",
+          "type": "passive",
+          "x": 58.0625,
+          "y": 40.05
+        },
+        {
+          "number": "2",
+          "name": "S",
+          "net": "GND",
+          "type": "passive",
+          "x": 58.0625,
+          "y": 41.95
+        },
+        {
+          "number": "3",
+          "name": "D",
+          "net": "LED4_DRAIN",
+          "type": "passive",
+          "x": 59.9375,
+          "y": 41.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 58.0625,
+          "y": 40.05,
+          "net": "LED_GATE4",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 58.0625,
+          "y": 41.95,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "3",
+          "x": 59.9375,
+          "y": 41.0,
+          "net": "LED4_DRAIN",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_GATE5",
+      "value": "100R 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 55.0,
+      "y": 37.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "PCA_LED5",
+        "2": "LED_GATE5"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-07100RL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R39",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "PCA_LED5",
+          "type": "passive",
+          "x": 54.175,
+          "y": 37.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "LED_GATE5",
+          "type": "passive",
+          "x": 55.825,
+          "y": 37.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 54.175,
+          "y": 37.0,
+          "net": "PCA_LED5",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 55.825,
+          "y": 37.0,
+          "net": "LED_GATE5",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_GPD5",
+      "value": "100k 1%",
+      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "x": 55.0,
+      "y": 39.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "LED_GATE5",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0603FR-07100KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R40",
+      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "LED_GATE5",
+          "type": "passive",
+          "x": 54.175,
+          "y": 39.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 55.825,
+          "y": 39.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 54.175,
+          "y": 39.0,
+          "net": "LED_GATE5",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 55.825,
+          "y": 39.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "Q_LED5",
+      "value": "AO3400A",
+      "footprint": "GemilaiMateCompact:SOT-23",
+      "x": 59.0,
+      "y": 36.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "LED_GATE5",
+        "2": "GND",
+        "3": "LED5_DRAIN"
+      },
+      "names": {
+        "1": "G",
+        "2": "S",
+        "3": "D"
+      },
+      "pin_types": {},
+      "mpn": "AO3400A",
+      "datasheet": "",
+      "section": "Alba",
+      "dnp": false,
+      "designator": "Q3",
+      "source_footprint": "Package_TO_SOT_SMD:SOT-23",
+      "pins": [
+        {
+          "number": "1",
+          "name": "G",
+          "net": "LED_GATE5",
+          "type": "passive",
+          "x": 58.0625,
+          "y": 35.05
+        },
+        {
+          "number": "2",
+          "name": "S",
+          "net": "GND",
+          "type": "passive",
+          "x": 58.0625,
+          "y": 36.95
+        },
+        {
+          "number": "3",
+          "name": "D",
+          "net": "LED5_DRAIN",
+          "type": "passive",
+          "x": 59.9375,
+          "y": 36.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 58.0625,
+          "y": 35.05,
+          "net": "LED_GATE5",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 58.0625,
+          "y": 36.95,
+          "net": "GND",
+          "smd": true
+        },
+        {
+          "number": "3",
+          "x": 59.9375,
+          "y": 36.0,
+          "net": "LED5_DRAIN",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "J_PWR",
+      "value": "5V INPUT",
+      "footprint": "GemilaiMateCompact:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
+      "x": 28.5,
+      "y": 4.05,
+      "rotation": 0.0,
+      "side": "back",
+      "nets": {
+        "1": "EXT_IN",
+        "2": "GND"
+      },
+      "names": {
+        "1": "5V_IN",
+        "2": "GND"
+      },
+      "pin_types": {},
+      "mpn": "5V INPUT",
+      "datasheet": "",
+      "section": "Connectors",
+      "dnp": false,
+      "designator": "J4",
+      "source_footprint": "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "5V_IN",
+          "net": "EXT_IN",
+          "type": "passive",
+          "x": 28.5,
+          "y": 4.05
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND",
+          "type": "passive",
+          "x": 30.5,
+          "y": 4.05
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 28.5,
+          "y": 4.05,
+          "net": "EXT_IN",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 30.5,
+          "y": 4.05,
+          "net": "GND",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "J_DISPLAY",
+      "value": "DISPLAY 5V",
+      "footprint": "GemilaiMateCompact:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
+      "x": 37.0,
+      "y": 4.05,
+      "rotation": 0.0,
+      "side": "back",
+      "nets": {
+        "1": "+5V_EXT",
+        "2": "GND"
+      },
+      "names": {
+        "1": "5V_EXT",
+        "2": "GND"
+      },
+      "pin_types": {},
+      "mpn": "DISPLAY 5V",
+      "datasheet": "",
+      "section": "Connectors",
+      "dnp": false,
+      "designator": "J5",
+      "source_footprint": "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "5V_EXT",
+          "net": "+5V_EXT",
+          "type": "passive",
+          "x": 37.0,
+          "y": 4.05
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND",
+          "type": "passive",
+          "x": 39.0,
+          "y": 4.05
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 37.0,
+          "y": 4.05,
+          "net": "+5V_EXT",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 39.0,
+          "y": 4.05,
+          "net": "GND",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "J_PRESS",
+      "value": "PRESSURE",
+      "footprint": "GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
+      "x": 18.0,
+      "y": 47.05,
+      "rotation": 0.0,
+      "side": "back",
+      "nets": {
+        "1": "+5V_EXT",
+        "2": "GND",
+        "3": "PRESSURE_RAW"
+      },
+      "names": {
+        "1": "5V",
+        "2": "GND",
+        "3": "OUT"
+      },
+      "pin_types": {},
+      "mpn": "PRESSURE",
+      "datasheet": "",
+      "section": "Connectors",
+      "dnp": false,
+      "designator": "J6",
+      "source_footprint": "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "5V",
+          "net": "+5V_EXT",
+          "type": "passive",
+          "x": 18.0,
+          "y": 47.05
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND",
+          "type": "passive",
+          "x": 20.0,
+          "y": 47.05
+        },
+        {
+          "number": "3",
+          "name": "OUT",
+          "net": "PRESSURE_RAW",
+          "type": "passive",
+          "x": 22.0,
+          "y": 47.05
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 18.0,
+          "y": 47.05,
+          "net": "+5V_EXT",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 20.0,
+          "y": 47.05,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 22.0,
+          "y": 47.05,
+          "net": "PRESSURE_RAW",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "J_BUTTONS",
+      "value": "BUTTONS",
+      "footprint": "GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical",
+      "x": 28.5,
+      "y": 47.05,
+      "rotation": 0.0,
+      "side": "back",
+      "nets": {
+        "1": "BREW_RAW",
+        "2": "STEAM_RAW",
+        "3": "GND",
+        "4": "GND"
+      },
+      "names": {
+        "1": "BREW",
+        "2": "STEAM",
+        "3": "GND",
+        "4": "GND"
+      },
+      "pin_types": {},
+      "mpn": "BUTTONS",
+      "datasheet": "",
+      "section": "Connectors",
+      "dnp": false,
+      "designator": "J7",
+      "source_footprint": "Connector_JST:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "BREW",
+          "net": "BREW_RAW",
+          "type": "passive",
+          "x": 28.5,
+          "y": 47.05
+        },
+        {
+          "number": "2",
+          "name": "STEAM",
+          "net": "STEAM_RAW",
+          "type": "passive",
+          "x": 30.5,
+          "y": 47.05
+        },
+        {
+          "number": "3",
+          "name": "GND",
+          "net": "GND",
+          "type": "passive",
+          "x": 32.5,
+          "y": 47.05
+        },
+        {
+          "number": "4",
+          "name": "GND",
+          "net": "GND",
+          "type": "passive",
+          "x": 34.5,
+          "y": 47.05
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 28.5,
+          "y": 47.05,
+          "net": "BREW_RAW",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 30.5,
+          "y": 47.05,
+          "net": "STEAM_RAW",
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 32.5,
+          "y": 47.05,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "4",
+          "x": 34.5,
+          "y": 47.05,
+          "net": "GND",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "J_PUMP",
+      "value": "ROBOTDYN",
+      "footprint": "GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical",
+      "x": 40.9,
+      "y": 47.05,
+      "rotation": 0.0,
+      "side": "back",
+      "nets": {
+        "1": "+5V_EXT",
+        "2": "GND",
+        "3": "ZC_RAW",
+        "4": "PUMP_OUT"
+      },
+      "names": {
+        "1": "5V",
+        "2": "GND",
+        "3": "ZC",
+        "4": "PSM"
+      },
+      "pin_types": {},
+      "mpn": "ROBOTDYN",
+      "datasheet": "",
+      "section": "Connectors",
+      "dnp": false,
+      "designator": "J8",
+      "source_footprint": "Connector_JST:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "5V",
+          "net": "+5V_EXT",
+          "type": "passive",
+          "x": 40.9,
+          "y": 47.05
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND",
+          "type": "passive",
+          "x": 42.9,
+          "y": 47.05
+        },
+        {
+          "number": "3",
+          "name": "ZC",
+          "net": "ZC_RAW",
+          "type": "passive",
+          "x": 44.9,
+          "y": 47.05
+        },
+        {
+          "number": "4",
+          "name": "PSM",
+          "net": "PUMP_OUT",
+          "type": "passive",
+          "x": 46.9,
+          "y": 47.05
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 40.9,
+          "y": 47.05,
+          "net": "+5V_EXT",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 42.9,
+          "y": 47.05,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 44.9,
+          "y": 47.05,
+          "net": "ZC_RAW",
+          "smd": false
+        },
+        {
+          "number": "4",
+          "x": 46.9,
+          "y": 47.05,
+          "net": "PUMP_OUT",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "J_VALVE",
+      "value": "VALVE SSR",
+      "footprint": "GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
+      "x": 62.05,
+      "y": 36.25,
+      "rotation": 90.0,
+      "side": "back",
+      "nets": {
+        "1": "+5V_EXT",
+        "2": "GND",
+        "3": "VALVE_5V"
+      },
+      "names": {
+        "1": "5V",
+        "2": "GND",
+        "3": "IN"
+      },
+      "pin_types": {},
+      "mpn": "VALVE SSR",
+      "datasheet": "",
+      "section": "Connectors",
+      "dnp": false,
+      "designator": "J9",
+      "source_footprint": "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "5V",
+          "net": "+5V_EXT",
+          "type": "passive",
+          "x": 62.05,
+          "y": 36.25
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND",
+          "type": "passive",
+          "x": 62.05,
+          "y": 34.25
+        },
+        {
+          "number": "3",
+          "name": "IN",
+          "net": "VALVE_5V",
+          "type": "passive",
+          "x": 62.05,
+          "y": 32.25
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 62.05,
+          "y": 36.25,
+          "net": "+5V_EXT",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 62.05,
+          "y": 34.25,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 62.05,
+          "y": 32.25,
+          "net": "VALVE_5V",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "J_HEAT",
+      "value": "HEATER UNUSED",
+      "footprint": "GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
+      "x": 42.5,
+      "y": 40.05,
+      "rotation": 0.0,
+      "side": "back",
+      "nets": {
+        "1": "+5V_EXT",
+        "2": "GND",
+        "3": "HEATER_5V"
+      },
+      "names": {
+        "1": "5V",
+        "2": "GND",
+        "3": "IN"
+      },
+      "pin_types": {},
+      "mpn": "HEATER UNUSED",
+      "datasheet": "",
+      "section": "Connectors",
+      "dnp": false,
+      "designator": "J10",
+      "source_footprint": "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "5V",
+          "net": "+5V_EXT",
+          "type": "passive",
+          "x": 42.5,
+          "y": 40.05
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND",
+          "type": "passive",
+          "x": 44.5,
+          "y": 40.05
+        },
+        {
+          "number": "3",
+          "name": "IN",
+          "net": "HEATER_5V",
+          "type": "passive",
+          "x": 46.5,
+          "y": 40.05
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 42.5,
+          "y": 40.05,
+          "net": "+5V_EXT",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 44.5,
+          "y": 40.05,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 46.5,
+          "y": 40.05,
+          "net": "HEATER_5V",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "J_ALT",
+      "value": "ALT SSR",
+      "footprint": "GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
+      "x": 52.1,
+      "y": 47.05,
+      "rotation": 0.0,
+      "side": "back",
+      "nets": {
+        "1": "+5V_EXT",
+        "2": "GND",
+        "3": "ALT_5V"
+      },
+      "names": {
+        "1": "5V",
+        "2": "GND",
+        "3": "IN"
+      },
+      "pin_types": {},
+      "mpn": "ALT SSR",
+      "datasheet": "",
+      "section": "Connectors",
+      "dnp": false,
+      "designator": "J11",
+      "source_footprint": "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "5V",
+          "net": "+5V_EXT",
+          "type": "passive",
+          "x": 52.1,
+          "y": 47.05
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND",
+          "type": "passive",
+          "x": 54.1,
+          "y": 47.05
+        },
+        {
+          "number": "3",
+          "name": "IN",
+          "net": "ALT_5V",
+          "type": "passive",
+          "x": 56.1,
+          "y": 47.05
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 52.1,
+          "y": 47.05,
+          "net": "+5V_EXT",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 54.1,
+          "y": 47.05,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 56.1,
+          "y": 47.05,
+          "net": "ALT_5V",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "J_TOF",
+      "value": "VL53L0X 3V3",
+      "footprint": "GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical",
+      "x": 32.0,
+      "y": 34.05,
+      "rotation": 0.0,
+      "side": "back",
+      "nets": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "ALBA_SDA",
+        "4": "ALBA_SCL"
+      },
+      "names": {
+        "1": "3V3",
+        "2": "GND",
+        "3": "SDA",
+        "4": "SCL"
+      },
+      "pin_types": {},
+      "mpn": "VL53L0X 3V3",
+      "datasheet": "",
+      "section": "Connectors",
+      "dnp": false,
+      "designator": "J12",
+      "source_footprint": "Connector_JST:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "3V3",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 32.0,
+          "y": 34.05
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND",
+          "type": "passive",
+          "x": 34.0,
+          "y": 34.05
+        },
+        {
+          "number": "3",
+          "name": "SDA",
+          "net": "ALBA_SDA",
+          "type": "passive",
+          "x": 36.0,
+          "y": 34.05
+        },
+        {
+          "number": "4",
+          "name": "SCL",
+          "net": "ALBA_SCL",
+          "type": "passive",
+          "x": 38.0,
+          "y": 34.05
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 32.0,
+          "y": 34.05,
+          "net": "+3V3",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 34.0,
+          "y": 34.05,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 36.0,
+          "y": 34.05,
+          "net": "ALBA_SDA",
+          "smd": false
+        },
+        {
+          "number": "4",
+          "x": 38.0,
+          "y": 34.05,
+          "net": "ALBA_SCL",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "J_ALBA",
+      "value": "EXTERNAL ALBA",
+      "footprint": "GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical",
+      "x": 62.05,
+      "y": 27.0,
+      "rotation": 90.0,
+      "side": "back",
+      "nets": {
+        "1": "+5V_CORE",
+        "2": "GND",
+        "3": "ALBA_SDA",
+        "4": "ALBA_SCL"
+      },
+      "names": {
+        "1": "5V_CORE",
+        "2": "GND",
+        "3": "SDA",
+        "4": "SCL"
+      },
+      "pin_types": {},
+      "mpn": "EXTERNAL ALBA",
+      "datasheet": "",
+      "section": "Connectors",
+      "dnp": false,
+      "designator": "J13",
+      "source_footprint": "Connector_JST:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "5V_CORE",
+          "net": "+5V_CORE",
+          "type": "passive",
+          "x": 62.05,
+          "y": 27.0
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "net": "GND",
+          "type": "passive",
+          "x": 62.05,
+          "y": 25.0
+        },
+        {
+          "number": "3",
+          "name": "SDA",
+          "net": "ALBA_SDA",
+          "type": "passive",
+          "x": 62.05,
+          "y": 23.0
+        },
+        {
+          "number": "4",
+          "name": "SCL",
+          "net": "ALBA_SCL",
+          "type": "passive",
+          "x": 62.05,
+          "y": 21.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 62.05,
+          "y": 27.0,
+          "net": "+5V_CORE",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 62.05,
+          "y": 25.0,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 62.05,
+          "y": 23.0,
+          "net": "ALBA_SDA",
+          "smd": false
+        },
+        {
+          "number": "4",
+          "x": 62.05,
+          "y": 21.0,
+          "net": "ALBA_SCL",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "J_RGBW",
+      "value": "RGBW CA",
+      "footprint": "GemilaiMateCompact:JST_PH_B5B-PH-K_1x05_P2.00mm_Vertical",
+      "x": 62.05,
+      "y": 15.5,
+      "rotation": 90.0,
+      "side": "back",
+      "nets": {
+        "1": "+5V_EXT",
+        "2": "RGBW0",
+        "3": "RGBW1",
+        "4": "RGBW2",
+        "5": "RGBW3"
+      },
+      "names": {
+        "1": "5V_CA",
+        "2": "R",
+        "3": "G",
+        "4": "B",
+        "5": "W"
+      },
+      "pin_types": {},
+      "mpn": "RGBW CA",
+      "datasheet": "",
+      "section": "Connectors",
+      "dnp": false,
+      "designator": "J14",
+      "source_footprint": "Connector_JST:JST_PH_B5B-PH-K_1x05_P2.00mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "5V_CA",
+          "net": "+5V_EXT",
+          "type": "passive",
+          "x": 62.05,
+          "y": 15.5
+        },
+        {
+          "number": "2",
+          "name": "R",
+          "net": "RGBW0",
+          "type": "passive",
+          "x": 62.05,
+          "y": 13.5
+        },
+        {
+          "number": "3",
+          "name": "G",
+          "net": "RGBW1",
+          "type": "passive",
+          "x": 62.05,
+          "y": 11.5
+        },
+        {
+          "number": "4",
+          "name": "B",
+          "net": "RGBW2",
+          "type": "passive",
+          "x": 62.05,
+          "y": 9.5
+        },
+        {
+          "number": "5",
+          "name": "W",
+          "net": "RGBW3",
+          "type": "passive",
+          "x": 62.05,
+          "y": 7.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 62.05,
+          "y": 15.5,
+          "net": "+5V_EXT",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 62.05,
+          "y": 13.5,
+          "net": "RGBW0",
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 62.05,
+          "y": 11.5,
+          "net": "RGBW1",
+          "smd": false
+        },
+        {
+          "number": "4",
+          "x": 62.05,
+          "y": 9.5,
+          "net": "RGBW2",
+          "smd": false
+        },
+        {
+          "number": "5",
+          "x": 62.05,
+          "y": 7.5,
+          "net": "RGBW3",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "J_LIGHT",
+      "value": "LIGHTS 200mA TOTAL",
+      "footprint": "GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
+      "x": 62.05,
+      "y": 46.0,
+      "rotation": 90.0,
+      "side": "back",
+      "nets": {
+        "1": "+5V_EXT",
+        "2": "LED4_DRAIN",
+        "3": "LED5_DRAIN"
+      },
+      "names": {
+        "1": "5V",
+        "2": "CH4_NEG",
+        "3": "CH5_NEG"
+      },
+      "pin_types": {},
+      "mpn": "LIGHTS 200mA TOTAL",
+      "datasheet": "",
+      "section": "Connectors",
+      "dnp": false,
+      "designator": "J15",
+      "source_footprint": "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "5V",
+          "net": "+5V_EXT",
+          "type": "passive",
+          "x": 62.05,
+          "y": 46.0
+        },
+        {
+          "number": "2",
+          "name": "CH4_NEG",
+          "net": "LED4_DRAIN",
+          "type": "passive",
+          "x": 62.05,
+          "y": 44.0
+        },
+        {
+          "number": "3",
+          "name": "CH5_NEG",
+          "net": "LED5_DRAIN",
+          "type": "passive",
+          "x": 62.05,
+          "y": 42.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 62.05,
+          "y": 46.0,
+          "net": "+5V_EXT",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 62.05,
+          "y": 44.0,
+          "net": "LED4_DRAIN",
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 62.05,
+          "y": 42.0,
+          "net": "LED5_DRAIN",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "J_SCALE",
+      "value": "SCALE 3V3",
+      "footprint": "GemilaiMateCompact:PinHeader_1x05_P1.27mm_Vertical",
+      "x": 32.0,
+      "y": 40.5,
+      "rotation": -90.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "SCALE_CLK",
+        "4": "SCALE_DAT0",
+        "5": "SCALE_DAT1"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "SCALE 3V3",
+      "datasheet": "",
+      "section": "Expansion",
+      "dnp": true,
+      "designator": "J16",
+      "source_footprint": "Connector_PinHeader_1.27mm:PinHeader_1x05_P1.27mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 32.0,
+          "y": 40.5
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 30.73,
+          "y": 40.5
+        },
+        {
+          "number": "3",
+          "name": "3",
+          "net": "SCALE_CLK",
+          "type": "passive",
+          "x": 29.46,
+          "y": 40.5
+        },
+        {
+          "number": "4",
+          "name": "4",
+          "net": "SCALE_DAT0",
+          "type": "passive",
+          "x": 28.19,
+          "y": 40.5
+        },
+        {
+          "number": "5",
+          "name": "5",
+          "net": "SCALE_DAT1",
+          "type": "passive",
+          "x": 26.92,
+          "y": 40.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 32.0,
+          "y": 40.5,
+          "net": "+3V3",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 30.73,
+          "y": 40.5,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 29.46,
+          "y": 40.5,
+          "net": "SCALE_CLK",
+          "smd": false
+        },
+        {
+          "number": "4",
+          "x": 28.19,
+          "y": 40.5,
+          "net": "SCALE_DAT0",
+          "smd": false
+        },
+        {
+          "number": "5",
+          "x": 26.92,
+          "y": 40.5,
+          "net": "SCALE_DAT1",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "J_EXT",
+      "value": "EXT 3V3",
+      "footprint": "GemilaiMateCompact:PinHeader_2x05_P1.27mm_Vertical",
+      "x": 33.0,
+      "y": 25.0,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "EXT1",
+        "4": "EXT2",
+        "5": "EXT3",
+        "6": "EXT4",
+        "7": "EXT5",
+        "8": "+5V_EXT",
+        "9": "GND",
+        "10": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "EXT 3V3",
+      "datasheet": "",
+      "section": "Expansion",
+      "dnp": true,
+      "designator": "J17",
+      "source_footprint": "Connector_PinHeader_1.27mm:PinHeader_2x05_P1.27mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 33.0,
+          "y": 25.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 33.0,
+          "y": 23.73
+        },
+        {
+          "number": "3",
+          "name": "3",
+          "net": "EXT1",
+          "type": "passive",
+          "x": 34.27,
+          "y": 25.0
+        },
+        {
+          "number": "4",
+          "name": "4",
+          "net": "EXT2",
+          "type": "passive",
+          "x": 34.27,
+          "y": 23.73
+        },
+        {
+          "number": "5",
+          "name": "5",
+          "net": "EXT3",
+          "type": "passive",
+          "x": 35.54,
+          "y": 25.0
+        },
+        {
+          "number": "6",
+          "name": "6",
+          "net": "EXT4",
+          "type": "passive",
+          "x": 35.54,
+          "y": 23.73
+        },
+        {
+          "number": "7",
+          "name": "7",
+          "net": "EXT5",
+          "type": "passive",
+          "x": 36.81,
+          "y": 25.0
+        },
+        {
+          "number": "8",
+          "name": "8",
+          "net": "+5V_EXT",
+          "type": "passive",
+          "x": 36.81,
+          "y": 23.73
+        },
+        {
+          "number": "9",
+          "name": "9",
+          "net": "GND",
+          "type": "passive",
+          "x": 38.08,
+          "y": 25.0
+        },
+        {
+          "number": "10",
+          "name": "10",
+          "net": "GND",
+          "type": "passive",
+          "x": 38.08,
+          "y": 23.73
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 33.0,
+          "y": 25.0,
+          "net": "+3V3",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 33.0,
+          "y": 23.73,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 34.27,
+          "y": 25.0,
+          "net": "EXT1",
+          "smd": false
+        },
+        {
+          "number": "4",
+          "x": 34.27,
+          "y": 23.73,
+          "net": "EXT2",
+          "smd": false
+        },
+        {
+          "number": "5",
+          "x": 35.54,
+          "y": 25.0,
+          "net": "EXT3",
+          "smd": false
+        },
+        {
+          "number": "6",
+          "x": 35.54,
+          "y": 23.73,
+          "net": "EXT4",
+          "smd": false
+        },
+        {
+          "number": "7",
+          "x": 36.81,
+          "y": 25.0,
+          "net": "EXT5",
+          "smd": false
+        },
+        {
+          "number": "8",
+          "x": 36.81,
+          "y": 23.73,
+          "net": "+5V_EXT",
+          "smd": false
+        },
+        {
+          "number": "9",
+          "x": 38.08,
+          "y": 25.0,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "10",
+          "x": 38.08,
+          "y": 23.73,
+          "net": "GND",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "J_FREE",
+      "value": "FREE GPIO 3V3",
+      "footprint": "GemilaiMateCompact:PinHeader_1x06_P1.27mm_Vertical",
+      "x": 32.0,
+      "y": 11.0,
+      "rotation": 90.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "GPIO5",
+        "4": "GPIO15",
+        "5": "GPIO16",
+        "6": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "FREE GPIO 3V3",
+      "datasheet": "",
+      "section": "Expansion",
+      "dnp": true,
+      "designator": "J18",
+      "source_footprint": "Connector_PinHeader_1.27mm:PinHeader_1x06_P1.27mm_Vertical",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 32.0,
+          "y": 11.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 33.27,
+          "y": 11.0
+        },
+        {
+          "number": "3",
+          "name": "3",
+          "net": "GPIO5",
+          "type": "passive",
+          "x": 34.54,
+          "y": 11.0
+        },
+        {
+          "number": "4",
+          "name": "4",
+          "net": "GPIO15",
+          "type": "passive",
+          "x": 35.81,
+          "y": 11.0
+        },
+        {
+          "number": "5",
+          "name": "5",
+          "net": "GPIO16",
+          "type": "passive",
+          "x": 37.08,
+          "y": 11.0
+        },
+        {
+          "number": "6",
+          "name": "6",
+          "net": "GND",
+          "type": "passive",
+          "x": 38.35,
+          "y": 11.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 32.0,
+          "y": 11.0,
+          "net": "+3V3",
+          "smd": false
+        },
+        {
+          "number": "2",
+          "x": 33.27,
+          "y": 11.0,
+          "net": "GND",
+          "smd": false
+        },
+        {
+          "number": "3",
+          "x": 34.54,
+          "y": 11.0,
+          "net": "GPIO5",
+          "smd": false
+        },
+        {
+          "number": "4",
+          "x": 35.81,
+          "y": 11.0,
+          "net": "GPIO15",
+          "smd": false
+        },
+        {
+          "number": "5",
+          "x": 37.08,
+          "y": 11.0,
+          "net": "GPIO16",
+          "smd": false
+        },
+        {
+          "number": "6",
+          "x": 38.35,
+          "y": 11.0,
+          "net": "GND",
+          "smd": false
+        }
+      ]
+    },
+    {
+      "ref": "TP1",
+      "value": "STRAP3",
+      "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
+      "x": 26.5,
+      "y": 22.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "STRAP3"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "STRAP3",
+      "datasheet": "",
+      "section": "Testpoints",
+      "dnp": true,
+      "designator": "TP1",
+      "source_footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "STRAP3",
+          "type": "passive",
+          "x": 26.5,
+          "y": 22.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 26.5,
+          "y": 22.0,
+          "net": "STRAP3",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "TP2",
+      "value": "STRAP45",
+      "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
+      "x": 26.0,
+      "y": 4.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "STRAP45"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "STRAP45",
+      "datasheet": "",
+      "section": "Testpoints",
+      "dnp": true,
+      "designator": "TP2",
+      "source_footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "STRAP45",
+          "type": "passive",
+          "x": 26.0,
+          "y": 4.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 26.0,
+          "y": 4.0,
+          "net": "STRAP45",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "TP3",
+      "value": "STRAP46",
+      "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
+      "x": 29.0,
+      "y": 2.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "STRAP46"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "STRAP46",
+      "datasheet": "",
+      "section": "Testpoints",
+      "dnp": true,
+      "designator": "TP3",
+      "source_footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "STRAP46",
+          "type": "passive",
+          "x": 29.0,
+          "y": 2.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 29.0,
+          "y": 2.0,
+          "net": "STRAP46",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "TP4",
+      "value": "BOOT",
+      "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
+      "x": 29.0,
+      "y": 25.5,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "BOOT"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "BOOT",
+      "datasheet": "",
+      "section": "Testpoints",
+      "dnp": true,
+      "designator": "TP4",
+      "source_footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "BOOT",
+          "type": "passive",
+          "x": 29.0,
+          "y": 25.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 29.0,
+          "y": 25.5,
+          "net": "BOOT",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "TP5",
+      "value": "+3V3",
+      "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
+      "x": 34.0,
+      "y": 4.5,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "+3V3",
+      "datasheet": "",
+      "section": "Testpoints",
+      "dnp": true,
+      "designator": "TP5",
+      "source_footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 34.0,
+          "y": 4.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 34.0,
+          "y": 4.5,
+          "net": "+3V3",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "TP6",
+      "value": "GND",
+      "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
+      "x": 34.0,
+      "y": 2.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GND",
+      "datasheet": "",
+      "section": "Testpoints",
+      "dnp": true,
+      "designator": "TP6",
+      "source_footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "GND",
+          "type": "passive",
+          "x": 34.0,
+          "y": 2.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 34.0,
+          "y": 2.0,
+          "net": "GND",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "TP7",
+      "value": "ALBA_SDA",
+      "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
+      "x": 24.0,
+      "y": 24.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "ALBA_SDA"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "ALBA_SDA",
+      "datasheet": "",
+      "section": "Testpoints",
+      "dnp": true,
+      "designator": "TP7",
+      "source_footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "ALBA_SDA",
+          "type": "passive",
+          "x": 24.0,
+          "y": 24.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 24.0,
+          "y": 24.0,
+          "net": "ALBA_SDA",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "TP8",
+      "value": "ALBA_SCL",
+      "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
+      "x": 25.0,
+      "y": 28.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "ALBA_SCL"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "ALBA_SCL",
+      "datasheet": "",
+      "section": "Testpoints",
+      "dnp": true,
+      "designator": "TP8",
+      "source_footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "ALBA_SCL",
+          "type": "passive",
+          "x": 25.0,
+          "y": 28.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 25.0,
+          "y": 28.0,
+          "net": "ALBA_SCL",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "TP9",
+      "value": "PCA_LED6",
+      "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
+      "x": 51.0,
+      "y": 12.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "PCA_LED6"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "PCA_LED6",
+      "datasheet": "",
+      "section": "Testpoints",
+      "dnp": true,
+      "designator": "TP9",
+      "source_footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "PCA_LED6",
+          "type": "passive",
+          "x": 51.0,
+          "y": 12.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 51.0,
+          "y": 12.0,
+          "net": "PCA_LED6",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "TP10",
+      "value": "PCA_LED7",
+      "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
+      "x": 46.0,
+      "y": 14.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "PCA_LED7"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "PCA_LED7",
+      "datasheet": "",
+      "section": "Testpoints",
+      "dnp": true,
+      "designator": "TP10",
+      "source_footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "PCA_LED7",
+          "type": "passive",
+          "x": 46.0,
+          "y": 14.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 46.0,
+          "y": 14.0,
+          "net": "PCA_LED7",
+          "smd": true
+        }
+      ]
+    }
+  ],
+  "nominal_assembly_bounds_mm": [
+    0,
+    -7.15,
+    65,
+    50.335
+  ],
+  "module_sockets": {
+    "J_ADS": {
+      "body_rect_mm": [
+        2.46,
+        22.26,
+        30.46,
+        39.3
+      ],
+      "socket_height_mm": 8.5,
+      "male_header_height_mm": 2.54,
+      "module_underside_mm": 11.04,
+      "module_thickness_mm": 1.6
+    },
+    "J_TC": {
+      "body_rect_mm": [
+        39.99,
+        21.97,
+        60.31,
+        44.83
+      ],
+      "socket_height_mm": 8.5,
+      "male_header_height_mm": 2.54,
+      "module_underside_mm": 11.04,
+      "module_thickness_mm": 1.6
+    }
+  },
+  "parts_count": 101,
+  "power_flags": [
+    "GND",
+    "EXT_IN",
+    "USB_VBUS",
+    "USB_FUSED",
+    "+5V_EXT",
+    "+5V_CORE"
+  ]
+}

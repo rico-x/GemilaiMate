@@ -9,7 +9,7 @@ def main():
     if not a.skip_web:subprocess.run(['bash','scripts/build_webui.sh'],cwd=fw,check=True)
     core=Path(os.environ.get('PLATFORMIO_CORE_DIR',str(Path.home()/'.platformio')))
     targets={}
-    for target,size in [('controller',8),('display',16)]:
+    for target,size in [('controller',8),('controller-compact',8),('display',16)]:
         subprocess.run([sys.executable,'-m','platformio','run','--project-dir',str(fw),'-e',target],check=True)
         build=fw/'.pio/build'/target;folder=dest/target;folder.mkdir(exist_ok=True)
         for name in ['firmware.bin','bootloader.bin','partitions.bin']:shutil.copy2(build/name,folder/name)
@@ -24,7 +24,9 @@ def main():
         info=subprocess.check_output([sys.executable,'-m','esptool','--chip','esp32s3','image_info',str(folder/'firmware.bin')],text=True)
         if info.count('(valid)')<2:raise RuntimeError('Invalid ESP32 image: '+target)
         (folder/'image-info.txt').write_text(info)
-        targets[target]=dict(flash_mb=size,parts=entries,checksum_and_app_hash_valid=True)
+        targets[target]=dict(flash_mb=size,physical_flash_mb=16 if target=='controller-compact' else size,
+                             board_profile='compact-wroom' if target=='controller-compact' else 'legacy-devkit' if target=='controller' else 'display',
+                             parts=entries,checksum_and_app_hash_valid=True)
     version='v'+ROOT.joinpath('VERSION').read_text().strip()
     source_sha=hashlib.sha256()
     for item in sorted(fw.rglob('*')):

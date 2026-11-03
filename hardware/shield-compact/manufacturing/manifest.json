@@ -1,0 +1,23 @@
+{
+  "variant": "compact",
+  "revision": "0.1.0",
+  "status": "PROTOTYPE / INDEPENDENT REVIEW REQUIRED",
+  "hardware_tested": false,
+  "manufacturing_release": false,
+  "board_size_mm": [
+    65,
+    50
+  ],
+  "copper_layers": 4,
+  "pcb_sha256": "b020894b399a48b8eb3e0122c687af8e5e25c470c3636cc50e2b421ca12ef13c",
+  "archive_sha256": "7e261b9ebc445658c33132cafd0a631d7e62fb00f7d3bdb08764c9f4ce2d9075",
+  "kicad_version": "10.0.7",
+  "smd_placements": 72,
+  "drc_violations": 0,
+  "erc_violations": 0,
+  "unconnected": 0,
+  "schematic_parity": 0,
+  "minimum_track_mm": 0.21,
+  "source_of_3d": "KiCad models plus nominal daughterboard envelopes; actual clones unmeasured",
+  "fabrication_notes": "Confirm 4-layer stack and USB 90 ohms; 0.15mm USB pad gaps; board not physically validated"
+}

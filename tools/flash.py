@@ -5,7 +5,7 @@ from pathlib import Path
 
 def main(argv=None, root=None):
     ap=argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('target',choices=['controller','display'])
+    ap.add_argument('target',choices=['controller','controller-compact','display'])
     ap.add_argument('--port',required=True)
     ap.add_argument('--package',type=Path,help='Firmware package directory containing manifest.json')
     ap.add_argument('--fresh',action='store_true',help='Initialize bootloader/partitions/OTA/app/filesystem. Does not erase NVS by itself.')
@@ -15,6 +15,10 @@ def main(argv=None, root=None):
     if a.erase_all and not a.fresh:ap.error('--erase-all requires --fresh')
     root=Path(root) if root else (a.package if a.package else Path(__file__).resolve().parent)
     m=json.loads((root/'manifest.json').read_text());target=m['targets'][a.target]
+    if a.target=='controller-compact':
+        if target.get('physical_flash_mb')!=16 or target['flash_mb']!=8:
+            raise SystemExit('Compact target requires physical 16MB with the compatible 8MB flash layout.')
+        print('Compact WROOM board only: Alba SDA43/SCL44. Do not use this target on the DevKit carrier/shield.')
     parts=target['parts'] if a.fresh else [x for x in target['parts'] if not x['initial_only']]
     prefix=[sys.executable,'-m','esptool','--chip','esp32s3','--port',a.port,'--baud','460800']
     write=prefix+['write_flash','--flash_mode','keep','--flash_freq','keep','--flash_size',str(target['flash_mb'])+'MB']

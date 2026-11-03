@@ -1,0 +1,7 @@
+{
+  "router": "Freerouting 2.5.0 / Java 25",
+  "dsn_normalized_sha256": "d4d015fb8ece445b90d41186b4a529fd726e05d833dd43ebc4826397c946a9d2",
+  "ses_sha256": "1cf5beab98eb3d4ce10b39f1abfbcacaeafe5d1e6de811da64d5b8438ee46ae2",
+  "accepted_pcb_sha256": "b020894b399a48b8eb3e0122c687af8e5e25c470c3636cc50e2b421ca12ef13c",
+  "physical_tests": false
+}

@@ -26,7 +26,7 @@ KiCad 10.0.7 использован для текущих производств
 
 Carrier v0.1 сохраняется в hardware/carrier. Shield v0.2.4 — в hardware/shield; файл gemilaimate-shield.kicad_pro открывается отдельно, со своими локальными библиотеками. Общая прошивка остаётся v0.1.0, исходники firmware не менялись.
 
-Проверка: `.venv/bin/python tools/check_project.py` проверяет оба варианта. Для восстановления shield из актуального carrier: KiCad Python запускает `hardware/shield/scripts/make_shield.py`, затем `route_shield.py`; обычный Python запускает `make_schematic.py`. Полный электрический/CAM экспорт: `.venv/bin/python tools/export_shield.py --kicad-cli /path/to/kicad-cli --kicad-python /path/to/kicad-python`. Скрипт останавливается при любом ERC/DRC/unconnected/parity и формирует отдельный prototype ZIP.
+Проверка: `.venv/bin/python tools/check_project.py` проверяет все три варианта. Для восстановления shield из актуального carrier: KiCad Python запускает `hardware/shield/scripts/make_shield.py`, затем `route_shield.py`; обычный Python запускает `make_schematic.py`. Полный электрический/CAM экспорт: `.venv/bin/python tools/export_shield.py --kicad-cli /path/to/kicad-cli --kicad-python /path/to/kicad-python`. Скрипт останавливается при любом ERC/DRC/unconnected/parity и формирует отдельный prototype ZIP.
 
 Для PNG из SVG требуется CairoSVG из requirements-dev.txt и системный Cairo (на macOS Homebrew: cairo). Если динамический загрузчик не находит библиотеку, запускать экспорт с `DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib:/usr/lib`. Рабочая установленная копия KiCad в текущей сессии находится на смонтированном томе `/Volumes/KiCad/KiCad/KiCad.app`; пути не зашиты в исходники.
 
@@ -65,3 +65,7 @@ CI-задача «KiCad 10 reproduction» в контейнере `kicad/kicad:1
 `silk_clearance.py` enumerates every visible front/back silk text and footprint field, requiring its native bounding box to clear every via by 0.15 mm. `check_shield.py` independently compares the report inventory with PCB text objects, so adding a label requires no whitelist update. Track clearance remains mandatory for DC+, MAX31855 and ROBOTDYN CABLE only; other track overlap counts are informational. This cosmetic check supplements the unchanged electrical DRC.
 
 Run `python tools/test_silk_clearance.py` in a Python environment with KiCad's `pcbnew` and `sexpdata`. The four regressions restore the old J2/CH1 positions, add an unlisted back-side label over a via and remove a report entry. All must be rejected; the working PCB is never saved or modified by these tests.
+
+## Compact
+
+Новая цель `controller-compact` использует Alba 43/44, сохраняя остальные GPIO Pro LEGO. Прежняя `controller` остаётся на 15/16. Полный пакет `tools/build_release.py` теперь содержит три цели и согласованный display. Защита от смешения аппаратных профилей проверяется `python tools/test_controller_profiles.py`. Аппаратная сборка и воспроизведение описаны в [Compact Shield](compact-shield.md).

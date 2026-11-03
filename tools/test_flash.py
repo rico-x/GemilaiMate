@@ -34,4 +34,15 @@ class FlashTests(unittest.TestCase):
  def test_wrong_esptool_does_not_touch_port(self):
   with patch.object(m.importlib.metadata,'version',return_value='5.0'),patch.object(m.subprocess,'check_call') as call,self.assertRaises(SystemExit):self.run_main(['--flash'])
   call.assert_not_called()
+ def compact_package(self,physical=16,layout=8):
+  path=self.root/'manifest.json';data=json.loads(path.read_text());data['targets']['controller-compact']={**data['targets']['controller'],'physical_flash_mb':physical,'flash_mb':layout};path.write_text(json.dumps(data));self.args[0]='controller-compact'
+ def test_compact_dry_run_keeps_8mb_map(self):
+  self.compact_package()
+  with patch.object(m.subprocess,'check_call') as call:
+   result,out=self.run_main(['--fresh']);call.assert_not_called();self.assertEqual(result,0);self.assertIn('--flash_size 8MB',out);self.assertIn('SDA43/SCL44',out)
+ def test_compact_rejects_wrong_memory_before_serial(self):
+  for physical,layout in [(8,8),(16,16)]:
+   self.compact_package(physical,layout)
+   with patch.object(m.subprocess,'check_call') as call,self.assertRaises(SystemExit):self.run_main(['--fresh','--erase-all','--flash'])
+   call.assert_not_called()
 if __name__=='__main__':unittest.main()

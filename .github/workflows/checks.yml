@@ -28,7 +28,8 @@ jobs:
           python tools/check_project.py
           sh tools/run_host_tests.sh
           python tools/test_flash.py
-      - name: Build both current firmwares and Web UI
+          python tools/test_controller_profiles.py
+      - name: Build legacy, compact and display firmware plus Web UI
         run: python tools/build_release.py
       - name: Additional native tests
         working-directory: firmware
@@ -43,13 +44,18 @@ jobs:
       - name: Install git and Python checks
         run: |
           apt-get update -qq
-          apt-get install -y -qq git python3-pip >/dev/null
+          apt-get install -y -qq git python3-pip python3-shapely >/dev/null
           python3 -m pip install -q --break-system-packages sexpdata==1.0.2
       - uses: actions/checkout@v7.0.1
       - name: Committed CAM matches fresh ERC/DRC and export
-        run: python3 tools/verify_cam.py
+        run: |
+          python3 tools/verify_cam.py
+          python3 tools/export_compact.py --verify-only
       - name: Scripts reproduce the committed shield
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           env -u DISPLAY python3 tools/rebuild_shield.py --kicad-python python3 --kicad-cli kicad-cli --no-previews
           python3 tools/compare_shield_rebuild.py
+
+      - name: Scripts reproduce the compact PCB
+        run: env -u DISPLAY python3 tools/rebuild_compact.py --kicad-python python3 --no-previews

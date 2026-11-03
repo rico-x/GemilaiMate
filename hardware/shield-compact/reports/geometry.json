@@ -1,0 +1,11 @@
+{
+  "pcb_sha256": "b020894b399a48b8eb3e0122c687af8e5e25c470c3636cc50e2b421ca12ef13c",
+  "visible_text_via_overlaps": 0,
+  "unfilled_via_drill_smd_overlaps": 0,
+  "all_actual_pad_coordinates_match": true,
+  "dedicated_ground_layer": true,
+  "nominal_module_body_overlap": false,
+  "actual_clone_dimensions_verified": false,
+  "usb_plug_physical_test": false,
+  "hardware_tested": false
+}

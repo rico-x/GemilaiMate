@@ -1,0 +1,90 @@
+{
+  "checked_date": "2026-11-03",
+  "upstream_stable": {
+    "tag": "v1.9.0",
+    "commit": "43d2a7ba2299c196fd67c001f455985e07e57a49"
+  },
+  "upstream_master": "b78beee4dbcc1cd59946256f05e5cafa5450ec60",
+  "source_files": [
+    {
+      "url": "https://raw.githubusercontent.com/jniebuhr/gaggimate/43d2a7ba2299c196fd67c001f455985e07e57a49/lib/GaggiMateController/src/ControllerConfig.h",
+      "sha256": "64024fbf933bdf8bebb28d491b0621599797987d401ce69f30ace88d0dfdf933"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/jniebuhr/gaggimate/43d2a7ba2299c196fd67c001f455985e07e57a49/boards/Gaggimate-Controller.json",
+      "sha256": "c8f7c9132b99727a18d56a77d986c887c57a42d3bd6c3278ba57ee5c6e87201a"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/jniebuhr/gaggimate/43d2a7ba2299c196fd67c001f455985e07e57a49/lib/GaggiMateController/src/peripherals/LedController.cpp",
+      "sha256": "a20a302bf69fa3870ad08a27c3cb30b9e8495676ec64d809f1d9c500e8af68d9"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/jniebuhr/gaggimate/b78beee4dbcc1cd59946256f05e5cafa5450ec60/lib/GaggiMateController/src/ControllerConfig.h",
+      "sha256": "0abe959d51eca4cc91013ee530ad2974bb47bb5facc247723fd91d79619876ca"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/jniebuhr/gaggimate/b78beee4dbcc1cd59946256f05e5cafa5450ec60/boards/Gaggimate-Controller.json",
+      "sha256": "c8f7c9132b99727a18d56a77d986c887c57a42d3bd6c3278ba57ee5c6e87201a"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/jniebuhr/gaggimate/b78beee4dbcc1cd59946256f05e5cafa5450ec60/lib/GaggiMateController/src/peripherals/LedController.cpp",
+      "sha256": "a20a302bf69fa3870ad08a27c3cb30b9e8495676ec64d809f1d9c500e8af68d9"
+    }
+  ],
+  "manufacturer_sources": [
+    {
+      "url": "https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+      "purpose": "Module pins, N16R8 memory, RF outline and thermal ground"
+    },
+    {
+      "url": "https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32s3/schematic-checklist.html",
+      "purpose": "Supply, EN/straps, native USB"
+    },
+    {
+      "url": "https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32s3/pcb-layout-design.html",
+      "purpose": "Ground plane, USB and antenna clearance"
+    },
+    {
+      "url": "https://www.ti.com/lit/ds/symlink/txs0102.pdf",
+      "purpose": "DCT SSOP8 pin table page 3; footprint drawing pages 37-38. Do not use X2SON pin order"
+    },
+    {
+      "url": "https://www.nxp.com/docs/en/data-sheet/PCA9634.pdf",
+      "purpose": "SO20/TSSOP20 pin table page 6; address 0x00 and reset output state"
+    },
+    {
+      "url": "https://www.diodes.com/datasheet/download/AP7361C.pdf",
+      "purpose": "AP7361C-33E SOT223 pinout, output capacitor, dropout and thermal limits"
+    },
+    {
+      "url": "https://www.ti.com/lit/ds/symlink/sn74ahct125.pdf",
+      "purpose": "14-pin non-inverting TTL-compatible 5V output buffers"
+    },
+    {
+      "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g125.pdf",
+      "purpose": "3V3 pump buffer, OE and partial-power-down"
+    },
+    {
+      "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
+      "purpose": "5.5V-tolerant non-inverting ZC input"
+    },
+    {
+      "url": "https://www.st.com/resource/en/datasheet/usblc6-2.pdf",
+      "purpose": "ESD IO1 pins 1/6, IO2 3/4, GND2 VBUS5"
+    },
+    {
+      "url": "https://gct.co/connector/usb4085",
+      "purpose": "Data-capable through-hole USB-C, package pitch and shell"
+    },
+    {
+      "url": "https://www.littelfuse.com/products/polyswitch-resettable-pptcs/surface-mount/1206l",
+      "purpose": "PTC ratings; current derating with temperature"
+    },
+    {
+      "url": "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM31CR71A106KA01-01.pdf",
+      "purpose": "10uF 10V X7R 1206 capacitor example"
+    }
+  ],
+  "hardware_compatibility": "source-checked only; no physical build or firmware switching test",
+  "kicad_library_license": "https://www.kicad.org/libraries/license/"
+}

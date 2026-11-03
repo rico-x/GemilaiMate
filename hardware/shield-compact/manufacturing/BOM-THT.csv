@@ -1,0 +1,17 @@
+Reference,Alias,Description,Side,Assembly_note
+J1,J_USB,USB4085-GF-A,front,Verify exact mating part and pin 1 against assembly drawing
+J2,J_ADS,ADS1115 BLUE SOCKET,front,Verify exact mating part and pin 1 against assembly drawing
+J3,J_TC,MAX31855 SOCKET,front,Verify exact mating part and pin 1 against assembly drawing
+JP1,JP_TC,TC VIN 5V-3V3,front,Verify exact mating part and pin 1 against assembly drawing
+J4,J_PWR,5V INPUT,back,Verify exact mating part and pin 1 against assembly drawing
+J5,J_DISPLAY,DISPLAY 5V,back,Verify exact mating part and pin 1 against assembly drawing
+J6,J_PRESS,PRESSURE,back,Verify exact mating part and pin 1 against assembly drawing
+J7,J_BUTTONS,BUTTONS,back,Verify exact mating part and pin 1 against assembly drawing
+J8,J_PUMP,ROBOTDYN,back,Verify exact mating part and pin 1 against assembly drawing
+J9,J_VALVE,VALVE SSR,back,Verify exact mating part and pin 1 against assembly drawing
+J10,J_HEAT,HEATER UNUSED,back,Verify exact mating part and pin 1 against assembly drawing
+J11,J_ALT,ALT SSR,back,Verify exact mating part and pin 1 against assembly drawing
+J12,J_TOF,VL53L0X 3V3,back,Verify exact mating part and pin 1 against assembly drawing
+J13,J_ALBA,EXTERNAL ALBA,back,Verify exact mating part and pin 1 against assembly drawing
+J14,J_RGBW,RGBW CA,back,Verify exact mating part and pin 1 against assembly drawing
+J15,J_LIGHT,LIGHTS 200mA TOTAL,back,Verify exact mating part and pin 1 against assembly drawing

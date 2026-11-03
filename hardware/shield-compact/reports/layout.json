@@ -1,0 +1,1539 @@
+{
+  "widened_segments": 304,
+  "minimum_track_mm": 0.21,
+  "track_length_by_width_mm": {
+    "0.21": 2.0338,
+    "0.262": 23.436757567022706,
+    "0.28": 67.98767175302021,
+    "0.3": 83.34771623234062,
+    "0.35": 2448.5941109971227,
+    "0.4": 62.07833131753758,
+    "0.45": 65.36026444496983,
+    "0.5": 18.26075299936953,
+    "0.55": 13.417653116816675,
+    "0.6": 15.319470679704459,
+    "0.65": 25.176945300432113,
+    "0.7": 20.006744471268362,
+    "0.75": 8.435383793879307,
+    "0.8": 154.07213506924361
+  },
+  "visible_labels": [
+    {
+      "text": "GemilaiMate COMPACT 0.1.0",
+      "owner": "BOARD",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        13.5,
+        22.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        4.399048,
+        21.79215,
+        22.600953,
+        23.20785
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "Rico-X",
+      "owner": "BOARD",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        16,
+        16
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        13.728572,
+        15.3214,
+        18.271429,
+        16.6786
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "github.com/Rico-X/GemilaiMate",
+      "owner": "BOARD",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        17.0,
+        14.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        8.206669,
+        13.8799,
+        25.793331,
+        15.1201
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "NO MAINS",
+      "owner": "BOARD",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        14,
+        19
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        11.145,
+        18.35065,
+        16.855,
+        19.64935
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "U1 N16R8",
+      "owner": "U1",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        12,
+        21.7
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        9.206667,
+        21.0799,
+        14.793334,
+        22.3201
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "VDD",
+      "owner": "J2.1",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        5.0,
+        35.9
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        4.022857,
+        35.3384,
+        5.977143,
+        36.4616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "GND",
+      "owner": "J2.2",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        7.54,
+        39.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        6.505715,
+        38.9384,
+        8.574286,
+        40.0616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "SCL",
+      "owner": "J2.3",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        10.08,
+        35.9
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        9.131429,
+        35.3384,
+        11.028572,
+        36.4616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "SDA",
+      "owner": "J2.4",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        12.62,
+        39.3
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        11.657143,
+        38.7384,
+        13.582858,
+        39.8616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "ADR",
+      "owner": "J2.5",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        15.16,
+        39.1
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        14.182857,
+        38.5384,
+        16.137143,
+        39.6616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "NC",
+      "owner": "J2.6",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        17.7,
+        42.2
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        16.965715,
+        41.6384,
+        18.434286,
+        42.7616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "A0",
+      "owner": "J2.7",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        20.24,
+        35.9
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        19.577143,
+        35.3384,
+        20.902858,
+        36.4616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "NC",
+      "owner": "J2.8",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        22.78,
+        35.9
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        22.045715,
+        35.3384,
+        23.514286,
+        36.4616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "NC",
+      "owner": "J2.9",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        25.32,
+        35.9
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        24.585715,
+        35.3384,
+        26.054286,
+        36.4616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "NC",
+      "owner": "J2.10",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        27.86,
+        35.9
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        27.125715,
+        35.3384,
+        28.594286,
+        36.4616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "CLK",
+      "owner": "J3.6",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        43.8,
+        22.4
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        42.837143,
+        21.8384,
+        44.762857,
+        22.9616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "CS",
+      "owner": "J3.5",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        46.34,
+        22.4
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        45.634286,
+        21.8384,
+        47.045715,
+        22.9616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "DO",
+      "owner": "J3.4",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        48.88,
+        22.4
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        48.145715,
+        21.8384,
+        49.614286,
+        22.9616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "GND",
+      "owner": "J3.3",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        51.42,
+        22.4
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        50.385715,
+        21.8384,
+        52.454286,
+        22.9616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "NC",
+      "owner": "J3.2",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        53.96,
+        25.6
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        53.225715,
+        25.0384,
+        54.694286,
+        26.1616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "VIN",
+      "owner": "J3.1",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        56.5,
+        25.6
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        55.665715,
+        25.0384,
+        57.334286,
+        26.1616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "1",
+      "owner": "J2.PIN1",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        3.2,
+        37.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        2.794286,
+        36.9384,
+        3.605715,
+        38.0616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "1",
+      "owner": "J3.PIN1",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        58.3,
+        24.0
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        57.894286,
+        23.4384,
+        58.705715,
+        24.5616
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "J4:1",
+      "owner": "J4.1",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        30.5,
+        2.25
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        29.363571,
+        1.65915,
+        31.636429,
+        2.84085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "J5:1",
+      "owner": "J5.1",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        37.0,
+        2.25
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        35.863571,
+        1.65915,
+        38.136429,
+        2.84085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "J6:1",
+      "owner": "J6.1",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        18.0,
+        45.25
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        16.863571,
+        44.65915,
+        19.136429,
+        45.84085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "J7:1",
+      "owner": "J7.1",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        28.5,
+        45.25
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        27.363571,
+        44.65915,
+        29.636429,
+        45.84085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "J8:1",
+      "owner": "J8.1",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        40.9,
+        45.25
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        39.763571,
+        44.65915,
+        42.036429,
+        45.84085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "J9:1",
+      "owner": "J9.1",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        59.05,
+        33.45
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        57.913571,
+        32.85915,
+        60.186429,
+        34.04085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "J10:1",
+      "owner": "J10.1",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        42.5,
+        38.25
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        41.054047,
+        37.65915,
+        43.945953,
+        38.84085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "J11:1",
+      "owner": "J11.1",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        52.1,
+        45.25
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        50.654047,
+        44.65915,
+        53.545953,
+        45.84085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "J12:1",
+      "owner": "J12.1",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        32.0,
+        32.25
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        30.554047,
+        31.65915,
+        33.445953,
+        32.84085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "J13:1",
+      "owner": "J13.1",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        59.05,
+        25.2
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        57.604047,
+        24.60915,
+        60.495953,
+        25.79085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "J14:1",
+      "owner": "J14.1",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        59.05,
+        13.7
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        57.604047,
+        13.10915,
+        60.495953,
+        14.29085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "J15:1",
+      "owner": "J15.1",
+      "layer": "B.Silkscreen",
+      "position_mm": [
+        59.05,
+        44.2
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        57.604047,
+        43.60915,
+        60.495953,
+        44.79085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R1",
+      "owner": "R1",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        14.0,
+        31.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        13.250476,
+        30.90915,
+        14.749524,
+        32.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R2",
+      "owner": "R2",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        17.5,
+        31.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        16.750476,
+        30.90915,
+        18.249524,
+        32.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "U2",
+      "owner": "U2",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        7.475,
+        30.0
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        6.71,
+        29.40915,
+        8.24,
+        30.59085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "F2",
+      "owner": "F2",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        46.0,
+        1.0
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        45.296905,
+        0.40915,
+        46.703096,
+        1.59085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "U3",
+      "owner": "U3",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        45.0,
+        7.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        44.235,
+        6.90915,
+        45.765,
+        8.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "C2",
+      "owner": "C2",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        49.0,
+        5.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        48.250476,
+        4.90915,
+        49.749524,
+        6.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "C3",
+      "owner": "C3",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        3.0,
+        4.0
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        2.250476,
+        3.40915,
+        3.749524,
+        4.59085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "C4",
+      "owner": "C4",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        3.0,
+        1.0
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        2.250476,
+        0.40915,
+        3.749524,
+        1.59085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "C5",
+      "owner": "C5",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        2.5,
+        12.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        1.750476,
+        11.90915,
+        3.249524,
+        13.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R6",
+      "owner": "R6",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        26.0,
+        14.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        25.250476,
+        13.90915,
+        26.749524,
+        15.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "SW1",
+      "owner": "SW1",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        34.0,
+        15.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        32.894524,
+        14.90915,
+        35.105477,
+        16.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "SW2",
+      "owner": "SW2",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        41.5,
+        15.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        40.394524,
+        14.90915,
+        42.605477,
+        16.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R8",
+      "owner": "R8",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        29.0,
+        6.0
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        28.250476,
+        5.40915,
+        29.749524,
+        6.59085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R9",
+      "owner": "R9",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        32.5,
+        30.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        31.750476,
+        29.90915,
+        33.249524,
+        31.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R10",
+      "owner": "R10",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        28.0,
+        31.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        26.940952,
+        30.90915,
+        29.059048,
+        32.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "C7",
+      "owner": "C7",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        26.0,
+        24.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        25.250476,
+        23.90915,
+        26.749524,
+        25.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R11",
+      "owner": "R11",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        25.0,
+        40.0
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        23.940952,
+        39.40915,
+        26.059048,
+        40.59085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "C9",
+      "owner": "C9",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        28.5,
+        42.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        27.750476,
+        41.90915,
+        29.249524,
+        43.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R12",
+      "owner": "R12",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        34.5,
+        41.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        33.440952,
+        40.90915,
+        35.559048,
+        42.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R13",
+      "owner": "R13",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        37.0,
+        41.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        35.940952,
+        40.90915,
+        38.059048,
+        42.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "U5",
+      "owner": "U5",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        40.5,
+        30.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        39.735,
+        29.90915,
+        41.265,
+        31.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R14",
+      "owner": "R14",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        52.5,
+        43.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        51.440952,
+        42.90915,
+        53.559048,
+        44.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R15",
+      "owner": "R15",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        57.5,
+        43.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        56.440952,
+        42.90915,
+        58.559048,
+        44.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "Q1",
+      "owner": "Q1",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        49.5,
+        42.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        48.735,
+        41.90915,
+        50.265,
+        43.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "U7",
+      "owner": "U7",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        53.0,
+        31.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        52.235,
+        30.90915,
+        53.765,
+        32.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "C11",
+      "owner": "C11",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        56.0,
+        29.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        54.940952,
+        28.90915,
+        57.059048,
+        30.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "C12",
+      "owner": "C12",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        45.0,
+        36.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        43.940952,
+        35.90915,
+        46.059048,
+        37.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R19",
+      "owner": "R19",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        34.5,
+        18.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        33.440952,
+        17.90915,
+        35.559048,
+        19.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R20",
+      "owner": "R20",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        41.5,
+        20.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        40.440952,
+        19.90915,
+        42.559048,
+        21.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R22",
+      "owner": "R22",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        47.5,
+        28.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        46.440952,
+        27.90915,
+        48.559048,
+        29.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R23",
+      "owner": "R23",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        46.0,
+        31.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        44.940952,
+        30.90915,
+        47.059048,
+        32.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R24",
+      "owner": "R24",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        45.5,
+        33.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        44.440952,
+        32.90915,
+        46.559048,
+        34.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R25",
+      "owner": "R25",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        23.0,
+        31.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        21.940952,
+        30.90915,
+        24.059048,
+        32.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "C13",
+      "owner": "C13",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        12.0,
+        30.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        10.940952,
+        29.90915,
+        13.059048,
+        31.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R27",
+      "owner": "R27",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        21.0,
+        27.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        19.940952,
+        26.90915,
+        22.059048,
+        28.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R28",
+      "owner": "R28",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        17.0,
+        27.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        15.940952,
+        26.90915,
+        18.059048,
+        28.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "C14",
+      "owner": "C14",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        12.5,
+        27.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        11.440952,
+        26.90915,
+        13.559048,
+        28.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "U8",
+      "owner": "U8",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        50.5,
+        16.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        49.735,
+        15.90915,
+        51.265,
+        17.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "C15",
+      "owner": "C15",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        58.0,
+        16.0
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        56.940952,
+        15.40915,
+        59.059048,
+        16.59085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R33",
+      "owner": "R33",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        56.0,
+        4.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        54.940952,
+        3.90915,
+        57.059048,
+        5.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R34",
+      "owner": "R34",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        56.0,
+        7.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        54.940952,
+        6.90915,
+        57.059048,
+        8.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "R36",
+      "owner": "R36",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        58.0,
+        13.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        56.940952,
+        12.90915,
+        59.059048,
+        14.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "Q2",
+      "owner": "Q2",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        60.0,
+        39.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        59.235,
+        38.90915,
+        60.765,
+        40.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "Q3",
+      "owner": "Q3",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        59.0,
+        33.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        58.235,
+        32.90915,
+        59.765,
+        34.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "J16",
+      "owner": "J16",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        32.0,
+        39.0
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        31.018333,
+        38.40915,
+        32.981667,
+        39.59085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "J18",
+      "owner": "J18",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        33.0,
+        9.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        32.018333,
+        8.90915,
+        33.981667,
+        10.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "TP2",
+      "owner": "TP2",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        26.0,
+        1.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        25.002857,
+        0.90915,
+        26.997143,
+        2.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "TP3",
+      "owner": "TP3",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        31.0,
+        1.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        30.002857,
+        0.90915,
+        31.997143,
+        2.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "TP5",
+      "owner": "TP5",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        36.0,
+        2.0
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        35.002857,
+        1.40915,
+        36.997143,
+        2.59085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "TP7",
+      "owner": "TP7",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        24.0,
+        20.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        23.002857,
+        19.90915,
+        24.997143,
+        21.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "TP9",
+      "owner": "TP9",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        49.0,
+        12.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        48.002857,
+        11.90915,
+        49.997143,
+        13.09085
+      ],
+      "via_overlaps": 0
+    },
+    {
+      "text": "TP10",
+      "owner": "TP10",
+      "layer": "F.Silkscreen",
+      "position_mm": [
+        46.0,
+        12.5
+      ],
+      "rotation": 0,
+      "bbox_mm": [
+        44.693333,
+        11.90915,
+        47.306667,
+        13.09085
+      ],
+      "via_overlaps": 0
+    }
+  ],
+  "small_references_only_in_assembly_map": [
+    "J1",
+    "R3",
+    "R4",
+    "F1",
+    "D1",
+    "D2",
+    "C1",
+    "R5",
+    "R7",
+    "C6",
+    "U4",
+    "C8",
+    "JP1",
+    "C10",
+    "R16",
+    "U6",
+    "R17",
+    "R18",
+    "R21",
+    "R26",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R35",
+    "R37",
+    "R38",
+    "R39",
+    "R40",
+    "J17",
+    "TP1",
+    "TP4",
+    "TP6",
+    "TP8"
+  ],
+  "via_text_clearance_mm": 0.16,
+  "hardware_tested": false
+}

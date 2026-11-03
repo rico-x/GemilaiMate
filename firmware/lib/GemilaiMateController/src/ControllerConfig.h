@@ -52,7 +52,20 @@ struct ControllerConfig {
     Capabilities capabilites;
 };
 
-const ControllerConfig GEMILAI_3007Z = {.name = "GemilaiMate Gemilai 3007Z",
+// ID=3 is deliberately shared with upstream GM_PRO_LEGO. It cannot identify
+// the old DevKit wiring versus the compact WROOM board: select the target at
+// build time, never probe GPIO43/44 on a legacy board with a UART bridge.
+#ifdef GEMILAIMATE_COMPACT
+static constexpr const char *GEMILAI_BOARD_NAME = "GemilaiMate Compact Shield";
+static constexpr uint8_t GEMILAI_PERIPHERAL_SCL = 44;
+static constexpr uint8_t GEMILAI_PERIPHERAL_SDA = 43;
+#else
+static constexpr const char *GEMILAI_BOARD_NAME = "GemilaiMate Gemilai 3007Z";
+static constexpr uint8_t GEMILAI_PERIPHERAL_SCL = 16;
+static constexpr uint8_t GEMILAI_PERIPHERAL_SDA = 15;
+#endif
+
+const ControllerConfig GEMILAI_3007Z = {.name = GEMILAI_BOARD_NAME,
                                       .autodetectValue = 3,
                                       .heaterPin = 14,
                                       .pumpPin = 9,
@@ -72,10 +85,10 @@ const ControllerConfig GEMILAI_3007Z = {.name = "GemilaiMate Gemilai 3007Z",
                                       .scaleSclPin = 17,
                                       .scaleSdaPin = 18,
                                       .scaleSda1Pin = 39,
-                                      // Peripheral port (VL53L0X water level) on free DevKit pins U1.9/U1.8, hand-wired:
-                                      // GPIO43/44 carry the DevKit USB-UART bridge and the boot log.
-                                      .sunriseSclPin = 16,
-                                      .sunriseSdaPin = 15,
+                                      // Compact: upstream Alba 43/44. Legacy carrier/shield: hand-wired 15/16;
+                                      // their 43/44 are occupied by the DevKit USB-UART bridge.
+                                      .sunriseSclPin = GEMILAI_PERIPHERAL_SCL,
+                                      .sunriseSdaPin = GEMILAI_PERIPHERAL_SDA,
                                       .ext1Pin = 1,
                                       .ext2Pin = 2,
                                       .ext3Pin = 8,

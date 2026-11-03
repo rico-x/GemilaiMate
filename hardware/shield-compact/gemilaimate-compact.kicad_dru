@@ -1,0 +1,4 @@
+(version 1)
+(rule "USB4085 fixed pin pitch"
+ (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.FootprintReference == 'J1' && B.FootprintReference == 'J1'")
+ (constraint clearance (min 0.15mm)))

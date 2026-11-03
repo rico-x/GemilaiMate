@@ -1,0 +1,58 @@
+{
+  "profile": "GaggiMate Pro LEGO",
+  "hardware_id": 3,
+  "status": "source-checked; no physical test",
+  "upstream_commit": "43d2a7ba2299c196fd67c001f455985e07e57a49",
+  "gpio": {
+    "pump": 9,
+    "zero_cross": 21,
+    "valve": 10,
+    "heater_unused": 14,
+    "alt": 47,
+    "adc_scl": 41,
+    "adc_sda": 42,
+    "tc_sck": 6,
+    "tc_cs": 7,
+    "tc_do": 4,
+    "brew": 38,
+    "steam": 48,
+    "id_enable": 40,
+    "id_adc": 11,
+    "alba_sda": 43,
+    "alba_scl": 44,
+    "scale_clk": 17,
+    "scale_dat0": 18,
+    "scale_dat1": 39,
+    "ext1": 1,
+    "ext2": 2,
+    "ext3": 8,
+    "ext4": 12,
+    "ext5": 13,
+    "usb_dm": 19,
+    "usb_dp": 20
+  },
+  "free_gpio": [
+    5,
+    15,
+    16
+  ],
+  "strap_testpoints": [
+    0,
+    3,
+    45,
+    46
+  ],
+  "psram_gpio_not_escaped": [
+    35,
+    36,
+    37
+  ],
+  "legacy_peripheral_gpio": {
+    "sda": 15,
+    "scl": 16
+  },
+  "physical_flash_mb": 16,
+  "compatible_layout_flash_mb": 8,
+  "psram_mb": 8,
+  "firmware_target": "controller-compact"
+}

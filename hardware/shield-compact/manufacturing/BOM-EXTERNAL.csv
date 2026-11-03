@@ -1,0 +1,9 @@
+Item,Quantity_per_assembled_controller,Note
+"ADS1115 Blue breakout, 1x10 2.54mm",1,Nominal 28x17mm; measure actual clone. Can share between prototypes
+"MAX31855 breakout, VIN/3Vo/GND/DO/CS/CLK",1,Nominal 20.32x22.86mm; verify VIN regulator and thermocouple polarity
+ADS male header 1x10 2.54mm,1,Module underside; standard plastic adds 2.54mm height
+MAX male header 1x6 2.54mm,1,Module underside; verify pin order
+JP_TC 2.54mm jumper cap,1,Select 5V or 3V3 once for the actual breakout; never bridge all three pins
+M2 nylon fasteners and insulating supports,3,Head <=4mm; allow underside PH plugs and cable bends
+External system,1,"Reuse matched display, pressure sensor, thermocouple, RobotDyn, SSR, isolated 5V PSU and harnesses per project docs; these are not SMD assembly items"
+Optional VL53L0X and low-power RGBW/light loads,0,"Optional; 3.3V I2C, no direct LED strips on RGBW connector"

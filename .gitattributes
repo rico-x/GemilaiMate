@@ -1,0 +1,4 @@
+# Preserve vendor model bytes without huge textual geometry diffs.
+hardware/shield-compact/GemilaiMateCompact.3dshapes/*.step binary
+# Accepted native routing output is checksum-bound; keep its original spaces.
+hardware/shield-compact/reports/*.ses -whitespace
