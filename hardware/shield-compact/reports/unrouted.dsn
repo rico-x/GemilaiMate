@@ -1,4 +1,4 @@
-(pcb "/home/ubuntu/codex-builds/gemilaimate-compact-20261103/hardware/shield-compact/reports/unrouted.dsn"
+(pcb "/home/ubuntu/gm-fix/hardware/shield-compact/reports/unrouted.dsn"
   (parser
     (string_quote ")
     (space_in_quoted_tokens on)
@@ -44,178 +44,184 @@
   )
   (placement
     (component GemilaiMateCompact:C_0603_1608Metric
-      (place C14 13000 -29000 front 0 (PN "100nF 50V X7R"))
-      (place C7 26000 -26000 front 0 (PN "100nF 50V X7R"))
-      (place C5 3500 -14000 front 0 (PN "1uF 16V X7R"))
-      (place C10 37000 -31500 front 0 (PN "100nF 50V X7R"))
-      (place C15 57000 -17500 front 0 (PN "100nF 50V X7R"))
-      (place C13 13000 -33000 front 0 (PN "100nF 50V X7R"))
-      (place C12 45000 -38000 front 0 (PN "100nF 50V X7R"))
       (place C4 3000 -2500 front 0 (PN "100nF 50V X7R"))
+      (place C5 3500 -14000 front 0 (PN "1uF 16V X7R"))
+      (place C13 13000 -33000 front 0 (PN "100nF 50V X7R"))
+      (place C7 26000 -26000 front 0 (PN "100nF 50V X7R"))
+      (place C14 13000 -29000 front 0 (PN "100nF 50V X7R"))
+      (place C15 57000 -17500 front 0 (PN "100nF 50V X7R"))
+      (place C12 45000 -38000 front 0 (PN "100nF 50V X7R"))
+      (place C10 37000 -31500 front 0 (PN "100nF 50V X7R"))
+    )
+    (component GemilaiMateCompact:R_0603_1608Metric
+      (place R27 21000 -29000 front 0 (PN "1k 1%"))
+      (place R9 31500 -32000 front 0 (PN "10k 1%"))
+      (place R38 55000 -43000 front 0 (PN "100k 1%"))
+      (place R15 57000 -45000 front 0 (PN "100k 1%"))
+      (place R26 17000 -33000 front 0 (PN "10k 1%"))
+      (place R37 55000 -41000 front 0 (PN "100R 1%"))
+      (place R28 17000 -29000 front 0 (PN "10k 1%"))
+      (place R25 21000 -33000 front 0 (PN "1k 1%"))
+      (place R32 33000 -21000 front 0 (PN "4.7k 1%"))
+      (place R39 55000 -37000 front 0 (PN "100R 1%"))
+      (place R12 34500 -43000 front 0 (PN "10k 1%"))
+      (place R1 14000 -35000 front 0 (PN "5.1k 1%"))
+      (place R7 26500 -6000 front 0 (PN "10k 1%"))
+      (place R24 47500 -36000 front 0 (PN "10k 1%"))
+      (place R30 49000 -26500 front 0 (PN 0R))
+      (place R35 56000 -12000 front 0 (PN "180R 1%"))
+      (place R17 26500 -20000 front 0 (PN "10k 1%"))
+      (place R14 53000 -45000 front 0 (PN "47k 1%"))
+      (place R29 44500 -26500 front 0 (PN 0R))
+      (place R16 44000 -45000 front 0 (PN "10k 1%"))
+      (place R40 55000 -39000 front 0 (PN "100k 1%"))
+      (place R13 39000 -43000 front 0 (PN "1k 1%"))
+      (place R21 40000 -45000 front 0 (PN "10k 1%"))
+      (place R22 47500 -30000 front 0 (PN "10k 1%"))
+      (place R19 36500 -21000 front 0 (PN "10k 1%"))
+      (place R34 56000 -9000 front 0 (PN "180R 1%"))
+      (place R2 17500 -35000 front 0 (PN "5.1k 1%"))
+      (place R33 56000 -6000 front 0 (PN "180R 1%"))
+      (place R10 28000 -33000 front 0 (PN "100k 1%"))
+    )
+    (component GemilaiMateCompact:C_1206_3216Metric
+      (place C1 41750 -2750 front 90 (PN "10uF 10V X7R"))
+      (place C3 3000 -7500 front 90 (PN "10uF 10V X7R"))
     )
     (component "GemilaiMateCompact:TSSOP-14_4.4x5mm_P0.65mm"
       (place U7 53000 -33000 front 0 (PN SN74AHCT125PWR))
     )
-    (component GemilaiMateCompact:TestPoint_Pad_D1.0mm
-      (place TP6 34000 -2000 front 0 (PN GND))
-      (place TP10 46000 -14000 front 0 (PN PCA_LED7))
-      (place TP2 26000 -4000 front 0 (PN STRAP45))
-      (place TP8 25000 -28000 front 0 (PN ALBA_SCL))
-      (place TP3 29000 -2000 front 0 (PN STRAP46))
-      (place TP9 51000 -12000 front 0 (PN PCA_LED6))
-      (place TP4 29000 -25500 front 0 (PN BOOT))
-      (place TP7 24000 -24000 front 0 (PN ALBA_SDA))
-      (place TP5 34000 -4500 front 0 (PN +3V3))
-      (place TP1 26500 -22000 front 0 (PN STRAP3))
-    )
-    (component GemilaiMateCompact:R_0603_1608Metric
-      (place R5 4000 -11500 front 90 (PN "10k 1%"))
-      (place R18 30500 -22000 front 90 (PN "10k 1%"))
+    (component GemilaiMateCompact:R_0603_1608Metric::1
+      (place R6 26500 -17000 front 90 (PN "10k 1%"))
       (place R36 56000 -15000 front 90 (PN "180R 1%"))
+      (place R5 4000 -11500 front 90 (PN "10k 1%"))
+      (place R11 23000 -40500 front 90 (PN "1k 1%"))
       (place R31 28500 -22500 front 90 (PN "4.7k 1%"))
       (place R8 31000 -7500 front 90 (PN "1.2k 1%"))
-      (place R6 26500 -17000 front 90 (PN "10k 1%"))
       (place R20 41500 -23000 front 90 (PN "10k 1%"))
       (place R23 48000 -33000 front 90 (PN "10k 1%"))
-      (place R11 23000 -40500 front 90 (PN "1k 1%"))
+      (place R18 30500 -22000 front 90 (PN "10k 1%"))
     )
-    (component GemilaiMateCompact:R_0603_1608Metric::1
-      (place R33 56000 -6000 front 0 (PN "180R 1%"))
-      (place R12 34500 -43000 front 0 (PN "10k 1%"))
-      (place R28 17000 -29000 front 0 (PN "10k 1%"))
-      (place R22 47500 -30000 front 0 (PN "10k 1%"))
-      (place R32 33000 -21000 front 0 (PN "4.7k 1%"))
-      (place R37 55000 -41000 front 0 (PN "100R 1%"))
-      (place R13 39000 -43000 front 0 (PN "1k 1%"))
-      (place R40 55000 -39000 front 0 (PN "100k 1%"))
-      (place R25 21000 -33000 front 0 (PN "1k 1%"))
-      (place R17 26500 -20000 front 0 (PN "10k 1%"))
-      (place R29 44500 -26500 front 0 (PN 0R))
-      (place R19 36500 -21000 front 0 (PN "10k 1%"))
-      (place R2 17500 -35000 front 0 (PN "5.1k 1%"))
-      (place R35 56000 -12000 front 0 (PN "180R 1%"))
-      (place R39 55000 -37000 front 0 (PN "100R 1%"))
-      (place R9 31500 -32000 front 0 (PN "10k 1%"))
-      (place R24 47500 -36000 front 0 (PN "10k 1%"))
-      (place R21 40000 -45000 front 0 (PN "10k 1%"))
-      (place R38 55000 -43000 front 0 (PN "100k 1%"))
-      (place R1 14000 -35000 front 0 (PN "5.1k 1%"))
-      (place R14 53000 -45000 front 0 (PN "47k 1%"))
-      (place R10 28000 -33000 front 0 (PN "100k 1%"))
-      (place R30 49000 -26500 front 0 (PN 0R))
-      (place R15 57000 -45000 front 0 (PN "100k 1%"))
-      (place R7 26500 -6000 front 0 (PN "10k 1%"))
-      (place R16 44000 -45000 front 0 (PN "10k 1%"))
-      (place R27 21000 -29000 front 0 (PN "1k 1%"))
-      (place R26 17000 -33000 front 0 (PN "10k 1%"))
-      (place R34 56000 -9000 front 0 (PN "180R 1%"))
-    )
-    (component GemilaiMateCompact:R_0603_1608Metric::2
-      (place R3 3500 -18100 front 180 (PN "22R 1%"))
-      (place R4 3500 -16329.999 front 180 (PN "22R 1%"))
-    )
-    (component GemilaiMateCompact:USB_C_Receptacle_GCT_USB4085
-      (place J1 4500 -41200 front 0 (PN "USB4085-GF-A"))
-    )
-    (component GemilaiMateCompact:C_1206_3216Metric
-      (place C1 28000 -12500 front 0 (PN "10uF 10V X7R"))
-    )
-    (component "GemilaiMateCompact:TSSOP-20_4.4x6.5mm_P0.65mm"
-      (place U8 51000 -18000 front 0 (PN PCA9634PW))
-    )
-    (component GemilaiMateCompact:SW_SPST_TL3342
-      (place SW1 34000 -17000 front 0 (PN RESET))
-    )
-    (component GemilaiMateCompact:SW_SPST_TL3342::1
-      (place SW2 41500 -17000 front 90 (PN BOOT))
-    )
-    (component GemilaiMateCompact:TXS0102_DCT_SSOP8
-      (place U4 29000 -29000 front 0 (PN TXS0102DCTR))
-    )
-    (component GemilaiMateCompact:ADS1115_socket
-      (place J2 5000 -37500 front 0 (PN "ADS1115 BLUE SOCKET"))
-    )
-    (component ""
-      (place H1 28000 -9000 front 0 (PN "M2 NYLON"))
-      (place H2 15000 -41000 front 0 (PN "M2 NYLON"))
-      (place H3 53000 -3000 front 0 (PN "M2 NYLON"))
-    )
-    (component "GemilaiMateCompact:SOT-23-5"
-      (place U6 39500 -38000 front 0 (PN SN74LVC1G125DBVR))
-    )
-    (component GemilaiMateCompact:C_0603_1608Metric::1
-      (place C11 58000 -31000 front 90 (PN "100nF 50V X7R"))
-      (place C9 26500 -44000 front 90 (PN "100nF 50V X7R"))
-      (place C8 31000 -25500 front 90 (PN "100nF 50V X7R"))
-      (place C6 28500 -15500 front 90 (PN "10nF 50V C0G"))
-    )
-    (component GemilaiMateCompact:D_SMA
-      (place D2 36500 -7500 front 0 (PN SS14))
-      (place D1 22000 -44000 front 0 (PN SS14))
-    )
-    (component GemilaiMateCompact:C_1206_3216Metric::1
-      (place C3 3000 -7500 front 90 (PN "10uF 10V X7R"))
-      (place C2 51000 -8000 front 90 (PN "10uF 10V X7R"))
-    )
-    (component "GemilaiMateCompact:SOT-23-5::1"
-      (place U5 40500 -34000 front 90 (PN SN74LVC1G17DBVR))
-    )
-    (component "GemilaiMateCompact:ESP32-S3-WROOM-1"
-      (place U1 15000 -6350 front 0 (PN "ESP32-S3-WROOM-1-N16R8"))
-    )
-    (component GemilaiMateCompact:PinHeader_2x05_P1.27mm_Vertical
-      (place J17 33000 -25000 front 90 (PN "EXT 3V3"))
-    )
-    (component GemilaiMateCompact:Fuse_1206_3216Metric
-      (place F1 19500 -40500 front 0 (PN "1206L050YR 0.5A"))
-      (place F2 46000 -3500 front 0 (PN "1206L110/16 1.1A"))
-    )
-    (component GemilaiMateCompact:PinHeader_1x06_P1.27mm_Vertical
-      (place J18 32000 -11000 front 90 (PN "FREE GPIO 3V3"))
-    )
-    (component "GemilaiMateCompact:SOT-23-6"
-      (place U2 7475 -33500 front 90 (PN "USBLC6-2SC6"))
-    )
-    (component GemilaiMateCompact:MAX31855_socket
-      (place J3 56500 -24000 front 0 (PN "MAX31855 SOCKET"))
-    )
-    (component "GemilaiMateCompact:SOT-223-3_TabPin2"
-      (place U3 45000 -9000 front 0 (PN "AP7361C-33E-13"))
-    )
-    (component "GemilaiMateCompact:SOT-23"
-      (place Q3 59000 -36000 front 0 (PN AO3400A))
-      (place Q2 59000 -41000 front 0 (PN AO3400A))
-      (place Q1 48500 -44000 front 0 (PN MMBT3904))
+    (component GemilaiMateCompact:TestPoint_Pad_D1.0mm
+      (place TP3 29000 -2000 front 0 (PN STRAP46))
+      (place TP1 26500 -22000 front 0 (PN STRAP3))
+      (place TP10 46000 -14000 front 0 (PN PCA_LED7))
+      (place TP4 29000 -25500 front 0 (PN BOOT))
+      (place TP2 26000 -4000 front 0 (PN STRAP45))
+      (place TP5 34000 -4500 front 0 (PN +3V3))
+      (place TP6 34000 -2000 front 0 (PN GND))
+      (place TP7 24000 -24000 front 0 (PN ALBA_SDA))
+      (place TP8 25000 -28000 front 0 (PN ALBA_SCL))
+      (place TP9 51000 -12000 front 0 (PN PCA_LED6))
     )
     (component GemilaiMateCompact:PinHeader_1x03_P2.54mm_Vertical
       (place JP1 36000 -28500 front 90 (PN "TC VIN 5V-3V3"))
     )
+    (component GemilaiMateCompact:SW_SPST_TL3342
+      (place SW2 41500 -17000 front 90 (PN BOOT))
+    )
+    (component GemilaiMateCompact:C_0603_1608Metric::1
+      (place C8 31000 -25500 front 90 (PN "100nF 50V X7R"))
+      (place C6 28500 -15500 front 90 (PN "10nF 50V C0G"))
+      (place C11 58000 -31000 front 90 (PN "100nF 50V X7R"))
+      (place C9 26500 -44000 front 90 (PN "100nF 50V X7R"))
+    )
+    (component GemilaiMateCompact:D_SMA
+      (place D1 22000 -44000 front 0 (PN SS14))
+      (place D3 58750 -3250 front 0 (PN SMAJ5.0A))
+      (place D2 36500 -7500 front 0 (PN SS14))
+    )
+    (component GemilaiMateCompact:R_0603_1608Metric::2
+      (place R4 3500 -16329.999 front 180 (PN "22R 1%"))
+      (place R3 3500 -18100 front 180 (PN "22R 1%"))
+    )
+    (component GemilaiMateCompact:MAX31855_socket
+      (place J3 56500 -24000 front 0 (PN "MAX31855 SOCKET"))
+    )
+    (component "GemilaiMateCompact:SOT-23"
+      (place Q1 48500 -44000 front 0 (PN MMBT3904))
+      (place Q2 59000 -41000 front 0 (PN AO3400A))
+      (place Q3 59000 -36000 front 0 (PN AO3400A))
+    )
+    (component GemilaiMateCompact:Fuse_1206_3216Metric
+      (place F2 46000 -3500 front 0 (PN "1206L150-12 1.5A"))
+      (place F1 19500 -40500 front 0 (PN "1206L050YR 0.5A"))
+    )
+    (component GemilaiMateCompact:TXS0102_DCT_SSOP8
+      (place U4 29000 -29000 front 0 (PN TXS0102DCTR))
+    )
+    (component GemilaiMateCompact:PinHeader_2x05_P1.27mm_Vertical
+      (place J17 33000 -25000 front 90 (PN "EXT 3V3"))
+    )
+    (component "GemilaiMateCompact:SOT-23-6"
+      (place U2 7475 -33500 front 90 (PN "USBLC6-2SC6"))
+    )
+    (component GemilaiMateCompact:ADS1115_socket
+      (place J2 5000 -37500 front 0 (PN "ADS1115 BLUE SOCKET"))
+    )
+    (component GemilaiMateCompact:USB_C_Receptacle_GCT_USB4085
+      (place J1 4500 -41200 front 0 (PN "USB4085-GF-A"))
+    )
+    (component "GemilaiMateCompact:SOT-23-5"
+      (place U6 39500 -38000 front 0 (PN SN74LVC1G125DBVR))
+    )
+    (component GemilaiMateCompact:C_1206_3216Metric::1
+      (place C2 38000 -11000 front 180 (PN "10uF 10V X7R"))
+    )
+    (component GemilaiMateCompact:SW_SPST_TL3342::1
+      (place SW1 34000 -17000 front 0 (PN RESET))
+    )
+    (component GemilaiMateCompact:C_1206_3216Metric::2
+      (place C16 52000 -6500 front 0 (PN "10uF 10V X7R"))
+    )
+    (component "GemilaiMateCompact:TSSOP-20_4.4x6.5mm_P0.65mm"
+      (place U8 51000 -18000 front 0 (PN PCA9634PW))
+    )
+    (component "GemilaiMateCompact:ESP32-S3-WROOM-1"
+      (place U1 15000 -6350 front 0 (PN "ESP32-S3-WROOM-1-N16R8"))
+    )
+    (component ""
+      (place H2 15000 -41000 front 0 (PN "M2 NYLON"))
+      (place H3 53000 -3000 front 0 (PN "M2 NYLON"))
+      (place H1 28000 -9000 front 0 (PN "M2 NYLON"))
+    )
+    (component "GemilaiMateCompact:SOT-23-5::1"
+      (place U5 40500 -34000 front 90 (PN SN74LVC1G17DBVR))
+    )
+    (component GemilaiMateCompact:PinHeader_1x06_P1.27mm_Vertical
+      (place J18 15250 -21500 front 90 (PN "FREE GPIO 3V3"))
+    )
+    (component "GemilaiMateCompact:SOT-223-3_TabPin2"
+      (place U3 45000 -9000 front 0 (PN "AP7361C-33E-13"))
+    )
     (component GemilaiMateCompact:PinHeader_1x05_P1.27mm_Vertical
       (place J16 32000 -40500 front -90 (PN "SCALE 3V3"))
     )
-    (component "GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical"
-      (place J6 18000 -47050 back 180 (PN PRESSURE))
-      (place J11 52100 -47050 back 180 (PN "ALT SSR"))
-      (place J10 42500 -40050 back 180 (PN "HEATER UNUSED"))
-    )
     (component "GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical"
+      (place J7 25750 -47000 back 180 (PN BUTTONS))
       (place J12 32000 -34050 back 180 (PN "VL53L0X 3V3"))
-      (place J8 40900 -47050 back 180 (PN ROBOTDYN))
-      (place J7 28500 -47050 back 180 (PN BUTTONS))
-    )
-    (component "GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical::1"
-      (place J13 62050 -27000 back 270 (PN "EXTERNAL ALBA"))
     )
     (component "GemilaiMateCompact:JST_PH_B5B-PH-K_1x05_P2.00mm_Vertical"
       (place J14 62050 -15500 back 270 (PN "RGBW CA"))
     )
-    (component "GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical::1"
-      (place J15 62050 -46000 back 270 (PN "LIGHTS 200mA TOTAL"))
+    (component "GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical"
       (place J9 62050 -36250 back 270 (PN "VALVE SSR"))
+      (place J15 62050 -46000 back 270 (PN "LIGHTS 200mA TOTAL"))
+    )
+    (component "GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical::1"
+      (place J6 16500 -47000 back 180 (PN PRESSURE))
+      (place J10 42500 -40050 back 180 (PN "HEATER UNUSED"))
+      (place J11 52100 -47050 back 180 (PN "ALT SSR"))
     )
     (component "GemilaiMateCompact:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical"
       (place J4 28500 -4050 back 180 (PN "5V INPUT"))
       (place J5 37000 -4050 back 180 (PN "DISPLAY 5V"))
+    )
+    (component "GemilaiMateCompact:JST_PH_B6B-PH-K_1x06_P2.00mm_Vertical"
+      (place J8 37000 -47000 back 180 (PN ROBOTDYN))
+    )
+    (component "GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical::1"
+      (place J13 62050 -27000 back 270 (PN "EXTERNAL ALBA"))
     )
   )
   (library
@@ -226,6 +232,22 @@
       (outline (path signal 100  -800 400  800 400  800 -400  -800 -400  -800 400))
       (pin RoundRect[T]Pad_900.000000x950.000000_225.856000_um_0.000000_0 1 -775 0)
       (pin RoundRect[T]Pad_900.000000x950.000000_225.856000_um_0.000000_0 2 775 0)
+    )
+    (image GemilaiMateCompact:R_0603_1608Metric
+      (outline (polygon signal 0  1475 -725  -1475 -725  -1475 725  1475 725))
+      (outline (path signal 120  -237.258 522.5  237.258 522.5))
+      (outline (path signal 120  -237.258 -522.5  237.258 -522.5))
+      (outline (path signal 100  -800 412.5  800 412.5  800 -412.5  -800 -412.5  -800 412.5))
+      (pin RoundRect[T]Pad_800.000000x950.000000_200.761000_um_0.000000_0 1 -825 0)
+      (pin RoundRect[T]Pad_800.000000x950.000000_200.761000_um_0.000000_0 2 825 0)
+    )
+    (image GemilaiMateCompact:C_1206_3216Metric
+      (outline (polygon signal 0  -2295 -1145  -2295 1145  2295 1145  2295 -1145))
+      (outline (path signal 120  -711.252 910  711.252 910))
+      (outline (path signal 120  -711.252 -910  711.252 -910))
+      (outline (path signal 100  -1600 800  -1600 -800  1600 -800  1600 800  -1600 800))
+      (pin RoundRect[T]Pad_1150.000000x1800.000000_250.951000_um_0.000000_0 1 -1475 0)
+      (pin RoundRect[T]Pad_1150.000000x1800.000000_250.951000_um_0.000000_0 2 1475 0)
     )
     (image "GemilaiMateCompact:TSSOP-14_4.4x5mm_P0.65mm"
       (outline (polygon signal 0  2445 2395  3845 2395  3845 -2395  2445 -2395  2445 -2745
@@ -252,6 +274,14 @@
       (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 13 2862.5 1300)
       (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 14 2862.5 1950)
     )
+    (image GemilaiMateCompact:R_0603_1608Metric::1
+      (outline (polygon signal 0  -1475 -725  -1475 725  1475 725  1475 -725))
+      (outline (path signal 120  -237.258 522.5  237.258 522.5))
+      (outline (path signal 120  -237.258 -522.5  237.258 -522.5))
+      (outline (path signal 100  -800 412.5  -800 -412.5  800 -412.5  800 412.5  -800 412.5))
+      (pin RoundRect[T]Pad_800.000000x950.000000_200.761000_um_0.000000_0 1 -825 0)
+      (pin RoundRect[T]Pad_800.000000x950.000000_200.761000_um_0.000000_0 2 825 0)
+    )
     (image GemilaiMateCompact:TestPoint_Pad_D1.0mm
       (outline (polygon signal 0  250.035 965.709  439.318 895.607  610.606 788.842  756.902 649.778
             872.205 484.116  951.804 298.631  992.448 100.855  994.998 0
@@ -270,155 +300,24 @@
             536.231 449.951  625.543 314.159  681.131 161.431  700 0))
       (pin Round[T]Pad_1000.000000_um 1 0 0)
     )
-    (image GemilaiMateCompact:R_0603_1608Metric
-      (outline (polygon signal 0  -1475 -725  -1475 725  1475 725  1475 -725))
-      (outline (path signal 120  -237.258 522.5  237.258 522.5))
-      (outline (path signal 120  -237.258 -522.5  237.258 -522.5))
-      (outline (path signal 100  -800 412.5  -800 -412.5  800 -412.5  800 412.5  -800 412.5))
-      (pin RoundRect[T]Pad_800.000000x950.000000_200.761000_um_0.000000_0 1 -825 0)
-      (pin RoundRect[T]Pad_800.000000x950.000000_200.761000_um_0.000000_0 2 825 0)
-    )
-    (image GemilaiMateCompact:R_0603_1608Metric::1
-      (outline (polygon signal 0  1475 -725  -1475 -725  -1475 725  1475 725))
-      (outline (path signal 120  -237.258 522.5  237.258 522.5))
-      (outline (path signal 120  -237.258 -522.5  237.258 -522.5))
-      (outline (path signal 100  -800 412.5  800 412.5  800 -412.5  -800 -412.5  -800 412.5))
-      (pin RoundRect[T]Pad_800.000000x950.000000_200.761000_um_0.000000_0 1 -825 0)
-      (pin RoundRect[T]Pad_800.000000x950.000000_200.761000_um_0.000000_0 2 825 0)
-    )
-    (image GemilaiMateCompact:R_0603_1608Metric::2
-      (outline (polygon signal 0  -1475 725  1475 725  1475 -725  -1475 -725))
-      (outline (path signal 120  -237.258 -522.5  237.258 -522.5))
-      (outline (path signal 120  -237.258 522.5  237.258 522.5))
-      (outline (path signal 100  -800 412.5  800 412.5  800 -412.5  -800 -412.5  -800 412.5))
-      (pin RoundRect[T]Pad_800.000000x950.000000_200.761000_um_0.000000_0 1 -825 0)
-      (pin RoundRect[T]Pad_800.000000x950.000000_200.761000_um_0.000000_0 2 825 0)
-    )
-    (image GemilaiMateCompact:USB_C_Receptacle_GCT_USB4085
-      (outline (polygon signal 0  8245 -9105  -2295 -9105  -2295 1055  8245 1055))
-      (outline (path signal 120  -1620 -2400  -1620 -3300))
-      (outline (path signal 120  -1620 -6000  -1620 -8730))
-      (outline (path signal 120  -1620 -8730  7570 -8730))
-      (outline (path signal 120  -1500 680  7450 680))
-      (outline (path signal 100  -1500 560  -1500 -8610))
-      (outline (path signal 100  -1500 560  7450 560))
-      (outline (path signal 100  -1500 -8610  7450 -8610))
-      (outline (path signal 100  -25 -6100  5975 -6100))
-      (outline (path signal 100  7450 560  7450 -8610))
-      (outline (path signal 120  7570 -2400  7570 -3300))
-      (outline (path signal 120  7570 -6000  7570 -8730))
-      (pin Round[A]Pad_700.000000_um A1 0 0)
-      (pin Round[A]Pad_700.000000_um A4 850 0)
-      (pin Round[A]Pad_700.000000_um A5 1700 0)
-      (pin Round[A]Pad_700.000000_um A6 2550 0)
-      (pin Round[A]Pad_700.000000_um A7 3400 0)
-      (pin Round[A]Pad_700.000000_um A8 4250 0)
-      (pin Round[A]Pad_700.000000_um A9 5100 0)
-      (pin Round[A]Pad_700.000000_um A12 5950 0)
-      (pin Round[A]Pad_700.000000_um B1 5950 -1350)
-      (pin Round[A]Pad_700.000000_um B4 5100 -1350)
-      (pin Round[A]Pad_700.000000_um B5 4250 -1350)
-      (pin Round[A]Pad_700.000000_um B6 3400 -1350)
-      (pin Round[A]Pad_700.000000_um B7 2550 -1350)
-      (pin Round[A]Pad_700.000000_um B8 1700 -1350)
-      (pin Round[A]Pad_700.000000_um B9 850 -1350)
-      (pin Round[A]Pad_700.000000_um B12 0 -1350)
-      (pin Oval[A]Pad_900.000000x2400.000000_um SH -1350 -980)
-      (pin Oval[A]Pad_900.000000x1700.000000_um SH@1 -1350 -4360)
-      (pin Oval[A]Pad_900.000000x2400.000000_um SH@2 7300 -980)
-      (pin Oval[A]Pad_900.000000x1700.000000_um SH@3 7300 -4360)
-    )
-    (image GemilaiMateCompact:C_1206_3216Metric
-      (outline (polygon signal 0  2295 -1145  -2295 -1145  -2295 1145  2295 1145))
-      (outline (path signal 120  -711.252 910  711.252 910))
-      (outline (path signal 120  -711.252 -910  711.252 -910))
-      (outline (path signal 100  -1600 800  1600 800  1600 -800  -1600 -800  -1600 800))
-      (pin RoundRect[T]Pad_1150.000000x1800.000000_250.951000_um_0.000000_0 1 -1475 0)
-      (pin RoundRect[T]Pad_1150.000000x1800.000000_250.951000_um_0.000000_0 2 1475 0)
-    )
-    (image "GemilaiMateCompact:TSSOP-20_4.4x6.5mm_P0.65mm"
-      (outline (polygon signal 0  2445 3375  3845 3375  3845 -3375  2445 -3375  2445 -3495
-            -2445 -3495  -2445 -3375  -3845 -3375  -3845 3375  -2445 3375
-            -2445 3495  2445 3495))
-      (outline (path signal 120  -2310 3385  2310 3385))
-      (outline (path signal 120  2310 -3385  -2310 -3385))
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 1 -2862.5 2925)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 2 -2862.5 2275)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 3 -2862.5 1625)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 4 -2862.5 975)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 5 -2862.5 325)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 6 -2862.5 -325)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 7 -2862.5 -975)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 8 -2862.5 -1625)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 9 -2862.5 -2275)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 10 -2862.5 -2925)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 11 2862.5 -2925)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 12 2862.5 -2275)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 13 2862.5 -1625)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 14 2862.5 -975)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 15 2862.5 -325)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 16 2862.5 325)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 17 2862.5 975)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 18 2862.5 1625)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 19 2862.5 2275)
-      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 20 2862.5 2925)
+    (image GemilaiMateCompact:PinHeader_1x03_P2.54mm_Vertical
+      (outline (polygon signal 0  -1765 -6845  -1765 1765  1765 1765  1765 -6845))
+      (outline (path signal 120  -1380 1380  0 1380))
+      (outline (path signal 100  1270 1270  1270 -6350))
+      (outline (path signal 100  -635 1270  1270 1270))
+      (outline (path signal 100  -1270 635  -635 1270))
+      (outline (path signal 120  -1380 0  -1380 1380))
+      (outline (path signal 120  1380 -1270  1380 -6460))
+      (outline (path signal 120  -1380 -1270  1380 -1270))
+      (outline (path signal 120  -1380 -1270  -1380 -6460))
+      (outline (path signal 100  1270 -6350  -1270 -6350))
+      (outline (path signal 100  -1270 -6350  -1270 635))
+      (outline (path signal 120  -1380 -6460  1380 -6460))
+      (pin Rect[A]Pad_1700.000000x1700.000000_um 1 0 0)
+      (pin Round[A]Pad_1700.000000_um 2 0 -2540)
+      (pin Round[A]Pad_1700.000000_um 3 0 -5080)
     )
     (image GemilaiMateCompact:SW_SPST_TL3342
-      (outline (polygon signal 0  4245 -2995  -4245 -2995  -4245 2995  4245 2995))
-      (outline (path signal 100  -3200 2100  -3200 1600))
-      (outline (path signal 100  -3200 1600  -2200 1600))
-      (outline (path signal 100  -3200 -1600  -2200 -1600))
-      (outline (path signal 100  -3200 -2100  -3200 -1600))
-      (outline (path signal 120  -2750 1000  -2750 -1000))
-      (outline (path signal 100  -2700 2100  -2700 1600))
-      (outline (path signal 100  -2700 -2100  -2700 -1600))
-      (outline (path signal 100  -2600 1200  -2600 -1200))
-      (outline (path signal 100  -2600 -1200  -1200 -2600))
-      (outline (path signal 100  -2000 1000  -1000 2000))
-      (outline (path signal 100  -2000 -1000  -2000 1000))
-      (outline (path signal 120  -1700 2300  -1250 2750))
-      (outline (path signal 100  -1700 2100  -3200 2100))
-      (outline (path signal 100  -1700 -2100  -3200 -2100))
-      (outline (path signal 120  -1700 -2300  -1250 -2750))
-      (outline (path signal 120  -1250 2750  1250 2750))
-      (outline (path signal 120  -1250 -2750  1250 -2750))
-      (outline (path signal 100  -1200 2600  -2600 1200))
-      (outline (path signal 100  -1200 -2600  1200 -2600))
-      (outline (path signal 100  -1000 2000  1000 2000))
-      (outline (path signal 100  -1000 -2000  -2000 -1000))
-      (outline (path signal 100  1000 2000  2000 1000))
-      (outline (path signal 100  1000 -2000  -1000 -2000))
-      (outline (path signal 100  1200 2600  -1200 2600))
-      (outline (path signal 100  1200 -2600  2600 -1200))
-      (outline (path signal 120  1700 2300  1250 2750))
-      (outline (path signal 100  1700 2100  3200 2100))
-      (outline (path signal 100  1700 -2100  3200 -2100))
-      (outline (path signal 120  1700 -2300  1250 -2750))
-      (outline (path signal 100  2000 1000  2000 -1000))
-      (outline (path signal 100  2000 -1000  1000 -2000))
-      (outline (path signal 100  2600 1200  1200 2600))
-      (outline (path signal 100  2600 -1200  2600 1200))
-      (outline (path signal 100  2700 2100  2700 1600))
-      (outline (path signal 100  2700 -2100  2700 -1600))
-      (outline (path signal 120  2750 1000  2750 -1000))
-      (outline (path signal 100  3200 2100  3200 1600))
-      (outline (path signal 100  3200 1600  2200 1600))
-      (outline (path signal 100  3200 -1600  2200 -1600))
-      (outline (path signal 100  3200 -2100  3200 -1600))
-      (outline (path signal 100  1000 0  980.785 -195.09  923.88 -382.683  831.47 -555.57
-            707.107 -707.107  555.57 -831.47  382.683 -923.88  195.09 -980.785
-            0 -1000  -195.09 -980.785  -382.683 -923.88  -555.57 -831.47
-            -707.107 -707.107  -831.47 -555.57  -923.88 -382.683  -980.785 -195.09
-            -1000 0  -980.785 195.09  -923.88 382.683  -831.47 555.57  -707.107 707.107
-            -555.57 831.47  -382.683 923.88  -195.09 980.785  0 1000  195.09 980.785
-            382.683 923.88  555.57 831.47  707.107 707.107  831.47 555.57
-            923.88 382.683  980.785 195.09  1000 0))
-      (pin Rect[T]Pad_1700.000000x1000.000000_um 1 -3150 1900)
-      (pin Rect[T]Pad_1700.000000x1000.000000_um 1@1 3150 1900)
-      (pin Rect[T]Pad_1700.000000x1000.000000_um 2 -3150 -1900)
-      (pin Rect[T]Pad_1700.000000x1000.000000_um 2@1 3150 -1900)
-    )
-    (image GemilaiMateCompact:SW_SPST_TL3342::1
       (outline (polygon signal 0  -4245 -2995  -4245 2995  4245 2995  4245 -2995))
       (outline (path signal 120  -1250 2750  1250 2750))
       (outline (path signal 100  1200 2600  -1200 2600))
@@ -473,61 +372,6 @@
       (pin Rect[T]Pad_1700.000000x1000.000000_um 2 -3150 -1900)
       (pin Rect[T]Pad_1700.000000x1000.000000_um 2@1 3150 -1900)
     )
-    (image GemilaiMateCompact:TXS0102_DCT_SSOP8
-      (outline (polygon signal 0  2695 -1745  -2695 -1745  -2695 1745  2695 1745))
-      (outline (path signal 100  -1500 1500  1500 1500))
-      (outline (path signal 100  -1500 -1500  -1500 1500))
-      (outline (path signal 100  1500 1500  1500 -1500))
-      (outline (path signal 100  1500 -1500  -1500 -1500))
-      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 1 -1900 975)
-      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 2 -1900 325)
-      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 3 -1900 -325)
-      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 4 -1900 -975)
-      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 5 1900 -975)
-      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 6 1900 -325)
-      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 7 1900 325)
-      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 8 1900 975)
-    )
-    (image GemilaiMateCompact:ADS1115_socket
-      (outline (polygon signal 0  24125 -1265  -1265 -1265  -1265 1265  24125 1265))
-      (outline (path signal 100  -1270 1270  24130 1270))
-      (outline (path signal 100  -1270 -1270  -1270 1270))
-      (outline (path signal 100  24130 1270  24130 -1270))
-      (outline (path signal 100  24130 -1270  -1270 -1270))
-      (pin Rect[A]Pad_1650.000000x1650.000000_um 1 0 0)
-      (pin Round[A]Pad_1650.000000_um 2 2540 0)
-      (pin Round[A]Pad_1650.000000_um 3 5080 0)
-      (pin Round[A]Pad_1650.000000_um 4 7620 0)
-      (pin Round[A]Pad_1650.000000_um 5 10160 0)
-      (pin Round[A]Pad_1650.000000_um 6 12700 0)
-      (pin Round[A]Pad_1650.000000_um 7 15240 0)
-      (pin Round[A]Pad_1650.000000_um 8 17780 0)
-      (pin Round[A]Pad_1650.000000_um 9 20320 0)
-      (pin Round[A]Pad_1650.000000_um 10 22860 0)
-    )
-    (image ""
-      (keepout "" (circle F.Cu 2700))
-      (keepout "" (circle In1.Cu 2700))
-      (keepout "" (circle In2.Cu 2700))
-      (keepout "" (circle B.Cu 2700))
-    )
-    (image "GemilaiMateCompact:SOT-23-5"
-      (outline (polygon signal 0  1045 1495  2045 1495  2045 395  1045 395  1045 -395  2045 -395
-            2045 -1495  1045 -1495  1045 -1695  -1045 -1695  -1045 -1495
-            -2045 -1495  -2045 1495  -1045 1495  -1045 1695  1045 1695))
-      (outline (path signal 120  -910 1560  910 1560))
-      (outline (path signal 120  -910 1510  -910 1560))
-      (outline (path signal 120  -910 -1560  -910 -1510))
-      (outline (path signal 120  910 1560  910 1510))
-      (outline (path signal 120  910 390  910 -390))
-      (outline (path signal 120  910 -1510  910 -1560))
-      (outline (path signal 120  910 -1560  -910 -1560))
-      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 1 -1137.5 950)
-      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 2 -1137.5 0)
-      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 3 -1137.5 -950)
-      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 4 1137.5 -950)
-      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 5 1137.5 950)
-    )
     (image GemilaiMateCompact:C_0603_1608Metric::1
       (outline (polygon signal 0  -1475 -725  -1475 725  1475 725  1475 -725))
       (outline (path signal 120  -140.58 510  140.58 510))
@@ -554,22 +398,99 @@
       (pin RoundRect[T]Pad_2500.000000x1800.000000_250.951000_um_0.000000_0 1 -2000 0)
       (pin RoundRect[T]Pad_2500.000000x1800.000000_250.951000_um_0.000000_0 2 2000 0)
     )
-    (image GemilaiMateCompact:C_1206_3216Metric::1
-      (outline (polygon signal 0  -2295 -1145  -2295 1145  2295 1145  2295 -1145))
-      (outline (path signal 120  -711.252 910  711.252 910))
-      (outline (path signal 120  -711.252 -910  711.252 -910))
-      (outline (path signal 100  -1600 800  -1600 -800  1600 -800  1600 800  -1600 800))
-      (pin RoundRect[T]Pad_1150.000000x1800.000000_250.951000_um_0.000000_0 1 -1475 0)
-      (pin RoundRect[T]Pad_1150.000000x1800.000000_250.951000_um_0.000000_0 2 1475 0)
+    (image GemilaiMateCompact:R_0603_1608Metric::2
+      (outline (polygon signal 0  -1475 725  1475 725  1475 -725  -1475 -725))
+      (outline (path signal 120  -237.258 -522.5  237.258 -522.5))
+      (outline (path signal 120  -237.258 522.5  237.258 522.5))
+      (outline (path signal 100  -800 412.5  800 412.5  800 -412.5  -800 -412.5  -800 412.5))
+      (pin RoundRect[T]Pad_800.000000x950.000000_200.761000_um_0.000000_0 1 -825 0)
+      (pin RoundRect[T]Pad_800.000000x950.000000_200.761000_um_0.000000_0 2 825 0)
     )
-    (image "GemilaiMateCompact:SOT-23-5::1"
-      (outline (polygon signal 0  1045 395  1045 -395  2045 -395  2045 -1495  1045 -1495
-            1045 -1695  -1045 -1695  -1045 -1495  -2045 -1495  -2045 1495
-            -1045 1495  -1045 1695  1045 1695  1045 1495  2045 1495  2045 395))
+    (image GemilaiMateCompact:MAX31855_socket
+      (outline (polygon signal 0  1265 -1265  -13965 -1265  -13965 1265  1265 1265))
+      (outline (path signal 100  -13970 1270  1270 1270))
+      (outline (path signal 100  -13970 -1270  -13970 1270))
+      (outline (path signal 100  1270 1270  1270 -1270))
+      (outline (path signal 100  1270 -1270  -13970 -1270))
+      (pin Rect[A]Pad_1650.000000x1650.000000_um 1 0 0)
+      (pin Round[A]Pad_1650.000000_um 2 -2540 0)
+      (pin Round[A]Pad_1650.000000_um 3 -5080 0)
+      (pin Round[A]Pad_1650.000000_um 4 -7620 0)
+      (pin Round[A]Pad_1650.000000_um 5 -10160 0)
+      (pin Round[A]Pad_1650.000000_um 6 -12700 0)
+    )
+    (image "GemilaiMateCompact:SOT-23"
+      (outline (polygon signal 0  895 545  1925 545  1925 -545  895 -545  895 -1695  -895 -1695
+            -895 -1495  -1925 -1495  -1925 -395  -895 -395  -895 395  -1925 395
+            -1925 1495  -895 1495  -895 1695  895 1695))
+      (outline (path signal 120  -760 1560  760 1560))
+      (outline (path signal 120  -760 1510  -760 1560))
+      (outline (path signal 120  -760 -390  -760 390))
+      (outline (path signal 120  -760 -1560  -760 -1510))
+      (outline (path signal 120  760 1560  760 560))
+      (outline (path signal 120  760 -560  760 -1560))
+      (outline (path signal 120  760 -1560  -760 -1560))
+      (pin RoundRect[T]Pad_1475.000000x600.000000_150.571000_um_0.000000_0 1 -937.5 950)
+      (pin RoundRect[T]Pad_1475.000000x600.000000_150.571000_um_0.000000_0 2 -937.5 -950)
+      (pin RoundRect[T]Pad_1475.000000x600.000000_150.571000_um_0.000000_0 3 937.5 0)
+    )
+    (image GemilaiMateCompact:Fuse_1206_3216Metric
+      (outline (polygon signal 0  2275 -1125  -2275 -1125  -2275 1125  2275 1125))
+      (outline (path signal 120  -602.064 910  602.064 910))
+      (outline (path signal 120  -602.064 -910  602.064 -910))
+      (outline (path signal 100  -1600 800  1600 800  1600 -800  -1600 -800  -1600 800))
+      (pin RoundRect[T]Pad_1250.000000x1750.000000_250.951000_um_0.000000_0 1 -1400 0)
+      (pin RoundRect[T]Pad_1250.000000x1750.000000_250.951000_um_0.000000_0 2 1400 0)
+    )
+    (image GemilaiMateCompact:TXS0102_DCT_SSOP8
+      (outline (polygon signal 0  2695 -1745  -2695 -1745  -2695 1745  2695 1745))
+      (outline (path signal 100  -1500 1500  1500 1500))
+      (outline (path signal 100  -1500 -1500  -1500 1500))
+      (outline (path signal 100  1500 1500  1500 -1500))
+      (outline (path signal 100  1500 -1500  -1500 -1500))
+      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 1 -1900 975)
+      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 2 -1900 325)
+      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 3 -1900 -325)
+      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 4 -1900 -975)
+      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 5 1900 -975)
+      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 6 1900 -325)
+      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 7 1900 325)
+      (pin RoundRect[T]Pad_1100.000000x400.000000_50.190000_um_0.000000_0 8 1900 975)
+    )
+    (image GemilaiMateCompact:PinHeader_2x05_P1.27mm_Vertical
+      (outline (polygon signal 0  -1565 -6215  -1565 1135  2835 1135  2835 -6215))
+      (outline (path signal 120  -1180 810  0 810))
+      (outline (path signal 120  2450 745  2450 -5825))
+      (outline (path signal 120  1587.92 745  2450 745))
+      (outline (path signal 100  2340 635  2340 -5715))
+      (outline (path signal 100  -217.5 635  2340 635))
+      (outline (path signal 120  -1180 0  -1180 810))
+      (outline (path signal 100  -1070 -217.5  -217.5 635))
+      (outline (path signal 120  -1180 -810  -666.708 -810))
+      (outline (path signal 120  -1180 -810  -1180 -5825))
+      (outline (path signal 100  2340 -5715  -1070 -5715))
+      (outline (path signal 100  -1070 -5715  -1070 -217.5))
+      (outline (path signal 120  1587.92 -5825  2450 -5825))
+      (outline (path signal 120  317.923 -5825  952.077 -5825))
+      (outline (path signal 120  -1180 -5825  -317.923 -5825))
+      (pin Rect[A]Pad_1000.000000x1000.000000_um 1 0 0)
+      (pin Round[A]Pad_1000.000000_um 2 1270 0)
+      (pin Round[A]Pad_1000.000000_um 3 0 -1270)
+      (pin Round[A]Pad_1000.000000_um 4 1270 -1270)
+      (pin Round[A]Pad_1000.000000_um 5 0 -2540)
+      (pin Round[A]Pad_1000.000000_um 6 1270 -2540)
+      (pin Round[A]Pad_1000.000000_um 7 0 -3810)
+      (pin Round[A]Pad_1000.000000_um 8 1270 -3810)
+      (pin Round[A]Pad_1000.000000_um 9 0 -5080)
+      (pin Round[A]Pad_1000.000000_um 10 1270 -5080)
+    )
+    (image "GemilaiMateCompact:SOT-23-6"
+      (outline (polygon signal 0  1045 -1495  1045 -1695  -1045 -1695  -1045 -1495  -2045 -1495
+            -2045 1495  -1045 1495  -1045 1695  1045 1695  1045 1495  2045 1495
+            2045 -1495))
       (outline (path signal 120  910 1560  910 1510))
       (outline (path signal 120  -910 1560  910 1560))
       (outline (path signal 120  -910 1510  -910 1560))
-      (outline (path signal 120  910 390  910 -390))
       (outline (path signal 120  910 -1510  910 -1560))
       (outline (path signal 120  910 -1560  -910 -1560))
       (outline (path signal 120  -910 -1560  -910 -1510))
@@ -577,7 +498,174 @@
       (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 2 -1137.5 0)
       (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 3 -1137.5 -950)
       (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 4 1137.5 -950)
+      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 5 1137.5 0)
+      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 6 1137.5 950)
+    )
+    (image GemilaiMateCompact:ADS1115_socket
+      (outline (polygon signal 0  24125 -1265  -1265 -1265  -1265 1265  24125 1265))
+      (outline (path signal 100  -1270 1270  24130 1270))
+      (outline (path signal 100  -1270 -1270  -1270 1270))
+      (outline (path signal 100  24130 1270  24130 -1270))
+      (outline (path signal 100  24130 -1270  -1270 -1270))
+      (pin Rect[A]Pad_1650.000000x1650.000000_um 1 0 0)
+      (pin Round[A]Pad_1650.000000_um 2 2540 0)
+      (pin Round[A]Pad_1650.000000_um 3 5080 0)
+      (pin Round[A]Pad_1650.000000_um 4 7620 0)
+      (pin Round[A]Pad_1650.000000_um 5 10160 0)
+      (pin Round[A]Pad_1650.000000_um 6 12700 0)
+      (pin Round[A]Pad_1650.000000_um 7 15240 0)
+      (pin Round[A]Pad_1650.000000_um 8 17780 0)
+      (pin Round[A]Pad_1650.000000_um 9 20320 0)
+      (pin Round[A]Pad_1650.000000_um 10 22860 0)
+    )
+    (image GemilaiMateCompact:USB_C_Receptacle_GCT_USB4085
+      (outline (polygon signal 0  8245 -9105  -2295 -9105  -2295 1055  8245 1055))
+      (outline (path signal 120  -1620 -2400  -1620 -3300))
+      (outline (path signal 120  -1620 -6000  -1620 -8730))
+      (outline (path signal 120  -1620 -8730  7570 -8730))
+      (outline (path signal 120  -1500 680  7450 680))
+      (outline (path signal 100  -1500 560  -1500 -8610))
+      (outline (path signal 100  -1500 560  7450 560))
+      (outline (path signal 100  -1500 -8610  7450 -8610))
+      (outline (path signal 100  -25 -6100  5975 -6100))
+      (outline (path signal 100  7450 560  7450 -8610))
+      (outline (path signal 120  7570 -2400  7570 -3300))
+      (outline (path signal 120  7570 -6000  7570 -8730))
+      (pin Round[A]Pad_700.000000_um A1 0 0)
+      (pin Round[A]Pad_700.000000_um A4 850 0)
+      (pin Round[A]Pad_700.000000_um A5 1700 0)
+      (pin Round[A]Pad_700.000000_um A6 2550 0)
+      (pin Round[A]Pad_700.000000_um A7 3400 0)
+      (pin Round[A]Pad_700.000000_um A8 4250 0)
+      (pin Round[A]Pad_700.000000_um A9 5100 0)
+      (pin Round[A]Pad_700.000000_um A12 5950 0)
+      (pin Round[A]Pad_700.000000_um B1 5950 -1350)
+      (pin Round[A]Pad_700.000000_um B4 5100 -1350)
+      (pin Round[A]Pad_700.000000_um B5 4250 -1350)
+      (pin Round[A]Pad_700.000000_um B6 3400 -1350)
+      (pin Round[A]Pad_700.000000_um B7 2550 -1350)
+      (pin Round[A]Pad_700.000000_um B8 1700 -1350)
+      (pin Round[A]Pad_700.000000_um B9 850 -1350)
+      (pin Round[A]Pad_700.000000_um B12 0 -1350)
+      (pin Oval[A]Pad_900.000000x2400.000000_um SH -1350 -980)
+      (pin Oval[A]Pad_900.000000x1700.000000_um SH@1 -1350 -4360)
+      (pin Oval[A]Pad_900.000000x2400.000000_um SH@2 7300 -980)
+      (pin Oval[A]Pad_900.000000x1700.000000_um SH@3 7300 -4360)
+    )
+    (image "GemilaiMateCompact:SOT-23-5"
+      (outline (polygon signal 0  1045 1495  2045 1495  2045 395  1045 395  1045 -395  2045 -395
+            2045 -1495  1045 -1495  1045 -1695  -1045 -1695  -1045 -1495
+            -2045 -1495  -2045 1495  -1045 1495  -1045 1695  1045 1695))
+      (outline (path signal 120  -910 1560  910 1560))
+      (outline (path signal 120  -910 1510  -910 1560))
+      (outline (path signal 120  -910 -1560  -910 -1510))
+      (outline (path signal 120  910 1560  910 1510))
+      (outline (path signal 120  910 390  910 -390))
+      (outline (path signal 120  910 -1510  910 -1560))
+      (outline (path signal 120  910 -1560  -910 -1560))
+      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 1 -1137.5 950)
+      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 2 -1137.5 0)
+      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 3 -1137.5 -950)
+      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 4 1137.5 -950)
       (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 5 1137.5 950)
+    )
+    (image GemilaiMateCompact:C_1206_3216Metric::1
+      (outline (polygon signal 0  -2295 1145  2295 1145  2295 -1145  -2295 -1145))
+      (outline (path signal 120  -711.252 -910  711.252 -910))
+      (outline (path signal 120  -711.252 910  711.252 910))
+      (outline (path signal 100  -1600 800  1600 800  1600 -800  -1600 -800  -1600 800))
+      (pin RoundRect[T]Pad_1150.000000x1800.000000_250.951000_um_0.000000_0 1 -1475 0)
+      (pin RoundRect[T]Pad_1150.000000x1800.000000_250.951000_um_0.000000_0 2 1475 0)
+    )
+    (image GemilaiMateCompact:SW_SPST_TL3342::1
+      (outline (polygon signal 0  4245 -2995  -4245 -2995  -4245 2995  4245 2995))
+      (outline (path signal 100  -3200 2100  -3200 1600))
+      (outline (path signal 100  -3200 1600  -2200 1600))
+      (outline (path signal 100  -3200 -1600  -2200 -1600))
+      (outline (path signal 100  -3200 -2100  -3200 -1600))
+      (outline (path signal 120  -2750 1000  -2750 -1000))
+      (outline (path signal 100  -2700 2100  -2700 1600))
+      (outline (path signal 100  -2700 -2100  -2700 -1600))
+      (outline (path signal 100  -2600 1200  -2600 -1200))
+      (outline (path signal 100  -2600 -1200  -1200 -2600))
+      (outline (path signal 100  -2000 1000  -1000 2000))
+      (outline (path signal 100  -2000 -1000  -2000 1000))
+      (outline (path signal 120  -1700 2300  -1250 2750))
+      (outline (path signal 100  -1700 2100  -3200 2100))
+      (outline (path signal 100  -1700 -2100  -3200 -2100))
+      (outline (path signal 120  -1700 -2300  -1250 -2750))
+      (outline (path signal 120  -1250 2750  1250 2750))
+      (outline (path signal 120  -1250 -2750  1250 -2750))
+      (outline (path signal 100  -1200 2600  -2600 1200))
+      (outline (path signal 100  -1200 -2600  1200 -2600))
+      (outline (path signal 100  -1000 2000  1000 2000))
+      (outline (path signal 100  -1000 -2000  -2000 -1000))
+      (outline (path signal 100  1000 2000  2000 1000))
+      (outline (path signal 100  1000 -2000  -1000 -2000))
+      (outline (path signal 100  1200 2600  -1200 2600))
+      (outline (path signal 100  1200 -2600  2600 -1200))
+      (outline (path signal 120  1700 2300  1250 2750))
+      (outline (path signal 100  1700 2100  3200 2100))
+      (outline (path signal 100  1700 -2100  3200 -2100))
+      (outline (path signal 120  1700 -2300  1250 -2750))
+      (outline (path signal 100  2000 1000  2000 -1000))
+      (outline (path signal 100  2000 -1000  1000 -2000))
+      (outline (path signal 100  2600 1200  1200 2600))
+      (outline (path signal 100  2600 -1200  2600 1200))
+      (outline (path signal 100  2700 2100  2700 1600))
+      (outline (path signal 100  2700 -2100  2700 -1600))
+      (outline (path signal 120  2750 1000  2750 -1000))
+      (outline (path signal 100  3200 2100  3200 1600))
+      (outline (path signal 100  3200 1600  2200 1600))
+      (outline (path signal 100  3200 -1600  2200 -1600))
+      (outline (path signal 100  3200 -2100  3200 -1600))
+      (outline (path signal 100  1000 0  980.785 -195.09  923.88 -382.683  831.47 -555.57
+            707.107 -707.107  555.57 -831.47  382.683 -923.88  195.09 -980.785
+            0 -1000  -195.09 -980.785  -382.683 -923.88  -555.57 -831.47
+            -707.107 -707.107  -831.47 -555.57  -923.88 -382.683  -980.785 -195.09
+            -1000 0  -980.785 195.09  -923.88 382.683  -831.47 555.57  -707.107 707.107
+            -555.57 831.47  -382.683 923.88  -195.09 980.785  0 1000  195.09 980.785
+            382.683 923.88  555.57 831.47  707.107 707.107  831.47 555.57
+            923.88 382.683  980.785 195.09  1000 0))
+      (pin Rect[T]Pad_1700.000000x1000.000000_um 1 -3150 1900)
+      (pin Rect[T]Pad_1700.000000x1000.000000_um 1@1 3150 1900)
+      (pin Rect[T]Pad_1700.000000x1000.000000_um 2 -3150 -1900)
+      (pin Rect[T]Pad_1700.000000x1000.000000_um 2@1 3150 -1900)
+    )
+    (image GemilaiMateCompact:C_1206_3216Metric::2
+      (outline (polygon signal 0  2295 -1145  -2295 -1145  -2295 1145  2295 1145))
+      (outline (path signal 120  -711.252 910  711.252 910))
+      (outline (path signal 120  -711.252 -910  711.252 -910))
+      (outline (path signal 100  -1600 800  1600 800  1600 -800  -1600 -800  -1600 800))
+      (pin RoundRect[T]Pad_1150.000000x1800.000000_250.951000_um_0.000000_0 1 -1475 0)
+      (pin RoundRect[T]Pad_1150.000000x1800.000000_250.951000_um_0.000000_0 2 1475 0)
+    )
+    (image "GemilaiMateCompact:TSSOP-20_4.4x6.5mm_P0.65mm"
+      (outline (polygon signal 0  2445 3375  3845 3375  3845 -3375  2445 -3375  2445 -3495
+            -2445 -3495  -2445 -3375  -3845 -3375  -3845 3375  -2445 3375
+            -2445 3495  2445 3495))
+      (outline (path signal 120  -2310 3385  2310 3385))
+      (outline (path signal 120  2310 -3385  -2310 -3385))
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 1 -2862.5 2925)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 2 -2862.5 2275)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 3 -2862.5 1625)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 4 -2862.5 975)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 5 -2862.5 325)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 6 -2862.5 -325)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 7 -2862.5 -975)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 8 -2862.5 -1625)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 9 -2862.5 -2275)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 10 -2862.5 -2925)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 11 2862.5 -2925)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 12 2862.5 -2275)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 13 2862.5 -1625)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 14 2862.5 -975)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 15 2862.5 -325)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 16 2862.5 325)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 17 2862.5 975)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 18 2862.5 1625)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 19 2862.5 2275)
+      (pin RoundRect[T]Pad_1475.000000x400.000000_100.381000_um_0.000000_0 20 2862.5 2925)
     )
     (image "GemilaiMateCompact:ESP32-S3-WROOM-1"
       (outline (polygon signal 0  23995 6755  9745 6755  9745 -13445  -9745 -13445  -9745 6755
@@ -652,40 +740,28 @@
       (keepout "" (polygon In2.Cu 0  -24000 6750  24000 6750  24000 27750  -24000 27750  -24000 6750))
       (keepout "" (polygon B.Cu 0  -24000 6750  24000 6750  24000 27750  -24000 27750  -24000 6750))
     )
-    (image GemilaiMateCompact:PinHeader_2x05_P1.27mm_Vertical
-      (outline (polygon signal 0  -1565 -6215  -1565 1135  2835 1135  2835 -6215))
-      (outline (path signal 120  -1180 810  0 810))
-      (outline (path signal 120  2450 745  2450 -5825))
-      (outline (path signal 120  1587.92 745  2450 745))
-      (outline (path signal 100  2340 635  2340 -5715))
-      (outline (path signal 100  -217.5 635  2340 635))
-      (outline (path signal 120  -1180 0  -1180 810))
-      (outline (path signal 100  -1070 -217.5  -217.5 635))
-      (outline (path signal 120  -1180 -810  -666.708 -810))
-      (outline (path signal 120  -1180 -810  -1180 -5825))
-      (outline (path signal 100  2340 -5715  -1070 -5715))
-      (outline (path signal 100  -1070 -5715  -1070 -217.5))
-      (outline (path signal 120  1587.92 -5825  2450 -5825))
-      (outline (path signal 120  317.923 -5825  952.077 -5825))
-      (outline (path signal 120  -1180 -5825  -317.923 -5825))
-      (pin Rect[A]Pad_1000.000000x1000.000000_um 1 0 0)
-      (pin Round[A]Pad_1000.000000_um 2 1270 0)
-      (pin Round[A]Pad_1000.000000_um 3 0 -1270)
-      (pin Round[A]Pad_1000.000000_um 4 1270 -1270)
-      (pin Round[A]Pad_1000.000000_um 5 0 -2540)
-      (pin Round[A]Pad_1000.000000_um 6 1270 -2540)
-      (pin Round[A]Pad_1000.000000_um 7 0 -3810)
-      (pin Round[A]Pad_1000.000000_um 8 1270 -3810)
-      (pin Round[A]Pad_1000.000000_um 9 0 -5080)
-      (pin Round[A]Pad_1000.000000_um 10 1270 -5080)
+    (image ""
+      (keepout "" (circle F.Cu 2700))
+      (keepout "" (circle In1.Cu 2700))
+      (keepout "" (circle In2.Cu 2700))
+      (keepout "" (circle B.Cu 2700))
     )
-    (image GemilaiMateCompact:Fuse_1206_3216Metric
-      (outline (polygon signal 0  2275 -1125  -2275 -1125  -2275 1125  2275 1125))
-      (outline (path signal 120  -602.064 910  602.064 910))
-      (outline (path signal 120  -602.064 -910  602.064 -910))
-      (outline (path signal 100  -1600 800  1600 800  1600 -800  -1600 -800  -1600 800))
-      (pin RoundRect[T]Pad_1250.000000x1750.000000_250.951000_um_0.000000_0 1 -1400 0)
-      (pin RoundRect[T]Pad_1250.000000x1750.000000_250.951000_um_0.000000_0 2 1400 0)
+    (image "GemilaiMateCompact:SOT-23-5::1"
+      (outline (polygon signal 0  1045 395  1045 -395  2045 -395  2045 -1495  1045 -1495
+            1045 -1695  -1045 -1695  -1045 -1495  -2045 -1495  -2045 1495
+            -1045 1495  -1045 1695  1045 1695  1045 1495  2045 1495  2045 395))
+      (outline (path signal 120  910 1560  910 1510))
+      (outline (path signal 120  -910 1560  910 1560))
+      (outline (path signal 120  -910 1510  -910 1560))
+      (outline (path signal 120  910 390  910 -390))
+      (outline (path signal 120  910 -1510  910 -1560))
+      (outline (path signal 120  910 -1560  -910 -1560))
+      (outline (path signal 120  -910 -1560  -910 -1510))
+      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 1 -1137.5 950)
+      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 2 -1137.5 0)
+      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 3 -1137.5 -950)
+      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 4 1137.5 -950)
+      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 5 1137.5 950)
     )
     (image GemilaiMateCompact:PinHeader_1x06_P1.27mm_Vertical
       (outline (polygon signal 0  -1545 -7485  -1545 1135  1545 1135  1545 -7485))
@@ -709,36 +785,6 @@
       (pin Round[A]Pad_1000.000000_um 5 0 -5080)
       (pin Round[A]Pad_1000.000000_um 6 0 -6350)
     )
-    (image "GemilaiMateCompact:SOT-23-6"
-      (outline (polygon signal 0  1045 -1495  1045 -1695  -1045 -1695  -1045 -1495  -2045 -1495
-            -2045 1495  -1045 1495  -1045 1695  1045 1695  1045 1495  2045 1495
-            2045 -1495))
-      (outline (path signal 120  910 1560  910 1510))
-      (outline (path signal 120  -910 1560  910 1560))
-      (outline (path signal 120  -910 1510  -910 1560))
-      (outline (path signal 120  910 -1510  910 -1560))
-      (outline (path signal 120  910 -1560  -910 -1560))
-      (outline (path signal 120  -910 -1560  -910 -1510))
-      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 1 -1137.5 950)
-      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 2 -1137.5 0)
-      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 3 -1137.5 -950)
-      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 4 1137.5 -950)
-      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 5 1137.5 0)
-      (pin RoundRect[T]Pad_1325.000000x600.000000_150.571000_um_0.000000_0 6 1137.5 950)
-    )
-    (image GemilaiMateCompact:MAX31855_socket
-      (outline (polygon signal 0  1265 -1265  -13965 -1265  -13965 1265  1265 1265))
-      (outline (path signal 100  -13970 1270  1270 1270))
-      (outline (path signal 100  -13970 -1270  -13970 1270))
-      (outline (path signal 100  1270 1270  1270 -1270))
-      (outline (path signal 100  1270 -1270  -13970 -1270))
-      (pin Rect[A]Pad_1650.000000x1650.000000_um 1 0 0)
-      (pin Round[A]Pad_1650.000000_um 2 -2540 0)
-      (pin Round[A]Pad_1650.000000_um 3 -5080 0)
-      (pin Round[A]Pad_1650.000000_um 4 -7620 0)
-      (pin Round[A]Pad_1650.000000_um 5 -10160 0)
-      (pin Round[A]Pad_1650.000000_um 6 -12700 0)
-    )
     (image "GemilaiMateCompact:SOT-223-3_TabPin2"
       (outline (polygon signal 0  4395 -3595  -4395 -3595  -4395 3595  4395 3595))
       (outline (path signal 120  -1850 3410  1910 3410))
@@ -754,38 +800,6 @@
       (pin RoundRect[T]Pad_2000.000000x1500.000000_376.427000_um_0.000000_0 2 -3150 0)
       (pin RoundRect[T]Pad_2000.000000x3800.000000_501.903000_um_0.000000_0 2@1 3150 0)
       (pin RoundRect[T]Pad_2000.000000x1500.000000_376.427000_um_0.000000_0 3 -3150 -2300)
-    )
-    (image "GemilaiMateCompact:SOT-23"
-      (outline (polygon signal 0  895 545  1925 545  1925 -545  895 -545  895 -1695  -895 -1695
-            -895 -1495  -1925 -1495  -1925 -395  -895 -395  -895 395  -1925 395
-            -1925 1495  -895 1495  -895 1695  895 1695))
-      (outline (path signal 120  -760 1560  760 1560))
-      (outline (path signal 120  -760 1510  -760 1560))
-      (outline (path signal 120  -760 -390  -760 390))
-      (outline (path signal 120  -760 -1560  -760 -1510))
-      (outline (path signal 120  760 1560  760 560))
-      (outline (path signal 120  760 -560  760 -1560))
-      (outline (path signal 120  760 -1560  -760 -1560))
-      (pin RoundRect[T]Pad_1475.000000x600.000000_150.571000_um_0.000000_0 1 -937.5 950)
-      (pin RoundRect[T]Pad_1475.000000x600.000000_150.571000_um_0.000000_0 2 -937.5 -950)
-      (pin RoundRect[T]Pad_1475.000000x600.000000_150.571000_um_0.000000_0 3 937.5 0)
-    )
-    (image GemilaiMateCompact:PinHeader_1x03_P2.54mm_Vertical
-      (outline (polygon signal 0  -1765 -6845  -1765 1765  1765 1765  1765 -6845))
-      (outline (path signal 120  -1380 1380  0 1380))
-      (outline (path signal 100  1270 1270  1270 -6350))
-      (outline (path signal 100  -635 1270  1270 1270))
-      (outline (path signal 100  -1270 635  -635 1270))
-      (outline (path signal 120  -1380 0  -1380 1380))
-      (outline (path signal 120  1380 -1270  1380 -6460))
-      (outline (path signal 120  -1380 -1270  1380 -1270))
-      (outline (path signal 120  -1380 -1270  -1380 -6460))
-      (outline (path signal 100  1270 -6350  -1270 -6350))
-      (outline (path signal 100  -1270 -6350  -1270 635))
-      (outline (path signal 120  -1380 -6460  1380 -6460))
-      (pin Rect[A]Pad_1700.000000x1700.000000_um 1 0 0)
-      (pin Round[A]Pad_1700.000000_um 2 0 -2540)
-      (pin Round[A]Pad_1700.000000_um 3 0 -5080)
     )
     (image GemilaiMateCompact:PinHeader_1x05_P1.27mm_Vertical
       (outline (polygon signal 0  1545 1135  1545 -6215  -1545 -6215  -1545 1135))
@@ -807,41 +821,6 @@
       (pin Round[A]Pad_1000.000000_um 3 0 -2540)
       (pin Round[A]Pad_1000.000000_um 4 0 -3810)
       (pin Round[A]Pad_1000.000000_um 5 0 -5080)
-    )
-    (image "GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical"
-      (outline (polygon signal 0  6445 -3295  -2445 -3295  -2445 2195  6445 2195))
-      (outline (path signal 100  -2360 2110  -2360 860))
-      (outline (path signal 120  -2360 2110  -2360 860))
-      (outline (path signal 120  -2060 -800  -1450 -800))
-      (outline (path signal 120  -2060 500  -1450 500))
-      (outline (path signal 120  -1450 -2300  5450 -2300))
-      (outline (path signal 120  -1450 1200  -1450 -2300))
-      (outline (path signal 100  -1110 2110  -2360 2110))
-      (outline (path signal 120  -1110 2110  -2360 2110))
-      (outline (path signal 120  -600 2010  -600 1810))
-      (outline (path signal 120  -300 1810  -300 2010))
-      (outline (path signal 120  -300 1910  -600 1910))
-      (outline (path signal 120  -300 2010  -600 2010))
-      (outline (path signal 120  500 1200  -1450 1200))
-      (outline (path signal 120  500 1810  500 1200))
-      (outline (path signal 120  900 -2300  900 -1800))
-      (outline (path signal 120  900 -1800  1100 -1800))
-      (outline (path signal 120  1000 -2300  1000 -1800))
-      (outline (path signal 120  1100 -1800  1100 -2300))
-      (outline (path signal 120  2900 -2300  2900 -1800))
-      (outline (path signal 120  2900 -1800  3100 -1800))
-      (outline (path signal 120  3000 -2300  3000 -1800))
-      (outline (path signal 120  3100 -1800  3100 -2300))
-      (outline (path signal 120  3500 1200  3500 1810))
-      (outline (path signal 120  5450 -2300  5450 1200))
-      (outline (path signal 120  5450 1200  3500 1200))
-      (outline (path signal 120  6060 -800  5450 -800))
-      (outline (path signal 120  6060 500  5450 500))
-      (outline (path signal 120  -2060 1810  6060 1810  6060 -2910  -2060 -2910  -2060 1810))
-      (outline (path signal 100  -1950 1700  5950 1700  5950 -2800  -1950 -2800  -1950 1700))
-      (pin RoundRect[A]Pad_1200.000000x1750.000000_250.951000_um_0.000000_0 1 0 0)
-      (pin Oval[A]Pad_1200.000000x1750.000000_um 2 2000 0)
-      (pin Oval[A]Pad_1200.000000x1750.000000_um 3 4000 0)
     )
     (image "GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical"
       (outline (polygon signal 0  8445 -3295  -2445 -3295  -2445 2195  8445 2195))
@@ -878,46 +857,6 @@
       (outline (path signal 120  8060 500  7450 500))
       (outline (path signal 120  -2060 1810  8060 1810  8060 -2910  -2060 -2910  -2060 1810))
       (outline (path signal 100  -1950 1700  7950 1700  7950 -2800  -1950 -2800  -1950 1700))
-      (pin RoundRect[A]Pad_1200.000000x1750.000000_250.951000_um_0.000000_0 1 0 0)
-      (pin Oval[A]Pad_1200.000000x1750.000000_um 2 2000 0)
-      (pin Oval[A]Pad_1200.000000x1750.000000_um 3 4000 0)
-      (pin Oval[A]Pad_1200.000000x1750.000000_um 4 6000 0)
-    )
-    (image "GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical::1"
-      (outline (polygon signal 0  8445 2195  8445 -3295  -2445 -3295  -2445 2195))
-      (outline (path signal 120  7450 -2300  7450 1200))
-      (outline (path signal 120  5000 -2300  5000 -1800))
-      (outline (path signal 120  4900 -2300  4900 -1800))
-      (outline (path signal 120  3000 -2300  3000 -1800))
-      (outline (path signal 120  2900 -2300  2900 -1800))
-      (outline (path signal 120  1000 -2300  1000 -1800))
-      (outline (path signal 120  900 -2300  900 -1800))
-      (outline (path signal 120  -1450 -2300  7450 -2300))
-      (outline (path signal 120  5100 -1800  5100 -2300))
-      (outline (path signal 120  4900 -1800  5100 -1800))
-      (outline (path signal 120  3100 -1800  3100 -2300))
-      (outline (path signal 120  2900 -1800  3100 -1800))
-      (outline (path signal 120  1100 -1800  1100 -2300))
-      (outline (path signal 120  900 -1800  1100 -1800))
-      (outline (path signal 120  8060 -800  7450 -800))
-      (outline (path signal 120  -2060 -800  -1450 -800))
-      (outline (path signal 120  8060 500  7450 500))
-      (outline (path signal 120  -2060 500  -1450 500))
-      (outline (path signal 120  7450 1200  5500 1200))
-      (outline (path signal 120  5500 1200  5500 1810))
-      (outline (path signal 120  500 1200  -1450 1200))
-      (outline (path signal 120  -1450 1200  -1450 -2300))
-      (outline (path signal 120  500 1810  500 1200))
-      (outline (path signal 120  -300 1810  -300 2010))
-      (outline (path signal 120  -300 1910  -600 1910))
-      (outline (path signal 120  -300 2010  -600 2010))
-      (outline (path signal 120  -600 2010  -600 1810))
-      (outline (path signal 100  -1110 2110  -2360 2110))
-      (outline (path signal 120  -1110 2110  -2360 2110))
-      (outline (path signal 100  -2360 2110  -2360 860))
-      (outline (path signal 120  -2360 2110  -2360 860))
-      (outline (path signal 100  -1950 1700  -1950 -2800  7950 -2800  7950 1700  -1950 1700))
-      (outline (path signal 120  -2060 1810  -2060 -2910  8060 -2910  8060 1810  -2060 1810))
       (pin RoundRect[A]Pad_1200.000000x1750.000000_250.951000_um_0.000000_0 1 0 0)
       (pin Oval[A]Pad_1200.000000x1750.000000_um 2 2000 0)
       (pin Oval[A]Pad_1200.000000x1750.000000_um 3 4000 0)
@@ -968,7 +907,7 @@
       (pin Oval[A]Pad_1200.000000x1750.000000_um 4 6000 0)
       (pin Oval[A]Pad_1200.000000x1750.000000_um 5 8000 0)
     )
-    (image "GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical::1"
+    (image "GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical"
       (outline (polygon signal 0  6445 2195  6445 -3295  -2445 -3295  -2445 2195))
       (outline (path signal 120  5450 -2300  5450 1200))
       (outline (path signal 120  3000 -2300  3000 -1800))
@@ -1003,6 +942,41 @@
       (pin Oval[A]Pad_1200.000000x1750.000000_um 2 2000 0)
       (pin Oval[A]Pad_1200.000000x1750.000000_um 3 4000 0)
     )
+    (image "GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical::1"
+      (outline (polygon signal 0  6445 -3295  -2445 -3295  -2445 2195  6445 2195))
+      (outline (path signal 100  -2360 2110  -2360 860))
+      (outline (path signal 120  -2360 2110  -2360 860))
+      (outline (path signal 120  -2060 -800  -1450 -800))
+      (outline (path signal 120  -2060 500  -1450 500))
+      (outline (path signal 120  -1450 -2300  5450 -2300))
+      (outline (path signal 120  -1450 1200  -1450 -2300))
+      (outline (path signal 100  -1110 2110  -2360 2110))
+      (outline (path signal 120  -1110 2110  -2360 2110))
+      (outline (path signal 120  -600 2010  -600 1810))
+      (outline (path signal 120  -300 1810  -300 2010))
+      (outline (path signal 120  -300 1910  -600 1910))
+      (outline (path signal 120  -300 2010  -600 2010))
+      (outline (path signal 120  500 1200  -1450 1200))
+      (outline (path signal 120  500 1810  500 1200))
+      (outline (path signal 120  900 -2300  900 -1800))
+      (outline (path signal 120  900 -1800  1100 -1800))
+      (outline (path signal 120  1000 -2300  1000 -1800))
+      (outline (path signal 120  1100 -1800  1100 -2300))
+      (outline (path signal 120  2900 -2300  2900 -1800))
+      (outline (path signal 120  2900 -1800  3100 -1800))
+      (outline (path signal 120  3000 -2300  3000 -1800))
+      (outline (path signal 120  3100 -1800  3100 -2300))
+      (outline (path signal 120  3500 1200  3500 1810))
+      (outline (path signal 120  5450 -2300  5450 1200))
+      (outline (path signal 120  5450 1200  3500 1200))
+      (outline (path signal 120  6060 -800  5450 -800))
+      (outline (path signal 120  6060 500  5450 500))
+      (outline (path signal 120  -2060 1810  6060 1810  6060 -2910  -2060 -2910  -2060 1810))
+      (outline (path signal 100  -1950 1700  5950 1700  5950 -2800  -1950 -2800  -1950 1700))
+      (pin RoundRect[A]Pad_1200.000000x1750.000000_250.951000_um_0.000000_0 1 0 0)
+      (pin Oval[A]Pad_1200.000000x1750.000000_um 2 2000 0)
+      (pin Oval[A]Pad_1200.000000x1750.000000_um 3 4000 0)
+    )
     (image "GemilaiMateCompact:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical"
       (outline (polygon signal 0  4445 -3295  -2445 -3295  -2445 2195  4445 2195))
       (outline (path signal 100  -2360 2110  -2360 860))
@@ -1032,6 +1006,96 @@
       (outline (path signal 100  -1950 1700  3950 1700  3950 -2800  -1950 -2800  -1950 1700))
       (pin RoundRect[A]Pad_1200.000000x1750.000000_250.951000_um_0.000000_0 1 0 0)
       (pin Oval[A]Pad_1200.000000x1750.000000_um 2 2000 0)
+    )
+    (image "GemilaiMateCompact:JST_PH_B6B-PH-K_1x06_P2.00mm_Vertical"
+      (outline (polygon signal 0  12445 -3295  -2445 -3295  -2445 2195  12445 2195))
+      (outline (path signal 100  -2360 2110  -2360 860))
+      (outline (path signal 120  -2360 2110  -2360 860))
+      (outline (path signal 120  -2060 -800  -1450 -800))
+      (outline (path signal 120  -2060 500  -1450 500))
+      (outline (path signal 120  -1450 -2300  11450 -2300))
+      (outline (path signal 120  -1450 1200  -1450 -2300))
+      (outline (path signal 100  -1110 2110  -2360 2110))
+      (outline (path signal 120  -1110 2110  -2360 2110))
+      (outline (path signal 120  -600 2010  -600 1810))
+      (outline (path signal 120  -300 1810  -300 2010))
+      (outline (path signal 120  -300 1910  -600 1910))
+      (outline (path signal 120  -300 2010  -600 2010))
+      (outline (path signal 120  500 1200  -1450 1200))
+      (outline (path signal 120  500 1810  500 1200))
+      (outline (path signal 120  900 -2300  900 -1800))
+      (outline (path signal 120  900 -1800  1100 -1800))
+      (outline (path signal 120  1000 -2300  1000 -1800))
+      (outline (path signal 120  1100 -1800  1100 -2300))
+      (outline (path signal 120  2900 -2300  2900 -1800))
+      (outline (path signal 120  2900 -1800  3100 -1800))
+      (outline (path signal 120  3000 -2300  3000 -1800))
+      (outline (path signal 120  3100 -1800  3100 -2300))
+      (outline (path signal 120  4900 -2300  4900 -1800))
+      (outline (path signal 120  4900 -1800  5100 -1800))
+      (outline (path signal 120  5000 -2300  5000 -1800))
+      (outline (path signal 120  5100 -1800  5100 -2300))
+      (outline (path signal 120  6900 -2300  6900 -1800))
+      (outline (path signal 120  6900 -1800  7100 -1800))
+      (outline (path signal 120  7000 -2300  7000 -1800))
+      (outline (path signal 120  7100 -1800  7100 -2300))
+      (outline (path signal 120  8900 -2300  8900 -1800))
+      (outline (path signal 120  8900 -1800  9100 -1800))
+      (outline (path signal 120  9000 -2300  9000 -1800))
+      (outline (path signal 120  9100 -1800  9100 -2300))
+      (outline (path signal 120  9500 1200  9500 1810))
+      (outline (path signal 120  11450 -2300  11450 1200))
+      (outline (path signal 120  11450 1200  9500 1200))
+      (outline (path signal 120  12060 -800  11450 -800))
+      (outline (path signal 120  12060 500  11450 500))
+      (outline (path signal 120  -2060 1810  12060 1810  12060 -2910  -2060 -2910  -2060 1810))
+      (outline (path signal 100  -1950 1700  11950 1700  11950 -2800  -1950 -2800  -1950 1700))
+      (pin RoundRect[A]Pad_1200.000000x1750.000000_250.951000_um_0.000000_0 1 0 0)
+      (pin Oval[A]Pad_1200.000000x1750.000000_um 2 2000 0)
+      (pin Oval[A]Pad_1200.000000x1750.000000_um 3 4000 0)
+      (pin Oval[A]Pad_1200.000000x1750.000000_um 4 6000 0)
+      (pin Oval[A]Pad_1200.000000x1750.000000_um 5 8000 0)
+      (pin Oval[A]Pad_1200.000000x1750.000000_um 6 10000 0)
+    )
+    (image "GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical::1"
+      (outline (polygon signal 0  8445 2195  8445 -3295  -2445 -3295  -2445 2195))
+      (outline (path signal 120  7450 -2300  7450 1200))
+      (outline (path signal 120  5000 -2300  5000 -1800))
+      (outline (path signal 120  4900 -2300  4900 -1800))
+      (outline (path signal 120  3000 -2300  3000 -1800))
+      (outline (path signal 120  2900 -2300  2900 -1800))
+      (outline (path signal 120  1000 -2300  1000 -1800))
+      (outline (path signal 120  900 -2300  900 -1800))
+      (outline (path signal 120  -1450 -2300  7450 -2300))
+      (outline (path signal 120  5100 -1800  5100 -2300))
+      (outline (path signal 120  4900 -1800  5100 -1800))
+      (outline (path signal 120  3100 -1800  3100 -2300))
+      (outline (path signal 120  2900 -1800  3100 -1800))
+      (outline (path signal 120  1100 -1800  1100 -2300))
+      (outline (path signal 120  900 -1800  1100 -1800))
+      (outline (path signal 120  8060 -800  7450 -800))
+      (outline (path signal 120  -2060 -800  -1450 -800))
+      (outline (path signal 120  8060 500  7450 500))
+      (outline (path signal 120  -2060 500  -1450 500))
+      (outline (path signal 120  7450 1200  5500 1200))
+      (outline (path signal 120  5500 1200  5500 1810))
+      (outline (path signal 120  500 1200  -1450 1200))
+      (outline (path signal 120  -1450 1200  -1450 -2300))
+      (outline (path signal 120  500 1810  500 1200))
+      (outline (path signal 120  -300 1810  -300 2010))
+      (outline (path signal 120  -300 1910  -600 1910))
+      (outline (path signal 120  -300 2010  -600 2010))
+      (outline (path signal 120  -600 2010  -600 1810))
+      (outline (path signal 100  -1110 2110  -2360 2110))
+      (outline (path signal 120  -1110 2110  -2360 2110))
+      (outline (path signal 100  -2360 2110  -2360 860))
+      (outline (path signal 120  -2360 2110  -2360 860))
+      (outline (path signal 100  -1950 1700  -1950 -2800  7950 -2800  7950 1700  -1950 1700))
+      (outline (path signal 120  -2060 1810  -2060 -2910  8060 -2910  8060 1810  -2060 1810))
+      (pin RoundRect[A]Pad_1200.000000x1750.000000_250.951000_um_0.000000_0 1 0 0)
+      (pin Oval[A]Pad_1200.000000x1750.000000_um 2 2000 0)
+      (pin Oval[A]Pad_1200.000000x1750.000000_um 3 4000 0)
+      (pin Oval[A]Pad_1200.000000x1750.000000_um 4 6000 0)
     )
     (padstack Round[T]Pad_1000.000000_um
       (shape (circle F.Cu 1000))
@@ -1263,34 +1327,49 @@
     )
   )
   (network
-    (net STEAM
-      (pins C14-1 R28-2 U1-25 R27-2)
+    (net +3V3
+      (pins C4-1 R9-1 R6-1 C3-1 R26-1 JP1-3 R28-1 R32-1 U4-3 J17-1 R5-1 C7-1 TP5-1
+        U6-5 C2-1 R31-1 U8-20 U1-2 C15-1 R16-1 U5-5 J18-1 C12-1 U3-3 C10-1 J16-1 J12-1)
     )
     (net GND
-      (pins C14-2 C7-2 U7-7 U7-12 TP6-1 J1-A1 J1-A12 J1-B1 J1-B12 J1-SH J1-SH@1 J1-SH@2
-        J1-SH@3 R18-2 R22-2 C1-2 U8-1 U8-2 U8-3 U8-4 U8-5 U8-10 U8-15 U8-16 U8-17
-        C5-2 C10-2 SW1-2 SW1-2@1 C15-2 SW2-2 SW2-2@1 U4-2 J2-2 J2-5 R40-2 U6-3 C11-2
-        R17-2 C3-2 U5-3 C9-2 R19-2 R8-2 R2-2 U1-1 U1-40 U1-41 U1-41@1 U1-41@2 U1-41@3
-        U1-41@4 U1-41@5 U1-41@6 U1-41@7 U1-41@8 U1-41@9 U1-41@10 U1-41@11 U1-41@12
-        C13-2 J17-2 J17-9 J17-10 C12-2 R24-2 R21-2 C8-2 C6-2 J18-2 J18-6 R20-2 R38-2
-        R1-2 R23-2 C2-2 U2-2 J3-3 R10-2 U3-2 U3-2@1 R15-2 Q3-2 Q2-2 J16-2 Q1-2 C4-2
-        J6-2 J12-2 J8-2 J13-2 J7-3 J7-4 J11-2 J4-2 J5-2 J9-2 J10-2)
+      (pins C4-2 C1-2 R38-2 R15-2 U7-7 U7-12 C3-2 C5-2 SW2-2 SW2-2@1 C8-2 C13-2 J3-3
+        Q1-2 U4-2 J17-2 J17-9 J17-10 C7-2 U2-2 C6-2 J2-2 J2-5 C14-2 TP6-1 J1-A1 J1-A12
+        J1-B1 J1-B12 J1-SH J1-SH@1 J1-SH@2 J1-SH@3 U6-3 C11-2 C2-2 R1-2 SW1-2 SW1-2@1
+        C16-2 U8-1 U8-2 U8-3 U8-4 U8-5 U8-10 U8-15 U8-16 U8-17 U1-1 U1-40 U1-41 U1-41@1
+        U1-41@2 U1-41@3 U1-41@4 U1-41@5 U1-41@6 U1-41@7 U1-41@8 U1-41@9 U1-41@10 U1-41@11
+        U1-41@12 R8-2 D3-2 R24-2 R20-2 R17-2 C15-2 R40-2 U5-3 R21-2 Q2-2 C9-2 R22-2
+        R19-2 J18-2 J18-6 R2-2 C12-2 U3-2 U3-2@1 R10-2 C10-2 R23-2 R18-2 J16-2 Q3-2
+        J7-3 J7-4 J9-2 J6-2 J4-2 J12-2 J5-2 J10-2 J8-2 J11-2 J13-2)
     )
-    (net +3V3
-      (pins C7-1 R5-1 R28-1 U8-20 C10-1 R32-1 C15-1 U4-3 U6-5 R31-1 C3-1 U5-5 U1-2
-        J17-1 C12-1 R9-1 R6-1 J18-1 C2-1 TP5-1 U3-3 R16-1 JP1-3 R26-1 J16-1 C4-1 J12-1)
+    (net STEAM_RAW
+      (pins R27-1 J7-2)
+    )
+    (net STEAM
+      (pins R27-2 R28-2 C14-1 U1-25)
+    )
+    (net I2C_OE
+      (pins R9-2 U4-6 R10-1)
+    )
+    (net +5V_CORE
+      (pins C1-1 JP1-1 C8-1 D1-1 U4-7 J2-1 D2-1 U3-1)
+    )
+    (net LED_GATE4
+      (pins R38-1 R37-2 Q2-1)
+    )
+    (net EXT_BASE
+      (pins R15-1 Q1-1 R14-2)
     )
     (net OUTPUT_OE_N
-      (pins U7-1 U7-4 U7-10 U6-1 R16-2 Q1-3)
+      (pins U7-1 U7-4 U7-10 Q1-3 U6-1 R16-2)
     )
     (net VALVE
-      (pins U7-2 R18-1 U1-18)
+      (pins U7-2 U1-18 R18-1)
     )
     (net VALVE_5V
       (pins U7-3 R22-1 J9-3)
     )
     (net HEATER
-      (pins U7-5 R19-1 U1-22)
+      (pins U7-5 U1-22 R19-1)
     )
     (net HEATER_5V
       (pins U7-6 R23-1 J10-3)
@@ -1305,80 +1384,68 @@
       (pins U7-11)
     )
     (net +5V_EXT
-      (pins U7-13 U7-14 R12-1 C11-1 D2-2 J17-8 F2-2 R14-1 J6-1 J8-1 J11-1 J14-1 J15-1
-        J5-1 J9-1 J10-1)
+      (pins U7-13 U7-14 F2-2 J17-8 R12-1 C11-1 C16-1 D3-1 R14-1 D2-2 J14-1 J9-1 J6-1
+        J5-1 J10-1 J8-1 J11-1 J15-1 J13-1)
+    )
+    (net BOOT
+      (pins R6-2 SW2-1 SW2-1@1 TP4-1 U1-27)
+    )
+    (net PCA_LED3
+      (pins R36-1 U8-9)
+    )
+    (net RGBW3
+      (pins R36-2 J14-5)
+    )
+    (net BREW
+      (pins R26-2 R25-2 C13-1 U1-31)
+    )
+    (net PCA_LED4
+      (pins R37-1 U8-11)
+    )
+    (net STRAP46
+      (pins TP3-1 U1-16)
+    )
+    (net TC_VIN
+      (pins JP1-2 J3-1)
     )
     (net EN
-      (pins R5-2 C5-1 SW1-1 SW1-1@1 U1-3)
+      (pins C5-1 R5-2 SW1-1 SW1-1@1 U1-3)
     )
-    (net PCA_LED0
-      (pins R33-1 U8-6)
-    )
-    (net RGBW0
-      (pins R33-2 J14-2)
-    )
-    (net USB_DP_MCU
-      (pins R3-1 U1-14)
-    )
-    (net USB_DP
-      (pins R3-2 J1-A6 J1-B6 U2-3 U2-4)
-    )
-    (net ZC_RAW
-      (pins R12-2 R13-1 J8-3)
-    )
-    (net USB_VBUS
-      (pins J1-A4 J1-A9 J1-B4 J1-B9 F1-1 U2-5)
-    )
-    (net CC1
-      (pins J1-A5 R1-1)
-    )
-    (net USB_DM
-      (pins J1-A7 J1-B7 R4-2 U2-1 U2-6)
-    )
-    (net "unconnected-(J1-PadA8)"
-      (pins J1-A8)
-    )
-    (net CC2
-      (pins J1-B5 R2-1)
-    )
-    (net "unconnected-(J1-PadB8)"
-      (pins J1-B8)
+    (net STRAP3
+      (pins TP1-1 U1-15)
     )
     (net PCA_LED7
       (pins TP10-1 U8-14)
     )
-    (net +5V_CORE
-      (pins C1-1 U4-7 J2-1 D2-1 D1-1 C8-1 U3-1 JP1-1 J13-1)
+    (net USB_FUSED
+      (pins D1-2 F1-2)
     )
-    (net PCA_LED1
-      (pins U8-7 R34-1)
-    )
-    (net PCA_LED2
-      (pins U8-8 R35-1)
-    )
-    (net PCA_LED3
-      (pins U8-9 R36-1)
-    )
-    (net PCA_LED4
-      (pins U8-11 R37-1)
-    )
-    (net PCA_LED5
-      (pins U8-12 R39-1)
-    )
-    (net PCA_LED6
-      (pins U8-13 TP9-1)
-    )
-    (net PCA_SCL
-      (pins U8-18 R29-2)
-    )
-    (net PCA_SDA
-      (pins U8-19 R30-2)
+    (net BREW_RAW
+      (pins R25-1 J7-1)
     )
     (net ALBA_SCL
-      (pins R32-2 TP8-1 R29-1 U1-36 J12-4 J13-4)
+      (pins R32-2 U1-36 R29-1 TP8-1 J12-4 J13-4)
     )
-    (net BOOT
-      (pins SW2-1 SW2-1@1 U1-27 R6-2 TP4-1)
+    (net USB_DM_MCU
+      (pins R4-1 U1-13)
+    )
+    (net USB_DM
+      (pins R4-2 U2-1 U2-6 J1-A7 J1-B7)
+    )
+    (net "unconnected-(J3-3Vo_NC-Pad2)"
+      (pins J3-2)
+    )
+    (net TC_DO
+      (pins J3-4 U1-4)
+    )
+    (net TC_CS
+      (pins J3-5 U1-7)
+    )
+    (net TC_SCK
+      (pins J3-6 U1-6)
+    )
+    (net EXT_IN
+      (pins F2-1 J4-1)
     )
     (net SDA_5V
       (pins U4-1 J2-4)
@@ -1389,20 +1456,47 @@
     (net SCL_3V3
       (pins U4-5 U1-34)
     )
-    (net I2C_OE
-      (pins U4-6 R9-2 R10-1)
-    )
     (net SCL_5V
       (pins U4-8 J2-3)
     )
-    (net LED_GATE4
-      (pins R37-2 R38-1 Q2-1)
+    (net EXT1
+      (pins J17-3 U1-39)
+    )
+    (net EXT2
+      (pins J17-4 U1-38)
+    )
+    (net EXT3
+      (pins J17-5 U1-12)
+    )
+    (net EXT4
+      (pins J17-6 U1-20)
+    )
+    (net EXT5
+      (pins J17-7 U1-21)
+    )
+    (net STRAP45
+      (pins TP2-1 U1-26)
+    )
+    (net PCA_LED5
+      (pins R39-1 U8-12)
+    )
+    (net LED_GATE5
+      (pins R39-2 R40-1 Q3-1)
+    )
+    (net USB_DP
+      (pins U2-3 U2-4 R3-2 J1-A6 J1-B6)
+    )
+    (net USB_VBUS
+      (pins U2-5 J1-A4 J1-A9 J1-B4 J1-B9 F1-1)
+    )
+    (net BOARD_ID
+      (pins C6-1 R7-2 U1-19 R8-1)
     )
     (net "unconnected-(J2-ALRT-Pad6)"
       (pins J2-6)
     )
     (net PRESSURE
-      (pins J2-7 C9-1 R11-2)
+      (pins J2-7 R11-2 C9-1)
     )
     (net "unconnected-(J2-A1-Pad8)"
       (pins J2-8)
@@ -1413,56 +1507,59 @@
     (net "unconnected-(J2-A3-Pad10)"
       (pins J2-10)
     )
-    (net STRAP45
-      (pins TP2-1 U1-26)
+    (net ZC_RAW
+      (pins R12-2 R13-1 J8-3)
     )
-    (net ZC_IN
-      (pins R13-2 U5-2)
+    (net USB_DP_MCU
+      (pins R3-1 U1-14)
     )
-    (net LED_GATE5
-      (pins R40-1 R39-2 Q3-1)
+    (net CC1
+      (pins J1-A5 R1-1)
+    )
+    (net "unconnected-(J1-PadA8)"
+      (pins J1-A8)
+    )
+    (net CC2
+      (pins J1-B5 R2-1)
+    )
+    (net "unconnected-(J1-PadB8)"
+      (pins J1-B8)
     )
     (net PUMP_PWM
-      (pins U6-2 R17-1 U1-17)
+      (pins U6-2 U1-17 R17-1)
     )
     (net PUMP_OUT
       (pins U6-4 R21-1 J8-4)
     )
-    (net RGBW3
-      (pins R36-2 J14-5)
+    (net DETECT_EN
+      (pins R7-1 U1-33)
+    )
+    (net PRESSURE_RAW
+      (pins R11-1 J6-3)
     )
     (net ALBA_SDA
-      (pins R31-2 U1-37 TP7-1 R30-1 J12-3 J13-3)
+      (pins R31-2 U1-37 R30-1 TP7-1 J12-3 J13-3)
     )
-    (net STRAP46
-      (pins TP3-1 U1-16)
+    (net PCA_LED0
+      (pins U8-6 R33-1)
     )
-    (net BREW_RAW
-      (pins R25-1 J7-1)
+    (net PCA_LED1
+      (pins U8-7 R34-1)
     )
-    (net BREW
-      (pins R25-2 U1-31 C13-1 R26-2)
+    (net PCA_LED2
+      (pins U8-8 R35-1)
     )
-    (net "unconnected-(U5-NC-Pad1)"
-      (pins U5-1)
+    (net PCA_LED6
+      (pins U8-13 TP9-1)
     )
-    (net PUMP_ZC
-      (pins U5-4 U1-23)
+    (net PCA_SCL
+      (pins U8-18 R29-2)
     )
-    (net BOARD_ID
-      (pins R8-1 U1-19 C6-1 R7-2)
-    )
-    (net TC_DO
-      (pins U1-4 J3-4)
+    (net PCA_SDA
+      (pins U8-19 R30-2)
     )
     (net GPIO5
       (pins U1-5 J18-3)
-    )
-    (net TC_SCK
-      (pins U1-6 J3-6)
-    )
-    (net TC_CS
-      (pins U1-7 J3-5)
     )
     (net GPIO15
       (pins U1-8 J18-4)
@@ -1476,20 +1573,8 @@
     (net SCALE_DAT0
       (pins U1-11 J16-4)
     )
-    (net EXT3
-      (pins U1-12 J17-5)
-    )
-    (net USB_DM_MCU
-      (pins U1-13 R4-1)
-    )
-    (net STRAP3
-      (pins U1-15 TP1-1)
-    )
-    (net EXT4
-      (pins U1-20 J17-6)
-    )
-    (net EXT5
-      (pins U1-21 J17-7)
+    (net PUMP_ZC
+      (pins U1-23 U5-4)
     )
     (net "unconnected-(U1-GPIO35-Pad28)"
       (pins U1-28)
@@ -1503,47 +1588,32 @@
     (net SCALE_DAT1
       (pins U1-32 J16-5)
     )
-    (net DETECT_EN
-      (pins U1-33 R7-1)
-    )
-    (net EXT2
-      (pins U1-38 J17-4)
-    )
-    (net EXT1
-      (pins U1-39 J17-3)
-    )
     (net RGBW2
       (pins R35-2 J14-4)
     )
-    (net USB_FUSED
-      (pins D1-2 F1-2)
+    (net "unconnected-(U5-NC-Pad1)"
+      (pins U5-1)
     )
-    (net EXT_IN
-      (pins F2-1 J4-1)
-    )
-    (net TC_VIN
-      (pins J3-1 JP1-2)
-    )
-    (net "unconnected-(J3-3Vo_NC-Pad2)"
-      (pins J3-2)
-    )
-    (net EXT_BASE
-      (pins R14-2 R15-1 Q1-1)
-    )
-    (net LED5_DRAIN
-      (pins Q3-3 J15-3)
+    (net ZC_IN
+      (pins U5-2 R13-2)
     )
     (net LED4_DRAIN
       (pins Q2-3 J15-2)
     )
-    (net PRESSURE_RAW
-      (pins R11-1 J6-3)
-    )
-    (net STEAM_RAW
-      (pins R27-1 J7-2)
-    )
     (net RGBW1
       (pins R34-2 J14-3)
+    )
+    (net RGBW0
+      (pins R33-2 J14-2)
+    )
+    (net LED5_DRAIN
+      (pins Q3-3 J15-3)
+    )
+    (net "unconnected-(J8-EMPTY-Pad5)"
+      (pins J8-5)
+    )
+    (net "unconnected-(J8-EMPTY-Pad6)"
+      (pins J8-6)
     )
     (class kicad_default    ALBA_SCL ALBA_SDA ALT ALT_5V
       BOARD_ID BOOT BREW BREW_RAW CC1 CC2 DETECT_EN EN EXT1 EXT2 EXT3 EXT4
@@ -1556,8 +1626,9 @@
       USB_DP USB_DP_MCU   VALVE VALVE_5V ZC_IN ZC_RAW "unconnected-(J1-PadA8)"
       "unconnected-(J1-PadB8)" "unconnected-(J2-A1-Pad8)" "unconnected-(J2-A2-Pad9)"
       "unconnected-(J2-A3-Pad10)" "unconnected-(J2-ALRT-Pad6)" "unconnected-(J3-3Vo_NC-Pad2)"
-      "unconnected-(U1-GPIO35-Pad28)" "unconnected-(U1-GPIO36-Pad29)" "unconnected-(U1-GPIO37-Pad30)"
-      "unconnected-(U5-NC-Pad1)" "unconnected-(U7-4Y_NC-Pad11)"
+      "unconnected-(J8-EMPTY-Pad5)" "unconnected-(J8-EMPTY-Pad6)" "unconnected-(U1-GPIO35-Pad28)"
+      "unconnected-(U1-GPIO36-Pad29)" "unconnected-(U1-GPIO37-Pad30)" "unconnected-(U5-NC-Pad1)"
+      "unconnected-(U7-4Y_NC-Pad11)"
       (circuit
         (use_via "Via[0-3]_700:350_um")
       )
@@ -1570,32 +1641,33 @@
   )
   (wiring
     (wire (path F.Cu 400  7475 -34637.5  7475 -35750)(net GND)(type fix))
-    (wire (path F.Cu 280  5825 -18025  4400 -18025  4325 -18100)(net USB_DP_MCU)(type fix))
-    (wire (path F.Cu 280  6250 -17600  5825 -18025)(net USB_DP_MCU)(type fix))
-    (wire (path F.Cu 280  2675 -18100  1680 -19095)(net USB_DP)(type fix))
-    (wire (path F.Cu 280  8425 -30800  8425 -32362.5)(net USB_DP)(type fix))
-    (wire (path F.Cu 280  8810 -35022.5  8810 -38800)(net USB_DP)(type fix))
-    (wire (path F.Cu 280  1680 -19095  1680 -28851.2)(net USB_DP)(type fix))
-    (wire (path F.Cu 280  8425 -32362.5  8425 -34637.5)(net USB_DP)(type fix))
-    (wire (path F.Cu 280  7050 -41200  7900 -42550)(net USB_DP)(type fix))
-    (wire (path F.Cu 280  8210 -39400  7050 -39400)(net USB_DP)(type fix))
-    (wire (path F.Cu 280  3628.8 -30800  8425 -30800)(net USB_DP)(type fix))
-    (wire (path F.Cu 280  8810 -38800  8210 -39400)(net USB_DP)(type fix))
-    (wire (path F.Cu 280  8425 -34637.5  8810 -35022.5)(net USB_DP)(type fix))
-    (wire (path F.Cu 280  1680 -28851.2  3628.8 -30800)(net USB_DP)(type fix))
-    (wire (path F.Cu 280  7050 -39400  7050 -41200)(net USB_DP)(type fix))
-    (wire (path F.Cu 280  6270 -34892.5  6270 -38000  6400 -38130)(net USB_DM)(type fix))
-    (wire (path F.Cu 280  6525 -34637.5  6270 -34892.5)(net USB_DM)(type fix))
-    (wire (path F.Cu 280  6400 -38130  6400 -38400)(net USB_DM)(type fix))
-    (wire (path F.Cu 280  2675 -16330  1200 -17805)(net USB_DM)(type fix))
-    (wire (path F.Cu 280  1200 -29050  4512.5 -32362.5)(net USB_DM)(type fix))
-    (wire (path F.Cu 280  1200 -17805  1200 -29050)(net USB_DM)(type fix))
-    (wire (path F.Cu 280  6525 -32362.5  6525 -34637.5)(net USB_DM)(type fix))
-    (wire (path F.Cu 280  4512.5 -32362.5  6525 -32362.5)(net USB_DM)(type fix))
-    (wire (path B.Cu 280  7900 -39200  7900 -41200)(net USB_DM)(type fix))
-    (wire (path B.Cu 280  6400 -38400  7200 -39200  7900 -39200)(net USB_DM)(type fix))
-    (wire (path B.Cu 280  7900 -41200  7050 -42550)(net USB_DM)(type fix))
     (wire (path F.Cu 280  6250 -16330  4325 -16330)(net USB_DM_MCU)(type fix))
+    (wire (path F.Cu 280  6270 -38000  6400 -38130)(net USB_DM)(type fix))
+    (wire (path F.Cu 280  1200 -17805  1200 -29050)(net USB_DM)(type fix))
+    (wire (path F.Cu 280  6400 -38130  6400 -38400)(net USB_DM)(type fix))
+    (wire (path F.Cu 280  6525 -32362.5  6525 -34637.5)(net USB_DM)(type fix))
+    (wire (path F.Cu 280  2675 -16330  1200 -17805)(net USB_DM)(type fix))
+    (wire (path F.Cu 280  4512.5 -32362.5  6525 -32362.5)(net USB_DM)(type fix))
+    (wire (path F.Cu 280  1200 -29050  4512.5 -32362.5)(net USB_DM)(type fix))
+    (wire (path F.Cu 280  6525 -34637.5  6270 -34892.5  6270 -38000)(net USB_DM)(type fix))
+    (wire (path B.Cu 280  6400 -38400  7200 -39200)(net USB_DM)(type fix))
+    (wire (path B.Cu 280  7900 -41200  7050 -42550)(net USB_DM)(type fix))
+    (wire (path B.Cu 280  7900 -39200  7900 -41200)(net USB_DM)(type fix))
+    (wire (path B.Cu 280  7200 -39200  7900 -39200)(net USB_DM)(type fix))
+    (wire (path F.Cu 280  7050 -39400  7050 -41200)(net USB_DP)(type fix))
+    (wire (path F.Cu 280  8425 -34637.5  8810 -35022.5)(net USB_DP)(type fix))
+    (wire (path F.Cu 280  8210 -39400  7050 -39400)(net USB_DP)(type fix))
+    (wire (path F.Cu 280  8425 -30800  8425 -32362.5)(net USB_DP)(type fix))
+    (wire (path F.Cu 280  8810 -38800  8210 -39400)(net USB_DP)(type fix))
+    (wire (path F.Cu 280  1680 -28851.2  3628.8 -30800)(net USB_DP)(type fix))
+    (wire (path F.Cu 280  1680 -19095  1680 -28851.2)(net USB_DP)(type fix))
+    (wire (path F.Cu 280  7050 -41200  7900 -42550)(net USB_DP)(type fix))
+    (wire (path F.Cu 280  3628.8 -30800  8425 -30800)(net USB_DP)(type fix))
+    (wire (path F.Cu 280  8425 -32362.5  8425 -34637.5)(net USB_DP)(type fix))
+    (wire (path F.Cu 280  8810 -35022.5  8810 -38800)(net USB_DP)(type fix))
+    (wire (path F.Cu 280  2675 -18100  1680 -19095)(net USB_DP)(type fix))
+    (wire (path F.Cu 280  4400 -18025  4325 -18100)(net USB_DP_MCU)(type fix))
+    (wire (path F.Cu 280  6250 -17600  5825 -18025  4400 -18025)(net USB_DP_MCU)(type fix))
     (via "Via[0-3]_700:350_um"  7475 -35750 (net GND)(type fix))
     (via "Via[0-3]_700:350_um"  6400 -38400 (net USB_DM)(type fix))
   )

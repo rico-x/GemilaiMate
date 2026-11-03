@@ -9,7 +9,6 @@ J6,J_PRESS,PRESSURE,back,Verify exact mating part and pin 1 against assembly dra
 J7,J_BUTTONS,BUTTONS,back,Verify exact mating part and pin 1 against assembly drawing
 J8,J_PUMP,ROBOTDYN,back,Verify exact mating part and pin 1 against assembly drawing
 J9,J_VALVE,VALVE SSR,back,Verify exact mating part and pin 1 against assembly drawing
-J10,J_HEAT,HEATER UNUSED,back,Verify exact mating part and pin 1 against assembly drawing
 J11,J_ALT,ALT SSR,back,Verify exact mating part and pin 1 against assembly drawing
 J12,J_TOF,VL53L0X 3V3,back,Verify exact mating part and pin 1 against assembly drawing
 J13,J_ALBA,EXTERNAL ALBA,back,Verify exact mating part and pin 1 against assembly drawing

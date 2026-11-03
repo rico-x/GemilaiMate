@@ -57,8 +57,8 @@ def main():
   ['M2 nylon fasteners and insulating supports',3,'Head <=4mm; allow underside PH plugs and cable bends'],
   ['External system',1,'Reuse matched display, pressure sensor, thermocouple, RobotDyn, SSR, isolated 5V PSU and harnesses per project docs; these are not SMD assembly items'],
   ['Optional VL53L0X and low-power RGBW/light loads',0,'Optional; 3.3V I2C, no direct LED strips on RGBW connector']])
- headers=[c for c in parts if c['section']=='Connectors']
- table('HARNESSES.csv',['PCB_reference','Function','Housing','Contacts','Pin_1_to_N','Quantity_1_system'],[[c['designator'],c['value'],'PHR-'+str(len(c['nets'])),str(len(c['nets']))+' x SPH-002T-P0.5L','; '.join(c['names'][str(i)] for i in range(1,len(c['nets'])+1)),1] for c in headers])
+ headers=[c for c in parts if c['section']=='Connectors' and not c['dnp']]
+ table('HARNESSES.csv',['PCB_reference','Function','Housing','Contacts','Pin_1_to_N','Quantity_1_system'],[[c['designator'],c['value'],'PHR-'+str(len(c['nets'])),str(sum(1 for n in c['nets'].values() if n))+' x SPH-002T-P0.5L','; '.join(c['names'][str(i)] for i in range(1,len(c['nets'])+1)),1] for c in headers])
  table('PINOUT.csv',['Reference','Alias','Pin','Function','Net','x_top_view_mm','y_top_view_mm'],[[c['designator'],c['ref'],p['number'],p['name'],p['net'] or 'NC',p['x'],p['y']] for c in parts for p in c['pins']])
  archive=m/'gemilaimate-compact-0.1.0-PROTOTYPE.zip'
  with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:

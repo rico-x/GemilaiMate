@@ -113,7 +113,7 @@ for alias in ['J_ADS','J_TC']:
   if c['nets'][num] is None:name='NC'
   # The square pad and a separate nearby 1 mark the first contact.
   x,y=mm(pad.GetPosition().x),mm(pad.GetPosition().y)
-  candidates=[(x,y+sign*dy/10,angle) for angle in [0,90] for dy in range(16,50) for sign in [-1,1]]
+  candidates=[(x,y+sign*dy/10,angle) for angle in [0,90] for dy in range(16,80) for sign in [-1,1]]
   label(name,p.F_SilkS,candidates,.6,required=name!='NC',owner=c['designator']+'.'+num)
 for alias in ['J_ADS','J_TC']:
  c=next(c for c in D['parts'] if c['ref']==alias);f=F[c['designator']];a=next(a for a in f.Pads() if a.GetNumber()=='1');x,y=mm(a.GetPosition().x),mm(a.GetPosition().y)
@@ -122,6 +122,17 @@ for c in D['parts']:
  if c['section']!='Connectors':continue
  f=F[c['designator']];a=next(a for a in f.Pads() if a.GetNumber()=='1');x,y=mm(a.GetPosition().x),mm(a.GetPosition().y)
  label(c['designator']+':1',p.B_SilkS,near(x,y-1.8,radius=3),.65,owner=c['designator']+'.1')
+# Several harnesses share a PH size: name the function next to each header.
+FUNCTION={'J_PWR':'5V IN','J_DISPLAY':'DISPLAY','J_PRESS':'PRESSURE','J_BUTTONS':'BUTTONS',
+          'J_PUMP':'ROBOTDYN','J_VALVE':'VALVE','J_HEAT':'HEATER DNP','J_ALT':'ALT',
+          'J_TOF':'TOF 3V3','J_ALBA':'ALBA','J_RGBW':'RGBW','J_LIGHT':'LIGHTS'}
+for c in D['parts']:
+ if c['section']!='Connectors':continue
+ f=F[c['designator']];xs=[mm(a.GetPosition().x) for a in f.Pads()];ys=[mm(a.GetPosition().y) for a in f.Pads()]
+ cx,cy=(min(xs)+max(xs))/2,(min(ys)+max(ys))/2;text=c['designator']+' '+FUNCTION[c['ref']]
+ row=[(cx,cy+d,0) for d in [-3.4,3.4,-4.4,4.4]] if max(xs)-min(xs)>=max(ys)-min(ys) else [(cx+d,cy,90) for d in [-3.4,3.4,-4.4,4.4]]
+ candidates=[q for x,y,angle in row for q in near(x,y,angle,radius=4)]
+ label(text,p.B_SilkS,candidates,.7,owner=c['designator']+'.FUNCTION')
 # Add compact designators when there is space; the full assembly map always
 # includes every reference even when a small resistor has no clear silk site.
 missing=[]

@@ -21,7 +21,7 @@ def group(c):
     if r in ['J_EXT','J_SCALE','J_FREE'] or r.startswith('TP'):return 'expansion'
     if r.startswith(('R_BREW','R_STEAM','C_BREW','C_STEAM')) or r=='J_BUTTONS':return 'buttons'
     if r in ['U1','R_EN','C_EN','R_BOOT','SW_RESET','SW_BOOT','R_ID_TOP','R_ID_LOW','C_ID','C_MCU','C_MCUHF']:return 'mcu'
-    if r in ['J_USB','U_ESD','F_USB','F_EXT','D_USB','D_EXT','U_REG','C_IN','C_OUT','J_PWR','J_DISPLAY'] or r.startswith(('R_CC','R_USB')):return 'power-usb'
+    if r in ['J_USB','U_ESD','F_USB','F_EXT','D_USB','D_EXT','D_TVS','U_REG','C_IN','C_OUT','C_EXT','J_PWR','J_DISPLAY'] or r.startswith(('R_CC','R_USB')):return 'power-usb'
     if r in ['U_LEVEL','R_OE','R_OEPD','C_LVA','C_LVB','J_ADS','R_PRESS','C_PRESS','J_PRESS']:return 'pressure'
     if r in ['J_TC','JP_TC']:return 'temperature'
     if c['section']=='Alba' or r in ['J_TOF','J_ALBA','J_RGBW','J_LIGHT']:return 'alba'

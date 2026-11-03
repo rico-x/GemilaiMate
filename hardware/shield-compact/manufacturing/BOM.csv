@@ -7,7 +7,7 @@ R3,R_USBP,22R 1%,RC0603FR-0722RL,GemilaiMateCompact:R_0603_1608Metric,front,0,1,
 R4,R_USBM,22R 1%,RC0603FR-0722RL,GemilaiMateCompact:R_0603_1608Metric,front,0,1,5
 U2,U_ESD,USBLC6-2SC6,USBLC6-2SC6,GemilaiMateCompact:SOT-23-6,front,0,1,5
 F1,F_USB,1206L050YR 0.5A,1206L050YR,GemilaiMateCompact:Fuse_1206_3216Metric,front,0,1,5
-F2,F_EXT,1206L110/16 1.1A,1206L110/16WR,GemilaiMateCompact:Fuse_1206_3216Metric,front,0,1,5
+F2,F_EXT,1206L150-12 1.5A,1206L150-12SLYR,GemilaiMateCompact:Fuse_1206_3216Metric,front,0,1,5
 D1,D_USB,SS14,SS14-13-F,GemilaiMateCompact:D_SMA,front,0,1,5
 D2,D_EXT,SS14,SS14-13-F,GemilaiMateCompact:D_SMA,front,0,1,5
 U3,U_REG,AP7361C-33E-13,AP7361C-33E-13,GemilaiMateCompact:SOT-223-3_TabPin2,front,0,1,5
@@ -79,9 +79,9 @@ J4,J_PWR,5V INPUT,5V INPUT,GemilaiMateCompact:JST_PH_B2B-PH-K_1x02_P2.00mm_Verti
 J5,J_DISPLAY,DISPLAY 5V,DISPLAY 5V,GemilaiMateCompact:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical,back,0,1,5
 J6,J_PRESS,PRESSURE,PRESSURE,GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical,back,0,1,5
 J7,J_BUTTONS,BUTTONS,BUTTONS,GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical,back,0,1,5
-J8,J_PUMP,ROBOTDYN,ROBOTDYN,GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical,back,0,1,5
+J8,J_PUMP,ROBOTDYN,ROBOTDYN,GemilaiMateCompact:JST_PH_B6B-PH-K_1x06_P2.00mm_Vertical,back,0,1,5
 J9,J_VALVE,VALVE SSR,VALVE SSR,GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical,back,0,1,5
-J10,J_HEAT,HEATER UNUSED,HEATER UNUSED,GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical,back,0,1,5
+J10,J_HEAT,HEATER UNUSED,HEATER UNUSED,GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical,back,1,0,0
 J11,J_ALT,ALT SSR,ALT SSR,GemilaiMateCompact:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical,back,0,1,5
 J12,J_TOF,VL53L0X 3V3,VL53L0X 3V3,GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical,back,0,1,5
 J13,J_ALBA,EXTERNAL ALBA,EXTERNAL ALBA,GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical,back,0,1,5
@@ -90,3 +90,5 @@ J15,J_LIGHT,LIGHTS 200mA TOTAL,LIGHTS 200mA TOTAL,GemilaiMateCompact:JST_PH_B3B-
 J16,J_SCALE,SCALE 3V3,SCALE 3V3,GemilaiMateCompact:PinHeader_1x05_P1.27mm_Vertical,front,1,0,0
 J17,J_EXT,EXT 3V3,EXT 3V3,GemilaiMateCompact:PinHeader_2x05_P1.27mm_Vertical,front,1,0,0
 J18,J_FREE,FREE GPIO 3V3,FREE GPIO 3V3,GemilaiMateCompact:PinHeader_1x06_P1.27mm_Vertical,front,1,0,0
+D3,D_TVS,SMAJ5.0A,SMAJ5.0A,GemilaiMateCompact:D_SMA,front,0,1,5
+C16,C_EXT,10uF 10V X7R,GRM31CR71A106KA01L,GemilaiMateCompact:C_1206_3216Metric,front,0,1,5

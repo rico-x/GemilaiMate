@@ -98,7 +98,8 @@ for c in SPEC['parts']:
         if not fp:raise RuntimeError('Missing footprint: '+c['footprint'])
     fp.SetReference(c['designator']);fp.SetValue(c['value'])
     for pad in fp.Pads():
-        if c['ref'] in ['J_EXT','J_FREE','J_SCALE'] and c['nets'].get(pad.GetNumber())=='GND':pad.SetLocalZoneConnection(p.ZONE_CONNECTION_FULL)
+        # J_PUMP GND: routing leaves room for one F.Cu spoke only; J_HEAT is not fitted.
+        if c['ref'] in ['J_EXT','J_FREE','J_SCALE','J_HEAT','J_PUMP'] and c['nets'].get(pad.GetNumber())=='GND':pad.SetLocalZoneConnection(p.ZONE_CONNECTION_FULL)
         if c['ref']=='J_USB':pad.SetLocalClearance(p.FromMM(.15))
         if c['ref']=='U1' and pad.GetNumber()=='41':
             if pad.GetAttribute()==p.PAD_ATTRIB_PTH:

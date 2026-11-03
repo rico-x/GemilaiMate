@@ -28,7 +28,7 @@
       "PadToPad": 0.15,
       "PadToTrack": 0.15,
       "TrackToTrack": 0.2,
-      "MinLineWidth": 0.2624,
+      "MinLineWidth": 0.2,
       "TrackToRegion": 0.2,
       "RegionToRegion": 0.2
     },
@@ -37,7 +37,7 @@
       "PadToPad": 0.0,
       "PadToTrack": 0.0,
       "TrackToTrack": 0.2,
-      "MinLineWidth": 0.21,
+      "MinLineWidth": 0.2624,
       "TrackToRegion": 0.2,
       "RegionToRegion": 0.2
     }

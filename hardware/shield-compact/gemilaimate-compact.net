@@ -1,8 +1,8 @@
 (export
 	(version "E")
 	(design
-		(source "/home/ubuntu/codex-builds/gemilaimate-compact-20261103/hardware/shield-compact/gemilaimate-compact.kicad_sch")
-		(date "2026-11-03T09:54:32")
+		(source "/home/ubuntu/gm-fix/hardware/shield-compact/gemilaimate-compact.kicad_sch")
+		(date "2026-11-03T10:55:21")
 		(tool "Eeschema 10.0.7-10.0.7~ubuntu26.04.1")
 		(sheet
 			(number "1")
@@ -531,6 +531,52 @@
 			)
 		)
 		(comp
+			(ref "C16")
+			(value "10uF 10V X7R")
+			(footprint "GemilaiMateCompact:C_1206_3216Metric")
+			(fields
+				(field
+					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "GemilaiMateCompact")
+				(part "C_EXT")
+				(description "")
+			)
+			(property
+				(name "Sheetname")
+				(value "USB-C and protected core power")
+			)
+			(property
+				(name "Sheetfile")
+				(value "power-usb.kicad_sch")
+			)
+			(sheetpath
+				(names "/USB-C and protected core power/")
+				(tstamps "/10327add-8c26-5136-88ec-ee153b46ebf9/")
+			)
+			(tstamps "c2ec3ab7-7385-5c60-b9c2-ecb4a5f00338")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "D1")
 			(value "SS14")
 			(footprint "GemilaiMateCompact:D_SMA")
@@ -623,6 +669,52 @@
 			)
 		)
 		(comp
+			(ref "D3")
+			(value "SMAJ5.0A")
+			(footprint "GemilaiMateCompact:D_SMA")
+			(fields
+				(field
+					(name "Footprint") "GemilaiMateCompact:D_SMA")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "GemilaiMateCompact")
+				(part "D_TVS")
+				(description "")
+			)
+			(property
+				(name "Sheetname")
+				(value "USB-C and protected core power")
+			)
+			(property
+				(name "Sheetfile")
+				(value "power-usb.kicad_sch")
+			)
+			(sheetpath
+				(names "/USB-C and protected core power/")
+				(tstamps "/10327add-8c26-5136-88ec-ee153b46ebf9/")
+			)
+			(tstamps "0133c624-bcc7-52ca-a12e-3f845dde5c3b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "F1")
 			(value "1206L050YR 0.5A")
 			(footprint "GemilaiMateCompact:Fuse_1206_3216Metric")
@@ -670,7 +762,7 @@
 		)
 		(comp
 			(ref "F2")
-			(value "1206L110/16 1.1A")
+			(value "1206L150-12 1.5A")
 			(footprint "GemilaiMateCompact:Fuse_1206_3216Metric")
 			(fields
 				(field
@@ -2564,10 +2656,10 @@
 		(comp
 			(ref "J8")
 			(value "ROBOTDYN")
-			(footprint "GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical")
+			(footprint "GemilaiMateCompact:JST_PH_B6B-PH-K_1x06_P2.00mm_Vertical")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical")
+					(name "Footprint") "GemilaiMateCompact:JST_PH_B6B-PH-K_1x06_P2.00mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -2608,6 +2700,12 @@
 						)
 						(pin
 							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
 						)
 					)
 				)
@@ -2688,6 +2786,9 @@
 			(property
 				(name "Sheetfile")
 				(value "outputs.kicad_sch")
+			)
+			(property
+				(name "dnp")
 			)
 			(sheetpath
 				(names "/ZC and buffered external outputs/")
@@ -5633,6 +5734,36 @@
 		)
 		(libpart
 			(lib "GemilaiMateCompact")
+			(part "C_EXT")
+			(fields
+				(field
+					(name "Reference") "C16")
+				(field
+					(name "Value") "10uF 10V X7R")
+				(field
+					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "GemilaiMateCompact")
 			(part "C_ID")
 			(fields
 				(field
@@ -6053,6 +6184,36 @@
 		)
 		(libpart
 			(lib "GemilaiMateCompact")
+			(part "D_TVS")
+			(fields
+				(field
+					(name "Reference") "D3")
+				(field
+					(name "Value") "SMAJ5.0A")
+				(field
+					(name "Footprint") "GemilaiMateCompact:D_SMA")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "K")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "A")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "GemilaiMateCompact")
 			(part "D_USB")
 			(fields
 				(field
@@ -6088,7 +6249,7 @@
 				(field
 					(name "Reference") "F2")
 				(field
-					(name "Value") "1206L110/16 1.1A")
+					(name "Value") "1206L150-12 1.5A")
 				(field
 					(name "Footprint") "GemilaiMateCompact:Fuse_1206_3216Metric")
 				(field
@@ -6266,7 +6427,7 @@
 			(pins
 				(pin
 					(num "1")
-					(name "5V_CORE")
+					(name "5V_EXT")
 					(type "passive")
 				)
 				(pin
@@ -6625,7 +6786,7 @@
 				(field
 					(name "Value") "ROBOTDYN")
 				(field
-					(name "Footprint") "GemilaiMateCompact:JST_PH_B4B-PH-K_1x04_P2.00mm_Vertical")
+					(name "Footprint") "GemilaiMateCompact:JST_PH_B6B-PH-K_1x06_P2.00mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -6652,6 +6813,16 @@
 				(pin
 					(num "4")
 					(name "PSM")
+					(type "passive")
+				)
+				(pin
+					(num "5")
+					(name "EMPTY")
+					(type "passive")
+				)
+				(pin
+					(num "6")
+					(name "EMPTY")
 					(type "passive")
 				)
 			)
@@ -9495,12 +9666,6 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "J13")
-				(pin "1")
-				(pinfunction "5V_CORE_1")
-				(pintype "passive")
-			)
-			(node
 				(ref "J2")
 				(pin "1")
 				(pinfunction "VDD_1")
@@ -9536,9 +9701,21 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "C16")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "D2")
 				(pin "2")
 				(pinfunction "A_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "D3")
+				(pin "1")
+				(pinfunction "K_1")
 				(pintype "passive")
 			)
 			(node
@@ -9557,6 +9734,12 @@
 				(ref "J11")
 				(pin "1")
 				(pinfunction "5V_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "J13")
+				(pin "1")
+				(pinfunction "5V_EXT_1")
 				(pintype "passive")
 			)
 			(node
@@ -10110,6 +10293,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "C16")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "C2")
 				(pin "2")
 				(pinfunction "2_2")
@@ -10155,6 +10344,12 @@
 				(ref "C9")
 				(pin "2")
 				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "D3")
+				(pin "2")
+				(pinfunction "A_2")
 				(pintype "passive")
 			)
 			(node
@@ -11741,6 +11936,28 @@
 		)
 		(net
 			(code "87")
+			(name "unconnected-(J8-EMPTY-Pad5)")
+			(class "Default")
+			(node
+				(ref "J8")
+				(pin "5")
+				(pinfunction "EMPTY_5")
+				(pintype "passive+no_connect")
+			)
+		)
+		(net
+			(code "88")
+			(name "unconnected-(J8-EMPTY-Pad6)")
+			(class "Default")
+			(node
+				(ref "J8")
+				(pin "6")
+				(pinfunction "EMPTY_6")
+				(pintype "passive+no_connect")
+			)
+		)
+		(net
+			(code "89")
 			(name "unconnected-(U1-GPIO35-Pad28)")
 			(class "Default")
 			(node
@@ -11751,7 +11968,7 @@
 			)
 		)
 		(net
-			(code "88")
+			(code "90")
 			(name "unconnected-(U1-GPIO36-Pad29)")
 			(class "Default")
 			(node
@@ -11762,7 +11979,7 @@
 			)
 		)
 		(net
-			(code "89")
+			(code "91")
 			(name "unconnected-(U1-GPIO37-Pad30)")
 			(class "Default")
 			(node
@@ -11773,7 +11990,7 @@
 			)
 		)
 		(net
-			(code "90")
+			(code "92")
 			(name "unconnected-(U5-NC-Pad1)")
 			(class "Default")
 			(node
@@ -11784,7 +12001,7 @@
 			)
 		)
 		(net
-			(code "91")
+			(code "93")
 			(name "unconnected-(U7-4Y_NC-Pad11)")
 			(class "Default")
 			(node

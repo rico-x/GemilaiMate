@@ -34,12 +34,12 @@ def c(ref, val, xy, net, ground='GND', angle=0, large=False):
                 {1:net, 2:ground}, angle=angle, section='Decoupling')
 
 
-def header(ref, value, xy, nets, labels, angle=0, pitch=2.0, keyed=True):
+def header(ref, value, xy, nets, labels, angle=0, pitch=2.0, keyed=True, dnp=False):
     n=len(nets)
     fp=(f'Connector_JST:JST_PH_B{n}B-PH-K_1x{n:02d}_P2.00mm_Vertical'
         if keyed else f'Connector_PinHeader_2.54mm:PinHeader_1x{n:02d}_P2.54mm_Vertical')
     return part(ref, value, fp, xy, dict(enumerate(nets, 1)),
-                dict(enumerate(labels, 1)), angle=angle, side='back', section='Connectors')
+                dict(enumerate(labels, 1)), angle=angle, side='back', section='Connectors', dnp=dnp)
 
 
 GPIO_NET = {0:'BOOT',1:'EXT1',2:'EXT2',3:'STRAP3',4:'TC_DO',5:'GPIO5',
@@ -78,7 +78,7 @@ part('U_ESD','USBLC6-2SC6','Package_TO_SOT_SMD:SOT-23-6',(13.5,44),
      section='USB',datasheet='https://www.st.com/resource/en/datasheet/usblc6-2.pdf')
 part('F_USB','1206L050YR 0.5A','Fuse:Fuse_1206_3216Metric',(17,46.5),
      {1:'USB_VBUS',2:'USB_FUSED'},section='Power')
-part('F_EXT','1206L110/16 1.1A','Fuse:Fuse_1206_3216Metric',(46,3.5),
+part('F_EXT','1206L150-12 1.5A','Fuse:Fuse_1206_3216Metric',(46,3.5),
      {1:'EXT_IN',2:'+5V_EXT'},section='Power')
 for ref,xy,anode in [('D_USB',(22,46.5),'USB_FUSED'),('D_EXT',(37,7.5),'+5V_EXT')]:
     part(ref,'SS14','Diode_SMD:D_SMA',xy,{1:'+5V_CORE',2:anode},
@@ -192,12 +192,15 @@ header('J_PWR','5V INPUT',(61,18),['EXT_IN','GND'],['5V_IN','GND'],angle=90)
 header('J_DISPLAY','DISPLAY 5V',(52,3),['+5V_EXT','GND'],['5V_EXT','GND'],angle=180)
 header('J_PRESS','PRESSURE',(20,47),['+5V_EXT','GND','PRESSURE_RAW'],['5V','GND','OUT'])
 header('J_BUTTONS','BUTTONS',(26,47),['BREW_RAW','STEAM_RAW','GND','GND'],['BREW','STEAM','GND','GND'])
-header('J_PUMP','ROBOTDYN',(37,48),['+5V_EXT','GND','ZC_RAW','PUMP_OUT'],['5V','GND','ZC','PSM'],angle=180)
+# Six positions, the only PH-6 on the board: the RobotDyn plug cannot enter the
+# 4-pin I2C ports, where SCL would drive PSM. Positions 5/6 stay empty.
+header('J_PUMP','ROBOTDYN',(37,48),['+5V_EXT','GND','ZC_RAW','PUMP_OUT',None,None],['5V','GND','ZC','PSM','EMPTY','EMPTY'],angle=180)
 header('J_VALVE','VALVE SSR',(63,32),['+5V_EXT','GND','VALVE_5V'],['5V','GND','IN'],angle=90)
-header('J_HEAT','HEATER UNUSED',(52,41),['+5V_EXT','GND','HEATER_5V'],['5V','GND','IN'],angle=180)
+header('J_HEAT','HEATER UNUSED',(52,41),['+5V_EXT','GND','HEATER_5V'],['5V','GND','IN'],angle=180,dnp=True)
 header('J_ALT','ALT SSR',(49,48),['+5V_EXT','GND','ALT_5V'],['5V','GND','IN'],angle=180)
 header('J_TOF','VL53L0X 3V3',(34,36),['+3V3','GND','ALBA_SDA','ALBA_SCL'],['3V3','GND','SDA','SCL'],angle=90)
-header('J_ALBA','EXTERNAL ALBA',(63,24),['+5V_CORE','GND','ALBA_SDA','ALBA_SCL'],['5V_CORE','GND','SDA','SCL'],angle=90)
+# External Alba lights load the external 5 V bus, not the LDO/ADS/TXS core rail.
+header('J_ALBA','EXTERNAL ALBA',(63,24),['+5V_EXT','GND','ALBA_SDA','ALBA_SCL'],['5V_EXT','GND','SDA','SCL'],angle=90)
 header('J_RGBW','RGBW CA',(63,12),['+5V_EXT','RGBW0','RGBW1','RGBW2','RGBW3'],['5V_CA','R','G','B','W'],angle=90)
 header('J_LIGHT','LIGHTS 200mA TOTAL',(63,44),['+5V_EXT','LED4_DRAIN','LED5_DRAIN'],['5V','CH4_NEG','CH5_NEG'],angle=90)
 part('J_SCALE','SCALE 3V3','Connector_PinHeader_1.27mm:PinHeader_1x05_P1.27mm_Vertical',(32,40),
@@ -212,6 +215,12 @@ for i,(net,xy) in enumerate([('STRAP3',(28,14)),('STRAP45',(26,8)),('STRAP46',(2
                             ('ALBA_SDA',(26,24)),('ALBA_SCL',(27,26)),
                             ('PCA_LED6',(48,12)),('PCA_LED7',(51,12))],1):
     part('TP'+str(i),net,'TestPoint:TestPoint_Pad_D1.0mm',xy,{1:net},section='Testpoints',dnp=True)
+
+# External 5 V protection, appended so existing designators stay unchanged: a
+# reversed or over-voltage supply makes the TVS conduct until F_EXT trips.
+part('D_TVS','SMAJ5.0A','Diode_SMD:D_SMA',(43,6),{1:'+5V_EXT',2:'GND'},{1:'K',2:'A'},
+     section='Power',datasheet='https://www.littelfuse.com/products/tvs-diodes/surface-mount/smaj')
+c('C_EXT','10uF 10V X7R',(41,3),'+5V_EXT',large=True)
 
 # Numeric KiCad designators; logical aliases remain stable for generators and
 # readable connection tables, independently of physical placement.
@@ -234,10 +243,10 @@ for component in PARTS:
     if ref.startswith('R'):component['mpn']='RC0603FR-07'+_res[v] if v!='0R' else 'RC0603JR-070RL'
     if ref.startswith('C'):component['mpn']=_caps[v]
     if ref.startswith('SW_'):component['mpn']='TL3342F160QG'
-    if ref.startswith('D_'):component['mpn']='SS14-13-F'
+    if ref.startswith('D_'):component['mpn']='SMAJ5.0A' if ref=='D_TVS' else 'SS14-13-F'
     if ref=='U_LED':component['mpn']='PCA9634PW,118'
     if ref=='F_USB':component['mpn']='1206L050YR'
-    if ref=='F_EXT':component['mpn']='1206L110/16WR'
+    if ref=='F_EXT':component['mpn']='1206L150-12SLYR'
 
 SPEC = dict(project='GemilaiMate Compact Shield', revision=REV['revision'], date=REV['date'],
             size_mm=[65,50], copper_layers=4, author='Rico-X',
