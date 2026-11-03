@@ -24,7 +24,9 @@ def main():
  # Literal manufacturer package numbers. Deliberately not imported from the
  # generator: DCT/DCU and X2SON have different pins; SO20 != QFN20 for PCA.
  expected={
- 'J_LEVEL':{1:'GND',2:'+3V3',3:'+3V3',4:'SCL_3V3',5:'SDA_3V3',6:'GND',8:'+5V_CORE',9:'SCL_5V',10:'SDA_5V'},
+ # CJMCU-0102 silkscreen A: GND OE VA A1 A2 / B: GND G VB B1 B2; TXS0102 pairs A1-B1, A2-B2.
+ 'J_LEVEL':{1:'GND',2:'I2C_OE',3:'+3V3',4:'SCL_3V3',5:'SDA_3V3',6:'GND',8:'+5V_CORE',9:'SCL_5V',10:'SDA_5V'},
+ 'R_OE':{1:'+3V3',2:'I2C_OE'},'C_OE':{1:'I2C_OE',2:'GND'},
  'U_LED':{1:'GND',2:'GND',3:'GND',4:'GND',5:'GND',6:'PCA_LED0',7:'PCA_LED1',8:'PCA_LED2',9:'PCA_LED3',10:'GND',11:'PCA_LED4',12:'PCA_LED5',13:'PCA_LED6',14:'PCA_LED7',15:'GND',16:'GND',17:'GND',18:'PCA_SCL',19:'PCA_SDA',20:'+3V3'},
  'U_REG':{1:'+5V_CORE',2:'GND',3:'+3V3'},
  'U_ZC':{2:'ZC_IN',3:'GND',4:'PUMP_ZC',5:'+3V3'},
@@ -52,13 +54,35 @@ def main():
    assert found[(aliases[ref],pin)]==name,(ref,pin,name)
  assert parts['J_LEVEL']['source_footprint'].endswith('CJMCU0102_socket')
  assert parts['J_LEVEL']['nets']['7'] is None and '2 x Harwin M20-7820546' == parts['J_LEVEL']['mpn']
+ # Not mirrored: seen from the top with row A running GND->A2, row B lies on
+ # the counter-clockwise side, and both GND contacts face each other.
+ pad=lambda n:next((q['x'],q['y']) for q in parts['J_LEVEL']['physical_pads'] if q['number']==n)
+ dx,dy=pad('5')[0]-pad('1')[0],pad('5')[1]-pad('1')[1];nx,ny=pad('6')[0]-pad('1')[0],pad('6')[1]-pad('1')[1]
+ assert dx*ny-dy*nx<0 and abs(dx*nx+dy*ny)<1e-3,('CJMCU socket mirrored or rows shifted',dx,dy,nx,ny)
+ assert parts['R_OE']['value']=='10k 1%' and parts['C_OE']['value']=='1uF 16V X7R'
+ # Seller top-view photos: ADS1115 Blue reads VDD..A3 with the board above the
+ # row; MAX31855 reads VIN..CLK with the terminal block opposite the row. Seen
+ # from the top, the module body lies left of the pin1 -> last-pin direction.
+ for ref,last,count in [('J_ADS','10',10),('J_TC','6',6)]:
+  pp=lambda n:next((q['x'],q['y']) for q in parts[ref]['physical_pads'] if q['number']==n)
+  a,b=pp('1'),pp(last);r=d['module_sockets'][ref]['body_rect_mm'];cx,cy=(r[0]+r[2])/2,(r[1]+r[3])/2;mx,my=(a[0]+b[0])/2,(a[1]+b[1])/2
+  assert (b[0]-a[0])*(cy-my)-(b[1]-a[1])*(cx-mx)<0,(ref,'module body on the wrong side of the socket row')
+  assert all(abs(math.dist(pp(str(i)),pp(str(i+1)))-2.54)<1e-3 for i in range(1,count)),(ref,'socket pitch')
+ assert abs(math.dist(pad('1'),pad('6'))-12.7)<1e-3,'CJMCU row spacing'
  for ref in ['J_SCALE','J_EXT','J_FREE']:
   assert parts[ref]['dnp'] and 'P2.54mm' in parts[ref]['source_footprint'],(ref,parts[ref]['source_footprint'])
- assert parts['U_LED']['source_footprint'].endswith('TSSOP-20_4.4x6.5mm_P0.65mm')
- assert parts['R_ID_TOP']['value']=='10k 1%' and parts['R_ID_LOW']['value']=='1.62k 1%'
- vmin=3.3*.95*(1620*.99)/(10000*1.01+1620*.99)
- vmax=3.3*1.05*(1620*1.01)/(10000*.99+1620*1.01)
- assert .4<vmin<vmax<.5
+ assert parts['U_LED']['source_footprint'].endswith('SOIC-20W_7.5x12.8mm_P1.27mm') and parts['U_SSR']['source_footprint'].endswith('SOIC-14_3.9x8.7mm_P1.27mm')
+ # Novice hand assembly: no 0603 or 0.65 mm pitch; every two-terminal SMD and
+ # SOT/SMA package uses the long hand-solder land pattern.
+ for c in parts.values():
+  fp=c['source_footprint']
+  assert '0603' not in fp and 'TSSOP' not in fp,(c['ref'],fp)
+  if fp.split(':')[0] in ['Resistor_SMD','Capacitor_SMD','Fuse','Diode_SMD'] or ':SOT-23' in fp:assert 'hand' in fp.lower(),(c['ref'],fp)
+ assert parts['R_ID_TOP']['value']=='10k 1%' and parts['R_ID_LOW']['value']=='1.58k 1%'
+ # ID=4 window is 400-499 mV (round(mV/100-0.5)); keep >=15 mV on both sides.
+ vmin=3.3*.95*(1580*.99)/(10000*1.01+1580*.99)
+ vmax=3.3*1.05*(1580*1.01)/(10000*.99+1580*1.01)
+ assert .415<vmin<vmax<.485,(vmin,vmax)
  assert d['size_mm']==[75,60] and d['copper_layers']==4 and d['board_id']==4
  assert d['hardware_tested'] is False and d['manufacturing_release'] is False
  assert d['physical_flash_mb']==16 and d['compatible_partition_flash_mb']==8 and d['psram_mb']==8
@@ -71,7 +95,7 @@ def main():
  erc=json.loads((H/'reports/erc.json').read_text());drc=json.loads((H/'reports/drc.json').read_text())
  assert not any(sh['violations'] for sh in erc['sheets'])
  assert all(not drc[k] for k in ['violations','unconnected_items','schematic_parity'])
- report=json.loads((H/'reports/layout.json').read_text());assert report['minimum_track_mm']>=.2
+ report=json.loads((H/'reports/layout.json').read_text());assert report['minimum_track_mm']>=.15
  assert all(x['via_overlaps']==0 for x in report['visible_labels'])
  # Socket marking order is checked spatially, including the reversed MAX row.
  for ref in ['J_ADS','J_TC']:
@@ -81,9 +105,12 @@ def main():
    label=next((t for t in report['visible_labels'] if t['owner']==owner+'.'+pin['number']),None)
    if label is None:
     assert pin['net'] is None;continue
-   # A silk legend may shift sideways to clear vias, but must remain within
-   # one 2.54 mm pitch of its own pad in either axis.
-   assert math.dist(label['position_mm'],(pin['x'],pin['y']))<2.6,(ref,pin['number'],label['position_mm'],(pin['x'],pin['y']))
+   # A silk legend stays within one 2.54 mm pitch of its own pad, or further
+   # out exactly on the line through its pad across the row (never beside a
+   # neighbour): offset along the row at most 0.55 mm.
+   row=[(q['x'],q['y']) for q in c['physical_pads'] if q['number'] in ('1','2')];rx,ry=row[1][0]-row[0][0],row[1][1]-row[0][1];rl=math.hypot(rx,ry)
+   dx,dy=label['position_mm'][0]-pin['x'],label['position_mm'][1]-pin['y']
+   assert math.hypot(dx,dy)<2.6 or (abs(dx*rx+dy*ry)/rl<=.55 and math.hypot(dx,dy)<5.6),(ref,pin['number'],label['position_mm'],(pin['x'],pin['y']))
    words.append(label['text'])
   if ref=='J_TC':assert words[0]=='CLK' and words[-1]=='VIN',words
  # Review fixes that must not regress: the RobotDyn PH size is unique, the
@@ -99,19 +126,35 @@ def main():
  # Budget-fab silkscreen and copper margins.
  assert all(t['bbox_mm'] and (t['bbox_mm'][3]-t['bbox_mm'][1]>=.95 or t['bbox_mm'][2]-t['bbox_mm'][0]>=.95) for t in report['visible_labels'])
  rules=json.loads((H/'gemilaimate-compact.kicad_pro').read_text())['board']['design_settings']['rules']
- assert rules['min_clearance']>=.15 and rules['min_track_width']>=.2
- assert .30<=json.loads((H/'gemilaimate-compact.kicad_pro').read_text())['net_settings']['classes'][0]['clearance']
+ assert rules['min_clearance']>=.15 and rules['min_track_width']>=.15
  net_settings=json.loads((H/'gemilaimate-compact.kicad_pro').read_text())['net_settings']
  classes={c['name']:c for c in net_settings['classes']}
- assert classes['Power']['clearance']>=.3 and classes['Power']['track_width']>=.35
- assert classes['USB']['clearance']>=.2
- assert {p['pattern'] for p in net_settings['netclass_patterns'] if p['netclass']=='Power'}=={'+3V3','+5V_CORE','+5V_EXT','EXT_IN','USB_FUSED'}
+ assert classes['Default']['clearance']>=.3 and classes['Default']['track_width']>=.3
+ assert classes['Power']['clearance']>=.3 and classes['Power']['track_width']>=.4
+ assert classes['USB']['clearance']>=.3 and classes['USB']['track_width']>=.3
+ assert {p['pattern'] for p in net_settings['netclass_patterns'] if p['netclass']=='Power'}=={'+3V3','+5V_CORE','+5V_EXT','EXT_IN','USB_VBUS','USB_FUSED'}
  assert rules['min_via_diameter']>=.8 and rules['min_via_drill']>=.4
  assert rules['min_text_height']>=1 and rules['min_text_thickness']>=.15 and rules['min_copper_edge_clearance']>=.5
  assert rules['min_hole_to_hole']>=.65 and rules['min_hole_clearance']>=.3 and rules['min_via_annular_width']>=.15
  custom_rules=(H/'gemilaimate-compact.kicad_dru').read_text()
  assert 'Ordinary drill to copper' in custom_rules and '(constraint hole_clearance (min 0.50mm))' in custom_rules
+ assert 'Power track width' in custom_rules and '(constraint track_width (min 0.30mm))' in custom_rules
+ assert 'Signal track width' in custom_rules and '(constraint track_width (min 0.15mm))' in custom_rules and 'TSSOP' not in custom_rules
+ # 0.15 mm exists only between USB4085 contacts; no blanket footprint exception.
+ assert custom_rules.count('(constraint clearance (min 0.15mm))')==1 and "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('J1') && B.memberOfFootprint('J1')" in custom_rules
+ # Any other footprint exception is pad-to-pad inside one package only.
+ import re
+ for rule in re.findall(r'\(rule "([^"]+)"\n \(condition "([^"]+)"\)',custom_rules):
+  refs=set(re.findall(r"memberOfFootprint\('([^']+)'\)",rule[1]))
+  if refs and refs!={'J1'}:assert rule[0].startswith('Package lands ') and len(refs)==1 and rule[1].startswith("A.Type == 'Pad' && B.Type == 'Pad' &&"),rule
+ pcb_text=(H/'gemilaimate-compact.kicad_pcb').read_text()
+ assert '(clearance 0.15)' not in pcb_text,'local 0.15 mm pad clearance leaks to pours and foreign tracks'
+ geometry=json.loads((H/'reports/geometry.json').read_text())
+ assert geometry['mount_copper_keepout_radius_mm']>=2.5 and geometry['power_min_track_mm']>=.3 and geometry['signal_min_track_mm']>=.15 and geometry['usb_min_track_mm']>=.2
  for ref in ['J_ADS','J_TC','J_LEVEL']:assert parts[ref]['designator']+'.BODY' in report_labels,ref
+ # Orientation marks on silk for every fitted polarised SMD part.
+ for c in parts.values():
+  if c['ref'].startswith(('U','Q_','D_')) and c['ref']!='U1' and not c['dnp']:assert c['designator']+'.POL' in report_labels,('no polarity mark',c['designator'])
  for c in parts.values():
   if c['section']=='Connectors':assert c['designator']+'.FUNCTION' in report_labels,('no function label',c['designator'])
  placements=list(csv.DictReader((H/'manufacturing/CPL-SMD.csv').open()))

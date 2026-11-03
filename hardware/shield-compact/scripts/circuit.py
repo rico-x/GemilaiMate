@@ -24,13 +24,15 @@ def part(ref, value, footprint, xy, nets, names=None, types=None, angle=0,
 
 
 def r(ref, val, xy, a, b, angle=0, dnp=False):
-    return part(ref, val, 'Resistor_SMD:R_0603_1608Metric', xy,
+    # Hand-solder land patterns throughout: an inexperienced SMD assembler
+    # gets longer pads and room for the iron tip.
+    return part(ref, val, 'Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder', xy,
                 {1:a, 2:b}, angle=angle, section='Passives', dnp=dnp)
 
 
 def c(ref, val, xy, net, ground='GND', angle=0, large=False):
-    return part(ref, val, 'Capacitor_SMD:C_1206_3216Metric' if large else
-                'Capacitor_SMD:C_0603_1608Metric', xy,
+    return part(ref, val, 'Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder' if large else
+                'Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder', xy,
                 {1:net, 2:ground}, angle=angle, section='Decoupling')
 
 
@@ -73,15 +75,15 @@ r('R_CC1','5.1k 1%',(14,41),'CC1','GND',90)
 r('R_CC2','5.1k 1%',(17,41),'CC2','GND',90)
 r('R_USBP','22R 1%',(3.5,20.5),'USB_DP_MCU','USB_DP',90)
 r('R_USBM','22R 1%',(3.5,17),'USB_DM_MCU','USB_DM',90)
-part('U_ESD','USBLC6-2SC6','Package_TO_SOT_SMD:SOT-23-6',(13.5,44),
+part('U_ESD','USBLC6-2SC6','Package_TO_SOT_SMD:SOT-23-6_Handsoldering',(13.5,44),
      {1:'USB_DM',2:'GND',3:'USB_DP',4:'USB_DP',5:'USB_VBUS',6:'USB_DM'},
      section='USB',datasheet='https://www.st.com/resource/en/datasheet/usblc6-2.pdf')
-part('F_USB','1206L050YR 0.5A','Fuse:Fuse_1206_3216Metric',(17,46.5),
+part('F_USB','1206L050YR 0.5A','Fuse:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder',(17,46.5),
      {1:'USB_VBUS',2:'USB_FUSED'},section='Power')
-part('F_EXT','1206L150/12 1.5A','Fuse:Fuse_1206_3216Metric',(46,3.5),
+part('F_EXT','1206L150/12 1.5A','Fuse:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder',(46,3.5),
      {1:'EXT_IN',2:'+5V_EXT'},section='Power')
 for ref,xy,anode in [('D_USB',(22,46.5),'USB_FUSED'),('D_EXT',(37,7.5),'+5V_EXT')]:
-    part(ref,'SS14','Diode_SMD:D_SMA',xy,{1:'+5V_CORE',2:anode},
+    part(ref,'SS14','Diode_SMD:D_SMA_Handsoldering',xy,{1:'+5V_CORE',2:anode},
          {1:'K',2:'A'},section='Power')
 part('U_REG','AP7361C-33E-13','Package_TO_SOT_SMD:SOT-223-3_TabPin2',(45,9),
      {1:'+5V_CORE',2:'GND',3:'+3V3'}, {1:'IN',2:'GND_TAB',3:'OUT'},
@@ -98,7 +100,7 @@ for ref,label,xy,net in [('SW_RESET','RESET',(34,17),'EN'),('SW_BOOT','BOOT',(40
     part(ref,label,'Button_Switch_SMD:SW_SPST_TL3342',xy,
          {1:net,2:'GND'},section='Boot')
 r('R_ID_TOP','10k 1%',(26.5,10),'DETECT_EN','BOARD_ID')
-r('R_ID_LOW','1.62k 1%',(30.5,10),'BOARD_ID','GND')
+r('R_ID_LOW','1.58k 1%',(30.5,10),'BOARD_ID','GND')
 c('C_ID','10nF 50V C0G',(30.5,13),'BOARD_ID')
 
 c('C_LVA','100nF 50V X7R',(71,51),'+3V3')
@@ -117,7 +119,7 @@ part('J_TC','MAX31855 SOCKET','GemilaiMateCompact:MAX31855_socket',(56.5,24),
 # ZC input: 5.5 V tolerant, non-inverting, with an external pull-up.
 r('R_ZCPU','10k 1%',(34.5,43),'+5V_EXT','ZC_RAW')
 r('R_ZCS','1k 1%',(39,43),'ZC_RAW','ZC_IN')
-part('U_ZC','SN74LVC1G17DBVR','Package_TO_SOT_SMD:SOT-23-5',(38,34),
+part('U_ZC','SN74LVC1G17DBVR','Package_TO_SOT_SMD:SOT-23-5_HandSoldering',(38,34),
      {1:None,2:'ZC_IN',3:'GND',4:'PUMP_ZC',5:'+3V3'},
      {1:'NC',2:'A',3:'GND',4:'Y',5:'VCC'},
      {2:'input',3:'power_in',4:'output',5:'power_in'},section='Pump',
@@ -127,15 +129,15 @@ c('C_ZC','100nF 50V X7R',(37,31),'+3V3')
 # Buffers are disabled while EXT is absent. This is independent of firmware.
 r('R_EXT_BASE','47k 1%',(53,46),'+5V_EXT','EXT_BASE')
 r('R_EXT_PD','100k 1%',(57,46),'EXT_BASE','GND')
-part('Q_EXT','MMBT3904','Package_TO_SOT_SMD:SOT-23',(48.5,45),
+part('Q_EXT','MMBT3904','Package_TO_SOT_SMD:SOT-23_Handsoldering',(48.5,45),
      {1:'EXT_BASE',2:'GND',3:'OUTPUT_OE_N'}, {1:'B',2:'E',3:'C'},section='Outputs')
 r('R_OEUP','10k 1%',(44,45),'+3V3','OUTPUT_OE_N')
-part('U_PUMP','SN74LVC1G125DBVR','Package_TO_SOT_SMD:SOT-23-5',(41.5,38),
+part('U_PUMP','SN74LVC1G125DBVR','Package_TO_SOT_SMD:SOT-23-5_HandSoldering',(41.5,38),
      {1:'OUTPUT_OE_N',2:'PUMP_PWM',3:'GND',4:'PUMP_OUT',5:'+3V3'},
      {1:'OE_N',2:'A',3:'GND',4:'Y',5:'VCC'},
      {1:'input',2:'input',3:'power_in',4:'tri_state',5:'power_in'},section='Outputs',
      datasheet='https://www.ti.com/lit/ds/symlink/sn74lvc1g125.pdf')
-part('U_SSR','SN74AHCT125PWR','Package_SO:TSSOP-14_4.4x5mm_P0.65mm',(53,33),
+part('U_SSR','SN74AHCT125DR','Package_SO:SOIC-14_3.9x8.7mm_P1.27mm',(53,33),
      {1:'OUTPUT_OE_N',2:'VALVE',3:'VALVE_5V',4:'OUTPUT_OE_N',5:'HEATER',6:'HEATER_5V',
       7:'GND',8:'ALT_5V',9:'ALT',10:'OUTPUT_OE_N',11:None,12:'GND',13:'+5V_EXT',14:'+5V_EXT'},
      {1:'1OE_N',2:'1A',3:'1Y',4:'2OE_N',5:'2A',6:'2Y',7:'GND',8:'3Y',9:'3A',10:'3OE_N',11:'4Y_NC',12:'4A',13:'4OE_N',14:'VCC'},
@@ -164,7 +166,7 @@ pca_names={1:'A0',2:'A1',3:'A2',4:'A3',5:'A4',6:'LED0',7:'LED1',8:'LED2',9:'LED3
            11:'LED4',12:'LED5',13:'LED6',14:'LED7',15:'OE_N',16:'A5',17:'A6',18:'SCL',19:'SDA',20:'VDD'}
 pca_types={pin:('power_in' if pin in (10,20) else 'bidirectional' if pin==19 else
                 'open_collector' if pin in (6,7,8,9,11,12,13,14) else 'input') for pin in pca}
-part('U_LED','PCA9634PW','Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm',(51,18),pca,pca_names,pca_types,
+part('U_LED','PCA9634D','Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm',(51,18),pca,pca_names,pca_types,
      section='Alba',datasheet='https://www.nxp.com/docs/en/data-sheet/PCA9634.pdf')
 r('R_PCACLK','0R',(44,24),'ALBA_SCL','PCA_SCL')
 r('R_PCADAT','0R',(49,26),'ALBA_SDA','PCA_SDA')
@@ -176,7 +178,7 @@ for ch,xy in enumerate([(56,6),(56,9),(56,12),(56,15)]):
 for ch,xy in [(4,(59,41)),(5,(59,36))]:
     r('R_GATE'+str(ch),'100R 1%',(xy[0]-4,xy[1]),'PCA_LED'+str(ch),'LED_GATE'+str(ch))
     r('R_GPD'+str(ch),'100k 1%',(xy[0]-4,xy[1]+2.5),'LED_GATE'+str(ch),'GND')
-    part('Q_LED'+str(ch),'AO3400A','Package_TO_SOT_SMD:SOT-23',xy,
+    part('Q_LED'+str(ch),'AO3400A','Package_TO_SOT_SMD:SOT-23_Handsoldering',xy,
          {1:'LED_GATE'+str(ch),2:'GND',3:'LED'+str(ch)+'_DRAIN'},
          {1:'G',2:'S',3:'D'},section='Alba')
 
@@ -208,9 +210,11 @@ part('J_EXT','EXT 3V3','Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertic
 part('J_FREE','FREE GPIO 3V3','Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical',(32,12.5),
      {1:'+3V3',2:'GND',3:'GPIO5',4:'GPIO15',5:'GPIO16',6:'GND'},angle=90,section='Expansion',dnp=True)
 # Keep the legacy cable connector designators stable; this inserted module socket
-# is appended after the existing J1-J18 connectors.
+# is appended after the existing J1-J18 connectors. Row order follows the CJMCU
+# silkscreen (A: GND OE VA A1 A2, B: GND G VB B1 B2) and TI SCES640L Table 4-1:
+# A1<->B1 carries SCL, A2<->B2 SDA. The unlabelled G contact stays open.
 part('J_LEVEL','CJMCU-0102 TXS0102 SOCKET','GemilaiMateCompact:CJMCU0102_socket',(41,12.5),
-     {1:'GND',2:'+3V3',3:'+3V3',4:'SCL_3V3',5:'SDA_3V3',
+     {1:'GND',2:'I2C_OE',3:'+3V3',4:'SCL_3V3',5:'SDA_3V3',
       6:'GND',7:None,8:'+5V_CORE',9:'SCL_5V',10:'SDA_5V'},
      {1:'GND_A',2:'OE',3:'VCCA',4:'A1',5:'A2',
       6:'GND_B',7:'G_RESERVED_NC',8:'VCCB',9:'B1',10:'B2'},
@@ -225,7 +229,7 @@ for i,(net,xy) in enumerate([('STRAP3',(28,14)),('STRAP45',(26,8)),('STRAP46',(2
 
 # Transient clamp only. The TVS and PTC are not reverse-polarity or sustained
 # over-voltage protection; require a correctly polarized regulated 5 V supply.
-part('D_TVS','SMAJ5.0A','Diode_SMD:D_SMA',(43,6),{1:'+5V_EXT',2:'GND'},{1:'K',2:'A'},
+part('D_TVS','SMAJ5.0A','Diode_SMD:D_SMA_Handsoldering',(43,6),{1:'+5V_EXT',2:'GND'},{1:'K',2:'A'},
      section='Power',datasheet='https://www.littelfuse.com/products/tvs-diodes/surface-mount/smaj')
 c('C_EXT','10uF 16V X7R',(41,3),'+5V_EXT',large=True)
 # Series resistors for the off-board I2C ports J_TOF / J_ALBA.
@@ -235,6 +239,11 @@ r('R_EXTSCL','470R 1%',(33,32),'ALBA_SCL','EXT_SCL')
 # lets 5 V logic reach the ESP32. 5 V needs a deliberate 0R swap, not a loose jumper.
 r('R_TC3V3','0R',(36,40),'+3V3','TC_VIN')
 r('R_TC5V','0R',(36,42),'+5V_CORE','TC_VIN',dnp=True)
+# TXS0102 OE (TI SCES640L 8.3): held low until VCCA/VCCB are up. With no spare
+# controller pin for OE, a 10 ms RC releases it after the 3.3 V rail settles;
+# the capacitor also discharges OE with the rail on power-down.
+r('R_OE','10k 1%',(37,21),'+3V3','I2C_OE')
+c('C_OE','1uF 16V X7R',(39,21),'I2C_OE')
 
 # Numeric KiCad designators; logical aliases remain stable for generators and
 # readable connection tables, independently of physical placement.
@@ -248,17 +257,17 @@ for component in PARTS:
 
 # Procurement examples; substitute only after checking value, dielectric,
 # voltage and the exact package. No marketplace seller is implied by an MPN.
-_res={'5.1k 1%':'5K1L','22R 1%':'22RL','10k 1%':'10KL','1.62k 1%':'1K62L','1k 1%':'1KL',
+_res={'5.1k 1%':'5K1L','22R 1%':'22RL','10k 1%':'10KL','1.58k 1%':'1K58L','1k 1%':'1KL',
       '100k 1%':'100KL','47k 1%':'47KL','4.7k 1%':'4K7L','180R 1%':'180RL','100R 1%':'100RL','470R 1%':'470RL'}
-_caps={'10uF 16V X7R':'GRM31CR71C106KAC7L','100nF 50V X7R':'GRM188R71H104KA93D',
-       '1uF 16V X7R':'GRM188R71C105KA12D','10nF 50V C0G':'GRM1885C1H103JA01D'}
+_caps={'10uF 16V X7R':'GRM31CR71C106KAC7L','100nF 50V X7R':'GRM21BR71H104KA01L',
+       '1uF 16V X7R':'GRM21BR71C105KA01L','10nF 50V C0G':'GRM2165C1H103JA01D'}
 for component in PARTS:
     ref=component['ref'];v=component['value']
-    if ref.startswith('R'):component['mpn']='RC0603FR-07'+_res[v] if v!='0R' else 'RC0603JR-070RL'
+    if ref.startswith('R'):component['mpn']='RC0805FR-07'+_res[v] if v!='0R' else 'RC0805JR-070RL'
     if ref.startswith('C'):component['mpn']=_caps[v]
     if ref.startswith('SW_'):component['mpn']='TL3342F160QG'
     if ref.startswith('D_'):component['mpn']='SMAJ5.0A' if ref=='D_TVS' else 'SS14-13-F'
-    if ref=='U_LED':component['mpn']='PCA9634PW,118'
+    if ref=='U_LED':component['mpn']='PCA9634D,118'
     if ref=='F_USB':component['mpn']='1206L050YR'
     if ref=='F_EXT':component['mpn']='1206L150/12SLYR'
     if ref=='Q_EXT':component['mpn']='MMBT3904-7-F'
@@ -267,7 +276,7 @@ for component in PARTS:
         n=len(component['nets'])
         component['mpn']=f'B{n}B-PH-K-S(LF)(SN)'
 
-SPEC = dict(project='GemilaiMate Modular Shield', revision=REV['revision'], date=REV['date'],
+SPEC = dict(project='GemilaiMate Compact Shield', revision=REV['revision'], date=REV['date'],
             size_mm=[75,60], copper_layers=4, author='Rico-X',
             repository='https://github.com/Rico-X/GemilaiMate',
             hardware_tested=False, manufacturing_release=False, mains_on_board=False,

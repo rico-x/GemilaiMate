@@ -3,6 +3,8 @@
 
 Uses KiCad courtyards, PTH pad rows and explicit USB/RF envelopes. This is not
 an electrical or 3D acceptance check: DRC and mechanical review follow it.
+With --keep, every part already in placement.json stays put and only parts
+added since are placed around them.
 """
 import json, sys, math
 from pathlib import Path
@@ -32,6 +34,10 @@ def overlap(a,b,margin=.08):
     return bool(a and b and a[0]<b[2]+margin and b[0]<a[2]+margin and a[1]<b[3]+margin and b[1]<a[3]+margin)
 
 placed=[]
+designator_alias={c['designator']:c['ref'] for c in D['parts']}
+def under_module_ok(f):
+    ref=designator_alias.get(f.GetReference(),'')
+    return all(a.GetAttribute()==p.PAD_ATTRIB_SMD for a in f.Pads()) and not ref.startswith(('SW_','TP'))
 # All drills, regardless of side, need clearance from components. For reserve
 # headers on the reverse side the socket body may overlap a front SMD body.
 def obstacles(f):
@@ -42,11 +48,11 @@ def obstacles(f):
         else:
             if box(f,'pth'):out.append(box(g))
             else:out.append(box(g,'pth'))
-    # Daughterboard bodies are real assembly reservations, not just pin pads.
-    # Keep front-side parts out from below their footprints; their own socket
-    # footprint and opposite-side cable connectors remain allowed.
+    # Plug-in modules sit 11 mm above the board and are fitted after soldering,
+    # so low SMD parts may live underneath. Buttons, test points and wire
+    # headers must stay reachable with the modules inserted.
     for alias in ['J_ADS','J_TC','J_LEVEL']:
-        if f.GetReference()==parts[alias]['designator']:
+        if f.GetReference()==parts[alias]['designator'] or under_module_ok(f):
             continue
         socket_fp=F[alias]
         if socket_fp.IsFlipped()==back:
@@ -76,8 +82,11 @@ def setcenter(ref,x,y,angle=0):
     f=F[ref];f.SetOrientationDegrees(angle);f.SetPosition(V(0,0));a=box(f)
     f.SetPosition(V(x-(a[0]+a[2])/2,y-(a[1]+a[3])/2))
 
-F['J_USB'].SetPosition(V(4.5,H_MM-9.135))
-for ref in ['U1','J_USB','J_ADS','J_TC','J_LEVEL']:
+KEEP='--keep' in sys.argv
+kept=json.loads((H/'placement.json').read_text()) if KEEP else {}
+if KEEP:placed.extend(r for r in parts if r in kept)
+else:F['J_USB'].SetPosition(V(4.5,H_MM-9.135))
+for ref in [] if KEEP else ['U1','J_USB','J_ADS','J_TC','J_LEVEL']:
     if not fits(F[ref]):print('Fixed clash:',ref)
     placed.append(ref)
 # The connector centre describes the actual housing courtyard, not pad 1.
@@ -85,21 +94,21 @@ fixed={'J_PWR':(54,6,0),'J_DISPLAY':(54,15,0),'J_RGBW':(66.5,9,90),
        'J_ALBA':(66.5,23.5,90),'J_VALVE':(66.5,35.5,90),'J_LIGHT':(66.5,47,90),
        'J_PRESS':(16,43,0),'J_BUTTONS':(22,52,0),'J_PUMP':(36,52,0),
        'J_ALT':(49,52,0),'J_HEAT':(53,34,0),'J_TOF':(53,42,0)}
-for ref,xyz in fixed.items():
+for ref,xyz in ({} if KEEP else fixed).items():
     setcenter(ref,*xyz)
     if not fits(F[ref]):print('Fixed connector clash:',ref,box(F[ref]))
     placed.append(ref)
 
 # prepare_route.py restores these exact hand-routed native-USB components and
 # tracks; reserve their final geometry before the greedy placement pass.
-for ref,x,y,angle in [('R_USBM',3.5,16.33,180),('R_USBP',3.5,18.1,180),('U_ESD',7.475,33.5,90)]:
+for ref,x,y,angle in [] if KEEP else [('R_USBM',3.2,15.7,180),('R_USBP',3.2,18.6,180),('U_ESD',7.475,33.5,90)]:
     f=F[ref];f.SetOrientationDegrees(angle);f.SetPosition(V(x,y))
     if not fits(f):print('Fixed USB component clash:',ref,box(f))
     placed.append(ref)
 
-# Keep the two ID-divider resistors just beyond the WROOM pad fanout. Their
-# first pads then have a 0.25 mm copper corridor for the detect strap.
-for ref,xyz in {'R_ID_TOP':(27.0,7.5,0),'R_ID_LOW':(27.0,9.5,0)}.items():
+# Keep the two ID-divider resistors just beyond the WROOM pad fanout, next to
+# GPIO40/GPIO11.
+for ref,xyz in ({} if KEEP else {'R_ID_TOP':(27.5,7.2,0),'R_ID_LOW':(27.5,9.8,0)}).items():
     setcenter(ref,*xyz)
     if not fits(F[ref]):print('Fixed ID resistor clash:',ref,box(F[ref]))
     placed.append(ref)
@@ -109,7 +118,7 @@ for ref,xyz in {'R_ID_TOP':(27.0,7.5,0),'R_ID_LOW':(27.0,9.5,0)}.items():
 anchors={'C_IN':('U_REG','1'),'C_OUT':('U_REG','3'),'C_PCA':('U_LED','20'),
          'C_SSR':('U_SSR','14'),'C_ZC':('U_ZC','5'),'C_PUMP':('U_PUMP','5'),
          'C_LVA':('J_LEVEL','3'),'C_LVB':('J_LEVEL','8')}
-order=['U_REG','C_IN','C_OUT','U_LED','C_PCA','U_SSR','C_SSR','SW_RESET','SW_BOOT',
+order=[] if KEEP else ['U_REG','C_IN','C_OUT','U_LED','C_PCA','U_SSR','C_SSR','SW_RESET','SW_BOOT',
        'U_ZC','C_ZC','U_PUMP','C_PUMP','C_LVA','C_LVB','J_EXT','J_FREE','J_SCALE']
 order+=sorted([r for r in parts if r not in placed and r not in order],key=lambda r:-(box(F[r])[2]-box(F[r])[0])*(box(F[r])[3]-box(F[r])[1]))
 for ref in order:
@@ -141,7 +150,8 @@ for ref in order:
     _,x,y,angle=best;f.SetOrientationDegrees(angle);f.SetPosition(V(x,y));placed.append(ref)
     print(ref,x,y,angle,flush=True)
 
-out={r:dict(x=round(p.ToMM(f.GetPosition().x),4),y=round(p.ToMM(f.GetPosition().y),4),rotation=f.GetOrientationDegrees()) for r,f in F.items() if r in parts}
+out=dict(kept)
+out.update({r:dict(x=round(p.ToMM(f.GetPosition().x),4),y=round(p.ToMM(f.GetPosition().y),4),rotation=f.GetOrientationDegrees()) for r,f in F.items() if r in parts and r not in kept})
 (H/'placement.json').write_text(json.dumps(out,indent=2)+'\n')
 p.SaveBoard(str(H/'gemilaimate-compact.kicad_pcb'),B)
 print('Saved deterministic placement; regenerate schematic/data, then run DRC.')

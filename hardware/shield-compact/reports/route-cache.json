@@ -1,8 +1,8 @@
 {
-  "format": 2,
-  "router": "Freerouting 2.5.0 with reviewed completion, stored as explicit copper JSON",
-  "dsn_normalized_sha256": "bcb3e43ef43cac93dd7f054a063bc9d209b91dc2278760409a9b45716b20feca",
-  "routing_sha256": "93a1b9e971ada0f710d0ffa0c842b97c5535e204b2390eac2d685b13f4185386",
-  "accepted_pcb_sha256": "89c416b167b64a433bc66e9ee9089c76fc29743c4002adf43b773f6d4023be5b",
+  "format": 3,
+  "router": "Freerouting 2.5.0 (java -jar freerouting-2.5.0.jar -de unrouted.dsn -do routed.ses -mp 100 -mt 8; default pin neckdown); In1 reserved for GND via DSN use_layer; stored as explicit copper JSON",
+  "dsn_normalized_sha256": "3100bb6261090a187161107a3b76b521175782c40a41e0968e8e9576d6526d23",
+  "routing_sha256": "9f8d5771ef663f6b7f8f5927344ede1490650cd4787ce2aa6849552485964ee9",
+  "accepted_pcb_sha256": "1627eeb567e094cbc82848451744b8eb66abef9e3193b5c68b31769f466578df",
   "physical_tests": false
 }

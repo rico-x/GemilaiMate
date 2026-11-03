@@ -1,6 +1,6 @@
 {
-  "variant": "modular-shield",
-  "revision": "0.2.3",
+  "variant": "compact-shield",
+  "revision": "0.2.4",
   "status": "PROTOTYPE / INDEPENDENT REVIEW REQUIRED",
   "hardware_tested": false,
   "manufacturing_release": false,
@@ -9,15 +9,15 @@
     60
   ],
   "copper_layers": 4,
-  "pcb_sha256": "89c416b167b64a433bc66e9ee9089c76fc29743c4002adf43b773f6d4023be5b",
-  "archive_sha256": "3ca35c280386b03e2d591353c64c2c9add3e1000c00cf2b53167089909f5b9ed",
+  "pcb_sha256": "1627eeb567e094cbc82848451744b8eb66abef9e3193b5c68b31769f466578df",
+  "archive_sha256": "08c6fec79dfbc224e95c678b5ed4a3532aca692e8203718e48d4efa7eb82361f",
   "kicad_version": "10.0.7",
-  "smd_placements": 74,
+  "smd_placements": 76,
   "drc_violations": 0,
   "erc_violations": 0,
   "unconnected": 0,
   "schematic_parity": 0,
-  "minimum_track_mm": 0.2,
+  "minimum_track_mm": 0.15,
   "source_of_3d": "Manufacturer dimensions for components/connectors plus nominal module outlines; marketplace clones remain unmeasured",
   "fabrication_notes": "4-layer prototype with inner GND plane. Independently review ground continuity, short USB routing, RF keepout, fixed-pitch USB exception and actual module fit before production."
 }

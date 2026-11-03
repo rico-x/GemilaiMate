@@ -23,6 +23,6 @@ python3 -m venv .flash-venv
 
 ## Compact
 
-Для Compact 0.2.3 использовать цель `controller-compact` с ID=4 из текущего пакета; manifest содержит `board_id: 4`, и flasher отвергает старую Compact-сборку. Старый опубликованный архив не подходит этой плате. Подробности: [Compact Shield](compact-shield.md). Цель `controller` сохраняет ID=3 и GPIO 15/16 для прежнего DevKit; `controller-compact` использует ID=4 и GPIO 43/44.
+Для Compact 0.2.4 использовать цель `controller-compact` с ID=4 из текущего пакета; manifest содержит `board_id: 4`, и flasher отвергает старую Compact-сборку. Старый опубликованный архив не подходит этой плате. Подробности: [Compact Shield](compact-shield.md). Цель `controller` сохраняет ID=3 и GPIO 15/16 для прежнего DevKit; `controller-compact` использует ID=4 и GPIO 43/44.
 
 Физическая Flash N16R8 — 16 MB, совместимая карта разделов — 8 MB. Полный резервный дамп делать на 16 MB. В новой схеме диодное объединение питания заменяет JP1 старого shield, но экран и силовые модули перед первым USB-тестом отключаются. Реальное переключение между официальной и собственной согласованной парой прошивок ещё не испытано.

@@ -1,6 +1,6 @@
 {
-  "project": "GemilaiMate Modular Shield",
-  "revision": "0.2.3",
+  "project": "GemilaiMate Compact Shield",
+  "revision": "0.2.4",
   "date": "2026-11-03",
   "size_mm": [
     75,
@@ -1218,7 +1218,7 @@
     {
       "ref": "R_CC1",
       "value": "5.1k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 16.5,
       "y": 41.5,
       "rotation": 0.0,
@@ -1229,19 +1229,19 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-075K1L",
+      "mpn": "RC0805FR-075K1L",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R1",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "CC1",
           "type": "passive",
-          "x": 15.675,
+          "x": 15.5,
           "y": 41.5
         },
         {
@@ -1249,21 +1249,21 @@
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 17.325,
+          "x": 17.5,
           "y": 41.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 15.675,
+          "x": 15.5,
           "y": 41.5,
           "net": "CC1",
           "smd": true
         },
         {
           "number": "2",
-          "x": 17.325,
+          "x": 17.5,
           "y": 41.5,
           "net": "GND",
           "smd": true
@@ -1273,10 +1273,10 @@
     {
       "ref": "R_CC2",
       "value": "5.1k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 26.5,
-      "y": 5.5,
-      "rotation": 0.0,
+      "y": 17.0,
+      "rotation": 90.0,
       "side": "front",
       "nets": {
         "1": "CC2",
@@ -1284,42 +1284,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-075K1L",
+      "mpn": "RC0805FR-075K1L",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R2",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "CC2",
           "type": "passive",
-          "x": 25.675,
-          "y": 5.5
+          "x": 26.5,
+          "y": 18.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 27.325,
-          "y": 5.5
+          "x": 26.5,
+          "y": 16.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 25.675,
-          "y": 5.5,
+          "x": 26.5,
+          "y": 18.0,
           "net": "CC2",
           "smd": true
         },
         {
           "number": "2",
-          "x": 27.325,
-          "y": 5.5,
+          "x": 26.5,
+          "y": 16.0,
           "net": "GND",
           "smd": true
         }
@@ -1328,9 +1328,9 @@
     {
       "ref": "R_USBP",
       "value": "22R 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 3.5,
-      "y": 18.1,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 3.2,
+      "y": 18.6,
       "rotation": 180.0,
       "side": "front",
       "nets": {
@@ -1339,42 +1339,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0722RL",
+      "mpn": "RC0805FR-0722RL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R3",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "USB_DP_MCU",
           "type": "passive",
-          "x": 4.325,
-          "y": 18.1
+          "x": 4.2,
+          "y": 18.6
         },
         {
           "number": "2",
           "name": "2",
           "net": "USB_DP",
           "type": "passive",
-          "x": 2.675,
-          "y": 18.1
+          "x": 2.2,
+          "y": 18.6
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 4.325,
-          "y": 18.1,
+          "x": 4.2,
+          "y": 18.6,
           "net": "USB_DP_MCU",
           "smd": true
         },
         {
           "number": "2",
-          "x": 2.675,
-          "y": 18.1,
+          "x": 2.2,
+          "y": 18.6,
           "net": "USB_DP",
           "smd": true
         }
@@ -1383,9 +1383,9 @@
     {
       "ref": "R_USBM",
       "value": "22R 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 3.5,
-      "y": 16.329999,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 3.2,
+      "y": 15.7,
       "rotation": 180.0,
       "side": "front",
       "nets": {
@@ -1394,42 +1394,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0722RL",
+      "mpn": "RC0805FR-0722RL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R4",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "USB_DM_MCU",
           "type": "passive",
-          "x": 4.325,
-          "y": 16.329999
+          "x": 4.2,
+          "y": 15.7
         },
         {
           "number": "2",
           "name": "2",
           "net": "USB_DM",
           "type": "passive",
-          "x": 2.675,
-          "y": 16.329999
+          "x": 2.2,
+          "y": 15.7
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 4.325,
-          "y": 16.329999,
+          "x": 4.2,
+          "y": 15.7,
           "net": "USB_DM_MCU",
           "smd": true
         },
         {
           "number": "2",
-          "x": 2.675,
-          "y": 16.329999,
+          "x": 2.2,
+          "y": 15.7,
           "net": "USB_DM",
           "smd": true
         }
@@ -1438,7 +1438,7 @@
     {
       "ref": "U_ESD",
       "value": "USBLC6-2SC6",
-      "footprint": "GemilaiMateCompact:SOT-23-6",
+      "footprint": "GemilaiMateCompact:SOT-23-6_Handsoldering",
       "x": 7.475,
       "y": 33.5,
       "rotation": 90.0,
@@ -1458,7 +1458,7 @@
       "section": "USB",
       "dnp": false,
       "designator": "U2",
-      "source_footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "source_footprint": "Package_TO_SOT_SMD:SOT-23-6_Handsoldering",
       "pins": [
         {
           "number": "1",
@@ -1466,7 +1466,7 @@
           "net": "USB_DM",
           "type": "passive",
           "x": 6.525,
-          "y": 34.6375
+          "y": 34.85
         },
         {
           "number": "2",
@@ -1474,7 +1474,7 @@
           "net": "GND",
           "type": "passive",
           "x": 7.475,
-          "y": 34.6375
+          "y": 34.85
         },
         {
           "number": "3",
@@ -1482,7 +1482,7 @@
           "net": "USB_DP",
           "type": "passive",
           "x": 8.425,
-          "y": 34.6375
+          "y": 34.85
         },
         {
           "number": "4",
@@ -1490,7 +1490,7 @@
           "net": "USB_DP",
           "type": "passive",
           "x": 8.425,
-          "y": 32.3625
+          "y": 32.15
         },
         {
           "number": "5",
@@ -1498,7 +1498,7 @@
           "net": "USB_VBUS",
           "type": "passive",
           "x": 7.475,
-          "y": 32.3625
+          "y": 32.15
         },
         {
           "number": "6",
@@ -1506,49 +1506,49 @@
           "net": "USB_DM",
           "type": "passive",
           "x": 6.525,
-          "y": 32.3625
+          "y": 32.15
         }
       ],
       "physical_pads": [
         {
           "number": "1",
           "x": 6.525,
-          "y": 34.6375,
+          "y": 34.85,
           "net": "USB_DM",
           "smd": true
         },
         {
           "number": "2",
           "x": 7.475,
-          "y": 34.6375,
+          "y": 34.85,
           "net": "GND",
           "smd": true
         },
         {
           "number": "3",
           "x": 8.425,
-          "y": 34.6375,
+          "y": 34.85,
           "net": "USB_DP",
           "smd": true
         },
         {
           "number": "4",
           "x": 8.425,
-          "y": 32.3625,
+          "y": 32.15,
           "net": "USB_DP",
           "smd": true
         },
         {
           "number": "5",
           "x": 7.475,
-          "y": 32.3625,
+          "y": 32.15,
           "net": "USB_VBUS",
           "smd": true
         },
         {
           "number": "6",
           "x": 6.525,
-          "y": 32.3625,
+          "y": 32.15,
           "net": "USB_DM",
           "smd": true
         }
@@ -1557,10 +1557,10 @@
     {
       "ref": "F_USB",
       "value": "1206L050YR 0.5A",
-      "footprint": "GemilaiMateCompact:Fuse_1206_3216Metric",
+      "footprint": "GemilaiMateCompact:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder",
       "x": 15.5,
-      "y": 50.5,
-      "rotation": 0.0,
+      "y": 51.5,
+      "rotation": 90.0,
       "side": "front",
       "nets": {
         "1": "USB_VBUS",
@@ -1573,37 +1573,37 @@
       "section": "Power",
       "dnp": false,
       "designator": "F1",
-      "source_footprint": "Fuse:Fuse_1206_3216Metric",
+      "source_footprint": "Fuse:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "USB_VBUS",
           "type": "passive",
-          "x": 14.1,
-          "y": 50.5
+          "x": 15.5,
+          "y": 52.9875
         },
         {
           "number": "2",
           "name": "2",
           "net": "USB_FUSED",
           "type": "passive",
-          "x": 16.9,
-          "y": 50.5
+          "x": 15.5,
+          "y": 50.0125
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 14.1,
-          "y": 50.5,
+          "x": 15.5,
+          "y": 52.9875,
           "net": "USB_VBUS",
           "smd": true
         },
         {
           "number": "2",
-          "x": 16.9,
-          "y": 50.5,
+          "x": 15.5,
+          "y": 50.0125,
           "net": "USB_FUSED",
           "smd": true
         }
@@ -1612,8 +1612,8 @@
     {
       "ref": "F_EXT",
       "value": "1206L150/12 1.5A",
-      "footprint": "GemilaiMateCompact:Fuse_1206_3216Metric",
-      "x": 61.5,
+      "footprint": "GemilaiMateCompact:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder",
+      "x": 63.5,
       "y": 3.0,
       "rotation": 0.0,
       "side": "front",
@@ -1628,14 +1628,14 @@
       "section": "Power",
       "dnp": false,
       "designator": "F2",
-      "source_footprint": "Fuse:Fuse_1206_3216Metric",
+      "source_footprint": "Fuse:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "EXT_IN",
           "type": "passive",
-          "x": 60.1,
+          "x": 62.0125,
           "y": 3.0
         },
         {
@@ -1643,21 +1643,21 @@
           "name": "2",
           "net": "+5V_EXT",
           "type": "passive",
-          "x": 62.9,
+          "x": 64.9875,
           "y": 3.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 60.1,
+          "x": 62.0125,
           "y": 3.0,
           "net": "EXT_IN",
           "smd": true
         },
         {
           "number": "2",
-          "x": 62.9,
+          "x": 64.9875,
           "y": 3.0,
           "net": "+5V_EXT",
           "smd": true
@@ -1667,8 +1667,8 @@
     {
       "ref": "D_USB",
       "value": "SS14",
-      "footprint": "GemilaiMateCompact:D_SMA",
-      "x": 17.5,
+      "footprint": "GemilaiMateCompact:D_SMA_Handsoldering",
+      "x": 17.0,
       "y": 47.0,
       "rotation": 0.0,
       "side": "front",
@@ -1686,14 +1686,14 @@
       "section": "Power",
       "dnp": false,
       "designator": "D1",
-      "source_footprint": "Diode_SMD:D_SMA",
+      "source_footprint": "Diode_SMD:D_SMA_Handsoldering",
       "pins": [
         {
           "number": "1",
           "name": "K",
           "net": "+5V_CORE",
           "type": "passive",
-          "x": 15.5,
+          "x": 14.5,
           "y": 47.0
         },
         {
@@ -1708,7 +1708,7 @@
       "physical_pads": [
         {
           "number": "1",
-          "x": 15.5,
+          "x": 14.5,
           "y": 47.0,
           "net": "+5V_CORE",
           "smd": true
@@ -1725,7 +1725,7 @@
     {
       "ref": "D_EXT",
       "value": "SS14",
-      "footprint": "GemilaiMateCompact:D_SMA",
+      "footprint": "GemilaiMateCompact:D_SMA_Handsoldering",
       "x": 31.5,
       "y": 8.0,
       "rotation": 90.0,
@@ -1744,7 +1744,7 @@
       "section": "Power",
       "dnp": false,
       "designator": "D2",
-      "source_footprint": "Diode_SMD:D_SMA",
+      "source_footprint": "Diode_SMD:D_SMA_Handsoldering",
       "pins": [
         {
           "number": "1",
@@ -1752,7 +1752,7 @@
           "net": "+5V_CORE",
           "type": "passive",
           "x": 31.5,
-          "y": 10.0
+          "y": 10.5
         },
         {
           "number": "2",
@@ -1760,21 +1760,21 @@
           "net": "+5V_EXT",
           "type": "passive",
           "x": 31.5,
-          "y": 6.0
+          "y": 5.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
           "x": 31.5,
-          "y": 10.0,
+          "y": 10.5,
           "net": "+5V_CORE",
           "smd": true
         },
         {
           "number": "2",
           "x": 31.5,
-          "y": 6.0,
+          "y": 5.5,
           "net": "+5V_EXT",
           "smd": true
         }
@@ -1869,7 +1869,7 @@
     {
       "ref": "C_IN",
       "value": "10uF 16V X7R",
-      "footprint": "GemilaiMateCompact:C_1206_3216Metric",
+      "footprint": "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
       "x": 55.0,
       "y": 12.0,
       "rotation": 90.0,
@@ -1885,7 +1885,7 @@
       "section": "Decoupling",
       "dnp": false,
       "designator": "C1",
-      "source_footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "source_footprint": "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
       "pins": [
         {
           "number": "1",
@@ -1893,7 +1893,7 @@
           "net": "+5V_CORE",
           "type": "passive",
           "x": 55.0,
-          "y": 13.475
+          "y": 13.5625
         },
         {
           "number": "2",
@@ -1901,21 +1901,21 @@
           "net": "GND",
           "type": "passive",
           "x": 55.0,
-          "y": 10.525
+          "y": 10.4375
         }
       ],
       "physical_pads": [
         {
           "number": "1",
           "x": 55.0,
-          "y": 13.475,
+          "y": 13.5625,
           "net": "+5V_CORE",
           "smd": true
         },
         {
           "number": "2",
           "x": 55.0,
-          "y": 10.525,
+          "y": 10.4375,
           "net": "GND",
           "smd": true
         }
@@ -1924,7 +1924,7 @@
     {
       "ref": "C_OUT",
       "value": "10uF 16V X7R",
-      "footprint": "GemilaiMateCompact:C_1206_3216Metric",
+      "footprint": "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
       "x": 62.0,
       "y": 15.0,
       "rotation": 0.0,
@@ -1940,14 +1940,14 @@
       "section": "Decoupling",
       "dnp": false,
       "designator": "C2",
-      "source_footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "source_footprint": "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+3V3",
           "type": "passive",
-          "x": 60.525,
+          "x": 60.4375,
           "y": 15.0
         },
         {
@@ -1955,21 +1955,21 @@
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 63.475,
+          "x": 63.5625,
           "y": 15.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 60.525,
+          "x": 60.4375,
           "y": 15.0,
           "net": "+3V3",
           "smd": true
         },
         {
           "number": "2",
-          "x": 63.475,
+          "x": 63.5625,
           "y": 15.0,
           "net": "GND",
           "smd": true
@@ -1979,7 +1979,7 @@
     {
       "ref": "C_MCU",
       "value": "10uF 16V X7R",
-      "footprint": "GemilaiMateCompact:C_1206_3216Metric",
+      "footprint": "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
       "x": 3.0,
       "y": 8.0,
       "rotation": 90.0,
@@ -1995,7 +1995,7 @@
       "section": "Decoupling",
       "dnp": false,
       "designator": "C3",
-      "source_footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "source_footprint": "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
       "pins": [
         {
           "number": "1",
@@ -2003,7 +2003,7 @@
           "net": "+3V3",
           "type": "passive",
           "x": 3.0,
-          "y": 9.475
+          "y": 9.5625
         },
         {
           "number": "2",
@@ -2011,21 +2011,21 @@
           "net": "GND",
           "type": "passive",
           "x": 3.0,
-          "y": 6.525
+          "y": 6.4375
         }
       ],
       "physical_pads": [
         {
           "number": "1",
           "x": 3.0,
-          "y": 9.475,
+          "y": 9.5625,
           "net": "+3V3",
           "smd": true
         },
         {
           "number": "2",
           "x": 3.0,
-          "y": 6.525,
+          "y": 6.4375,
           "net": "GND",
           "smd": true
         }
@@ -2034,10 +2034,10 @@
     {
       "ref": "C_MCUHF",
       "value": "100nF 50V X7R",
-      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
-      "x": 2.0,
-      "y": 12.0,
-      "rotation": 0.0,
+      "footprint": "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "x": 26.0,
+      "y": 13.0,
+      "rotation": 90.0,
       "side": "front",
       "nets": {
         "1": "+3V3",
@@ -2045,42 +2045,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "GRM188R71H104KA93D",
+      "mpn": "GRM21BR71H104KA01L",
       "datasheet": "",
       "section": "Decoupling",
       "dnp": false,
       "designator": "C4",
-      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+3V3",
           "type": "passive",
-          "x": 1.225,
-          "y": 12.0
+          "x": 26.0,
+          "y": 14.0375
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 2.775,
-          "y": 12.0
+          "x": 26.0,
+          "y": 11.9625
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 1.225,
-          "y": 12.0,
+          "x": 26.0,
+          "y": 14.0375,
           "net": "+3V3",
           "smd": true
         },
         {
           "number": "2",
-          "x": 2.775,
-          "y": 12.0,
+          "x": 26.0,
+          "y": 11.9625,
           "net": "GND",
           "smd": true
         }
@@ -2089,9 +2089,9 @@
     {
       "ref": "R_EN",
       "value": "10k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 30.0,
-      "y": 3.5,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 27.5,
+      "y": 4.0,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -2100,42 +2100,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0710KL",
+      "mpn": "RC0805FR-0710KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R5",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+3V3",
           "type": "passive",
-          "x": 29.175,
-          "y": 3.5
+          "x": 26.5,
+          "y": 4.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "EN",
           "type": "passive",
-          "x": 30.825,
-          "y": 3.5
+          "x": 28.5,
+          "y": 4.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 29.175,
-          "y": 3.5,
+          "x": 26.5,
+          "y": 4.0,
           "net": "+3V3",
           "smd": true
         },
         {
           "number": "2",
-          "x": 30.825,
-          "y": 3.5,
+          "x": 28.5,
+          "y": 4.0,
           "net": "EN",
           "smd": true
         }
@@ -2144,9 +2144,9 @@
     {
       "ref": "C_EN",
       "value": "1uF 16V X7R",
-      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
-      "x": 3.5,
-      "y": 14.5,
+      "footprint": "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "x": 3.0,
+      "y": 13.5,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -2155,42 +2155,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "GRM188R71C105KA12D",
+      "mpn": "GRM21BR71C105KA01L",
       "datasheet": "",
       "section": "Decoupling",
       "dnp": false,
       "designator": "C5",
-      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "EN",
           "type": "passive",
-          "x": 2.725,
-          "y": 14.5
+          "x": 1.9625,
+          "y": 13.5
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 4.275,
-          "y": 14.5
+          "x": 4.0375,
+          "y": 13.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 2.725,
-          "y": 14.5,
+          "x": 1.9625,
+          "y": 13.5,
           "net": "EN",
           "smd": true
         },
         {
           "number": "2",
-          "x": 4.275,
-          "y": 14.5,
+          "x": 4.0375,
+          "y": 13.5,
           "net": "GND",
           "smd": true
         }
@@ -2199,7 +2199,7 @@
     {
       "ref": "R_BOOT",
       "value": "10k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 30.0,
       "y": 1.5,
       "rotation": 0.0,
@@ -2210,19 +2210,19 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0710KL",
+      "mpn": "RC0805FR-0710KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R6",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+3V3",
           "type": "passive",
-          "x": 29.175,
+          "x": 29.0,
           "y": 1.5
         },
         {
@@ -2230,21 +2230,21 @@
           "name": "2",
           "net": "BOOT",
           "type": "passive",
-          "x": 30.825,
+          "x": 31.0,
           "y": 1.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 29.175,
+          "x": 29.0,
           "y": 1.5,
           "net": "+3V3",
           "smd": true
         },
         {
           "number": "2",
-          "x": 30.825,
+          "x": 31.0,
           "y": 1.5,
           "net": "BOOT",
           "smd": true
@@ -2392,9 +2392,9 @@
     {
       "ref": "R_ID_TOP",
       "value": "10k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 27.0,
-      "y": 7.5,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 27.5,
+      "y": 7.2,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -2403,42 +2403,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0710KL",
+      "mpn": "RC0805FR-0710KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R7",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "DETECT_EN",
           "type": "passive",
-          "x": 26.175,
-          "y": 7.5
+          "x": 26.5,
+          "y": 7.2
         },
         {
           "number": "2",
           "name": "2",
           "net": "BOARD_ID",
           "type": "passive",
-          "x": 27.825,
-          "y": 7.5
+          "x": 28.5,
+          "y": 7.2
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 26.175,
-          "y": 7.5,
+          "x": 26.5,
+          "y": 7.2,
           "net": "DETECT_EN",
           "smd": true
         },
         {
           "number": "2",
-          "x": 27.825,
-          "y": 7.5,
+          "x": 28.5,
+          "y": 7.2,
           "net": "BOARD_ID",
           "smd": true
         }
@@ -2446,10 +2446,10 @@
     },
     {
       "ref": "R_ID_LOW",
-      "value": "1.62k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 27.0,
-      "y": 9.5,
+      "value": "1.58k 1%",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 27.5,
+      "y": 9.8,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -2458,42 +2458,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-071K62L",
+      "mpn": "RC0805FR-071K58L",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R8",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "BOARD_ID",
           "type": "passive",
-          "x": 26.175,
-          "y": 9.5
+          "x": 26.5,
+          "y": 9.8
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 27.825,
-          "y": 9.5
+          "x": 28.5,
+          "y": 9.8
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 26.175,
-          "y": 9.5,
+          "x": 26.5,
+          "y": 9.8,
           "net": "BOARD_ID",
           "smd": true
         },
         {
           "number": "2",
-          "x": 27.825,
-          "y": 9.5,
+          "x": 28.5,
+          "y": 9.8,
           "net": "GND",
           "smd": true
         }
@@ -2502,9 +2502,9 @@
     {
       "ref": "C_ID",
       "value": "10nF 50V C0G",
-      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "x": 30.0,
-      "y": 12.5,
+      "y": 14.0,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -2513,42 +2513,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "GRM1885C1H103JA01D",
+      "mpn": "GRM2165C1H103JA01D",
       "datasheet": "",
       "section": "Decoupling",
       "dnp": false,
       "designator": "C6",
-      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "BOARD_ID",
           "type": "passive",
-          "x": 29.225,
-          "y": 12.5
+          "x": 28.9625,
+          "y": 14.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 30.775,
-          "y": 12.5
+          "x": 31.0375,
+          "y": 14.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 29.225,
-          "y": 12.5,
+          "x": 28.9625,
+          "y": 14.0,
           "net": "BOARD_ID",
           "smd": true
         },
         {
           "number": "2",
-          "x": 30.775,
-          "y": 12.5,
+          "x": 31.0375,
+          "y": 14.0,
           "net": "GND",
           "smd": true
         }
@@ -2557,9 +2557,9 @@
     {
       "ref": "C_LVA",
       "value": "100nF 50V X7R",
-      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
-      "x": 41.0,
-      "y": 21.0,
+      "footprint": "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "x": 42.5,
+      "y": 21.5,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -2568,42 +2568,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "GRM188R71H104KA93D",
+      "mpn": "GRM21BR71H104KA01L",
       "datasheet": "",
       "section": "Decoupling",
       "dnp": false,
       "designator": "C7",
-      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+3V3",
           "type": "passive",
-          "x": 40.225,
-          "y": 21.0
+          "x": 41.4625,
+          "y": 21.5
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 41.775,
-          "y": 21.0
+          "x": 43.5375,
+          "y": 21.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 40.225,
-          "y": 21.0,
+          "x": 41.4625,
+          "y": 21.5,
           "net": "+3V3",
           "smd": true
         },
         {
           "number": "2",
-          "x": 41.775,
-          "y": 21.0,
+          "x": 43.5375,
+          "y": 21.5,
           "net": "GND",
           "smd": true
         }
@@ -2612,9 +2612,9 @@
     {
       "ref": "C_LVB",
       "value": "100nF 50V X7R",
-      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "x": 41.0,
-      "y": 4.0,
+      "y": 3.5,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -2623,42 +2623,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "GRM188R71H104KA93D",
+      "mpn": "GRM21BR71H104KA01L",
       "datasheet": "",
       "section": "Decoupling",
       "dnp": false,
       "designator": "C8",
-      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+5V_CORE",
           "type": "passive",
-          "x": 40.225,
-          "y": 4.0
+          "x": 39.9625,
+          "y": 3.5
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 41.775,
-          "y": 4.0
+          "x": 42.0375,
+          "y": 3.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 40.225,
-          "y": 4.0,
+          "x": 39.9625,
+          "y": 3.5,
           "net": "+5V_CORE",
           "smd": true
         },
         {
           "number": "2",
-          "x": 41.775,
-          "y": 4.0,
+          "x": 42.0375,
+          "y": 3.5,
           "net": "GND",
           "smd": true
         }
@@ -2861,9 +2861,9 @@
     {
       "ref": "R_PRESS",
       "value": "1k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 12.0,
-      "y": 41.0,
+      "y": 41.5,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -2872,42 +2872,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-071KL",
+      "mpn": "RC0805FR-071KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R9",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "PRESSURE_RAW",
           "type": "passive",
-          "x": 11.175,
-          "y": 41.0
+          "x": 11.0,
+          "y": 41.5
         },
         {
           "number": "2",
           "name": "2",
           "net": "PRESSURE",
           "type": "passive",
-          "x": 12.825,
-          "y": 41.0
+          "x": 13.0,
+          "y": 41.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 11.175,
-          "y": 41.0,
+          "x": 11.0,
+          "y": 41.5,
           "net": "PRESSURE_RAW",
           "smd": true
         },
         {
           "number": "2",
-          "x": 12.825,
-          "y": 41.0,
+          "x": 13.0,
+          "y": 41.5,
           "net": "PRESSURE",
           "smd": true
         }
@@ -2916,7 +2916,7 @@
     {
       "ref": "C_PRESS",
       "value": "100nF 50V X7R",
-      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "x": 25.5,
       "y": 50.5,
       "rotation": 0.0,
@@ -2927,19 +2927,19 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "GRM188R71H104KA93D",
+      "mpn": "GRM21BR71H104KA01L",
       "datasheet": "",
       "section": "Decoupling",
       "dnp": false,
       "designator": "C9",
-      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "PRESSURE",
           "type": "passive",
-          "x": 24.725,
+          "x": 24.4625,
           "y": 50.5
         },
         {
@@ -2947,21 +2947,21 @@
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 26.275,
+          "x": 26.5375,
           "y": 50.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 24.725,
+          "x": 24.4625,
           "y": 50.5,
           "net": "PRESSURE",
           "smd": true
         },
         {
           "number": "2",
-          "x": 26.275,
+          "x": 26.5375,
           "y": 50.5,
           "net": "GND",
           "smd": true
@@ -3097,7 +3097,7 @@
     {
       "ref": "R_ZCPU",
       "value": "10k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 34.5,
       "y": 50.5,
       "rotation": 0.0,
@@ -3108,19 +3108,19 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0710KL",
+      "mpn": "RC0805FR-0710KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R10",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+5V_EXT",
           "type": "passive",
-          "x": 33.675,
+          "x": 33.5,
           "y": 50.5
         },
         {
@@ -3128,21 +3128,21 @@
           "name": "2",
           "net": "ZC_RAW",
           "type": "passive",
-          "x": 35.325,
+          "x": 35.5,
           "y": 50.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 33.675,
+          "x": 33.5,
           "y": 50.5,
           "net": "+5V_EXT",
           "smd": true
         },
         {
           "number": "2",
-          "x": 35.325,
+          "x": 35.5,
           "y": 50.5,
           "net": "ZC_RAW",
           "smd": true
@@ -3152,7 +3152,7 @@
     {
       "ref": "R_ZCS",
       "value": "1k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 39.0,
       "y": 50.5,
       "rotation": 0.0,
@@ -3163,19 +3163,19 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-071KL",
+      "mpn": "RC0805FR-071KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R11",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "ZC_RAW",
           "type": "passive",
-          "x": 38.175,
+          "x": 38.0,
           "y": 50.5
         },
         {
@@ -3183,21 +3183,21 @@
           "name": "2",
           "net": "ZC_IN",
           "type": "passive",
-          "x": 39.825,
+          "x": 40.0,
           "y": 50.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 38.175,
+          "x": 38.0,
           "y": 50.5,
           "net": "ZC_RAW",
           "smd": true
         },
         {
           "number": "2",
-          "x": 39.825,
+          "x": 40.0,
           "y": 50.5,
           "net": "ZC_IN",
           "smd": true
@@ -3207,7 +3207,7 @@
     {
       "ref": "U_ZC",
       "value": "SN74LVC1G17DBVR",
-      "footprint": "GemilaiMateCompact:SOT-23-5",
+      "footprint": "GemilaiMateCompact:SOT-23-5_HandSoldering",
       "x": 40.5,
       "y": 47.0,
       "rotation": 0.0,
@@ -3237,14 +3237,14 @@
       "section": "Pump",
       "dnp": false,
       "designator": "U4",
-      "source_footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "source_footprint": "Package_TO_SOT_SMD:SOT-23-5_HandSoldering",
       "pins": [
         {
           "number": "1",
           "name": "NC",
           "net": null,
           "type": "passive",
-          "x": 39.3625,
+          "x": 39.15,
           "y": 46.05
         },
         {
@@ -3252,7 +3252,7 @@
           "name": "A",
           "net": "ZC_IN",
           "type": "input",
-          "x": 39.3625,
+          "x": 39.15,
           "y": 47.0
         },
         {
@@ -3260,7 +3260,7 @@
           "name": "GND",
           "net": "GND",
           "type": "power_in",
-          "x": 39.3625,
+          "x": 39.15,
           "y": 47.95
         },
         {
@@ -3268,7 +3268,7 @@
           "name": "Y",
           "net": "PUMP_ZC",
           "type": "output",
-          "x": 41.6375,
+          "x": 41.85,
           "y": 47.95
         },
         {
@@ -3276,42 +3276,42 @@
           "name": "VCC",
           "net": "+3V3",
           "type": "power_in",
-          "x": 41.6375,
+          "x": 41.85,
           "y": 46.05
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 39.3625,
+          "x": 39.15,
           "y": 46.05,
           "net": null,
           "smd": true
         },
         {
           "number": "2",
-          "x": 39.3625,
+          "x": 39.15,
           "y": 47.0,
           "net": "ZC_IN",
           "smd": true
         },
         {
           "number": "3",
-          "x": 39.3625,
+          "x": 39.15,
           "y": 47.95,
           "net": "GND",
           "smd": true
         },
         {
           "number": "4",
-          "x": 41.6375,
+          "x": 41.85,
           "y": 47.95,
           "net": "PUMP_ZC",
           "smd": true
         },
         {
           "number": "5",
-          "x": 41.6375,
+          "x": 41.85,
           "y": 46.05,
           "net": "+3V3",
           "smd": true
@@ -3321,10 +3321,10 @@
     {
       "ref": "C_ZC",
       "value": "100nF 50V X7R",
-      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
-      "x": 43.5,
-      "y": 46.5,
-      "rotation": 90.0,
+      "footprint": "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "x": 42.0,
+      "y": 44.0,
+      "rotation": 0.0,
       "side": "front",
       "nets": {
         "1": "+3V3",
@@ -3332,42 +3332,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "GRM188R71H104KA93D",
+      "mpn": "GRM21BR71H104KA01L",
       "datasheet": "",
       "section": "Decoupling",
       "dnp": false,
       "designator": "C10",
-      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+3V3",
           "type": "passive",
-          "x": 43.5,
-          "y": 47.275
+          "x": 40.9625,
+          "y": 44.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 43.5,
-          "y": 45.725
+          "x": 43.0375,
+          "y": 44.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 43.5,
-          "y": 47.275,
+          "x": 40.9625,
+          "y": 44.0,
           "net": "+3V3",
           "smd": true
         },
         {
           "number": "2",
-          "x": 43.5,
-          "y": 45.725,
+          "x": 43.0375,
+          "y": 44.0,
           "net": "GND",
           "smd": true
         }
@@ -3376,10 +3376,10 @@
     {
       "ref": "R_EXT_BASE",
       "value": "47k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 55.5,
-      "y": 46.5,
-      "rotation": 90.0,
+      "y": 51.0,
+      "rotation": 0.0,
       "side": "front",
       "nets": {
         "1": "+5V_EXT",
@@ -3387,42 +3387,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0747KL",
+      "mpn": "RC0805FR-0747KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R12",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+5V_EXT",
           "type": "passive",
-          "x": 55.5,
-          "y": 47.325
+          "x": 54.5,
+          "y": 51.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "EXT_BASE",
           "type": "passive",
-          "x": 55.5,
-          "y": 45.675
+          "x": 56.5,
+          "y": 51.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 55.5,
-          "y": 47.325,
+          "x": 54.5,
+          "y": 51.0,
           "net": "+5V_EXT",
           "smd": true
         },
         {
           "number": "2",
-          "x": 55.5,
-          "y": 45.675,
+          "x": 56.5,
+          "y": 51.0,
           "net": "EXT_BASE",
           "smd": true
         }
@@ -3431,10 +3431,10 @@
     {
       "ref": "R_EXT_PD",
       "value": "100k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 56.0,
-      "y": 50.0,
-      "rotation": 0.0,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 58.5,
+      "y": 51.0,
+      "rotation": 90.0,
       "side": "front",
       "nets": {
         "1": "EXT_BASE",
@@ -3442,41 +3442,41 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-07100KL",
+      "mpn": "RC0805FR-07100KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R13",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "EXT_BASE",
           "type": "passive",
-          "x": 55.175,
-          "y": 50.0
+          "x": 58.5,
+          "y": 52.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 56.825,
+          "x": 58.5,
           "y": 50.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 55.175,
-          "y": 50.0,
+          "x": 58.5,
+          "y": 52.0,
           "net": "EXT_BASE",
           "smd": true
         },
         {
           "number": "2",
-          "x": 56.825,
+          "x": 58.5,
           "y": 50.0,
           "net": "GND",
           "smd": true
@@ -3486,10 +3486,10 @@
     {
       "ref": "Q_EXT",
       "value": "MMBT3904",
-      "footprint": "GemilaiMateCompact:SOT-23",
-      "x": 52.5,
+      "footprint": "GemilaiMateCompact:SOT-23_Handsoldering",
+      "x": 53.0,
       "y": 47.0,
-      "rotation": 0.0,
+      "rotation": 90.0,
       "side": "front",
       "nets": {
         "1": "EXT_BASE",
@@ -3507,52 +3507,52 @@
       "section": "Outputs",
       "dnp": false,
       "designator": "Q1",
-      "source_footprint": "Package_TO_SOT_SMD:SOT-23",
+      "source_footprint": "Package_TO_SOT_SMD:SOT-23_Handsoldering",
       "pins": [
         {
           "number": "1",
           "name": "B",
           "net": "EXT_BASE",
           "type": "passive",
-          "x": 51.5625,
-          "y": 46.05
+          "x": 52.05,
+          "y": 48.5
         },
         {
           "number": "2",
           "name": "E",
           "net": "GND",
           "type": "passive",
-          "x": 51.5625,
-          "y": 47.95
+          "x": 53.95,
+          "y": 48.5
         },
         {
           "number": "3",
           "name": "C",
           "net": "OUTPUT_OE_N",
           "type": "passive",
-          "x": 53.4375,
-          "y": 47.0
+          "x": 53.0,
+          "y": 45.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 51.5625,
-          "y": 46.05,
+          "x": 52.05,
+          "y": 48.5,
           "net": "EXT_BASE",
           "smd": true
         },
         {
           "number": "2",
-          "x": 51.5625,
-          "y": 47.95,
+          "x": 53.95,
+          "y": 48.5,
           "net": "GND",
           "smd": true
         },
         {
           "number": "3",
-          "x": 53.4375,
-          "y": 47.0,
+          "x": 53.0,
+          "y": 45.5,
           "net": "OUTPUT_OE_N",
           "smd": true
         }
@@ -3561,7 +3561,7 @@
     {
       "ref": "R_OEUP",
       "value": "10k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 44.0,
       "y": 50.0,
       "rotation": 0.0,
@@ -3572,19 +3572,19 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0710KL",
+      "mpn": "RC0805FR-0710KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R14",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+3V3",
           "type": "passive",
-          "x": 43.175,
+          "x": 43.0,
           "y": 50.0
         },
         {
@@ -3592,21 +3592,21 @@
           "name": "2",
           "net": "OUTPUT_OE_N",
           "type": "passive",
-          "x": 44.825,
+          "x": 45.0,
           "y": 50.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 43.175,
+          "x": 43.0,
           "y": 50.0,
           "net": "+3V3",
           "smd": true
         },
         {
           "number": "2",
-          "x": 44.825,
+          "x": 45.0,
           "y": 50.0,
           "net": "OUTPUT_OE_N",
           "smd": true
@@ -3616,7 +3616,7 @@
     {
       "ref": "U_PUMP",
       "value": "SN74LVC1G125DBVR",
-      "footprint": "GemilaiMateCompact:SOT-23-5",
+      "footprint": "GemilaiMateCompact:SOT-23-5_HandSoldering",
       "x": 46.5,
       "y": 47.0,
       "rotation": 0.0,
@@ -3647,14 +3647,14 @@
       "section": "Outputs",
       "dnp": false,
       "designator": "U5",
-      "source_footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "source_footprint": "Package_TO_SOT_SMD:SOT-23-5_HandSoldering",
       "pins": [
         {
           "number": "1",
           "name": "OE_N",
           "net": "OUTPUT_OE_N",
           "type": "input",
-          "x": 45.3625,
+          "x": 45.15,
           "y": 46.05
         },
         {
@@ -3662,7 +3662,7 @@
           "name": "A",
           "net": "PUMP_PWM",
           "type": "input",
-          "x": 45.3625,
+          "x": 45.15,
           "y": 47.0
         },
         {
@@ -3670,7 +3670,7 @@
           "name": "GND",
           "net": "GND",
           "type": "power_in",
-          "x": 45.3625,
+          "x": 45.15,
           "y": 47.95
         },
         {
@@ -3678,7 +3678,7 @@
           "name": "Y",
           "net": "PUMP_OUT",
           "type": "tri_state",
-          "x": 47.6375,
+          "x": 47.85,
           "y": 47.95
         },
         {
@@ -3686,42 +3686,42 @@
           "name": "VCC",
           "net": "+3V3",
           "type": "power_in",
-          "x": 47.6375,
+          "x": 47.85,
           "y": 46.05
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 45.3625,
+          "x": 45.15,
           "y": 46.05,
           "net": "OUTPUT_OE_N",
           "smd": true
         },
         {
           "number": "2",
-          "x": 45.3625,
+          "x": 45.15,
           "y": 47.0,
           "net": "PUMP_PWM",
           "smd": true
         },
         {
           "number": "3",
-          "x": 45.3625,
+          "x": 45.15,
           "y": 47.95,
           "net": "GND",
           "smd": true
         },
         {
           "number": "4",
-          "x": 47.6375,
+          "x": 47.85,
           "y": 47.95,
           "net": "PUMP_OUT",
           "smd": true
         },
         {
           "number": "5",
-          "x": 47.6375,
+          "x": 47.85,
           "y": 46.05,
           "net": "+3V3",
           "smd": true
@@ -3730,9 +3730,9 @@
     },
     {
       "ref": "U_SSR",
-      "value": "SN74AHCT125PWR",
-      "footprint": "GemilaiMateCompact:TSSOP-14_4.4x5mm_P0.65mm",
-      "x": 64.5,
+      "value": "SN74AHCT125DR",
+      "footprint": "GemilaiMateCompact:SOIC-14_3.9x8.7mm_P1.27mm",
+      "x": 62.0,
       "y": 30.0,
       "rotation": 0.0,
       "side": "front",
@@ -3784,43 +3784,43 @@
         "13": "input",
         "14": "power_in"
       },
-      "mpn": "SN74AHCT125PWR",
+      "mpn": "SN74AHCT125DR",
       "datasheet": "https://www.ti.com/lit/ds/symlink/sn74ahct125.pdf",
       "section": "Outputs",
       "dnp": false,
       "designator": "U6",
-      "source_footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "source_footprint": "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm",
       "pins": [
         {
           "number": "1",
           "name": "1OE_N",
           "net": "OUTPUT_OE_N",
           "type": "input",
-          "x": 61.6375,
-          "y": 28.05
+          "x": 59.525,
+          "y": 26.19
         },
         {
           "number": "2",
           "name": "1A",
           "net": "VALVE",
           "type": "input",
-          "x": 61.6375,
-          "y": 28.7
+          "x": 59.525,
+          "y": 27.46
         },
         {
           "number": "3",
           "name": "1Y",
           "net": "VALVE_5V",
           "type": "tri_state",
-          "x": 61.6375,
-          "y": 29.35
+          "x": 59.525,
+          "y": 28.73
         },
         {
           "number": "4",
           "name": "2OE_N",
           "net": "OUTPUT_OE_N",
           "type": "input",
-          "x": 61.6375,
+          "x": 59.525,
           "y": 30.0
         },
         {
@@ -3828,55 +3828,55 @@
           "name": "2A",
           "net": "HEATER",
           "type": "input",
-          "x": 61.6375,
-          "y": 30.65
+          "x": 59.525,
+          "y": 31.27
         },
         {
           "number": "6",
           "name": "2Y",
           "net": "HEATER_5V",
           "type": "tri_state",
-          "x": 61.6375,
-          "y": 31.3
+          "x": 59.525,
+          "y": 32.54
         },
         {
           "number": "7",
           "name": "GND",
           "net": "GND",
           "type": "power_in",
-          "x": 61.6375,
-          "y": 31.95
+          "x": 59.525,
+          "y": 33.81
         },
         {
           "number": "8",
           "name": "3Y",
           "net": "ALT_5V",
           "type": "tri_state",
-          "x": 67.3625,
-          "y": 31.95
+          "x": 64.475,
+          "y": 33.81
         },
         {
           "number": "9",
           "name": "3A",
           "net": "ALT",
           "type": "input",
-          "x": 67.3625,
-          "y": 31.3
+          "x": 64.475,
+          "y": 32.54
         },
         {
           "number": "10",
           "name": "3OE_N",
           "net": "OUTPUT_OE_N",
           "type": "input",
-          "x": 67.3625,
-          "y": 30.65
+          "x": 64.475,
+          "y": 31.27
         },
         {
           "number": "11",
           "name": "4Y_NC",
           "net": null,
           "type": "tri_state",
-          "x": 67.3625,
+          "x": 64.475,
           "y": 30.0
         },
         {
@@ -3884,122 +3884,122 @@
           "name": "4A",
           "net": "GND",
           "type": "input",
-          "x": 67.3625,
-          "y": 29.35
+          "x": 64.475,
+          "y": 28.73
         },
         {
           "number": "13",
           "name": "4OE_N",
           "net": "+5V_EXT",
           "type": "input",
-          "x": 67.3625,
-          "y": 28.7
+          "x": 64.475,
+          "y": 27.46
         },
         {
           "number": "14",
           "name": "VCC",
           "net": "+5V_EXT",
           "type": "power_in",
-          "x": 67.3625,
-          "y": 28.05
+          "x": 64.475,
+          "y": 26.19
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 61.6375,
-          "y": 28.05,
+          "x": 59.525,
+          "y": 26.19,
           "net": "OUTPUT_OE_N",
           "smd": true
         },
         {
           "number": "2",
-          "x": 61.6375,
-          "y": 28.7,
+          "x": 59.525,
+          "y": 27.46,
           "net": "VALVE",
           "smd": true
         },
         {
           "number": "3",
-          "x": 61.6375,
-          "y": 29.35,
+          "x": 59.525,
+          "y": 28.73,
           "net": "VALVE_5V",
           "smd": true
         },
         {
           "number": "4",
-          "x": 61.6375,
+          "x": 59.525,
           "y": 30.0,
           "net": "OUTPUT_OE_N",
           "smd": true
         },
         {
           "number": "5",
-          "x": 61.6375,
-          "y": 30.65,
+          "x": 59.525,
+          "y": 31.27,
           "net": "HEATER",
           "smd": true
         },
         {
           "number": "6",
-          "x": 61.6375,
-          "y": 31.3,
+          "x": 59.525,
+          "y": 32.54,
           "net": "HEATER_5V",
           "smd": true
         },
         {
           "number": "7",
-          "x": 61.6375,
-          "y": 31.95,
+          "x": 59.525,
+          "y": 33.81,
           "net": "GND",
           "smd": true
         },
         {
           "number": "8",
-          "x": 67.3625,
-          "y": 31.95,
+          "x": 64.475,
+          "y": 33.81,
           "net": "ALT_5V",
           "smd": true
         },
         {
           "number": "9",
-          "x": 67.3625,
-          "y": 31.3,
+          "x": 64.475,
+          "y": 32.54,
           "net": "ALT",
           "smd": true
         },
         {
           "number": "10",
-          "x": 67.3625,
-          "y": 30.65,
+          "x": 64.475,
+          "y": 31.27,
           "net": "OUTPUT_OE_N",
           "smd": true
         },
         {
           "number": "11",
-          "x": 67.3625,
+          "x": 64.475,
           "y": 30.0,
           "net": null,
           "smd": true
         },
         {
           "number": "12",
-          "x": 67.3625,
-          "y": 29.35,
+          "x": 64.475,
+          "y": 28.73,
           "net": "GND",
           "smd": true
         },
         {
           "number": "13",
-          "x": 67.3625,
-          "y": 28.7,
+          "x": 64.475,
+          "y": 27.46,
           "net": "+5V_EXT",
           "smd": true
         },
         {
           "number": "14",
-          "x": 67.3625,
-          "y": 28.05,
+          "x": 64.475,
+          "y": 26.19,
           "net": "+5V_EXT",
           "smd": true
         }
@@ -4008,10 +4008,10 @@
     {
       "ref": "C_SSR",
       "value": "100nF 50V X7R",
-      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
-      "x": 69.5,
-      "y": 28.0,
-      "rotation": 90.0,
+      "footprint": "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "x": 64.0,
+      "y": 24.0,
+      "rotation": 0.0,
       "side": "front",
       "nets": {
         "1": "+5V_EXT",
@@ -4019,42 +4019,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "GRM188R71H104KA93D",
+      "mpn": "GRM21BR71H104KA01L",
       "datasheet": "",
       "section": "Decoupling",
       "dnp": false,
       "designator": "C11",
-      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+5V_EXT",
           "type": "passive",
-          "x": 69.5,
-          "y": 28.775
+          "x": 62.9625,
+          "y": 24.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 69.5,
-          "y": 27.225
+          "x": 65.0375,
+          "y": 24.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 69.5,
-          "y": 28.775,
+          "x": 62.9625,
+          "y": 24.0,
           "net": "+5V_EXT",
           "smd": true
         },
         {
           "number": "2",
-          "x": 69.5,
-          "y": 27.225,
+          "x": 65.0375,
+          "y": 24.0,
           "net": "GND",
           "smd": true
         }
@@ -4063,9 +4063,9 @@
     {
       "ref": "C_PUMP",
       "value": "100nF 50V X7R",
-      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
-      "x": 49.5,
-      "y": 46.5,
+      "footprint": "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "x": 50.0,
+      "y": 46.0,
       "rotation": 90.0,
       "side": "front",
       "nets": {
@@ -4074,42 +4074,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "GRM188R71H104KA93D",
+      "mpn": "GRM21BR71H104KA01L",
       "datasheet": "",
       "section": "Decoupling",
       "dnp": false,
       "designator": "C12",
-      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+3V3",
           "type": "passive",
-          "x": 49.5,
-          "y": 47.275
+          "x": 50.0,
+          "y": 47.0375
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 49.5,
-          "y": 45.725
+          "x": 50.0,
+          "y": 44.9625
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 49.5,
-          "y": 47.275,
+          "x": 50.0,
+          "y": 47.0375,
           "net": "+3V3",
           "smd": true
         },
         {
           "number": "2",
-          "x": 49.5,
-          "y": 45.725,
+          "x": 50.0,
+          "y": 44.9625,
           "net": "GND",
           "smd": true
         }
@@ -4118,10 +4118,10 @@
     {
       "ref": "R_PD1",
       "value": "10k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 73.0,
       "y": 42.0,
-      "rotation": 0.0,
+      "rotation": 90.0,
       "side": "front",
       "nets": {
         "1": "PUMP_PWM",
@@ -4129,42 +4129,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0710KL",
+      "mpn": "RC0805FR-0710KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R15",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "PUMP_PWM",
           "type": "passive",
-          "x": 72.175,
-          "y": 42.0
+          "x": 73.0,
+          "y": 43.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 73.825,
-          "y": 42.0
+          "x": 73.0,
+          "y": 41.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 72.175,
-          "y": 42.0,
+          "x": 73.0,
+          "y": 43.0,
           "net": "PUMP_PWM",
           "smd": true
         },
         {
           "number": "2",
-          "x": 73.825,
-          "y": 42.0,
+          "x": 73.0,
+          "y": 41.0,
           "net": "GND",
           "smd": true
         }
@@ -4173,7 +4173,7 @@
     {
       "ref": "R_PD2",
       "value": "10k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 53.0,
       "y": 21.0,
       "rotation": 0.0,
@@ -4184,19 +4184,19 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0710KL",
+      "mpn": "RC0805FR-0710KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R16",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "VALVE",
           "type": "passive",
-          "x": 52.175,
+          "x": 52.0,
           "y": 21.0
         },
         {
@@ -4204,21 +4204,21 @@
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 53.825,
+          "x": 54.0,
           "y": 21.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 52.175,
+          "x": 52.0,
           "y": 21.0,
           "net": "VALVE",
           "smd": true
         },
         {
           "number": "2",
-          "x": 53.825,
+          "x": 54.0,
           "y": 21.0,
           "net": "GND",
           "smd": true
@@ -4228,7 +4228,7 @@
     {
       "ref": "R_PD3",
       "value": "10k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 51.5,
       "y": 18.5,
       "rotation": 0.0,
@@ -4239,19 +4239,19 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0710KL",
+      "mpn": "RC0805FR-0710KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R17",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "HEATER",
           "type": "passive",
-          "x": 50.675,
+          "x": 50.5,
           "y": 18.5
         },
         {
@@ -4259,21 +4259,21 @@
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 52.325,
+          "x": 52.5,
           "y": 18.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 50.675,
+          "x": 50.5,
           "y": 18.5,
           "net": "HEATER",
           "smd": true
         },
         {
           "number": "2",
-          "x": 52.325,
+          "x": 52.5,
           "y": 18.5,
           "net": "GND",
           "smd": true
@@ -4283,7 +4283,7 @@
     {
       "ref": "R_PD4",
       "value": "10k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 64.0,
       "y": 20.0,
       "rotation": 0.0,
@@ -4294,19 +4294,19 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0710KL",
+      "mpn": "RC0805FR-0710KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R18",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "ALT",
           "type": "passive",
-          "x": 63.175,
+          "x": 63.0,
           "y": 20.0
         },
         {
@@ -4314,21 +4314,21 @@
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 64.825,
+          "x": 65.0,
           "y": 20.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 63.175,
+          "x": 63.0,
           "y": 20.0,
           "net": "ALT",
           "smd": true
         },
         {
           "number": "2",
-          "x": 64.825,
+          "x": 65.0,
           "y": 20.0,
           "net": "GND",
           "smd": true
@@ -4338,9 +4338,9 @@
     {
       "ref": "R_PD5",
       "value": "10k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 42.5,
-      "y": 52.5,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 43.0,
+      "y": 53.0,
       "rotation": 90.0,
       "side": "front",
       "nets": {
@@ -4349,42 +4349,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0710KL",
+      "mpn": "RC0805FR-0710KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R19",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "PUMP_OUT",
           "type": "passive",
-          "x": 42.5,
-          "y": 53.325
+          "x": 43.0,
+          "y": 54.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 42.5,
-          "y": 51.675
+          "x": 43.0,
+          "y": 52.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 42.5,
-          "y": 53.325,
+          "x": 43.0,
+          "y": 54.0,
           "net": "PUMP_OUT",
           "smd": true
         },
         {
           "number": "2",
-          "x": 42.5,
-          "y": 51.675,
+          "x": 43.0,
+          "y": 52.0,
           "net": "GND",
           "smd": true
         }
@@ -4393,9 +4393,9 @@
     {
       "ref": "R_OUT_VALVE",
       "value": "10k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 63.5,
-      "y": 25.5,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 60.0,
+      "y": 24.0,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -4404,42 +4404,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0710KL",
+      "mpn": "RC0805FR-0710KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R20",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "VALVE_5V",
           "type": "passive",
-          "x": 62.675,
-          "y": 25.5
+          "x": 59.0,
+          "y": 24.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 64.325,
-          "y": 25.5
+          "x": 61.0,
+          "y": 24.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 62.675,
-          "y": 25.5,
+          "x": 59.0,
+          "y": 24.0,
           "net": "VALVE_5V",
           "smd": true
         },
         {
           "number": "2",
-          "x": 64.325,
-          "y": 25.5,
+          "x": 61.0,
+          "y": 24.0,
           "net": "GND",
           "smd": true
         }
@@ -4448,9 +4448,9 @@
     {
       "ref": "R_OUT_HEATER",
       "value": "10k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 44.5,
-      "y": 21.0,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 46.5,
+      "y": 21.5,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -4459,42 +4459,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0710KL",
+      "mpn": "RC0805FR-0710KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R21",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "HEATER_5V",
           "type": "passive",
-          "x": 43.675,
-          "y": 21.0
+          "x": 45.5,
+          "y": 21.5
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 45.325,
-          "y": 21.0
+          "x": 47.5,
+          "y": 21.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 43.675,
-          "y": 21.0,
+          "x": 45.5,
+          "y": 21.5,
           "net": "HEATER_5V",
           "smd": true
         },
         {
           "number": "2",
-          "x": 45.325,
-          "y": 21.0,
+          "x": 47.5,
+          "y": 21.5,
           "net": "GND",
           "smd": true
         }
@@ -4503,7 +4503,7 @@
     {
       "ref": "R_OUT_ALT",
       "value": "10k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 48.0,
       "y": 50.0,
       "rotation": 0.0,
@@ -4514,19 +4514,19 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0710KL",
+      "mpn": "RC0805FR-0710KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R22",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "ALT_5V",
           "type": "passive",
-          "x": 47.175,
+          "x": 47.0,
           "y": 50.0
         },
         {
@@ -4534,21 +4534,21 @@
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 48.825,
+          "x": 49.0,
           "y": 50.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 47.175,
+          "x": 47.0,
           "y": 50.0,
           "net": "ALT_5V",
           "smd": true
         },
         {
           "number": "2",
-          "x": 48.825,
+          "x": 49.0,
           "y": 50.0,
           "net": "GND",
           "smd": true
@@ -4558,8 +4558,8 @@
     {
       "ref": "R_BREW",
       "value": "1k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 19.5,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 20.0,
       "y": 42.0,
       "rotation": 90.0,
       "side": "front",
@@ -4569,42 +4569,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-071KL",
+      "mpn": "RC0805FR-071KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R23",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "BREW_RAW",
           "type": "passive",
-          "x": 19.5,
-          "y": 42.825
+          "x": 20.0,
+          "y": 43.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "BREW",
           "type": "passive",
-          "x": 19.5,
-          "y": 41.175
+          "x": 20.0,
+          "y": 41.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 19.5,
-          "y": 42.825,
+          "x": 20.0,
+          "y": 43.0,
           "net": "BREW_RAW",
           "smd": true
         },
         {
           "number": "2",
-          "x": 19.5,
-          "y": 41.175,
+          "x": 20.0,
+          "y": 41.0,
           "net": "BREW",
           "smd": true
         }
@@ -4613,9 +4613,9 @@
     {
       "ref": "R_BREWPU",
       "value": "10k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 15.5,
-      "y": 52.5,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 23.5,
+      "y": 54.5,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -4624,42 +4624,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0710KL",
+      "mpn": "RC0805FR-0710KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R24",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+3V3",
           "type": "passive",
-          "x": 14.675,
-          "y": 52.5
+          "x": 22.5,
+          "y": 54.5
         },
         {
           "number": "2",
           "name": "2",
           "net": "BREW",
           "type": "passive",
-          "x": 16.325,
-          "y": 52.5
+          "x": 24.5,
+          "y": 54.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 14.675,
-          "y": 52.5,
+          "x": 22.5,
+          "y": 54.5,
           "net": "+3V3",
           "smd": true
         },
         {
           "number": "2",
-          "x": 16.325,
-          "y": 52.5,
+          "x": 24.5,
+          "y": 54.5,
           "net": "BREW",
           "smd": true
         }
@@ -4668,7 +4668,7 @@
     {
       "ref": "C_BREW",
       "value": "100nF 50V X7R",
-      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "x": 19.5,
       "y": 50.0,
       "rotation": 0.0,
@@ -4679,19 +4679,19 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "GRM188R71H104KA93D",
+      "mpn": "GRM21BR71H104KA01L",
       "datasheet": "",
       "section": "Decoupling",
       "dnp": false,
       "designator": "C13",
-      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "BREW",
           "type": "passive",
-          "x": 18.725,
+          "x": 18.4625,
           "y": 50.0
         },
         {
@@ -4699,21 +4699,21 @@
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 20.275,
+          "x": 20.5375,
           "y": 50.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 18.725,
+          "x": 18.4625,
           "y": 50.0,
           "net": "BREW",
           "smd": true
         },
         {
           "number": "2",
-          "x": 20.275,
+          "x": 20.5375,
           "y": 50.0,
           "net": "GND",
           "smd": true
@@ -4723,9 +4723,9 @@
     {
       "ref": "R_STEAM",
       "value": "1k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 12.5,
-      "y": 44.5,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 25.5,
+      "y": 43.0,
       "rotation": 90.0,
       "side": "front",
       "nets": {
@@ -4734,42 +4734,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-071KL",
+      "mpn": "RC0805FR-071KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R25",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "STEAM_RAW",
           "type": "passive",
-          "x": 12.5,
-          "y": 45.325
+          "x": 25.5,
+          "y": 44.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "STEAM",
           "type": "passive",
-          "x": 12.5,
-          "y": 43.675
+          "x": 25.5,
+          "y": 42.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 12.5,
-          "y": 45.325,
+          "x": 25.5,
+          "y": 44.0,
           "net": "STEAM_RAW",
           "smd": true
         },
         {
           "number": "2",
-          "x": 12.5,
-          "y": 43.675,
+          "x": 25.5,
+          "y": 42.0,
           "net": "STEAM",
           "smd": true
         }
@@ -4778,10 +4778,10 @@
     {
       "ref": "R_STEAMPU",
       "value": "10k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 73.0,
       "y": 35.0,
-      "rotation": 0.0,
+      "rotation": 90.0,
       "side": "front",
       "nets": {
         "1": "+3V3",
@@ -4789,42 +4789,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-0710KL",
+      "mpn": "RC0805FR-0710KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R26",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+3V3",
           "type": "passive",
-          "x": 72.175,
-          "y": 35.0
+          "x": 73.0,
+          "y": 36.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "STEAM",
           "type": "passive",
-          "x": 73.825,
-          "y": 35.0
+          "x": 73.0,
+          "y": 34.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 72.175,
-          "y": 35.0,
+          "x": 73.0,
+          "y": 36.0,
           "net": "+3V3",
           "smd": true
         },
         {
           "number": "2",
-          "x": 73.825,
-          "y": 35.0,
+          "x": 73.0,
+          "y": 34.0,
           "net": "STEAM",
           "smd": true
         }
@@ -4833,9 +4833,9 @@
     {
       "ref": "C_STEAM",
       "value": "100nF 50V X7R",
-      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
-      "x": 14.0,
-      "y": 55.0,
+      "footprint": "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "x": 20.5,
+      "y": 55.5,
       "rotation": 90.0,
       "side": "front",
       "nets": {
@@ -4844,42 +4844,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "GRM188R71H104KA93D",
+      "mpn": "GRM21BR71H104KA01L",
       "datasheet": "",
       "section": "Decoupling",
       "dnp": false,
       "designator": "C14",
-      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "STEAM",
           "type": "passive",
-          "x": 14.0,
-          "y": 55.775
+          "x": 20.5,
+          "y": 56.5375
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 14.0,
-          "y": 54.225
+          "x": 20.5,
+          "y": 54.4625
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 14.0,
-          "y": 55.775,
+          "x": 20.5,
+          "y": 56.5375,
           "net": "STEAM",
           "smd": true
         },
         {
           "number": "2",
-          "x": 14.0,
-          "y": 54.225,
+          "x": 20.5,
+          "y": 54.4625,
           "net": "GND",
           "smd": true
         }
@@ -4887,11 +4887,11 @@
     },
     {
       "ref": "U_LED",
-      "value": "PCA9634PW",
-      "footprint": "GemilaiMateCompact:TSSOP-20_4.4x6.5mm_P0.65mm",
-      "x": 29.5,
-      "y": 17.5,
-      "rotation": 90.0,
+      "value": "PCA9634D",
+      "footprint": "GemilaiMateCompact:SOIC-20W_7.5x12.8mm_P1.27mm",
+      "x": 30.5,
+      "y": 27.0,
+      "rotation": 0.0,
       "side": "front",
       "nets": {
         "1": "GND",
@@ -4959,312 +4959,312 @@
         "19": "bidirectional",
         "20": "power_in"
       },
-      "mpn": "PCA9634PW,118",
+      "mpn": "PCA9634D,118",
       "datasheet": "https://www.nxp.com/docs/en/data-sheet/PCA9634.pdf",
       "section": "Alba",
       "dnp": false,
       "designator": "U7",
-      "source_footprint": "Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm",
+      "source_footprint": "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm",
       "pins": [
         {
           "number": "1",
           "name": "A0",
           "net": "GND",
           "type": "input",
-          "x": 26.575,
-          "y": 20.3625
+          "x": 25.85,
+          "y": 21.285
         },
         {
           "number": "2",
           "name": "A1",
           "net": "GND",
           "type": "input",
-          "x": 27.225,
-          "y": 20.3625
+          "x": 25.85,
+          "y": 22.555
         },
         {
           "number": "3",
           "name": "A2",
           "net": "GND",
           "type": "input",
-          "x": 27.875,
-          "y": 20.3625
+          "x": 25.85,
+          "y": 23.825
         },
         {
           "number": "4",
           "name": "A3",
           "net": "GND",
           "type": "input",
-          "x": 28.525,
-          "y": 20.3625
+          "x": 25.85,
+          "y": 25.095
         },
         {
           "number": "5",
           "name": "A4",
           "net": "GND",
           "type": "input",
-          "x": 29.175,
-          "y": 20.3625
+          "x": 25.85,
+          "y": 26.365
         },
         {
           "number": "6",
           "name": "LED0",
           "net": "PCA_LED0",
           "type": "open_collector",
-          "x": 29.825,
-          "y": 20.3625
+          "x": 25.85,
+          "y": 27.635
         },
         {
           "number": "7",
           "name": "LED1",
           "net": "PCA_LED1",
           "type": "open_collector",
-          "x": 30.475,
-          "y": 20.3625
+          "x": 25.85,
+          "y": 28.905
         },
         {
           "number": "8",
           "name": "LED2",
           "net": "PCA_LED2",
           "type": "open_collector",
-          "x": 31.125,
-          "y": 20.3625
+          "x": 25.85,
+          "y": 30.175
         },
         {
           "number": "9",
           "name": "LED3",
           "net": "PCA_LED3",
           "type": "open_collector",
-          "x": 31.775,
-          "y": 20.3625
+          "x": 25.85,
+          "y": 31.445
         },
         {
           "number": "10",
           "name": "VSS",
           "net": "GND",
           "type": "power_in",
-          "x": 32.425,
-          "y": 20.3625
+          "x": 25.85,
+          "y": 32.715
         },
         {
           "number": "11",
           "name": "LED4",
           "net": "PCA_LED4",
           "type": "open_collector",
-          "x": 32.425,
-          "y": 14.6375
+          "x": 35.15,
+          "y": 32.715
         },
         {
           "number": "12",
           "name": "LED5",
           "net": "PCA_LED5",
           "type": "open_collector",
-          "x": 31.775,
-          "y": 14.6375
+          "x": 35.15,
+          "y": 31.445
         },
         {
           "number": "13",
           "name": "LED6",
           "net": "PCA_LED6",
           "type": "open_collector",
-          "x": 31.125,
-          "y": 14.6375
+          "x": 35.15,
+          "y": 30.175
         },
         {
           "number": "14",
           "name": "LED7",
           "net": "PCA_LED7",
           "type": "open_collector",
-          "x": 30.475,
-          "y": 14.6375
+          "x": 35.15,
+          "y": 28.905
         },
         {
           "number": "15",
           "name": "OE_N",
           "net": "GND",
           "type": "input",
-          "x": 29.825,
-          "y": 14.6375
+          "x": 35.15,
+          "y": 27.635
         },
         {
           "number": "16",
           "name": "A5",
           "net": "GND",
           "type": "input",
-          "x": 29.175,
-          "y": 14.6375
+          "x": 35.15,
+          "y": 26.365
         },
         {
           "number": "17",
           "name": "A6",
           "net": "GND",
           "type": "input",
-          "x": 28.525,
-          "y": 14.6375
+          "x": 35.15,
+          "y": 25.095
         },
         {
           "number": "18",
           "name": "SCL",
           "net": "PCA_SCL",
           "type": "input",
-          "x": 27.875,
-          "y": 14.6375
+          "x": 35.15,
+          "y": 23.825
         },
         {
           "number": "19",
           "name": "SDA",
           "net": "PCA_SDA",
           "type": "bidirectional",
-          "x": 27.225,
-          "y": 14.6375
+          "x": 35.15,
+          "y": 22.555
         },
         {
           "number": "20",
           "name": "VDD",
           "net": "+3V3",
           "type": "power_in",
-          "x": 26.575,
-          "y": 14.6375
+          "x": 35.15,
+          "y": 21.285
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 26.575,
-          "y": 20.3625,
+          "x": 25.85,
+          "y": 21.285,
           "net": "GND",
           "smd": true
         },
         {
           "number": "2",
-          "x": 27.225,
-          "y": 20.3625,
+          "x": 25.85,
+          "y": 22.555,
           "net": "GND",
           "smd": true
         },
         {
           "number": "3",
-          "x": 27.875,
-          "y": 20.3625,
+          "x": 25.85,
+          "y": 23.825,
           "net": "GND",
           "smd": true
         },
         {
           "number": "4",
-          "x": 28.525,
-          "y": 20.3625,
+          "x": 25.85,
+          "y": 25.095,
           "net": "GND",
           "smd": true
         },
         {
           "number": "5",
-          "x": 29.175,
-          "y": 20.3625,
+          "x": 25.85,
+          "y": 26.365,
           "net": "GND",
           "smd": true
         },
         {
           "number": "6",
-          "x": 29.825,
-          "y": 20.3625,
+          "x": 25.85,
+          "y": 27.635,
           "net": "PCA_LED0",
           "smd": true
         },
         {
           "number": "7",
-          "x": 30.475,
-          "y": 20.3625,
+          "x": 25.85,
+          "y": 28.905,
           "net": "PCA_LED1",
           "smd": true
         },
         {
           "number": "8",
-          "x": 31.125,
-          "y": 20.3625,
+          "x": 25.85,
+          "y": 30.175,
           "net": "PCA_LED2",
           "smd": true
         },
         {
           "number": "9",
-          "x": 31.775,
-          "y": 20.3625,
+          "x": 25.85,
+          "y": 31.445,
           "net": "PCA_LED3",
           "smd": true
         },
         {
           "number": "10",
-          "x": 32.425,
-          "y": 20.3625,
+          "x": 25.85,
+          "y": 32.715,
           "net": "GND",
           "smd": true
         },
         {
           "number": "11",
-          "x": 32.425,
-          "y": 14.6375,
+          "x": 35.15,
+          "y": 32.715,
           "net": "PCA_LED4",
           "smd": true
         },
         {
           "number": "12",
-          "x": 31.775,
-          "y": 14.6375,
+          "x": 35.15,
+          "y": 31.445,
           "net": "PCA_LED5",
           "smd": true
         },
         {
           "number": "13",
-          "x": 31.125,
-          "y": 14.6375,
+          "x": 35.15,
+          "y": 30.175,
           "net": "PCA_LED6",
           "smd": true
         },
         {
           "number": "14",
-          "x": 30.475,
-          "y": 14.6375,
+          "x": 35.15,
+          "y": 28.905,
           "net": "PCA_LED7",
           "smd": true
         },
         {
           "number": "15",
-          "x": 29.825,
-          "y": 14.6375,
+          "x": 35.15,
+          "y": 27.635,
           "net": "GND",
           "smd": true
         },
         {
           "number": "16",
-          "x": 29.175,
-          "y": 14.6375,
+          "x": 35.15,
+          "y": 26.365,
           "net": "GND",
           "smd": true
         },
         {
           "number": "17",
-          "x": 28.525,
-          "y": 14.6375,
+          "x": 35.15,
+          "y": 25.095,
           "net": "GND",
           "smd": true
         },
         {
           "number": "18",
-          "x": 27.875,
-          "y": 14.6375,
+          "x": 35.15,
+          "y": 23.825,
           "net": "PCA_SCL",
           "smd": true
         },
         {
           "number": "19",
-          "x": 27.225,
-          "y": 14.6375,
+          "x": 35.15,
+          "y": 22.555,
           "net": "PCA_SDA",
           "smd": true
         },
         {
           "number": "20",
-          "x": 26.575,
-          "y": 14.6375,
+          "x": 35.15,
+          "y": 21.285,
           "net": "+3V3",
           "smd": true
         }
@@ -5273,10 +5273,10 @@
     {
       "ref": "R_PCACLK",
       "value": "0R",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 62.0,
-      "y": 23.0,
-      "rotation": 0.0,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 61.0,
+      "y": 21.0,
+      "rotation": 90.0,
       "side": "front",
       "nets": {
         "1": "ALBA_SCL",
@@ -5284,42 +5284,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603JR-070RL",
+      "mpn": "RC0805JR-070RL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R27",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "ALBA_SCL",
           "type": "passive",
-          "x": 61.175,
-          "y": 23.0
+          "x": 61.0,
+          "y": 22.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "PCA_SCL",
           "type": "passive",
-          "x": 62.825,
-          "y": 23.0
+          "x": 61.0,
+          "y": 20.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 61.175,
-          "y": 23.0,
+          "x": 61.0,
+          "y": 22.0,
           "net": "ALBA_SCL",
           "smd": true
         },
         {
           "number": "2",
-          "x": 62.825,
-          "y": 23.0,
+          "x": 61.0,
+          "y": 20.0,
           "net": "PCA_SCL",
           "smd": true
         }
@@ -5328,7 +5328,7 @@
     {
       "ref": "R_PCADAT",
       "value": "0R",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 69.0,
       "y": 24.5,
       "rotation": 90.0,
@@ -5339,12 +5339,12 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603JR-070RL",
+      "mpn": "RC0805JR-070RL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R28",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
@@ -5352,7 +5352,7 @@
           "net": "ALBA_SDA",
           "type": "passive",
           "x": 69.0,
-          "y": 25.325
+          "y": 25.5
         },
         {
           "number": "2",
@@ -5360,21 +5360,21 @@
           "net": "PCA_SDA",
           "type": "passive",
           "x": 69.0,
-          "y": 23.675
+          "y": 23.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
           "x": 69.0,
-          "y": 25.325,
+          "y": 25.5,
           "net": "ALBA_SDA",
           "smd": true
         },
         {
           "number": "2",
           "x": 69.0,
-          "y": 23.675,
+          "y": 23.5,
           "net": "PCA_SDA",
           "smd": true
         }
@@ -5383,9 +5383,9 @@
     {
       "ref": "C_PCA",
       "value": "100nF 50V X7R",
-      "footprint": "GemilaiMateCompact:C_0603_1608Metric",
-      "x": 26.5,
-      "y": 12.5,
+      "footprint": "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "x": 38.5,
+      "y": 21.5,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -5394,42 +5394,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "GRM188R71H104KA93D",
+      "mpn": "GRM21BR71H104KA01L",
       "datasheet": "",
       "section": "Decoupling",
       "dnp": false,
       "designator": "C15",
-      "source_footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+3V3",
           "type": "passive",
-          "x": 25.725,
-          "y": 12.5
+          "x": 37.4625,
+          "y": 21.5
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 27.275,
-          "y": 12.5
+          "x": 39.5375,
+          "y": 21.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 25.725,
-          "y": 12.5,
+          "x": 37.4625,
+          "y": 21.5,
           "net": "+3V3",
           "smd": true
         },
         {
           "number": "2",
-          "x": 27.275,
-          "y": 12.5,
+          "x": 39.5375,
+          "y": 21.5,
           "net": "GND",
           "smd": true
         }
@@ -5438,10 +5438,10 @@
     {
       "ref": "R_ALBASDA",
       "value": "4.7k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 11.0,
-      "y": 21.5,
-      "rotation": 90.0,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 29.5,
+      "y": 19.0,
+      "rotation": 0.0,
       "side": "front",
       "nets": {
         "1": "+3V3",
@@ -5449,42 +5449,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-074K7L",
+      "mpn": "RC0805FR-074K7L",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R29",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+3V3",
           "type": "passive",
-          "x": 11.0,
-          "y": 22.325
+          "x": 28.5,
+          "y": 19.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "ALBA_SDA",
           "type": "passive",
-          "x": 11.0,
-          "y": 20.675
+          "x": 30.5,
+          "y": 19.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 11.0,
-          "y": 22.325,
+          "x": 28.5,
+          "y": 19.0,
           "net": "+3V3",
           "smd": true
         },
         {
           "number": "2",
-          "x": 11.0,
-          "y": 20.675,
+          "x": 30.5,
+          "y": 19.0,
           "net": "ALBA_SDA",
           "smd": true
         }
@@ -5493,9 +5493,9 @@
     {
       "ref": "R_ALBASCL",
       "value": "4.7k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 49.5,
-      "y": 21.0,
+      "y": 26.5,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -5504,42 +5504,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-074K7L",
+      "mpn": "RC0805FR-074K7L",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R30",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+3V3",
           "type": "passive",
-          "x": 48.675,
-          "y": 21.0
+          "x": 48.5,
+          "y": 26.5
         },
         {
           "number": "2",
           "name": "2",
           "net": "ALBA_SCL",
           "type": "passive",
-          "x": 50.325,
-          "y": 21.0
+          "x": 50.5,
+          "y": 26.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 48.675,
-          "y": 21.0,
+          "x": 48.5,
+          "y": 26.5,
           "net": "+3V3",
           "smd": true
         },
         {
           "number": "2",
-          "x": 50.325,
-          "y": 21.0,
+          "x": 50.5,
+          "y": 26.5,
           "net": "ALBA_SCL",
           "smd": true
         }
@@ -5548,9 +5548,9 @@
     {
       "ref": "R_LED0",
       "value": "180R 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 65.0,
-      "y": 5.0,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 69.0,
+      "y": 7.5,
       "rotation": 90.0,
       "side": "front",
       "nets": {
@@ -5559,42 +5559,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-07180RL",
+      "mpn": "RC0805FR-07180RL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R31",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "PCA_LED0",
           "type": "passive",
-          "x": 65.0,
-          "y": 5.825
+          "x": 69.0,
+          "y": 8.5
         },
         {
           "number": "2",
           "name": "2",
           "net": "RGBW0",
           "type": "passive",
-          "x": 65.0,
-          "y": 4.175
+          "x": 69.0,
+          "y": 6.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 65.0,
-          "y": 5.825,
+          "x": 69.0,
+          "y": 8.5,
           "net": "PCA_LED0",
           "smd": true
         },
         {
           "number": "2",
-          "x": 65.0,
-          "y": 4.175,
+          "x": 69.0,
+          "y": 6.5,
           "net": "RGBW0",
           "smd": true
         }
@@ -5603,8 +5603,8 @@
     {
       "ref": "R_LED1",
       "value": "180R 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 64.5,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 65.0,
       "y": 8.5,
       "rotation": 90.0,
       "side": "front",
@@ -5614,42 +5614,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-07180RL",
+      "mpn": "RC0805FR-07180RL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R32",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "PCA_LED1",
           "type": "passive",
-          "x": 64.5,
-          "y": 9.325
+          "x": 65.0,
+          "y": 9.5
         },
         {
           "number": "2",
           "name": "2",
           "net": "RGBW1",
           "type": "passive",
-          "x": 64.5,
-          "y": 7.675
+          "x": 65.0,
+          "y": 7.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 64.5,
-          "y": 9.325,
+          "x": 65.0,
+          "y": 9.5,
           "net": "PCA_LED1",
           "smd": true
         },
         {
           "number": "2",
-          "x": 64.5,
-          "y": 7.675,
+          "x": 65.0,
+          "y": 7.5,
           "net": "RGBW1",
           "smd": true
         }
@@ -5658,10 +5658,10 @@
     {
       "ref": "R_LED2",
       "value": "180R 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 64.5,
-      "y": 12.0,
-      "rotation": 90.0,
+      "y": 17.5,
+      "rotation": 0.0,
       "side": "front",
       "nets": {
         "1": "PCA_LED2",
@@ -5669,42 +5669,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-07180RL",
+      "mpn": "RC0805FR-07180RL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R33",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "PCA_LED2",
           "type": "passive",
-          "x": 64.5,
-          "y": 12.825
+          "x": 63.5,
+          "y": 17.5
         },
         {
           "number": "2",
           "name": "2",
           "net": "RGBW2",
           "type": "passive",
-          "x": 64.5,
-          "y": 11.175
+          "x": 65.5,
+          "y": 17.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 64.5,
-          "y": 12.825,
+          "x": 63.5,
+          "y": 17.5,
           "net": "PCA_LED2",
           "smd": true
         },
         {
           "number": "2",
-          "x": 64.5,
-          "y": 11.175,
+          "x": 65.5,
+          "y": 17.5,
           "net": "RGBW2",
           "smd": true
         }
@@ -5713,8 +5713,8 @@
     {
       "ref": "R_LED3",
       "value": "180R 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 66.0,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 66.5,
       "y": 15.0,
       "rotation": 0.0,
       "side": "front",
@@ -5724,19 +5724,19 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-07180RL",
+      "mpn": "RC0805FR-07180RL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R34",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "PCA_LED3",
           "type": "passive",
-          "x": 65.175,
+          "x": 65.5,
           "y": 15.0
         },
         {
@@ -5744,21 +5744,21 @@
           "name": "2",
           "net": "RGBW3",
           "type": "passive",
-          "x": 66.825,
+          "x": 67.5,
           "y": 15.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 65.175,
+          "x": 65.5,
           "y": 15.0,
           "net": "PCA_LED3",
           "smd": true
         },
         {
           "number": "2",
-          "x": 66.825,
+          "x": 67.5,
           "y": 15.0,
           "net": "RGBW3",
           "smd": true
@@ -5768,10 +5768,10 @@
     {
       "ref": "R_GATE4",
       "value": "100R 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 61.5,
       "y": 37.5,
-      "rotation": 90.0,
+      "rotation": 0.0,
       "side": "front",
       "nets": {
         "1": "PCA_LED4",
@@ -5779,42 +5779,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-07100RL",
+      "mpn": "RC0805FR-07100RL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R35",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "PCA_LED4",
           "type": "passive",
-          "x": 61.5,
-          "y": 38.325
+          "x": 60.5,
+          "y": 37.5
         },
         {
           "number": "2",
           "name": "2",
           "net": "LED_GATE4",
           "type": "passive",
-          "x": 61.5,
-          "y": 36.675
+          "x": 62.5,
+          "y": 37.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 61.5,
-          "y": 38.325,
+          "x": 60.5,
+          "y": 37.5,
           "net": "PCA_LED4",
           "smd": true
         },
         {
           "number": "2",
-          "x": 61.5,
-          "y": 36.675,
+          "x": 62.5,
+          "y": 37.5,
           "net": "LED_GATE4",
           "smd": true
         }
@@ -5823,10 +5823,10 @@
     {
       "ref": "R_GPD4",
       "value": "100k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 53.5,
-      "y": 50.5,
-      "rotation": 90.0,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 54.0,
+      "y": 53.5,
+      "rotation": 0.0,
       "side": "front",
       "nets": {
         "1": "LED_GATE4",
@@ -5834,42 +5834,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-07100KL",
+      "mpn": "RC0805FR-07100KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R36",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "LED_GATE4",
           "type": "passive",
-          "x": 53.5,
-          "y": 51.325
+          "x": 53.0,
+          "y": 53.5
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 53.5,
-          "y": 49.675
+          "x": 55.0,
+          "y": 53.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 53.5,
-          "y": 51.325,
+          "x": 53.0,
+          "y": 53.5,
           "net": "LED_GATE4",
           "smd": true
         },
         {
           "number": "2",
-          "x": 53.5,
-          "y": 49.675,
+          "x": 55.0,
+          "y": 53.5,
           "net": "GND",
           "smd": true
         }
@@ -5878,7 +5878,7 @@
     {
       "ref": "Q_LED4",
       "value": "AO3400A",
-      "footprint": "GemilaiMateCompact:SOT-23",
+      "footprint": "GemilaiMateCompact:SOT-23_Handsoldering",
       "x": 62.5,
       "y": 41.0,
       "rotation": 0.0,
@@ -5899,14 +5899,14 @@
       "section": "Alba",
       "dnp": false,
       "designator": "Q2",
-      "source_footprint": "Package_TO_SOT_SMD:SOT-23",
+      "source_footprint": "Package_TO_SOT_SMD:SOT-23_Handsoldering",
       "pins": [
         {
           "number": "1",
           "name": "G",
           "net": "LED_GATE4",
           "type": "passive",
-          "x": 61.5625,
+          "x": 61.0,
           "y": 40.05
         },
         {
@@ -5914,7 +5914,7 @@
           "name": "S",
           "net": "GND",
           "type": "passive",
-          "x": 61.5625,
+          "x": 61.0,
           "y": 41.95
         },
         {
@@ -5922,28 +5922,28 @@
           "name": "D",
           "net": "LED4_DRAIN",
           "type": "passive",
-          "x": 63.4375,
+          "x": 64.0,
           "y": 41.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 61.5625,
+          "x": 61.0,
           "y": 40.05,
           "net": "LED_GATE4",
           "smd": true
         },
         {
           "number": "2",
-          "x": 61.5625,
+          "x": 61.0,
           "y": 41.95,
           "net": "GND",
           "smd": true
         },
         {
           "number": "3",
-          "x": 63.4375,
+          "x": 64.0,
           "y": 41.0,
           "net": "LED4_DRAIN",
           "smd": true
@@ -5953,8 +5953,8 @@
     {
       "ref": "R_GATE5",
       "value": "100R 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 63.5,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 64.5,
       "y": 37.0,
       "rotation": 90.0,
       "side": "front",
@@ -5964,42 +5964,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-07100RL",
+      "mpn": "RC0805FR-07100RL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R37",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "PCA_LED5",
           "type": "passive",
-          "x": 63.5,
-          "y": 37.825
+          "x": 64.5,
+          "y": 38.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "LED_GATE5",
           "type": "passive",
-          "x": 63.5,
-          "y": 36.175
+          "x": 64.5,
+          "y": 36.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 63.5,
-          "y": 37.825,
+          "x": 64.5,
+          "y": 38.0,
           "net": "PCA_LED5",
           "smd": true
         },
         {
           "number": "2",
-          "x": 63.5,
-          "y": 36.175,
+          "x": 64.5,
+          "y": 36.0,
           "net": "LED_GATE5",
           "smd": true
         }
@@ -6008,9 +6008,9 @@
     {
       "ref": "R_GPD5",
       "value": "100k 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 53.5,
-      "y": 53.0,
+      "y": 56.0,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -6019,42 +6019,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-07100KL",
+      "mpn": "RC0805FR-07100KL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R38",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "LED_GATE5",
           "type": "passive",
-          "x": 52.675,
-          "y": 53.0
+          "x": 52.5,
+          "y": 56.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 54.325,
-          "y": 53.0
+          "x": 54.5,
+          "y": 56.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 52.675,
-          "y": 53.0,
+          "x": 52.5,
+          "y": 56.0,
           "net": "LED_GATE5",
           "smd": true
         },
         {
           "number": "2",
-          "x": 54.325,
-          "y": 53.0,
+          "x": 54.5,
+          "y": 56.0,
           "net": "GND",
           "smd": true
         }
@@ -6063,7 +6063,7 @@
     {
       "ref": "Q_LED5",
       "value": "AO3400A",
-      "footprint": "GemilaiMateCompact:SOT-23",
+      "footprint": "GemilaiMateCompact:SOT-23_Handsoldering",
       "x": 59.0,
       "y": 47.0,
       "rotation": 0.0,
@@ -6084,14 +6084,14 @@
       "section": "Alba",
       "dnp": false,
       "designator": "Q3",
-      "source_footprint": "Package_TO_SOT_SMD:SOT-23",
+      "source_footprint": "Package_TO_SOT_SMD:SOT-23_Handsoldering",
       "pins": [
         {
           "number": "1",
           "name": "G",
           "net": "LED_GATE5",
           "type": "passive",
-          "x": 58.0625,
+          "x": 57.5,
           "y": 46.05
         },
         {
@@ -6099,7 +6099,7 @@
           "name": "S",
           "net": "GND",
           "type": "passive",
-          "x": 58.0625,
+          "x": 57.5,
           "y": 47.95
         },
         {
@@ -6107,28 +6107,28 @@
           "name": "D",
           "net": "LED5_DRAIN",
           "type": "passive",
-          "x": 59.9375,
+          "x": 60.5,
           "y": 47.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 58.0625,
+          "x": 57.5,
           "y": 46.05,
           "net": "LED_GATE5",
           "smd": true
         },
         {
           "number": "2",
-          "x": 58.0625,
+          "x": 57.5,
           "y": 47.95,
           "net": "GND",
           "smd": true
         },
         {
           "number": "3",
-          "x": 59.9375,
+          "x": 60.5,
           "y": 47.0,
           "net": "LED5_DRAIN",
           "smd": true
@@ -7552,7 +7552,7 @@
       "side": "front",
       "nets": {
         "1": "GND",
-        "2": "+3V3",
+        "2": "I2C_OE",
         "3": "+3V3",
         "4": "SCL_3V3",
         "5": "SDA_3V3",
@@ -7603,7 +7603,7 @@
         {
           "number": "2",
           "name": "OE",
-          "net": "+3V3",
+          "net": "I2C_OE",
           "type": "input",
           "x": 38.46,
           "y": 18.85
@@ -7685,7 +7685,7 @@
           "number": "2",
           "x": 38.46,
           "y": 18.85,
-          "net": "+3V3",
+          "net": "I2C_OE",
           "smd": false
         },
         {
@@ -7750,7 +7750,7 @@
       "ref": "TP1",
       "value": "STRAP3",
       "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
-      "x": 20.5,
+      "x": 23.0,
       "y": 57.5,
       "rotation": 0.0,
       "side": "front",
@@ -7771,14 +7771,14 @@
           "name": "1",
           "net": "STRAP3",
           "type": "passive",
-          "x": 20.5,
+          "x": 23.0,
           "y": 57.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 20.5,
+          "x": 23.0,
           "y": 57.5,
           "net": "STRAP3",
           "smd": true
@@ -7789,8 +7789,8 @@
       "ref": "TP2",
       "value": "STRAP45",
       "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
-      "x": 22.5,
-      "y": 55.0,
+      "x": 25.5,
+      "y": 57.5,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -7810,15 +7810,15 @@
           "name": "1",
           "net": "STRAP45",
           "type": "passive",
-          "x": 22.5,
-          "y": 55.0
+          "x": 25.5,
+          "y": 57.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 22.5,
-          "y": 55.0,
+          "x": 25.5,
+          "y": 57.5,
           "net": "STRAP45",
           "smd": true
         }
@@ -7828,8 +7828,8 @@
       "ref": "TP3",
       "value": "STRAP46",
       "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
-      "x": 27.0,
-      "y": 52.5,
+      "x": 28.0,
+      "y": 57.5,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -7849,15 +7849,15 @@
           "name": "1",
           "net": "STRAP46",
           "type": "passive",
-          "x": 27.0,
-          "y": 52.5
+          "x": 28.0,
+          "y": 57.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 27.0,
-          "y": 52.5,
+          "x": 28.0,
+          "y": 57.5,
           "net": "STRAP46",
           "smd": true
         }
@@ -7867,7 +7867,7 @@
       "ref": "TP4",
       "value": "BOOT",
       "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
-      "x": 71.0,
+      "x": 71.5,
       "y": 22.5,
       "rotation": 0.0,
       "side": "front",
@@ -7888,14 +7888,14 @@
           "name": "1",
           "net": "BOOT",
           "type": "passive",
-          "x": 71.0,
+          "x": 71.5,
           "y": 22.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 71.0,
+          "x": 71.5,
           "y": 22.5,
           "net": "BOOT",
           "smd": true
@@ -7946,7 +7946,7 @@
       "value": "GND",
       "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
       "x": 65.0,
-      "y": 2.0,
+      "y": 5.5,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -7967,14 +7967,14 @@
           "net": "GND",
           "type": "passive",
           "x": 65.0,
-          "y": 2.0
+          "y": 5.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
           "x": 65.0,
-          "y": 2.0,
+          "y": 5.5,
           "net": "GND",
           "smd": true
         }
@@ -7984,8 +7984,8 @@
       "ref": "TP7",
       "value": "ALBA_SDA",
       "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
-      "x": 25.0,
-      "y": 55.0,
+      "x": 12.0,
+      "y": 44.0,
       "rotation": 0.0,
       "side": "front",
       "nets": {
@@ -8005,15 +8005,15 @@
           "name": "1",
           "net": "ALBA_SDA",
           "type": "passive",
-          "x": 25.0,
-          "y": 55.0
+          "x": 12.0,
+          "y": 44.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 25.0,
-          "y": 55.0,
+          "x": 12.0,
+          "y": 44.0,
           "net": "ALBA_SDA",
           "smd": true
         }
@@ -8023,7 +8023,7 @@
       "ref": "TP8",
       "value": "ALBA_SCL",
       "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
-      "x": 23.0,
+      "x": 48.0,
       "y": 57.5,
       "rotation": 0.0,
       "side": "front",
@@ -8044,14 +8044,14 @@
           "name": "1",
           "net": "ALBA_SCL",
           "type": "passive",
-          "x": 23.0,
+          "x": 48.0,
           "y": 57.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 23.0,
+          "x": 48.0,
           "y": 57.5,
           "net": "ALBA_SCL",
           "smd": true
@@ -8101,7 +8101,7 @@
       "ref": "TP10",
       "value": "PCA_LED7",
       "footprint": "GemilaiMateCompact:TestPoint_Pad_D1.0mm",
-      "x": 69.5,
+      "x": 71.5,
       "y": 9.0,
       "rotation": 0.0,
       "side": "front",
@@ -8122,14 +8122,14 @@
           "name": "1",
           "net": "PCA_LED7",
           "type": "passive",
-          "x": 69.5,
+          "x": 71.5,
           "y": 9.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 69.5,
+          "x": 71.5,
           "y": 9.0,
           "net": "PCA_LED7",
           "smd": true
@@ -8139,7 +8139,7 @@
     {
       "ref": "D_TVS",
       "value": "SMAJ5.0A",
-      "footprint": "GemilaiMateCompact:D_SMA",
+      "footprint": "GemilaiMateCompact:D_SMA_Handsoldering",
       "x": 50.5,
       "y": 2.5,
       "rotation": 0.0,
@@ -8158,14 +8158,14 @@
       "section": "Power",
       "dnp": false,
       "designator": "D3",
-      "source_footprint": "Diode_SMD:D_SMA",
+      "source_footprint": "Diode_SMD:D_SMA_Handsoldering",
       "pins": [
         {
           "number": "1",
           "name": "K",
           "net": "+5V_EXT",
           "type": "passive",
-          "x": 48.5,
+          "x": 48.0,
           "y": 2.5
         },
         {
@@ -8173,21 +8173,21 @@
           "name": "A",
           "net": "GND",
           "type": "passive",
-          "x": 52.5,
+          "x": 53.0,
           "y": 2.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 48.5,
+          "x": 48.0,
           "y": 2.5,
           "net": "+5V_EXT",
           "smd": true
         },
         {
           "number": "2",
-          "x": 52.5,
+          "x": 53.0,
           "y": 2.5,
           "net": "GND",
           "smd": true
@@ -8197,8 +8197,8 @@
     {
       "ref": "C_EXT",
       "value": "10uF 16V X7R",
-      "footprint": "GemilaiMateCompact:C_1206_3216Metric",
-      "x": 56.5,
+      "footprint": "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
+      "x": 58.0,
       "y": 3.0,
       "rotation": 0.0,
       "side": "front",
@@ -8213,14 +8213,14 @@
       "section": "Decoupling",
       "dnp": false,
       "designator": "C16",
-      "source_footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "source_footprint": "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+5V_EXT",
           "type": "passive",
-          "x": 55.025,
+          "x": 56.4375,
           "y": 3.0
         },
         {
@@ -8228,21 +8228,21 @@
           "name": "2",
           "net": "GND",
           "type": "passive",
-          "x": 57.975,
+          "x": 59.5625,
           "y": 3.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 55.025,
+          "x": 56.4375,
           "y": 3.0,
           "net": "+5V_EXT",
           "smd": true
         },
         {
           "number": "2",
-          "x": 57.975,
+          "x": 59.5625,
           "y": 3.0,
           "net": "GND",
           "smd": true
@@ -8252,10 +8252,10 @@
     {
       "ref": "R_EXTSDA",
       "value": "470R 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 12.0,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 25.5,
       "y": 47.0,
-      "rotation": 0.0,
+      "rotation": 90.0,
       "side": "front",
       "nets": {
         "1": "ALBA_SDA",
@@ -8263,42 +8263,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-07470RL",
+      "mpn": "RC0805FR-07470RL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R39",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "ALBA_SDA",
           "type": "passive",
-          "x": 11.175,
-          "y": 47.0
+          "x": 25.5,
+          "y": 48.0
         },
         {
           "number": "2",
           "name": "2",
           "net": "EXT_SDA",
           "type": "passive",
-          "x": 12.825,
-          "y": 47.0
+          "x": 25.5,
+          "y": 46.0
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 11.175,
-          "y": 47.0,
+          "x": 25.5,
+          "y": 48.0,
           "net": "ALBA_SDA",
           "smd": true
         },
         {
           "number": "2",
-          "x": 12.825,
-          "y": 47.0,
+          "x": 25.5,
+          "y": 46.0,
           "net": "EXT_SDA",
           "smd": true
         }
@@ -8307,10 +8307,10 @@
     {
       "ref": "R_EXTSCL",
       "value": "470R 1%",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 19.5,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 27.0,
       "y": 54.5,
-      "rotation": 0.0,
+      "rotation": 90.0,
       "side": "front",
       "nets": {
         "1": "ALBA_SCL",
@@ -8318,42 +8318,42 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603FR-07470RL",
+      "mpn": "RC0805FR-07470RL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R40",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "ALBA_SCL",
           "type": "passive",
-          "x": 18.675,
-          "y": 54.5
+          "x": 27.0,
+          "y": 55.5
         },
         {
           "number": "2",
           "name": "2",
           "net": "EXT_SCL",
           "type": "passive",
-          "x": 20.325,
-          "y": 54.5
+          "x": 27.0,
+          "y": 53.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 18.675,
-          "y": 54.5,
+          "x": 27.0,
+          "y": 55.5,
           "net": "ALBA_SCL",
           "smd": true
         },
         {
           "number": "2",
-          "x": 20.325,
-          "y": 54.5,
+          "x": 27.0,
+          "y": 53.5,
           "net": "EXT_SCL",
           "smd": true
         }
@@ -8362,9 +8362,9 @@
     {
       "ref": "R_TC3V3",
       "value": "0R",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "x": 29.0,
-      "y": 54.5,
+      "y": 50.5,
       "rotation": 90.0,
       "side": "front",
       "nets": {
@@ -8373,12 +8373,12 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603JR-070RL",
+      "mpn": "RC0805JR-070RL",
       "datasheet": "",
       "section": "Passives",
       "dnp": false,
       "designator": "R41",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
@@ -8386,7 +8386,7 @@
           "net": "+3V3",
           "type": "passive",
           "x": 29.0,
-          "y": 55.325
+          "y": 51.5
         },
         {
           "number": "2",
@@ -8394,21 +8394,21 @@
           "net": "TC_VIN",
           "type": "passive",
           "x": 29.0,
-          "y": 53.675
+          "y": 49.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
           "x": 29.0,
-          "y": 55.325,
+          "y": 51.5,
           "net": "+3V3",
           "smd": true
         },
         {
           "number": "2",
           "x": 29.0,
-          "y": 53.675,
+          "y": 49.5,
           "net": "TC_VIN",
           "smd": true
         }
@@ -8417,10 +8417,10 @@
     {
       "ref": "R_TC5V",
       "value": "0R",
-      "footprint": "GemilaiMateCompact:R_0603_1608Metric",
-      "x": 31.0,
-      "y": 50.5,
-      "rotation": 0.0,
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 31.5,
+      "y": 49.5,
+      "rotation": 90.0,
       "side": "front",
       "nets": {
         "1": "+5V_CORE",
@@ -8428,19 +8428,19 @@
       },
       "names": {},
       "pin_types": {},
-      "mpn": "RC0603JR-070RL",
+      "mpn": "RC0805JR-070RL",
       "datasheet": "",
       "section": "Passives",
       "dnp": true,
       "designator": "R42",
-      "source_footprint": "Resistor_SMD:R_0603_1608Metric",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
       "pins": [
         {
           "number": "1",
           "name": "1",
           "net": "+5V_CORE",
           "type": "passive",
-          "x": 30.175,
+          "x": 31.5,
           "y": 50.5
         },
         {
@@ -8448,28 +8448,139 @@
           "name": "2",
           "net": "TC_VIN",
           "type": "passive",
-          "x": 31.825,
-          "y": 50.5
+          "x": 31.5,
+          "y": 48.5
         }
       ],
       "physical_pads": [
         {
           "number": "1",
-          "x": 30.175,
+          "x": 31.5,
           "y": 50.5,
           "net": "+5V_CORE",
           "smd": true
         },
         {
           "number": "2",
-          "x": 31.825,
-          "y": 50.5,
+          "x": 31.5,
+          "y": 48.5,
           "net": "TC_VIN",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "R_OE",
+      "value": "10k 1%",
+      "footprint": "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "x": 38.5,
+      "y": 26.5,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "+3V3",
+        "2": "I2C_OE"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "RC0805FR-0710KL",
+      "datasheet": "",
+      "section": "Passives",
+      "dnp": false,
+      "designator": "R43",
+      "source_footprint": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "type": "passive",
+          "x": 37.5,
+          "y": 26.5
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "I2C_OE",
+          "type": "passive",
+          "x": 39.5,
+          "y": 26.5
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 37.5,
+          "y": 26.5,
+          "net": "+3V3",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 39.5,
+          "y": 26.5,
+          "net": "I2C_OE",
+          "smd": true
+        }
+      ]
+    },
+    {
+      "ref": "C_OE",
+      "value": "1uF 16V X7R",
+      "footprint": "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "x": 39.0,
+      "y": 24.0,
+      "rotation": 0.0,
+      "side": "front",
+      "nets": {
+        "1": "I2C_OE",
+        "2": "GND"
+      },
+      "names": {},
+      "pin_types": {},
+      "mpn": "GRM21BR71C105KA01L",
+      "datasheet": "",
+      "section": "Decoupling",
+      "dnp": false,
+      "designator": "C17",
+      "source_footprint": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "I2C_OE",
+          "type": "passive",
+          "x": 37.9625,
+          "y": 24.0
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "type": "passive",
+          "x": 40.0375,
+          "y": 24.0
+        }
+      ],
+      "physical_pads": [
+        {
+          "number": "1",
+          "x": 37.9625,
+          "y": 24.0,
+          "net": "I2C_OE",
+          "smd": true
+        },
+        {
+          "number": "2",
+          "x": 40.0375,
+          "y": 24.0,
+          "net": "GND",
           "smd": true
         }
       ]
     }
   ],
+  "mount_keepout_radius_mm": 2.5,
   "nominal_assembly_bounds_mm": [
     0,
     -7.15,
@@ -8590,7 +8701,7 @@
       ]
     }
   },
-  "parts_count": 104,
+  "parts_count": 106,
   "power_flags": [
     "GND",
     "EXT_IN",

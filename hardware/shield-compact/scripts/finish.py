@@ -25,6 +25,9 @@ def polygon(t):
  a,b=t.GetStart(),t.GetEnd();return LineString([(mm(a.x),mm(a.y)),(mm(b.x),mm(b.y))]).buffer(mm(t.GetWidth())/2)
 objects=[dict(item=t,net=t.GetNetCode(),shape=polygon(t),layer=None if isinstance(t,p.PCB_VIA) else t.GetLayer()) for t in tracks]
 objects +=[dict(item=a,net=a.GetNetCode(),shape=shape_box(*rect(a)),layer=a.GetLayer() if a.GetAttribute()==p.PAD_ATTRIB_SMD else None) for a in pads]
+# M2 mounts are copper-free discs on every layer, not just their 2.2 mm drills.
+keepout=D['mount_keepout_radius_mm']
+objects +=[dict(item=None,net=-1,shape=Point(x,y).buffer(keepout,64),layer=None) for x,y in D['mounts_mm']]
 power={'+3V3','+5V_CORE','+5V_EXT','EXT_IN','USB_VBUS','USB_FUSED'}
 changed=0
 for obj in objects[:len(tracks)]:
@@ -35,9 +38,10 @@ for obj in objects[:len(tracks)]:
  bounds=line.bounds;edge=min(bounds[0],bounds[1],W-bounds[2],H_MM-bounds[3]);limit=min(limit,2*(edge-.51))
  for other in objects:
   if other['net']==obj['net'] or other is obj or (other['layer'] is not None and other['layer']!=obj['layer']):continue
-  # 0.01mm extra geometric margin beyond the 0.30 mm signal and power rule.
-  # Fixed-pitch USB/WROOM pads stay governed by their local 0.15 mm rules.
-  distance=line.distance(other['shape']);clear=.51 if isinstance(other['item'],p.PAD) and other['item'].GetAttribute()==p.PAD_ATTRIB_NPTH else .31
+  # 0.01 mm extra geometric margin beyond the 0.30 mm signal and power rule;
+  # widening never enters a mount keepout disc.
+  distance=line.distance(other['shape'])
+  clear=.02 if other['item'] is None else .51 if isinstance(other['item'],p.PAD) and other['item'].GetAttribute()==p.PAD_ATTRIB_NPTH else .31
   limit=min(limit,2*(distance-clear))
  width=max(mm(t.GetWidth()),math.floor((limit+1e-8)/.05)*.05)
  if width>mm(t.GetWidth())+.001:
@@ -147,7 +151,12 @@ for alias in ['J_ADS','J_TC','J_LEVEL']:
   if alias=='J_ADS':
    side=[(x+sign*offset,y+shift,0) for sign in [-1,1] for offset in [2.5,2.4,2.3,2.2,2.1,2.0] for shift in [0,.2,-.2,.4,-.4]]
    candidates=side+candidates
-  if alias in ['J_ADS','J_TC']:candidates=[q for q in candidates if math.dist(q[:2],(x,y))<2.6]
+  if alias in ['J_ADS','J_TC']:
+   # Within one pitch of the pin, or further out on the line through the pin
+   # across the row, so the legend never sits beside a neighbouring contact.
+   b2=next(a for a in f.Pads() if a.GetNumber()=='2');b1=next(a for a in f.Pads() if a.GetNumber()=='1')
+   rx,ry=mm(b2.GetPosition().x-b1.GetPosition().x),mm(b2.GetPosition().y-b1.GetPosition().y);rl=math.hypot(rx,ry)
+   candidates=[q for q in candidates if math.dist(q[:2],(x,y))<2.6 or (abs((q[0]-x)*rx+(q[1]-y)*ry)/rl<=.5 and math.dist(q[:2],(x,y))<5.5)]
   label(name,silk_layer,candidates,.6,required=name!='NC',owner=c['designator']+'.'+num)
 for alias in ['J_ADS','J_TC','J_LEVEL']:
  c=next(c for c in D['parts'] if c['ref']==alias);f=F[c['designator']];a=next(a for a in f.Pads() if a.GetNumber()=='1');x,y=mm(a.GetPosition().x),mm(a.GetPosition().y)
@@ -177,7 +186,7 @@ for c in D['parts']:
  along=0 if max(xs)-min(xs)>=max(ys)-min(ys) else 90
  row=[(cx,cy+d,along) for d in [-3.4,3.4,-4.4,4.4]] if along==0 else [(cx+d,cy,along) for d in [-3.4,3.4,-4.4,4.4]]
  candidates=[q for x,y,angle in row for q in near(x,y,angle,radius=4)]+[q for x,y,angle in row for q in near(x,y,90-along,radius=6)]
- candidates+=sorted([(cx+ix*.25,cy+iy*.25,angle) for angle in [0,90] for ix in range(-24,25) for iy in range(-24,25)],key=lambda q:(q[0]-cx)**2+(q[1]-cy)**2)
+ candidates+=sorted([(cx+ix*.25,cy+iy*.25,angle) for angle in [0,90] for ix in range(-40,41) for iy in range(-40,41)],key=lambda q:(q[0]-cx)**2+(q[1]-cy)**2)
  if not label(text,p.B_SilkS,candidates,.7,required=False,owner=c['designator']+'.FUNCTION'):
   label(c['designator']+'\n'+FUNCTION[c['ref']],p.B_SilkS,candidates,.7,owner=c['designator']+'.FUNCTION')
 def dot(layer,candidates,owner):
@@ -196,11 +205,34 @@ for c in D['parts']:
  positions=near(x,y,radius=3)+[(x+ix*.25,y+iy*.25,0) for ix in range(-24,25) for iy in range(-24,25)]
  closer=[q for q in positions if math.dist(q[:2],(x,y))+.5<math.dist(q[:2],(x2,y2))]
  dot(p.B_SilkS,sorted(closer,key=lambda q:math.dist(q[:2],(x,y))),c['designator']+'.1')
+def bar(layer,x,y,ux,uy,half,owner):
+ # Cathode bar beside pad 1 (K), across the diode axis, outside the body.
+ for offset in [.45,.6,.75,.9,1.05,1.2,1.4]:
+  cx,cy=x+ux*(half+offset),y+uy*(half+offset);ax,ay,bx,by=cx+uy*1.0,cy-ux*1.0,cx-uy*1.0,cy+ux*1.0
+  b=[min(ax,bx)-.15,min(ay,by)-.15,max(ax,bx)+.15,max(ay,by)+.15]
+  if b[0]<.35 or b[1]<.35 or b[2]>W-.35 or b[3]>H_MM-.35 or any(overlaps(b,o) for o in obstacles[layer]):continue
+  s=p.PCB_SHAPE(B);s.SetShape(p.SHAPE_T_SEGMENT);s.SetStart(V(ax,ay));s.SetEnd(V(bx,by));s.SetWidth(p.FromMM(.3));s.SetLayer(layer);B.Add(s)
+  obstacles[layer].append([b[0]-.16,b[1]-.16,b[2]+.16,b[3]+.16])
+  labels.append(dict(text='CATHODE BAR',owner=owner,layer=B.GetLayerName(layer),position_mm=[cx,cy],rotation=0,bbox_mm=b,via_overlaps=0));return
+ raise RuntimeError('No room for cathode mark '+owner)
+# Every polarised SMD part gets an orientation mark on its own side: a dot at
+# pin 1 of ICs and transistors, a cathode bar at diodes (KiCad pad 1 = K).
+# The WROOM module is excluded: its antenna must overhang the board edge.
+for c in D['parts']:
+ if c['dnp'] or c['ref']=='U1' or not c['ref'].startswith(('U','Q_','D_')):continue
+ f=F[c['designator']];layer=p.B_SilkS if f.IsFlipped() else p.F_SilkS
+ a=next(a for a in f.Pads() if a.GetNumber()=='1');x,y=mm(a.GetPosition().x),mm(a.GetPosition().y)
+ a2=next(a for a in f.Pads() if a.GetNumber()=='2');x2,y2=mm(a2.GetPosition().x),mm(a2.GetPosition().y)
+ if c['ref'].startswith('D_'):
+  d=math.dist((x,y),(x2,y2));ux,uy=(x-x2)/d,(y-y2)/d;r=rect(a)
+  bar(layer,x,y,ux,uy,abs(ux)*(r[2]-r[0])/2+abs(uy)*(r[3]-r[1])/2,c['designator']+'.POL');continue
+ positions=near(x,y,radius=3)+[(x+ix*.25,y+iy*.25,0) for ix in range(-16,17) for iy in range(-16,17)]
+ closer=[q for q in positions if math.dist(q[:2],(x,y))+.5<math.dist(q[:2],(x2,y2))]
+ dot(layer,sorted(closer,key=lambda q:math.dist(q[:2],(x,y))),c['designator']+'.POL')
 # Function and pin legends take priority over branding.
-label('GemilaiMate MODULE '+D['revision'],p.B_SilkS,wide(14,15),.85)
-label('Rico-X',p.B_SilkS,wide(14,17),.8)
-label('github.com/Rico-X/GemilaiMate',p.B_SilkS,wide(15,19),.7)
-label('NO MAINS',p.B_SilkS,wide(14,21),.75)
+label('GemilaiMate COMPACT '+D['revision'],p.B_SilkS,wide(14,15),.85)
+for text,x,y in [('NO MAINS',14,21),('Rico-X',14,17),('github.com/Rico-X/GemilaiMate',15,19)]:
+ if not label(text,p.B_SilkS,wide(x,y),.8,required=False):label(text,p.F_SilkS,wide(x,y),.8,required=False)
 # Add compact designators when there is space; the full assembly map always
 # includes every reference even when a small resistor has no clear silk site.
 missing=[]

@@ -1,14 +1,14 @@
-(footprint "Fuse_1206_3216Metric"
+(footprint "C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 	(version 20260206)
 	(generator "pcbnew")
 	(generator_version "10.0")
 	(layer "F.Cu")
-	(descr "Fuse SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf)")
-	(tags "fuse")
-	(property "Reference" "F2"
-		(at 0 -1.83 0)
+	(descr "Capacitor SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
+	(tags "capacitor handsolder")
+	(property "Reference" "C16"
+		(at 0 -1.85 0)
 		(layer "F.SilkS")
-		(uuid "f51db954-28f0-4b28-b133-9488100224c6")
+		(uuid "26d559eb-538e-4e34-98f4-17f11eeee70c")
 		(effects
 			(font
 				(size 1 1)
@@ -16,10 +16,10 @@
 			)
 		)
 	)
-	(property "Value" "1206L150/12 1.5A"
-		(at 0 1.83 0)
+	(property "Value" "10uF 16V X7R"
+		(at 0 1.85 0)
 		(layer "F.Fab")
-		(uuid "52b5046b-403a-4b8a-b2da-debaa115cc22")
+		(uuid "8462bfac-d02b-4e04-af86-90d6ea1e8433")
 		(effects
 			(font
 				(size 1 1)
@@ -31,7 +31,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "53eeabd3-0662-4477-8b69-2abde441801c")
+		(uuid "69e36cdf-8af8-4241-81d7-9a3afdeed440")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -42,7 +42,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "113939a1-8ca9-476d-a415-0989e7e07b08")
+		(uuid "15c5f7af-b2dd-4741-a1ad-fc3c32c922c4")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -53,7 +53,7 @@
 		(at 0 0 0)
 		(layer "F.SilkS")
 		(hide yes)
-		(uuid "827bea18-45cd-43da-8135-99a34dfe6b22")
+		(uuid "f7173ce6-595b-4937-a399-bd5d2a5c5aad")
 		(effects
 			(font
 				(size 1 1)
@@ -64,35 +64,35 @@
 	(attr smd)
 	(duplicate_pad_numbers_are_jumpers no)
 	(fp_rect
-		(start -2.28 -1.13)
-		(end 2.28 1.13)
+		(start -2.48 -1.15)
+		(end 2.48 1.15)
 		(stroke
 			(width 0.05)
 			(type solid)
 		)
 		(fill no)
 		(layer "F.CrtYd")
-		(uuid "457ea02e-7e7e-449c-bf27-48c3a6ae4edf")
+		(uuid "68b5bb33-6109-491c-a27a-d3877f2de4ba")
 	)
 	(fp_line
-		(start -0.602064 -0.91)
-		(end 0.602064 -0.91)
+		(start -0.711252 -0.91)
+		(end 0.711252 -0.91)
 		(stroke
 			(width 0.12)
 			(type solid)
 		)
 		(layer "F.Fab")
-		(uuid "57c78a3b-fd41-4603-88ce-04673eec2751")
+		(uuid "809ffa52-65c2-4cb8-8161-911bb6e7738f")
 	)
 	(fp_line
-		(start -0.602064 0.91)
-		(end 0.602064 0.91)
+		(start -0.711252 0.91)
+		(end 0.711252 0.91)
 		(stroke
 			(width 0.12)
 			(type solid)
 		)
 		(layer "F.Fab")
-		(uuid "897a1372-b6a9-4ab1-bd25-628d0b9d0a75")
+		(uuid "1f0e4513-8fb8-4f97-8954-a7956458a928")
 	)
 	(fp_rect
 		(start -1.6 -0.8)
@@ -103,12 +103,12 @@
 		)
 		(fill no)
 		(layer "F.Fab")
-		(uuid "c8a742d9-c196-4cbf-9801-3ac7c7e52eaf")
+		(uuid "10889eba-6f9e-45b0-817e-18736ec4ab29")
 	)
 	(fp_text user "${REFERENCE}"
 		(at 0 0 0)
 		(layer "F.Fab")
-		(uuid "a74d492b-f50f-4ef5-ad45-3a812efe5a07")
+		(uuid "d42d382e-1103-4103-afa9-988a9c7cf67a")
 		(effects
 			(font
 				(size 0.8 0.8)
@@ -117,21 +117,21 @@
 		)
 	)
 	(pad "1" smd roundrect
-		(at -1.4 0)
-		(size 1.25 1.75)
+		(at -1.5625 0)
+		(size 1.325 1.8)
 		(layers "F.Cu" "F.Mask" "F.Paste")
-		(roundrect_rratio 0.2)
-		(uuid "faa8d7f4-b0b4-4520-8e5d-d24e6b4c38c3")
+		(roundrect_rratio 0.188679)
+		(uuid "dc57bb47-3a35-4659-ba4a-1dc68a8ed0f5")
 	)
 	(pad "2" smd roundrect
-		(at 1.4 0)
-		(size 1.25 1.75)
+		(at 1.5625 0)
+		(size 1.325 1.8)
 		(layers "F.Cu" "F.Mask" "F.Paste")
-		(roundrect_rratio 0.2)
-		(uuid "a67acf76-2266-4c38-9bdc-e147d8e3a333")
+		(roundrect_rratio 0.188679)
+		(uuid "6e74a2c3-72db-452d-b976-0dcf5e76cc62")
 	)
 	(embedded_fonts no)
-	(model "${KIPRJMOD}/GemilaiMateCompact.3dshapes/Fuse_1206_3216Metric.step"
+	(model "${KIPRJMOD}/GemilaiMateCompact.3dshapes/C_1206_3216Metric.step"
 		(offset
 			(xyz 0 0 0)
 		)

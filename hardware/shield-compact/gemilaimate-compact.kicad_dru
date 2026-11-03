@@ -1,21 +1,25 @@
 (version 1)
 (rule "Ordinary drill to copper"
  (constraint hole_clearance (min 0.50mm)))
-(rule "USB4085 fixed pin pitch"
- (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
- (constraint clearance (min 0.15mm)))
+(rule "Signal track width"
+ (condition "A.NetClass == 'Default'")
+ (constraint track_width (min 0.15mm)))
+(rule "USB track width"
+ (condition "A.NetClass == 'USB'")
+ (constraint track_width (min 0.20mm)))
+(rule "Power track width"
+ (condition "A.NetClass == 'Power'")
+ (constraint track_width (min 0.30mm)))
+(rule "USB4085 contact fan-out"
+ (condition "(A.memberOfFootprint('J1') || B.memberOfFootprint('J1')) && A.Type != 'Zone' && B.Type != 'Zone'")
+ (constraint clearance (min 0.20mm)))
 (rule "USB4085 fixed hole pitch"
  (condition "A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
  (constraint hole_to_hole (min 0.45mm)))
 (rule "USB4085 fixed drill to copper"
  (condition "A.memberOfFootprint('J1') || B.memberOfFootprint('J1')")
  (constraint hole_clearance (min 0.30mm)))
-(rule "USB differential pair spacing"
- (condition "(A.NetName == 'USB_DP' && B.NetName == 'USB_DM') || (A.NetName == 'USB_DM' && B.NetName == 'USB_DP')")
- (constraint clearance (min 0.20mm)))
-(rule "TSSOP fixed lands and escapes"
- (condition "A.memberOfFootprint('U6') || B.memberOfFootprint('U6') || A.memberOfFootprint('U7') || B.memberOfFootprint('U7')")
- (constraint clearance (min 0.25mm)))
-(rule "WROOM fixed pad pitch"
- (condition "A.memberOfFootprint('U1') || B.memberOfFootprint('U1')")
+# The last matching rule wins: the fixed contact pitch overrides the fan-out rule.
+(rule "USB4085 fixed pin pitch"
+ (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
  (constraint clearance (min 0.15mm)))

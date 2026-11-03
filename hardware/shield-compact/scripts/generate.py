@@ -30,7 +30,7 @@ for name in names:
     net=p.NETINFO_ITEM(B,name)
     B.Add(net);nets[name]=net
 title=B.GetTitleBlock()
-title.SetTitle('GemilaiMate Modular Shield - Rico-X')
+title.SetTitle('GemilaiMate Compact Shield - Rico-X')
 title.SetRevision(REV['revision']);title.SetDate(REV['date'])
 title.SetComment(0,'PROTOTYPE / NOT HARDWARE VALIDATED')
 title.SetComment(1,'Native USB / GM Pro PCB Rev 1.1 ID=4 / 16MB physical, 8MB partition map')
@@ -109,11 +109,12 @@ for c in SPEC['parts']:
         # Harness GND pins join both GND layers solidly: routing between connector
         # pins otherwise leaves F.Cu spokes on isolated islands (starved thermals).
         if (c['ref'] in ['J_EXT','J_FREE','J_SCALE'] or c['section']=='Connectors') and c['nets'].get(pad.GetNumber())=='GND':pad.SetLocalZoneConnection(p.ZONE_CONNECTION_FULL)
-        # The WROOM castellated pads and USB-C contacts are fixed-pitch
-        # geometries. Keep the generous 0.30 mm signal-net clearance; local 0.15 mm
-        # applies only within these two manufacturer-defined interfaces.
-        if c['ref'] in ['J_USB','U_ESD','U1']:
-            pad.SetLocalClearance(p.FromMM(.15))
+        # Optional expansion headers: their supply pins join the outer +3V3/+5V_EXT
+        # pours solidly too, so the 2.54 mm rows never leave a starved thermal.
+        if c['ref'] in ['J_EXT','J_FREE','J_SCALE'] and c['nets'].get(pad.GetNumber()) in ['+3V3','+5V_EXT']:pad.SetLocalZoneConnection(p.ZONE_CONNECTION_FULL)
+        # No local pad clearances: a pad override also applies to pours and
+        # foreign tracks. The fixed USB4085 pitch is a pad-to-pad DRU exception.
+        pad.SetLocalClearance(None)
         if c['ref']=='U1' and pad.GetNumber()=='41':
             if pad.GetAttribute()==p.PAD_ATTRIB_PTH:
                 pad.SetDrillSize(V(.3,.3));pad.SetSize(V(.65,.65))
@@ -154,15 +155,18 @@ for c in SPEC['parts']:
 
 W,H=SPEC['size_mm']
 rect(None,[0,0,W,H],p.Edge_Cuts,.05)
+# M2 mounts: no copper on any layer within the keepout radius, so a screw head
+# (<= 4 mm), washer or standoff cannot reach a power pour through the mask.
+SPEC['mount_keepout_radius_mm']=MOUNT_KEEPOUT=2.5
 for index,(x,y) in enumerate(SPEC['mounts_mm'],1):
     fp=p.FOOTPRINT(B);fp.SetPosition(V(x,y));fp.SetReference('H'+str(index));fp.SetValue('M2 NYLON')
     fp.SetAttributes(p.FP_BOARD_ONLY | p.FP_EXCLUDE_FROM_POS_FILES | p.FP_EXCLUDE_FROM_BOM)
     pa=p.PAD(fp);pa.SetNumber('');pa.SetPosition(V(x,y));pa.SetAttribute(p.PAD_ATTRIB_NPTH)
-    pa.SetShape(p.PAD_SHAPE_CIRCLE);pa.SetSize(V(2.2,2.2));pa.SetDrillSize(V(2.2,2.2));pa.SetLocalClearance(p.FromMM(.3))
+    pa.SetShape(p.PAD_SHAPE_CIRCLE);pa.SetSize(V(2.2,2.2));pa.SetDrillSize(V(2.2,2.2));pa.SetLocalClearance(p.FromMM(MOUNT_KEEPOUT-1.1))
     pa.SetLayerSet(p.LSET.AllCuMask());fp.Add(pa)
     fp.Reference().SetVisible(False);fp.Value().SetVisible(False);B.Add(fp)
 
-for text,x,y,size in [('GemilaiMate MODULE SHIELD',37.5,58.5,.8),('Rico-X  /  v'+REV['revision'],64,1.3,.7),
+for text,x,y,size in [('GemilaiMate COMPACT SHIELD',37.5,58.5,.8),('Rico-X  /  v'+REV['revision'],64,1.3,.7),
                       ('NO MAINS',30,44.5,.65),('USB',7.5,39.5,.7)]:
     t=p.PCB_TEXT(B);t.SetText(text);t.SetPosition(V(x,y));t.SetTextSize(V(size,size))
     t.SetTextThickness(p.FromMM(.1));t.SetLayer(p.F_SilkS);B.Add(t)
@@ -203,42 +207,69 @@ pro=json.loads((ROOT/'hardware/carrier/gemilaimate-carrier.kicad_pro').read_text
 ds=pro['board']['design_settings']
 # Budget-fab margins (typical cheap four-layer process plus reserve): edge, hole and
 # annular clearances and legible silkscreen are enforced by DRC, not by review.
-ds['rules'].update(min_clearance=.15,min_track_width=.2,min_via_diameter=.8,min_via_drill=.4,
+ds['rules'].update(min_clearance=.15,min_track_width=.15,min_via_diameter=.8,min_via_drill=.4,
                    min_through_hole_diameter=.3,min_copper_edge_clearance=.5,min_hole_clearance=.3,
                    min_hole_to_hole=.65,min_via_annular_width=.15,min_text_height=1.0,min_text_thickness=.15)
 pro['meta']['filename']='gemilaimate-compact.kicad_pro'
 pro['board']['design_settings']['drc_exclusions']=[]
+# Copper for hand assembly and rework: 0.30 mm signals, 0.40 mm supplies, 0.30 mm
+# gaps. The router may neck down at crowded pins only; DRC enforces the floors.
 pro['net_settings']['classes'][0].update(clearance=.30,track_width=.3,via_diameter=.8,via_drill=.4)
 default_class=pro['net_settings']['classes'][0]
 pro['net_settings']['classes']=[default_class,
- dict(default_class,name='Power',clearance=.30,track_width=.35),
- dict(default_class,name='USB',clearance=.2,track_width=.25)]
+ dict(default_class,name='Power',clearance=.30,track_width=.4),
+ dict(default_class,name='USB',clearance=.3,track_width=.3)]
 pro['net_settings']['netclass_assignments']={}
 pro['net_settings']['netclass_patterns']=[
- dict(netclass='Power',pattern=n) for n in ['+3V3','+5V_CORE','+5V_EXT','EXT_IN','USB_FUSED']]+[
- dict(netclass='USB',pattern=n) for n in ['USB_VBUS','USB_DP','USB_DM']]
+ dict(netclass='Power',pattern=n) for n in ['+3V3','+5V_CORE','+5V_EXT','EXT_IN','USB_VBUS','USB_FUSED']]+[
+ dict(netclass='USB',pattern=n) for n in ['USB_DP','USB_DM','USB_DP_MCU','USB_DM_MCU']]
 (HERE/'gemilaimate-compact.kicad_pro').write_text(json.dumps(pro,indent=2)+'\n')
 (HERE/'fp-lib-table').write_text('(fp_lib_table (version 7) (lib (name "GemilaiMateCompact") (type "KiCad") (uri "${KIPRJMOD}/GemilaiMateCompact.pretty") (options "") (descr "Local compact board footprints")))\n')
+# Land-to-land gaps fixed by a package below the 0.30 mm class clearance
+# (hand-solder SOT-23 and similar): allowed between that package's own pads only.
+package_rules=''
+for fp in sorted(B.GetFootprints(),key=lambda f:f.GetReference()):
+    ref=fp.GetReference()
+    if ref=='J1':continue
+    lands=[a for a in fp.Pads() if a.GetNumber()]
+    net=lambda a:a.GetNetname() or 'NC-'+a.GetNumber()
+    gaps=[]
+    for i,a in enumerate(lands):
+        for b in lands[i+1:]:
+            if net(a)==net(b):continue
+            ra,rb=a.GetBoundingBox(),b.GetBoundingBox()
+            gaps.append(math.hypot(max(p.ToMM(rb.GetLeft()-ra.GetRight()),p.ToMM(ra.GetLeft()-rb.GetRight()),0),
+                                   max(p.ToMM(rb.GetTop()-ra.GetBottom()),p.ToMM(ra.GetTop()-rb.GetBottom()),0)))
+    if gaps and min(gaps)<.30-1e-6:
+        gap=math.floor(min(gaps)*100+1e-6)/100
+        package_rules+=f'''(rule "Package lands {ref}"
+ (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('{ref}') && B.memberOfFootprint('{ref}')")
+ (constraint clearance (min {gap:.2f}mm)))
+'''
 (HERE/'gemilaimate-compact.kicad_dru').write_text("""(version 1)
 (rule "Ordinary drill to copper"
  (constraint hole_clearance (min 0.50mm)))
-(rule "USB4085 fixed pin pitch"
- (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
- (constraint clearance (min 0.15mm)))
+(rule "Signal track width"
+ (condition "A.NetClass == 'Default'")
+ (constraint track_width (min 0.15mm)))
+(rule "USB track width"
+ (condition "A.NetClass == 'USB'")
+ (constraint track_width (min 0.20mm)))
+(rule "Power track width"
+ (condition "A.NetClass == 'Power'")
+ (constraint track_width (min 0.30mm)))
+(rule "USB4085 contact fan-out"
+ (condition "(A.memberOfFootprint('J1') || B.memberOfFootprint('J1')) && A.Type != 'Zone' && B.Type != 'Zone'")
+ (constraint clearance (min 0.20mm)))
 (rule "USB4085 fixed hole pitch"
  (condition "A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
  (constraint hole_to_hole (min 0.45mm)))
 (rule "USB4085 fixed drill to copper"
  (condition "A.memberOfFootprint('J1') || B.memberOfFootprint('J1')")
  (constraint hole_clearance (min 0.30mm)))
-(rule "USB differential pair spacing"
- (condition "(A.NetName == 'USB_DP' && B.NetName == 'USB_DM') || (A.NetName == 'USB_DM' && B.NetName == 'USB_DP')")
- (constraint clearance (min 0.20mm)))
-(rule "TSSOP fixed lands and escapes"
- (condition "A.memberOfFootprint('U6') || B.memberOfFootprint('U6') || A.memberOfFootprint('U7') || B.memberOfFootprint('U7')")
- (constraint clearance (min 0.25mm)))
-(rule "WROOM fixed pad pitch"
- (condition "A.memberOfFootprint('U1') || B.memberOfFootprint('U1')")
+"""+package_rules+"""# The last matching rule wins: the fixed contact pitch overrides the fan-out rule.
+(rule "USB4085 fixed pin pitch"
+ (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
  (constraint clearance (min 0.15mm)))
 """)
 p.SaveBoard(str(HERE/'gemilaimate-compact.kicad_pcb'),B)

@@ -1,22 +1,22 @@
 (export
 	(version "E")
 	(design
-		(source "/home/ubuntu/codex-builds/GemilaiMate-modular-shield/hardware/shield-compact/gemilaimate-compact.kicad_sch")
-		(date "2026-11-03T15:39:19")
+		(source "/home/ubuntu/gm-repro-0.2.4/hardware/shield-compact/gemilaimate-compact.kicad_sch")
+		(date "2026-11-03T17:39:49")
 		(tool "Eeschema 10.0.7-10.0.7~ubuntu26.04.1")
 		(sheet
 			(number "1")
 			(name "/")
 			(tstamps "/")
 			(title_block
-				(title "GemilaiMate Modular Shield - Rico-X")
+				(title "GemilaiMate Compact Shield - Rico-X")
 				(company)
-				(rev "0.2.3")
+				(rev "0.2.4")
 				(date "2026-11-03")
 				(source "gemilaimate-compact.kicad_sch")
 				(comment
 					(number "1")
-					(value "ESP32-S3-WROOM-1-N16R8 / 85x70mm / 4 layers / native USB")
+					(value "ESP32-S3-WROOM-1-N16R8 / 75x60mm / 4 layers / native USB")
 				)
 				(comment
 					(number "2")
@@ -59,7 +59,7 @@
 			(title_block
 				(title "USB-C and protected core power")
 				(company)
-				(rev "0.2.3")
+				(rev "0.2.4")
 				(date "2026-11-03")
 				(source "power-usb.kicad_sch")
 				(comment
@@ -107,7 +107,7 @@
 			(title_block
 				(title "ESP32-S3 and ID=4 / Boot")
 				(company)
-				(rev "0.2.3")
+				(rev "0.2.4")
 				(date "2026-11-03")
 				(source "mcu.kicad_sch")
 				(comment
@@ -155,7 +155,7 @@
 			(title_block
 				(title "ADS1115 and 3V3/5V I2C")
 				(company)
-				(rev "0.2.3")
+				(rev "0.2.4")
 				(date "2026-11-03")
 				(source "pressure.kicad_sch")
 				(comment
@@ -203,7 +203,7 @@
 			(title_block
 				(title "MAX31855 socket")
 				(company)
-				(rev "0.2.3")
+				(rev "0.2.4")
 				(date "2026-11-03")
 				(source "temperature.kicad_sch")
 				(comment
@@ -251,7 +251,7 @@
 			(title_block
 				(title "ZC and buffered external outputs")
 				(company)
-				(rev "0.2.3")
+				(rev "0.2.4")
 				(date "2026-11-03")
 				(source "outputs.kicad_sch")
 				(comment
@@ -299,7 +299,7 @@
 			(title_block
 				(title "Active-low dry contacts")
 				(company)
-				(rev "0.2.3")
+				(rev "0.2.4")
 				(date "2026-11-03")
 				(source "buttons.kicad_sch")
 				(comment
@@ -347,7 +347,7 @@
 			(title_block
 				(title "PCA9634 and tank / lighting")
 				(company)
-				(rev "0.2.3")
+				(rev "0.2.4")
 				(date "2026-11-03")
 				(source "alba.kicad_sch")
 				(comment
@@ -395,7 +395,7 @@
 			(title_block
 				(title "Reserved interfaces and free GPIO")
 				(company)
-				(rev "0.2.3")
+				(rev "0.2.4")
 				(date "2026-11-03")
 				(source "expansion.kicad_sch")
 				(comment
@@ -441,10 +441,10 @@
 		(comp
 			(ref "C1")
 			(value "10uF 16V X7R")
-			(footprint "GemilaiMateCompact:C_1206_3216Metric")
+			(footprint "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric")
+					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -487,10 +487,10 @@
 		(comp
 			(ref "C2")
 			(value "10uF 16V X7R")
-			(footprint "GemilaiMateCompact:C_1206_3216Metric")
+			(footprint "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric")
+					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -533,10 +533,10 @@
 		(comp
 			(ref "C16")
 			(value "10uF 16V X7R")
-			(footprint "GemilaiMateCompact:C_1206_3216Metric")
+			(footprint "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric")
+					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -579,10 +579,10 @@
 		(comp
 			(ref "D1")
 			(value "SS14")
-			(footprint "GemilaiMateCompact:D_SMA")
+			(footprint "GemilaiMateCompact:D_SMA_Handsoldering")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:D_SMA")
+					(name "Footprint") "GemilaiMateCompact:D_SMA_Handsoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -625,10 +625,10 @@
 		(comp
 			(ref "D2")
 			(value "SS14")
-			(footprint "GemilaiMateCompact:D_SMA")
+			(footprint "GemilaiMateCompact:D_SMA_Handsoldering")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:D_SMA")
+					(name "Footprint") "GemilaiMateCompact:D_SMA_Handsoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -671,10 +671,10 @@
 		(comp
 			(ref "D3")
 			(value "SMAJ5.0A")
-			(footprint "GemilaiMateCompact:D_SMA")
+			(footprint "GemilaiMateCompact:D_SMA_Handsoldering")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:D_SMA")
+					(name "Footprint") "GemilaiMateCompact:D_SMA_Handsoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -717,10 +717,10 @@
 		(comp
 			(ref "F1")
 			(value "1206L050YR 0.5A")
-			(footprint "GemilaiMateCompact:Fuse_1206_3216Metric")
+			(footprint "GemilaiMateCompact:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:Fuse_1206_3216Metric")
+					(name "Footprint") "GemilaiMateCompact:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -763,10 +763,10 @@
 		(comp
 			(ref "F2")
 			(value "1206L150/12 1.5A")
-			(footprint "GemilaiMateCompact:Fuse_1206_3216Metric")
+			(footprint "GemilaiMateCompact:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:Fuse_1206_3216Metric")
+					(name "Footprint") "GemilaiMateCompact:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -992,10 +992,10 @@
 		(comp
 			(ref "R1")
 			(value "5.1k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -1038,10 +1038,10 @@
 		(comp
 			(ref "R2")
 			(value "5.1k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -1084,10 +1084,10 @@
 		(comp
 			(ref "R3")
 			(value "22R 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -1130,10 +1130,10 @@
 		(comp
 			(ref "R4")
 			(value "22R 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -1176,10 +1176,10 @@
 		(comp
 			(ref "U2")
 			(value "USBLC6-2SC6")
-			(footprint "GemilaiMateCompact:SOT-23-6")
+			(footprint "GemilaiMateCompact:SOT-23-6_Handsoldering")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:SOT-23-6")
+					(name "Footprint") "GemilaiMateCompact:SOT-23-6_Handsoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -1283,10 +1283,10 @@
 		(comp
 			(ref "C3")
 			(value "10uF 16V X7R")
-			(footprint "GemilaiMateCompact:C_1206_3216Metric")
+			(footprint "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric")
+					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -1329,10 +1329,10 @@
 		(comp
 			(ref "C4")
 			(value "100nF 50V X7R")
-			(footprint "GemilaiMateCompact:C_0603_1608Metric")
+			(footprint "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -1375,10 +1375,10 @@
 		(comp
 			(ref "C5")
 			(value "1uF 16V X7R")
-			(footprint "GemilaiMateCompact:C_0603_1608Metric")
+			(footprint "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -1421,10 +1421,10 @@
 		(comp
 			(ref "C6")
 			(value "10nF 50V C0G")
-			(footprint "GemilaiMateCompact:C_0603_1608Metric")
+			(footprint "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -1467,10 +1467,10 @@
 		(comp
 			(ref "R5")
 			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -1513,10 +1513,10 @@
 		(comp
 			(ref "R6")
 			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -1559,10 +1559,10 @@
 		(comp
 			(ref "R7")
 			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -1604,11 +1604,11 @@
 		)
 		(comp
 			(ref "R8")
-			(value "1.62k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(value "1.58k 1%")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -1906,10 +1906,10 @@
 		(comp
 			(ref "C7")
 			(value "100nF 50V X7R")
-			(footprint "GemilaiMateCompact:C_0603_1608Metric")
+			(footprint "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -1952,10 +1952,10 @@
 		(comp
 			(ref "C8")
 			(value "100nF 50V X7R")
-			(footprint "GemilaiMateCompact:C_0603_1608Metric")
+			(footprint "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -1998,10 +1998,10 @@
 		(comp
 			(ref "C9")
 			(value "100nF 50V X7R")
-			(footprint "GemilaiMateCompact:C_0603_1608Metric")
+			(footprint "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -2027,6 +2027,52 @@
 				(tstamps "/eb3532b7-4c0c-569a-8334-931d66668e8d/")
 			)
 			(tstamps "c0c2fe38-42d9-5dbb-8b4a-2e1bbfb4abaa")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C17")
+			(value "1uF 16V X7R")
+			(footprint "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
+			(fields
+				(field
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "GemilaiMateCompact")
+				(part "C_OE")
+				(description "")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADS1115 and 3V3/5V I2C")
+			)
+			(property
+				(name "Sheetfile")
+				(value "pressure.kicad_sch")
+			)
+			(sheetpath
+				(names "/ADS1115 and 3V3/5V I2C/")
+				(tstamps "/eb3532b7-4c0c-569a-8334-931d66668e8d/")
+			)
+			(tstamps "446a8159-aad3-5656-a25a-16a044615ca2")
 			(units
 				(unit
 					(name "A")
@@ -2233,10 +2279,10 @@
 		(comp
 			(ref "R9")
 			(value "1k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -2262,6 +2308,52 @@
 				(tstamps "/eb3532b7-4c0c-569a-8334-931d66668e8d/")
 			)
 			(tstamps "0f1a4ad0-7fa1-50b2-8825-9e1952c028a9")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R43")
+			(value "10k 1%")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+			(fields
+				(field
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "GemilaiMateCompact")
+				(part "R_OE")
+				(description "")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADS1115 and 3V3/5V I2C")
+			)
+			(property
+				(name "Sheetfile")
+				(value "pressure.kicad_sch")
+			)
+			(sheetpath
+				(names "/ADS1115 and 3V3/5V I2C/")
+				(tstamps "/eb3532b7-4c0c-569a-8334-931d66668e8d/")
+			)
+			(tstamps "5f3ca2f7-f622-52ad-8e15-3b5558b62600")
 			(units
 				(unit
 					(name "A")
@@ -2337,10 +2429,10 @@
 		(comp
 			(ref "R41")
 			(value "0R")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -2383,10 +2475,10 @@
 		(comp
 			(ref "R42")
 			(value "0R")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -2432,10 +2524,10 @@
 		(comp
 			(ref "C10")
 			(value "100nF 50V X7R")
-			(footprint "GemilaiMateCompact:C_0603_1608Metric")
+			(footprint "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -2478,10 +2570,10 @@
 		(comp
 			(ref "C11")
 			(value "100nF 50V X7R")
-			(footprint "GemilaiMateCompact:C_0603_1608Metric")
+			(footprint "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -2524,10 +2616,10 @@
 		(comp
 			(ref "C12")
 			(value "100nF 50V X7R")
-			(footprint "GemilaiMateCompact:C_0603_1608Metric")
+			(footprint "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -2570,10 +2662,10 @@
 		(comp
 			(ref "C15")
 			(value "100nF 50V X7R")
-			(footprint "GemilaiMateCompact:C_0603_1608Metric")
+			(footprint "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -2824,10 +2916,10 @@
 		(comp
 			(ref "Q1")
 			(value "MMBT3904")
-			(footprint "GemilaiMateCompact:SOT-23")
+			(footprint "GemilaiMateCompact:SOT-23_Handsoldering")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:SOT-23")
+					(name "Footprint") "GemilaiMateCompact:SOT-23_Handsoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -2873,10 +2965,10 @@
 		(comp
 			(ref "R10")
 			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -2919,10 +3011,10 @@
 		(comp
 			(ref "R11")
 			(value "1k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -2965,10 +3057,10 @@
 		(comp
 			(ref "R12")
 			(value "47k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3011,10 +3103,10 @@
 		(comp
 			(ref "R13")
 			(value "100k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3057,10 +3149,10 @@
 		(comp
 			(ref "R14")
 			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3103,10 +3195,10 @@
 		(comp
 			(ref "R15")
 			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3149,10 +3241,10 @@
 		(comp
 			(ref "R16")
 			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3195,10 +3287,10 @@
 		(comp
 			(ref "R17")
 			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3241,10 +3333,10 @@
 		(comp
 			(ref "R18")
 			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3287,10 +3379,10 @@
 		(comp
 			(ref "R19")
 			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3333,10 +3425,10 @@
 		(comp
 			(ref "R20")
 			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3379,10 +3471,10 @@
 		(comp
 			(ref "R21")
 			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3425,10 +3517,10 @@
 		(comp
 			(ref "R22")
 			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3471,10 +3563,10 @@
 		(comp
 			(ref "R27")
 			(value "0R")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3517,10 +3609,10 @@
 		(comp
 			(ref "R28")
 			(value "0R")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3563,10 +3655,10 @@
 		(comp
 			(ref "R29")
 			(value "4.7k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3609,10 +3701,10 @@
 		(comp
 			(ref "R30")
 			(value "4.7k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3655,10 +3747,10 @@
 		(comp
 			(ref "R31")
 			(value "180R 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3701,10 +3793,10 @@
 		(comp
 			(ref "R32")
 			(value "180R 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3747,10 +3839,10 @@
 		(comp
 			(ref "R33")
 			(value "180R 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3793,10 +3885,10 @@
 		(comp
 			(ref "R34")
 			(value "180R 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3839,10 +3931,10 @@
 		(comp
 			(ref "R35")
 			(value "100R 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3885,10 +3977,10 @@
 		(comp
 			(ref "R36")
 			(value "100k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3931,10 +4023,10 @@
 		(comp
 			(ref "R37")
 			(value "100R 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -3977,10 +4069,10 @@
 		(comp
 			(ref "R38")
 			(value "100k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -4023,10 +4115,10 @@
 		(comp
 			(ref "U4")
 			(value "SN74LVC1G17DBVR")
-			(footprint "GemilaiMateCompact:SOT-23-5")
+			(footprint "GemilaiMateCompact:SOT-23-5_HandSoldering")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:SOT-23-5")
+					(name "Footprint") "GemilaiMateCompact:SOT-23-5_HandSoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -4078,10 +4170,10 @@
 		(comp
 			(ref "U5")
 			(value "SN74LVC1G125DBVR")
-			(footprint "GemilaiMateCompact:SOT-23-5")
+			(footprint "GemilaiMateCompact:SOT-23-5_HandSoldering")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:SOT-23-5")
+					(name "Footprint") "GemilaiMateCompact:SOT-23-5_HandSoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -4132,11 +4224,11 @@
 		)
 		(comp
 			(ref "U6")
-			(value "SN74AHCT125PWR")
-			(footprint "GemilaiMateCompact:TSSOP-14_4.4x5mm_P0.65mm")
+			(value "SN74AHCT125DR")
+			(footprint "GemilaiMateCompact:SOIC-14_3.9x8.7mm_P1.27mm")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:TSSOP-14_4.4x5mm_P0.65mm")
+					(name "Footprint") "GemilaiMateCompact:SOIC-14_3.9x8.7mm_P1.27mm")
 				(field
 					(name "Datasheet")
 				)
@@ -4215,10 +4307,10 @@
 		(comp
 			(ref "C13")
 			(value "100nF 50V X7R")
-			(footprint "GemilaiMateCompact:C_0603_1608Metric")
+			(footprint "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -4261,10 +4353,10 @@
 		(comp
 			(ref "C14")
 			(value "100nF 50V X7R")
-			(footprint "GemilaiMateCompact:C_0603_1608Metric")
+			(footprint "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -4359,10 +4451,10 @@
 		(comp
 			(ref "R23")
 			(value "1k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -4405,10 +4497,10 @@
 		(comp
 			(ref "R24")
 			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -4451,10 +4543,10 @@
 		(comp
 			(ref "R25")
 			(value "1k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -4497,10 +4589,10 @@
 		(comp
 			(ref "R26")
 			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -4751,10 +4843,10 @@
 		(comp
 			(ref "Q2")
 			(value "AO3400A")
-			(footprint "GemilaiMateCompact:SOT-23")
+			(footprint "GemilaiMateCompact:SOT-23_Handsoldering")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:SOT-23")
+					(name "Footprint") "GemilaiMateCompact:SOT-23_Handsoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -4800,10 +4892,10 @@
 		(comp
 			(ref "Q3")
 			(value "AO3400A")
-			(footprint "GemilaiMateCompact:SOT-23")
+			(footprint "GemilaiMateCompact:SOT-23_Handsoldering")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:SOT-23")
+					(name "Footprint") "GemilaiMateCompact:SOT-23_Handsoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -4849,10 +4941,10 @@
 		(comp
 			(ref "R39")
 			(value "470R 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -4895,10 +4987,10 @@
 		(comp
 			(ref "R40")
 			(value "470R 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
+			(footprint "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -4940,11 +5032,11 @@
 		)
 		(comp
 			(ref "U7")
-			(value "PCA9634PW")
-			(footprint "GemilaiMateCompact:TSSOP-20_4.4x6.5mm_P0.65mm")
+			(value "PCA9634D")
+			(footprint "GemilaiMateCompact:SOIC-20W_7.5x12.8mm_P1.27mm")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:TSSOP-20_4.4x6.5mm_P0.65mm")
+					(name "Footprint") "GemilaiMateCompact:SOIC-20W_7.5x12.8mm_P1.27mm")
 				(field
 					(name "Datasheet")
 				)
@@ -5733,7 +5825,7 @@
 				(field
 					(name "Value") "100nF 50V X7R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -5763,7 +5855,7 @@
 				(field
 					(name "Value") "1uF 16V X7R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -5793,7 +5885,7 @@
 				(field
 					(name "Value") "10uF 16V X7R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric")
+					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -5823,7 +5915,7 @@
 				(field
 					(name "Value") "10nF 50V C0G")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -5853,7 +5945,7 @@
 				(field
 					(name "Value") "10uF 16V X7R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric")
+					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -5883,7 +5975,7 @@
 				(field
 					(name "Value") "100nF 50V X7R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -5913,7 +6005,7 @@
 				(field
 					(name "Value") "100nF 50V X7R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -5943,7 +6035,7 @@
 				(field
 					(name "Value") "10uF 16V X7R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric")
+					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -5973,7 +6065,37 @@
 				(field
 					(name "Value") "100nF 50V X7R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "GemilaiMateCompact")
+			(part "C_OE")
+			(fields
+				(field
+					(name "Reference") "C17")
+				(field
+					(name "Value") "1uF 16V X7R")
+				(field
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -6003,7 +6125,7 @@
 				(field
 					(name "Value") "10uF 16V X7R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric")
+					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -6033,7 +6155,7 @@
 				(field
 					(name "Value") "100nF 50V X7R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -6063,7 +6185,7 @@
 				(field
 					(name "Value") "100nF 50V X7R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -6093,7 +6215,7 @@
 				(field
 					(name "Value") "100nF 50V X7R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -6123,7 +6245,7 @@
 				(field
 					(name "Value") "100nF 50V X7R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -6153,7 +6275,7 @@
 				(field
 					(name "Value") "100nF 50V X7R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -6183,7 +6305,7 @@
 				(field
 					(name "Value") "100nF 50V X7R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:C_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -6213,7 +6335,7 @@
 				(field
 					(name "Value") "SS14")
 				(field
-					(name "Footprint") "GemilaiMateCompact:D_SMA")
+					(name "Footprint") "GemilaiMateCompact:D_SMA_Handsoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -6243,7 +6365,7 @@
 				(field
 					(name "Value") "SMAJ5.0A")
 				(field
-					(name "Footprint") "GemilaiMateCompact:D_SMA")
+					(name "Footprint") "GemilaiMateCompact:D_SMA_Handsoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -6273,7 +6395,7 @@
 				(field
 					(name "Value") "SS14")
 				(field
-					(name "Footprint") "GemilaiMateCompact:D_SMA")
+					(name "Footprint") "GemilaiMateCompact:D_SMA_Handsoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -6303,7 +6425,7 @@
 				(field
 					(name "Value") "1206L150/12 1.5A")
 				(field
-					(name "Footprint") "GemilaiMateCompact:Fuse_1206_3216Metric")
+					(name "Footprint") "GemilaiMateCompact:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -6333,7 +6455,7 @@
 				(field
 					(name "Value") "1206L050YR 0.5A")
 				(field
-					(name "Footprint") "GemilaiMateCompact:Fuse_1206_3216Metric")
+					(name "Footprint") "GemilaiMateCompact:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7273,7 +7395,7 @@
 				(field
 					(name "Value") "MMBT3904")
 				(field
-					(name "Footprint") "GemilaiMateCompact:SOT-23")
+					(name "Footprint") "GemilaiMateCompact:SOT-23_Handsoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -7308,7 +7430,7 @@
 				(field
 					(name "Value") "AO3400A")
 				(field
-					(name "Footprint") "GemilaiMateCompact:SOT-23")
+					(name "Footprint") "GemilaiMateCompact:SOT-23_Handsoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -7343,7 +7465,7 @@
 				(field
 					(name "Value") "AO3400A")
 				(field
-					(name "Footprint") "GemilaiMateCompact:SOT-23")
+					(name "Footprint") "GemilaiMateCompact:SOT-23_Handsoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -7378,7 +7500,7 @@
 				(field
 					(name "Value") "4.7k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7408,7 +7530,7 @@
 				(field
 					(name "Value") "4.7k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7438,7 +7560,7 @@
 				(field
 					(name "Value") "10k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7468,7 +7590,7 @@
 				(field
 					(name "Value") "1k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7498,7 +7620,7 @@
 				(field
 					(name "Value") "10k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7528,7 +7650,7 @@
 				(field
 					(name "Value") "5.1k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7558,7 +7680,7 @@
 				(field
 					(name "Value") "5.1k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7588,7 +7710,7 @@
 				(field
 					(name "Value") "10k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7618,7 +7740,7 @@
 				(field
 					(name "Value") "470R 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7648,7 +7770,7 @@
 				(field
 					(name "Value") "470R 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7678,7 +7800,7 @@
 				(field
 					(name "Value") "47k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7708,7 +7830,7 @@
 				(field
 					(name "Value") "100k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7738,7 +7860,7 @@
 				(field
 					(name "Value") "100R 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7768,7 +7890,7 @@
 				(field
 					(name "Value") "100R 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7798,7 +7920,7 @@
 				(field
 					(name "Value") "100k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7828,7 +7950,7 @@
 				(field
 					(name "Value") "100k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7856,9 +7978,9 @@
 				(field
 					(name "Reference") "R8")
 				(field
-					(name "Value") "1.62k 1%")
+					(name "Value") "1.58k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7888,7 +8010,7 @@
 				(field
 					(name "Value") "10k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7918,7 +8040,7 @@
 				(field
 					(name "Value") "180R 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7948,7 +8070,7 @@
 				(field
 					(name "Value") "180R 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -7978,7 +8100,7 @@
 				(field
 					(name "Value") "180R 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8008,7 +8130,37 @@
 				(field
 					(name "Value") "180R 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "GemilaiMateCompact")
+			(part "R_OE")
+			(fields
+				(field
+					(name "Reference") "R43")
+				(field
+					(name "Value") "10k 1%")
+				(field
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8038,7 +8190,7 @@
 				(field
 					(name "Value") "10k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8068,7 +8220,7 @@
 				(field
 					(name "Value") "10k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8098,7 +8250,7 @@
 				(field
 					(name "Value") "10k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8128,7 +8280,7 @@
 				(field
 					(name "Value") "10k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8158,7 +8310,7 @@
 				(field
 					(name "Value") "0R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8188,7 +8340,7 @@
 				(field
 					(name "Value") "0R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8218,7 +8370,7 @@
 				(field
 					(name "Value") "10k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8248,7 +8400,7 @@
 				(field
 					(name "Value") "10k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8278,7 +8430,7 @@
 				(field
 					(name "Value") "10k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8308,7 +8460,7 @@
 				(field
 					(name "Value") "10k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8338,7 +8490,7 @@
 				(field
 					(name "Value") "10k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8368,7 +8520,7 @@
 				(field
 					(name "Value") "1k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8398,7 +8550,7 @@
 				(field
 					(name "Value") "1k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8428,7 +8580,7 @@
 				(field
 					(name "Value") "10k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8458,7 +8610,7 @@
 				(field
 					(name "Value") "0R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8488,7 +8640,7 @@
 				(field
 					(name "Value") "0R")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8518,7 +8670,7 @@
 				(field
 					(name "Value") "22R 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8548,7 +8700,7 @@
 				(field
 					(name "Value") "22R 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8578,7 +8730,7 @@
 				(field
 					(name "Value") "10k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -8608,7 +8760,7 @@
 				(field
 					(name "Value") "1k 1%")
 				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
+					(name "Footprint") "GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder")
 				(field
 					(name "Datasheet")
 				)
@@ -9173,7 +9325,7 @@
 				(field
 					(name "Value") "USBLC6-2SC6")
 				(field
-					(name "Footprint") "GemilaiMateCompact:SOT-23-6")
+					(name "Footprint") "GemilaiMateCompact:SOT-23-6_Handsoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -9221,9 +9373,9 @@
 				(field
 					(name "Reference") "U7")
 				(field
-					(name "Value") "PCA9634PW")
+					(name "Value") "PCA9634D")
 				(field
-					(name "Footprint") "GemilaiMateCompact:TSSOP-20_4.4x6.5mm_P0.65mm")
+					(name "Footprint") "GemilaiMateCompact:SOIC-20W_7.5x12.8mm_P1.27mm")
 				(field
 					(name "Datasheet")
 				)
@@ -9343,7 +9495,7 @@
 				(field
 					(name "Value") "SN74LVC1G125DBVR")
 				(field
-					(name "Footprint") "GemilaiMateCompact:SOT-23-5")
+					(name "Footprint") "GemilaiMateCompact:SOT-23-5_HandSoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -9421,9 +9573,9 @@
 				(field
 					(name "Reference") "U6")
 				(field
-					(name "Value") "SN74AHCT125PWR")
+					(name "Value") "SN74AHCT125DR")
 				(field
-					(name "Footprint") "GemilaiMateCompact:TSSOP-14_4.4x5mm_P0.65mm")
+					(name "Footprint") "GemilaiMateCompact:SOIC-14_3.9x8.7mm_P1.27mm")
 				(field
 					(name "Datasheet")
 				)
@@ -9513,7 +9665,7 @@
 				(field
 					(name "Value") "SN74LVC1G17DBVR")
 				(field
-					(name "Footprint") "GemilaiMateCompact:SOT-23-5")
+					(name "Footprint") "GemilaiMateCompact:SOT-23-5_HandSoldering")
 				(field
 					(name "Datasheet")
 				)
@@ -9629,12 +9781,6 @@
 			)
 			(node
 				(ref "J19")
-				(pin "2")
-				(pinfunction "OE_2")
-				(pintype "input")
-			)
-			(node
-				(ref "J19")
 				(pin "3")
 				(pinfunction "VCCA_3")
 				(pintype "power_in")
@@ -9671,6 +9817,12 @@
 			)
 			(node
 				(ref "R41")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R43")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -10420,6 +10572,12 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "C17")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
 				(ref "C2")
 				(pin "2")
 				(pinfunction "2_2")
@@ -10963,6 +11121,29 @@
 		)
 		(net
 			(code "31")
+			(name "I2C_OE")
+			(class "Default")
+			(node
+				(ref "C17")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "J19")
+				(pin "2")
+				(pinfunction "OE_2")
+				(pintype "input")
+			)
+			(node
+				(ref "R43")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "32")
 			(name "LED4_DRAIN")
 			(class "Default")
 			(node
@@ -10979,7 +11160,7 @@
 			)
 		)
 		(net
-			(code "32")
+			(code "33")
 			(name "LED5_DRAIN")
 			(class "Default")
 			(node
@@ -10996,7 +11177,7 @@
 			)
 		)
 		(net
-			(code "33")
+			(code "34")
 			(name "LED_GATE4")
 			(class "Default")
 			(node
@@ -11019,7 +11200,7 @@
 			)
 		)
 		(net
-			(code "34")
+			(code "35")
 			(name "LED_GATE5")
 			(class "Default")
 			(node
@@ -11042,7 +11223,7 @@
 			)
 		)
 		(net
-			(code "35")
+			(code "36")
 			(name "OUTPUT_OE_N")
 			(class "Default")
 			(node
@@ -11083,7 +11264,7 @@
 			)
 		)
 		(net
-			(code "36")
+			(code "37")
 			(name "PCA_LED0")
 			(class "Default")
 			(node
@@ -11100,7 +11281,7 @@
 			)
 		)
 		(net
-			(code "37")
+			(code "38")
 			(name "PCA_LED1")
 			(class "Default")
 			(node
@@ -11117,7 +11298,7 @@
 			)
 		)
 		(net
-			(code "38")
+			(code "39")
 			(name "PCA_LED2")
 			(class "Default")
 			(node
@@ -11134,7 +11315,7 @@
 			)
 		)
 		(net
-			(code "39")
+			(code "40")
 			(name "PCA_LED3")
 			(class "Default")
 			(node
@@ -11151,7 +11332,7 @@
 			)
 		)
 		(net
-			(code "40")
+			(code "41")
 			(name "PCA_LED4")
 			(class "Default")
 			(node
@@ -11168,7 +11349,7 @@
 			)
 		)
 		(net
-			(code "41")
+			(code "42")
 			(name "PCA_LED5")
 			(class "Default")
 			(node
@@ -11185,7 +11366,7 @@
 			)
 		)
 		(net
-			(code "42")
+			(code "43")
 			(name "PCA_LED6")
 			(class "Default")
 			(node
@@ -11202,7 +11383,7 @@
 			)
 		)
 		(net
-			(code "43")
+			(code "44")
 			(name "PCA_LED7")
 			(class "Default")
 			(node
@@ -11219,7 +11400,7 @@
 			)
 		)
 		(net
-			(code "44")
+			(code "45")
 			(name "PCA_SCL")
 			(class "Default")
 			(node
@@ -11236,7 +11417,7 @@
 			)
 		)
 		(net
-			(code "45")
+			(code "46")
 			(name "PCA_SDA")
 			(class "Default")
 			(node
@@ -11253,7 +11434,7 @@
 			)
 		)
 		(net
-			(code "46")
+			(code "47")
 			(name "PRESSURE")
 			(class "Default")
 			(node
@@ -11276,7 +11457,7 @@
 			)
 		)
 		(net
-			(code "47")
+			(code "48")
 			(name "PRESSURE_RAW")
 			(class "Default")
 			(node
@@ -11293,7 +11474,7 @@
 			)
 		)
 		(net
-			(code "48")
+			(code "49")
 			(name "PUMP_OUT")
 			(class "Default")
 			(node
@@ -11316,7 +11497,7 @@
 			)
 		)
 		(net
-			(code "49")
+			(code "50")
 			(name "PUMP_PWM")
 			(class "Default")
 			(node
@@ -11339,7 +11520,7 @@
 			)
 		)
 		(net
-			(code "50")
+			(code "51")
 			(name "PUMP_ZC")
 			(class "Default")
 			(node
@@ -11356,7 +11537,7 @@
 			)
 		)
 		(net
-			(code "51")
+			(code "52")
 			(name "RGBW0")
 			(class "Default")
 			(node
@@ -11373,7 +11554,7 @@
 			)
 		)
 		(net
-			(code "52")
+			(code "53")
 			(name "RGBW1")
 			(class "Default")
 			(node
@@ -11390,7 +11571,7 @@
 			)
 		)
 		(net
-			(code "53")
+			(code "54")
 			(name "RGBW2")
 			(class "Default")
 			(node
@@ -11407,7 +11588,7 @@
 			)
 		)
 		(net
-			(code "54")
+			(code "55")
 			(name "RGBW3")
 			(class "Default")
 			(node
@@ -11424,7 +11605,7 @@
 			)
 		)
 		(net
-			(code "55")
+			(code "56")
 			(name "SCALE_CLK")
 			(class "Default")
 			(node
@@ -11441,7 +11622,7 @@
 			)
 		)
 		(net
-			(code "56")
+			(code "57")
 			(name "SCALE_DAT0")
 			(class "Default")
 			(node
@@ -11458,7 +11639,7 @@
 			)
 		)
 		(net
-			(code "57")
+			(code "58")
 			(name "SCALE_DAT1")
 			(class "Default")
 			(node
@@ -11475,7 +11656,7 @@
 			)
 		)
 		(net
-			(code "58")
+			(code "59")
 			(name "SCL_3V3")
 			(class "Default")
 			(node
@@ -11492,7 +11673,7 @@
 			)
 		)
 		(net
-			(code "59")
+			(code "60")
 			(name "SCL_5V")
 			(class "Default")
 			(node
@@ -11509,7 +11690,7 @@
 			)
 		)
 		(net
-			(code "60")
+			(code "61")
 			(name "SDA_3V3")
 			(class "Default")
 			(node
@@ -11526,7 +11707,7 @@
 			)
 		)
 		(net
-			(code "61")
+			(code "62")
 			(name "SDA_5V")
 			(class "Default")
 			(node
@@ -11543,7 +11724,7 @@
 			)
 		)
 		(net
-			(code "62")
+			(code "63")
 			(name "STEAM")
 			(class "Default")
 			(node
@@ -11572,7 +11753,7 @@
 			)
 		)
 		(net
-			(code "63")
+			(code "64")
 			(name "STEAM_RAW")
 			(class "Default")
 			(node
@@ -11589,7 +11770,7 @@
 			)
 		)
 		(net
-			(code "64")
+			(code "65")
 			(name "STRAP3")
 			(class "Default")
 			(node
@@ -11606,7 +11787,7 @@
 			)
 		)
 		(net
-			(code "65")
+			(code "66")
 			(name "STRAP45")
 			(class "Default")
 			(node
@@ -11623,7 +11804,7 @@
 			)
 		)
 		(net
-			(code "66")
+			(code "67")
 			(name "STRAP46")
 			(class "Default")
 			(node
@@ -11640,7 +11821,7 @@
 			)
 		)
 		(net
-			(code "67")
+			(code "68")
 			(name "TC_CS")
 			(class "Default")
 			(node
@@ -11657,7 +11838,7 @@
 			)
 		)
 		(net
-			(code "68")
+			(code "69")
 			(name "TC_DO")
 			(class "Default")
 			(node
@@ -11674,7 +11855,7 @@
 			)
 		)
 		(net
-			(code "69")
+			(code "70")
 			(name "TC_SCK")
 			(class "Default")
 			(node
@@ -11691,7 +11872,7 @@
 			)
 		)
 		(net
-			(code "70")
+			(code "71")
 			(name "TC_VIN")
 			(class "Default")
 			(node
@@ -11714,7 +11895,7 @@
 			)
 		)
 		(net
-			(code "71")
+			(code "72")
 			(name "USB_DM")
 			(class "USB")
 			(node
@@ -11749,9 +11930,9 @@
 			)
 		)
 		(net
-			(code "72")
+			(code "73")
 			(name "USB_DM_MCU")
-			(class "Default")
+			(class "USB")
 			(node
 				(ref "R4")
 				(pin "1")
@@ -11766,7 +11947,7 @@
 			)
 		)
 		(net
-			(code "73")
+			(code "74")
 			(name "USB_DP")
 			(class "USB")
 			(node
@@ -11801,9 +11982,9 @@
 			)
 		)
 		(net
-			(code "74")
+			(code "75")
 			(name "USB_DP_MCU")
-			(class "Default")
+			(class "USB")
 			(node
 				(ref "R3")
 				(pin "1")
@@ -11818,7 +11999,7 @@
 			)
 		)
 		(net
-			(code "75")
+			(code "76")
 			(name "USB_FUSED")
 			(class "Power")
 			(node
@@ -11835,9 +12016,9 @@
 			)
 		)
 		(net
-			(code "76")
+			(code "77")
 			(name "USB_VBUS")
-			(class "USB")
+			(class "Power")
 			(node
 				(ref "F1")
 				(pin "1")
@@ -11876,7 +12057,7 @@
 			)
 		)
 		(net
-			(code "77")
+			(code "78")
 			(name "VALVE")
 			(class "Default")
 			(node
@@ -11899,7 +12080,7 @@
 			)
 		)
 		(net
-			(code "78")
+			(code "79")
 			(name "VALVE_5V")
 			(class "Default")
 			(node
@@ -11922,7 +12103,7 @@
 			)
 		)
 		(net
-			(code "79")
+			(code "80")
 			(name "ZC_IN")
 			(class "Default")
 			(node
@@ -11939,7 +12120,7 @@
 			)
 		)
 		(net
-			(code "80")
+			(code "81")
 			(name "ZC_RAW")
 			(class "Default")
 			(node
@@ -11962,7 +12143,7 @@
 			)
 		)
 		(net
-			(code "81")
+			(code "82")
 			(name "unconnected-(J1-PadA8)")
 			(class "Default")
 			(node
@@ -11973,7 +12154,7 @@
 			)
 		)
 		(net
-			(code "82")
+			(code "83")
 			(name "unconnected-(J1-PadB8)")
 			(class "Default")
 			(node
@@ -11984,7 +12165,7 @@
 			)
 		)
 		(net
-			(code "83")
+			(code "84")
 			(name "unconnected-(J2-A1-Pad8)")
 			(class "Default")
 			(node
@@ -11995,7 +12176,7 @@
 			)
 		)
 		(net
-			(code "84")
+			(code "85")
 			(name "unconnected-(J2-A2-Pad9)")
 			(class "Default")
 			(node
@@ -12006,7 +12187,7 @@
 			)
 		)
 		(net
-			(code "85")
+			(code "86")
 			(name "unconnected-(J2-A3-Pad10)")
 			(class "Default")
 			(node
@@ -12017,7 +12198,7 @@
 			)
 		)
 		(net
-			(code "86")
+			(code "87")
 			(name "unconnected-(J2-ALRT-Pad6)")
 			(class "Default")
 			(node
@@ -12028,7 +12209,7 @@
 			)
 		)
 		(net
-			(code "87")
+			(code "88")
 			(name "unconnected-(J3-3Vo_NC-Pad2)")
 			(class "Default")
 			(node
@@ -12039,7 +12220,7 @@
 			)
 		)
 		(net
-			(code "88")
+			(code "89")
 			(name "unconnected-(J8-EMPTY-Pad5)")
 			(class "Default")
 			(node
@@ -12050,7 +12231,7 @@
 			)
 		)
 		(net
-			(code "89")
+			(code "90")
 			(name "unconnected-(J8-EMPTY-Pad6)")
 			(class "Default")
 			(node
@@ -12061,7 +12242,7 @@
 			)
 		)
 		(net
-			(code "90")
+			(code "91")
 			(name "unconnected-(J19-G_RESERVED_NC-Pad7)")
 			(class "Default")
 			(node
@@ -12072,7 +12253,7 @@
 			)
 		)
 		(net
-			(code "91")
+			(code "92")
 			(name "unconnected-(U1-GPIO35-Pad28)")
 			(class "Default")
 			(node
@@ -12083,7 +12264,7 @@
 			)
 		)
 		(net
-			(code "92")
+			(code "93")
 			(name "unconnected-(U1-GPIO36-Pad29)")
 			(class "Default")
 			(node
@@ -12094,7 +12275,7 @@
 			)
 		)
 		(net
-			(code "93")
+			(code "94")
 			(name "unconnected-(U1-GPIO37-Pad30)")
 			(class "Default")
 			(node
@@ -12105,7 +12286,7 @@
 			)
 		)
 		(net
-			(code "94")
+			(code "95")
 			(name "unconnected-(U4-NC-Pad1)")
 			(class "Default")
 			(node
@@ -12116,7 +12297,7 @@
 			)
 		)
 		(net
-			(code "95")
+			(code "96")
 			(name "unconnected-(U6-4Y_NC-Pad11)")
 			(class "Default")
 			(node

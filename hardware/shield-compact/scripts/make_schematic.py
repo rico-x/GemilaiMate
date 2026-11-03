@@ -22,7 +22,7 @@ def group(c):
     if r.startswith(('R_BREW','R_STEAM','C_BREW','C_STEAM')) or r=='J_BUTTONS':return 'buttons'
     if r in ['U1','R_EN','C_EN','R_BOOT','SW_RESET','SW_BOOT','R_ID_TOP','R_ID_LOW','C_ID','C_MCU','C_MCUHF']:return 'mcu'
     if r in ['J_USB','U_ESD','F_USB','F_EXT','D_USB','D_EXT','D_TVS','U_REG','C_IN','C_OUT','C_EXT','J_PWR','J_DISPLAY'] or r.startswith(('R_CC','R_USB')):return 'power-usb'
-    if r in ['J_LEVEL','C_LVA','C_LVB','J_ADS','R_PRESS','C_PRESS','J_PRESS']:return 'pressure'
+    if r in ['J_LEVEL','C_LVA','C_LVB','R_OE','C_OE','J_ADS','R_PRESS','C_PRESS','J_PRESS']:return 'pressure'
     if r in ['J_TC','R_TC3V3','R_TC5V']:return 'temperature'
     if c['section']=='Alba' or r in ['J_TOF','J_ALBA','J_RGBW','J_LIGHT','R_EXTSDA','R_EXTSCL']:return 'alba'
     return 'outputs'
@@ -100,8 +100,8 @@ for page,(name,parts) in enumerate(groups.items(),2):
       (instances(project "gemilaimate-compact"(path {q('/'+root)}(page {q(page)})))))''')
 
 rootdoc=f'''(kicad_sch(version 20250114)(generator "eeschema")(uuid {q(root)})(paper "A3")
-  (title_block(title "GemilaiMate Modular Shield - Rico-X")(date {q(D['date'])})(rev {q(D['revision'])})
-  (comment 1 "ESP32-S3-WROOM-1-N16R8 / 85x70mm / 4 layers / native USB")
+  (title_block(title "GemilaiMate Compact Shield - Rico-X")(date {q(D['date'])})(rev {q(D['revision'])})
+  (comment 1 "ESP32-S3-WROOM-1-N16R8 / {D['size_mm'][0]}x{D['size_mm'][1]}mm / 4 layers / native USB")
   (comment 2 "GM Pro PCB Rev 1.1 ID=4; official binary compatibility requires physical testing")
   (comment 3 "No mains on PCB. Heater output unused in stock Gemilai integration.")
   (comment 4 "github.com/Rico-X/GemilaiMate - PROTOTYPE - NOT HARDWARE VALIDATED"))
