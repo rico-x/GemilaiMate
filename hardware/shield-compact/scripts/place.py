@@ -16,6 +16,7 @@ _data=json.loads((H/'design.json').read_text());aliases={c['designator']:c['ref'
 F={aliases.get(f.GetReference(),f.GetReference()):f for f in B.GetFootprints()}
 V=lambda x,y:p.VECTOR2I(p.FromMM(x),p.FromMM(y))
 D=json.loads((H/'design.json').read_text());parts={x['ref']:x for x in D['parts']}
+W,H_MM=D['size_mm']
 
 def box(f,mode='court'):
     if f.GetReference()==parts['U1']['designator']:return [5.25,-.1,24.75,19.8]
@@ -41,39 +42,81 @@ def obstacles(f):
         else:
             if box(f,'pth'):out.append(box(g))
             else:out.append(box(g,'pth'))
+    # Daughterboard bodies are real assembly reservations, not just pin pads.
+    # Keep front-side parts out from below their footprints; their own socket
+    # footprint and opposite-side cable connectors remain allowed.
+    for alias in ['J_ADS','J_TC','J_LEVEL']:
+        if f.GetReference()==parts[alias]['designator']:
+            continue
+        socket_fp=F[alias]
+        if socket_fp.IsFlipped()==back:
+            out.append(D['module_sockets'][alias]['body_rect_mm'])
     out.extend([[x-2.1,y-2.1,x+2.1,y+2.1] for x,y in D['mounts_mm']])
-    # USB plug and routing corridor; its actual metal outline goes to y=50.3.
-    if f.GetReference()!=parts['J_USB']['designator']:out.append([1.8,39.6,13.1,50])
+    # USB plug, receptacle, and the locked differential escape routes. Reserve
+    # the route corridors before placing ordinary components/testpoints; these
+    # are manually restored by prepare_route.py after placement.
+    usb_fixed={parts[r]['designator'] for r in ['J_USB','U1','U_ESD','R_USBM','R_USBP']}
+    if f.GetReference() not in usb_fixed:
+        out.append([1.8,49.2,13.1,H_MM])
+        out.append([.5,15.5,10.0,49.2])
     return out
 
 def fits(f):
     a=box(f)
-    if f.GetReference() not in [parts[r]['designator'] for r in ['U1','J_USB']] and (a[0]<.4 or a[1]<.4 or a[2]>64.6 or a[3]>49.6):return False
+    if f.GetReference() not in [parts[r]['designator'] for r in ['U1','J_USB']] and (a[0]<.4 or a[1]<.4 or a[2]>W-.4 or a[3]>H_MM-.4):return False
+    alias=next((r for r in D['module_sockets'] if parts[r]['designator']==f.GetReference()),None)
+    if alias:
+        body=D['module_sockets'][alias]['body_rect_mm']
+        if overlap(body,D['module_body']) or overlap(body,D['rf_keepout']):return False
+        for other in ['J_ADS','J_TC','J_LEVEL']:
+            if other!=alias and overlap(body,D['module_sockets'][other]['body_rect_mm']):return False
     return not any(overlap(a,b) for b in obstacles(f))
 
 def setcenter(ref,x,y,angle=0):
     f=F[ref];f.SetOrientationDegrees(angle);f.SetPosition(V(0,0));a=box(f)
     f.SetPosition(V(x-(a[0]+a[2])/2,y-(a[1]+a[3])/2))
 
-for ref in ['U1','J_USB','J_ADS','J_TC']:
+F['J_USB'].SetPosition(V(4.5,H_MM-9.135))
+for ref in ['U1','J_USB','J_ADS','J_TC','J_LEVEL']:
     if not fits(F[ref]):print('Fixed clash:',ref)
     placed.append(ref)
 # The connector centre describes the actual housing courtyard, not pad 1.
-fixed={'J_PWR':(29.5,3.5,0),'J_DISPLAY':(38,3.5,0),'J_RGBW':(61.5,11.5,90),
-       'J_ALBA':(61.5,24,90),'J_VALVE':(61.5,34.25,90),'J_LIGHT':(61.5,44,90),
-       'J_PRESS':(20,46.5,0),'J_BUTTONS':(31.5,46.5,0),'J_PUMP':(43.9,46.5,0),
-       'J_ALT':(54.1,46.5,0),'J_HEAT':(44.5,39.5,0),'J_TOF':(35,33.5,0)}
+fixed={'J_PWR':(54,6,0),'J_DISPLAY':(54,15,0),'J_RGBW':(66.5,9,90),
+       'J_ALBA':(66.5,23.5,90),'J_VALVE':(66.5,35.5,90),'J_LIGHT':(66.5,47,90),
+       'J_PRESS':(16,43,0),'J_BUTTONS':(22,52,0),'J_PUMP':(36,52,0),
+       'J_ALT':(49,52,0),'J_HEAT':(53,34,0),'J_TOF':(53,42,0)}
 for ref,xyz in fixed.items():
     setcenter(ref,*xyz)
     if not fits(F[ref]):print('Fixed connector clash:',ref,box(F[ref]))
     placed.append(ref)
 
+# prepare_route.py restores these exact hand-routed native-USB components and
+# tracks; reserve their final geometry before the greedy placement pass.
+for ref,x,y,angle in [('R_USBM',3.5,16.33,180),('R_USBP',3.5,18.1,180),('U_ESD',7.475,33.5,90)]:
+    f=F[ref];f.SetOrientationDegrees(angle);f.SetPosition(V(x,y))
+    if not fits(f):print('Fixed USB component clash:',ref,box(f))
+    placed.append(ref)
+
+# Keep the two ID-divider resistors just beyond the WROOM pad fanout. Their
+# first pads then have a 0.25 mm copper corridor for the detect strap.
+for ref,xyz in {'R_ID_TOP':(27.0,7.5,0),'R_ID_LOW':(27.0,9.5,0)}.items():
+    setcenter(ref,*xyz)
+    if not fits(F[ref]):print('Fixed ID resistor clash:',ref,box(F[ref]))
+    placed.append(ref)
+
 # Greedy nearest-feasible candidates; large packages go first. Small passives
 # are biased to their initial circuit placement and already placed neighbours.
-order=['U_REG','U_LED','U_SSR','SW_RESET','SW_BOOT','U_LEVEL','U_ZC','U_PUMP','J_EXT','J_FREE','J_SCALE']
+anchors={'C_IN':('U_REG','1'),'C_OUT':('U_REG','3'),'C_PCA':('U_LED','20'),
+         'C_SSR':('U_SSR','14'),'C_ZC':('U_ZC','5'),'C_PUMP':('U_PUMP','5'),
+         'C_LVA':('J_LEVEL','3'),'C_LVB':('J_LEVEL','8')}
+order=['U_REG','C_IN','C_OUT','U_LED','C_PCA','U_SSR','C_SSR','SW_RESET','SW_BOOT',
+       'U_ZC','C_ZC','U_PUMP','C_PUMP','C_LVA','C_LVB','J_EXT','J_FREE','J_SCALE']
 order+=sorted([r for r in parts if r not in placed and r not in order],key=lambda r:-(box(F[r])[2]-box(F[r])[0])*(box(F[r])[3]-box(F[r])[1]))
 for ref in order:
     f=F[ref];initial=f.GetPosition();target=(p.ToMM(initial.x),p.ToMM(initial.y));best=None
+    if ref in anchors:
+        owner,num=anchors[ref];a=next(a for a in F[owner].Pads() if a.GetNumber()==num)
+        target=(p.ToMM(a.GetPosition().x),p.ToMM(a.GetPosition().y))
     obs=obstacles(f)
     neighbour=[]
     nets={a.GetNetname() for a in f.Pads() if a.GetNetname() and a.GetNetname() not in ['/GND','/+3V3','/+5V_CORE','/+5V_EXT']}
@@ -82,13 +125,14 @@ for ref in order:
             if a.GetNetname() in nets:neighbour.append((p.ToMM(a.GetPosition().x),p.ToMM(a.GetPosition().y)))
     for angle in [0,90,180,270]:
         f.SetOrientationDegrees(angle);f.SetPosition(V(0,0));a=box(f);pw=box(f,'pth')
-        for ix in range(2,129):
+        for ix in range(2,int(W*2)-1):
             x=ix*.5
-            if x+a[0]<.4 or x+a[2]>64.6:continue
-            for iy in range(2,99):
+            if x+a[0]<.4 or x+a[2]>W-.4:continue
+            for iy in range(2,int(H_MM*2)-1):
                 y=iy*.5
                 b=[x+a[0],y+a[1],x+a[2],y+a[3]]
-                if b[1]<.4 or b[3]>49.6 or any(overlap(b,o) for o in obs):continue
+                if b[1]<.4 or b[3]>H_MM-.4 or any(overlap(b,o) for o in obs):continue
+                if ref in anchors and math.dist((x,y),target)>4:continue
                 score=abs(x-target[0])+abs(y-target[1])
                 if neighbour:score+=.25*sum(abs(x-nx)+abs(y-ny) for nx,ny in neighbour)/len(neighbour)
                 score+=angle/10000

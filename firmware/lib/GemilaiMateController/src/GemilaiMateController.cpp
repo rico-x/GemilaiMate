@@ -29,7 +29,7 @@ void GemilaiMateController::setup() {
     delay(5000);
     detectBoard();
     if (_config.autodetectValue != GEMILAI_3007Z.autodetectValue) {
-        ESP_LOGE(LOG_TAG, "GemilaiMate requires Gemilai 3007Z carrier ID=3; outputs remain disabled");
+        ESP_LOGE(LOG_TAG, "GemilaiMate requires board ID=%u; outputs remain disabled", GEMILAI_3007Z.autodetectValue);
         while (true) delay(1000);
     }
     detectAddon();

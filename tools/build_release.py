@@ -25,6 +25,7 @@ def main():
         if info.count('(valid)')<2:raise RuntimeError('Invalid ESP32 image: '+target)
         (folder/'image-info.txt').write_text(info)
         targets[target]=dict(flash_mb=size,physical_flash_mb=16 if target=='controller-compact' else size,
+                             board_id=4 if target=='controller-compact' else 3 if target=='controller' else None,
                              board_profile='compact-wroom' if target=='controller-compact' else 'legacy-devkit' if target=='controller' else 'display',
                              parts=entries,checksum_and_app_hash_valid=True)
     version='v'+ROOT.joinpath('VERSION').read_text().strip()

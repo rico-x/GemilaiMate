@@ -11,11 +11,11 @@
     "ProjectId": {
       "Name": "gemilaimate-compact",
       "GUID": "67656d69-6c61-4696-9d61-74652d636f6d",
-      "Revision": "0.1.0"
+      "Revision": "0.2.3"
     },
     "Size": {
-      "X": 65.05,
-      "Y": 50.05
+      "X": 75.05,
+      "Y": 60.05
     },
     "LayerNumber": 4,
     "BoardThickness": 1.6,
@@ -29,17 +29,17 @@
       "PadToTrack": 0.15,
       "TrackToTrack": 0.2,
       "MinLineWidth": 0.2,
-      "TrackToRegion": 0.2,
-      "RegionToRegion": 0.2
+      "TrackToRegion": 0.3,
+      "RegionToRegion": 0.3
     },
     {
       "Layers": "Inner",
-      "PadToPad": 0.0,
-      "PadToTrack": 0.0,
+      "PadToPad": 0.15,
+      "PadToTrack": 0.15,
       "TrackToTrack": 0.2,
-      "MinLineWidth": 0.2624,
-      "TrackToRegion": 0.2,
-      "RegionToRegion": 0.2
+      "MinLineWidth": 0.2,
+      "TrackToRegion": 0.3,
+      "RegionToRegion": 0.3
     }
   ],
   "FilesAttributes": [

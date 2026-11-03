@@ -35,7 +35,7 @@ class FlashTests(unittest.TestCase):
   with patch.object(m.importlib.metadata,'version',return_value='5.0'),patch.object(m.subprocess,'check_call') as call,self.assertRaises(SystemExit):self.run_main(['--flash'])
   call.assert_not_called()
  def compact_package(self,physical=16,layout=8):
-  path=self.root/'manifest.json';data=json.loads(path.read_text());data['targets']['controller-compact']={**data['targets']['controller'],'physical_flash_mb':physical,'flash_mb':layout};path.write_text(json.dumps(data));self.args[0]='controller-compact'
+  path=self.root/'manifest.json';data=json.loads(path.read_text());data['targets']['controller-compact']={**data['targets']['controller'],'physical_flash_mb':physical,'flash_mb':layout,'board_id':4};path.write_text(json.dumps(data));self.args[0]='controller-compact'
  def test_compact_dry_run_keeps_8mb_map(self):
   self.compact_package()
   with patch.object(m.subprocess,'check_call') as call:
@@ -44,5 +44,10 @@ class FlashTests(unittest.TestCase):
   for physical,layout in [(8,8),(16,16)]:
    self.compact_package(physical,layout)
    with patch.object(m.subprocess,'check_call') as call,self.assertRaises(SystemExit):self.run_main(['--fresh','--erase-all','--flash'])
+   call.assert_not_called()
+ def test_compact_rejects_legacy_id_before_serial(self):
+  self.compact_package();path=self.root/'manifest.json';data=json.loads(path.read_text());data['targets']['controller-compact']['board_id']=3;path.write_text(json.dumps(data))
+  with patch.object(m.subprocess,'check_call') as call:
+   with self.assertRaisesRegex(SystemExit,'ID=4'):self.run_main(['--fresh'])
    call.assert_not_called()
 if __name__=='__main__':unittest.main()

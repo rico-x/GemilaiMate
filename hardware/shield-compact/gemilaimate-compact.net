@@ -1,26 +1,26 @@
 (export
 	(version "E")
 	(design
-		(source "/home/ubuntu/gm-fab/hardware/shield-compact/gemilaimate-compact.kicad_sch")
-		(date "2026-11-03T11:33:36")
+		(source "/home/ubuntu/codex-builds/GemilaiMate-modular-shield/hardware/shield-compact/gemilaimate-compact.kicad_sch")
+		(date "2026-11-03T15:39:19")
 		(tool "Eeschema 10.0.7-10.0.7~ubuntu26.04.1")
 		(sheet
 			(number "1")
 			(name "/")
 			(tstamps "/")
 			(title_block
-				(title "GemilaiMate Compact Shield - Rico-X")
+				(title "GemilaiMate Modular Shield - Rico-X")
 				(company)
-				(rev "0.1.0")
+				(rev "0.2.3")
 				(date "2026-11-03")
 				(source "gemilaimate-compact.kicad_sch")
 				(comment
 					(number "1")
-					(value "ESP32-S3-WROOM-1-N16R8 / 65x50mm / 4 layers / native USB")
+					(value "ESP32-S3-WROOM-1-N16R8 / 85x70mm / 4 layers / native USB")
 				)
 				(comment
 					(number "2")
-					(value "GM Pro LEGO ID=3; official binary compatibility requires physical testing")
+					(value "GM Pro PCB Rev 1.1 ID=4; official binary compatibility requires physical testing")
 				)
 				(comment
 					(number "3")
@@ -59,7 +59,7 @@
 			(title_block
 				(title "USB-C and protected core power")
 				(company)
-				(rev "0.1.0")
+				(rev "0.2.3")
 				(date "2026-11-03")
 				(source "power-usb.kicad_sch")
 				(comment
@@ -102,12 +102,12 @@
 		)
 		(sheet
 			(number "3")
-			(name "/ESP32-S3 and ID=3 / Boot/")
+			(name "/ESP32-S3 and ID=4 / Boot/")
 			(tstamps "/66ff79ac-70a4-5400-8e35-d5219921cb79/")
 			(title_block
-				(title "ESP32-S3 and ID=3 / Boot")
+				(title "ESP32-S3 and ID=4 / Boot")
 				(company)
-				(rev "0.1.0")
+				(rev "0.2.3")
 				(date "2026-11-03")
 				(source "mcu.kicad_sch")
 				(comment
@@ -155,7 +155,7 @@
 			(title_block
 				(title "ADS1115 and 3V3/5V I2C")
 				(company)
-				(rev "0.1.0")
+				(rev "0.2.3")
 				(date "2026-11-03")
 				(source "pressure.kicad_sch")
 				(comment
@@ -203,7 +203,7 @@
 			(title_block
 				(title "MAX31855 socket")
 				(company)
-				(rev "0.1.0")
+				(rev "0.2.3")
 				(date "2026-11-03")
 				(source "temperature.kicad_sch")
 				(comment
@@ -251,7 +251,7 @@
 			(title_block
 				(title "ZC and buffered external outputs")
 				(company)
-				(rev "0.1.0")
+				(rev "0.2.3")
 				(date "2026-11-03")
 				(source "outputs.kicad_sch")
 				(comment
@@ -299,7 +299,7 @@
 			(title_block
 				(title "Active-low dry contacts")
 				(company)
-				(rev "0.1.0")
+				(rev "0.2.3")
 				(date "2026-11-03")
 				(source "buttons.kicad_sch")
 				(comment
@@ -347,7 +347,7 @@
 			(title_block
 				(title "PCA9634 and tank / lighting")
 				(company)
-				(rev "0.1.0")
+				(rev "0.2.3")
 				(date "2026-11-03")
 				(source "alba.kicad_sch")
 				(comment
@@ -395,7 +395,7 @@
 			(title_block
 				(title "Reserved interfaces and free GPIO")
 				(company)
-				(rev "0.1.0")
+				(rev "0.2.3")
 				(date "2026-11-03")
 				(source "expansion.kicad_sch")
 				(comment
@@ -440,7 +440,7 @@
 	(components
 		(comp
 			(ref "C1")
-			(value "10uF 10V X7R")
+			(value "10uF 16V X7R")
 			(footprint "GemilaiMateCompact:C_1206_3216Metric")
 			(fields
 				(field
@@ -486,7 +486,7 @@
 		)
 		(comp
 			(ref "C2")
-			(value "10uF 10V X7R")
+			(value "10uF 16V X7R")
 			(footprint "GemilaiMateCompact:C_1206_3216Metric")
 			(fields
 				(field
@@ -532,7 +532,7 @@
 		)
 		(comp
 			(ref "C16")
-			(value "10uF 10V X7R")
+			(value "10uF 16V X7R")
 			(footprint "GemilaiMateCompact:C_1206_3216Metric")
 			(fields
 				(field
@@ -762,7 +762,7 @@
 		)
 		(comp
 			(ref "F2")
-			(value "1206L150-12 1.5A")
+			(value "1206L150/12 1.5A")
 			(footprint "GemilaiMateCompact:Fuse_1206_3216Metric")
 			(fields
 				(field
@@ -1282,7 +1282,7 @@
 		)
 		(comp
 			(ref "C3")
-			(value "10uF 10V X7R")
+			(value "10uF 16V X7R")
 			(footprint "GemilaiMateCompact:C_1206_3216Metric")
 			(fields
 				(field
@@ -1301,14 +1301,14 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "ESP32-S3 and ID=3 / Boot")
+				(value "ESP32-S3 and ID=4 / Boot")
 			)
 			(property
 				(name "Sheetfile")
 				(value "mcu.kicad_sch")
 			)
 			(sheetpath
-				(names "/ESP32-S3 and ID=3 / Boot/")
+				(names "/ESP32-S3 and ID=4 / Boot/")
 				(tstamps "/66ff79ac-70a4-5400-8e35-d5219921cb79/")
 			)
 			(tstamps "44b24d9f-3599-52ed-b2b1-d821980aaed4")
@@ -1347,14 +1347,14 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "ESP32-S3 and ID=3 / Boot")
+				(value "ESP32-S3 and ID=4 / Boot")
 			)
 			(property
 				(name "Sheetfile")
 				(value "mcu.kicad_sch")
 			)
 			(sheetpath
-				(names "/ESP32-S3 and ID=3 / Boot/")
+				(names "/ESP32-S3 and ID=4 / Boot/")
 				(tstamps "/66ff79ac-70a4-5400-8e35-d5219921cb79/")
 			)
 			(tstamps "6757379e-5a12-501f-af9b-408f2ce56d54")
@@ -1393,14 +1393,14 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "ESP32-S3 and ID=3 / Boot")
+				(value "ESP32-S3 and ID=4 / Boot")
 			)
 			(property
 				(name "Sheetfile")
 				(value "mcu.kicad_sch")
 			)
 			(sheetpath
-				(names "/ESP32-S3 and ID=3 / Boot/")
+				(names "/ESP32-S3 and ID=4 / Boot/")
 				(tstamps "/66ff79ac-70a4-5400-8e35-d5219921cb79/")
 			)
 			(tstamps "438efbe2-745c-59af-ad7a-b45008b0e5ae")
@@ -1439,14 +1439,14 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "ESP32-S3 and ID=3 / Boot")
+				(value "ESP32-S3 and ID=4 / Boot")
 			)
 			(property
 				(name "Sheetfile")
 				(value "mcu.kicad_sch")
 			)
 			(sheetpath
-				(names "/ESP32-S3 and ID=3 / Boot/")
+				(names "/ESP32-S3 and ID=4 / Boot/")
 				(tstamps "/66ff79ac-70a4-5400-8e35-d5219921cb79/")
 			)
 			(tstamps "91d7e773-12f6-5b68-a14e-2335f0b4515b")
@@ -1485,14 +1485,14 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "ESP32-S3 and ID=3 / Boot")
+				(value "ESP32-S3 and ID=4 / Boot")
 			)
 			(property
 				(name "Sheetfile")
 				(value "mcu.kicad_sch")
 			)
 			(sheetpath
-				(names "/ESP32-S3 and ID=3 / Boot/")
+				(names "/ESP32-S3 and ID=4 / Boot/")
 				(tstamps "/66ff79ac-70a4-5400-8e35-d5219921cb79/")
 			)
 			(tstamps "498998b3-c104-55dd-acfc-ad467f519fba")
@@ -1531,14 +1531,14 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "ESP32-S3 and ID=3 / Boot")
+				(value "ESP32-S3 and ID=4 / Boot")
 			)
 			(property
 				(name "Sheetfile")
 				(value "mcu.kicad_sch")
 			)
 			(sheetpath
-				(names "/ESP32-S3 and ID=3 / Boot/")
+				(names "/ESP32-S3 and ID=4 / Boot/")
 				(tstamps "/66ff79ac-70a4-5400-8e35-d5219921cb79/")
 			)
 			(tstamps "8aaa206f-f3e5-59a3-a627-7fda66bd2810")
@@ -1577,14 +1577,14 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "ESP32-S3 and ID=3 / Boot")
+				(value "ESP32-S3 and ID=4 / Boot")
 			)
 			(property
 				(name "Sheetfile")
 				(value "mcu.kicad_sch")
 			)
 			(sheetpath
-				(names "/ESP32-S3 and ID=3 / Boot/")
+				(names "/ESP32-S3 and ID=4 / Boot/")
 				(tstamps "/66ff79ac-70a4-5400-8e35-d5219921cb79/")
 			)
 			(tstamps "728bcf1d-bcc9-5fef-8158-b96c320080d3")
@@ -1604,7 +1604,7 @@
 		)
 		(comp
 			(ref "R8")
-			(value "1.2k 1%")
+			(value "1.62k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
 				(field
@@ -1623,14 +1623,14 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "ESP32-S3 and ID=3 / Boot")
+				(value "ESP32-S3 and ID=4 / Boot")
 			)
 			(property
 				(name "Sheetfile")
 				(value "mcu.kicad_sch")
 			)
 			(sheetpath
-				(names "/ESP32-S3 and ID=3 / Boot/")
+				(names "/ESP32-S3 and ID=4 / Boot/")
 				(tstamps "/66ff79ac-70a4-5400-8e35-d5219921cb79/")
 			)
 			(tstamps "47dbe5f8-efa7-5fc4-a643-4916ee5b8f2c")
@@ -1669,14 +1669,14 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "ESP32-S3 and ID=3 / Boot")
+				(value "ESP32-S3 and ID=4 / Boot")
 			)
 			(property
 				(name "Sheetfile")
 				(value "mcu.kicad_sch")
 			)
 			(sheetpath
-				(names "/ESP32-S3 and ID=3 / Boot/")
+				(names "/ESP32-S3 and ID=4 / Boot/")
 				(tstamps "/66ff79ac-70a4-5400-8e35-d5219921cb79/")
 			)
 			(tstamps "6a7d68ad-2a03-5348-91c7-dcc03cdb838a")
@@ -1715,14 +1715,14 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "ESP32-S3 and ID=3 / Boot")
+				(value "ESP32-S3 and ID=4 / Boot")
 			)
 			(property
 				(name "Sheetfile")
 				(value "mcu.kicad_sch")
 			)
 			(sheetpath
-				(names "/ESP32-S3 and ID=3 / Boot/")
+				(names "/ESP32-S3 and ID=4 / Boot/")
 				(tstamps "/66ff79ac-70a4-5400-8e35-d5219921cb79/")
 			)
 			(tstamps "bafddc04-1b1b-545d-a911-814e2cd056d6")
@@ -1761,14 +1761,14 @@
 			)
 			(property
 				(name "Sheetname")
-				(value "ESP32-S3 and ID=3 / Boot")
+				(value "ESP32-S3 and ID=4 / Boot")
 			)
 			(property
 				(name "Sheetfile")
 				(value "mcu.kicad_sch")
 			)
 			(sheetpath
-				(names "/ESP32-S3 and ID=3 / Boot/")
+				(names "/ESP32-S3 and ID=4 / Boot/")
 				(tstamps "/66ff79ac-70a4-5400-8e35-d5219921cb79/")
 			)
 			(tstamps "b7e8a097-8318-5120-a310-7f652b28edf9")
@@ -2161,99 +2161,77 @@
 			)
 		)
 		(comp
+			(ref "J19")
+			(value "CJMCU-0102 TXS0102 SOCKET")
+			(footprint "GemilaiMateCompact:CJMCU0102_socket")
+			(fields
+				(field
+					(name "Footprint") "GemilaiMateCompact:CJMCU0102_socket")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "GemilaiMateCompact")
+				(part "J_LEVEL")
+				(description "")
+			)
+			(property
+				(name "Sheetname")
+				(value "ADS1115 and 3V3/5V I2C")
+			)
+			(property
+				(name "Sheetfile")
+				(value "pressure.kicad_sch")
+			)
+			(sheetpath
+				(names "/ADS1115 and 3V3/5V I2C/")
+				(tstamps "/eb3532b7-4c0c-569a-8334-931d66668e8d/")
+			)
+			(tstamps "2bef3fbd-15d2-524b-8c6a-ccd0e66cbe53")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "10")
+						)
+					)
+				)
+			)
+		)
+		(comp
 			(ref "R9")
-			(value "10k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
-			(fields
-				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
-				(field
-					(name "Datasheet")
-				)
-				(field
-					(name "Description")
-				)
-			)
-			(libsource
-				(lib "GemilaiMateCompact")
-				(part "R_OE")
-				(description "")
-			)
-			(property
-				(name "Sheetname")
-				(value "ADS1115 and 3V3/5V I2C")
-			)
-			(property
-				(name "Sheetfile")
-				(value "pressure.kicad_sch")
-			)
-			(sheetpath
-				(names "/ADS1115 and 3V3/5V I2C/")
-				(tstamps "/eb3532b7-4c0c-569a-8334-931d66668e8d/")
-			)
-			(tstamps "5f3ca2f7-f622-52ad-8e15-3b5558b62600")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "R10")
-			(value "100k 1%")
-			(footprint "GemilaiMateCompact:R_0603_1608Metric")
-			(fields
-				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
-				(field
-					(name "Datasheet")
-				)
-				(field
-					(name "Description")
-				)
-			)
-			(libsource
-				(lib "GemilaiMateCompact")
-				(part "R_OEPD")
-				(description "")
-			)
-			(property
-				(name "Sheetname")
-				(value "ADS1115 and 3V3/5V I2C")
-			)
-			(property
-				(name "Sheetfile")
-				(value "pressure.kicad_sch")
-			)
-			(sheetpath
-				(names "/ADS1115 and 3V3/5V I2C/")
-				(tstamps "/eb3532b7-4c0c-569a-8334-931d66668e8d/")
-			)
-			(tstamps "a22e5dec-ebde-5c4e-b29a-2b07f768b28d")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "R11")
 			(value "1k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -2293,70 +2271,6 @@
 						)
 						(pin
 							(num "2")
-						)
-					)
-				)
-			)
-		)
-		(comp
-			(ref "U4")
-			(value "TXS0102DCTR")
-			(footprint "GemilaiMateCompact:TXS0102_DCT_SSOP8")
-			(fields
-				(field
-					(name "Footprint") "GemilaiMateCompact:TXS0102_DCT_SSOP8")
-				(field
-					(name "Datasheet")
-				)
-				(field
-					(name "Description")
-				)
-			)
-			(libsource
-				(lib "GemilaiMateCompact")
-				(part "U_LEVEL")
-				(description "")
-			)
-			(property
-				(name "Sheetname")
-				(value "ADS1115 and 3V3/5V I2C")
-			)
-			(property
-				(name "Sheetfile")
-				(value "pressure.kicad_sch")
-			)
-			(sheetpath
-				(names "/ADS1115 and 3V3/5V I2C/")
-				(tstamps "/eb3532b7-4c0c-569a-8334-931d66668e8d/")
-			)
-			(tstamps "96f38426-44f2-559f-b206-739eeac333e5")
-			(units
-				(unit
-					(name "A")
-					(pins
-						(pin
-							(num "1")
-						)
-						(pin
-							(num "2")
-						)
-						(pin
-							(num "3")
-						)
-						(pin
-							(num "4")
-						)
-						(pin
-							(num "5")
-						)
-						(pin
-							(num "6")
-						)
-						(pin
-							(num "7")
-						)
-						(pin
-							(num "8")
 						)
 					)
 				)
@@ -2421,7 +2335,7 @@
 			)
 		)
 		(comp
-			(ref "R43")
+			(ref "R41")
 			(value "0R")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -2467,7 +2381,7 @@
 			)
 		)
 		(comp
-			(ref "R44")
+			(ref "R42")
 			(value "0R")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -2957,7 +2871,7 @@
 			)
 		)
 		(comp
-			(ref "R12")
+			(ref "R10")
 			(value "10k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3003,7 +2917,7 @@
 			)
 		)
 		(comp
-			(ref "R13")
+			(ref "R11")
 			(value "1k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3049,7 +2963,7 @@
 			)
 		)
 		(comp
-			(ref "R14")
+			(ref "R12")
 			(value "47k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3095,7 +3009,7 @@
 			)
 		)
 		(comp
-			(ref "R15")
+			(ref "R13")
 			(value "100k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3141,7 +3055,7 @@
 			)
 		)
 		(comp
-			(ref "R16")
+			(ref "R14")
 			(value "10k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3187,7 +3101,7 @@
 			)
 		)
 		(comp
-			(ref "R17")
+			(ref "R15")
 			(value "10k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3233,7 +3147,7 @@
 			)
 		)
 		(comp
-			(ref "R18")
+			(ref "R16")
 			(value "10k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3279,7 +3193,7 @@
 			)
 		)
 		(comp
-			(ref "R19")
+			(ref "R17")
 			(value "10k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3325,7 +3239,7 @@
 			)
 		)
 		(comp
-			(ref "R20")
+			(ref "R18")
 			(value "10k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3371,7 +3285,7 @@
 			)
 		)
 		(comp
-			(ref "R21")
+			(ref "R19")
 			(value "10k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3417,7 +3331,7 @@
 			)
 		)
 		(comp
-			(ref "R22")
+			(ref "R20")
 			(value "10k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3463,7 +3377,7 @@
 			)
 		)
 		(comp
-			(ref "R23")
+			(ref "R21")
 			(value "10k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3509,7 +3423,7 @@
 			)
 		)
 		(comp
-			(ref "R24")
+			(ref "R22")
 			(value "10k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3555,7 +3469,7 @@
 			)
 		)
 		(comp
-			(ref "R29")
+			(ref "R27")
 			(value "0R")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3601,7 +3515,7 @@
 			)
 		)
 		(comp
-			(ref "R30")
+			(ref "R28")
 			(value "0R")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3647,7 +3561,7 @@
 			)
 		)
 		(comp
-			(ref "R31")
+			(ref "R29")
 			(value "4.7k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3693,7 +3607,7 @@
 			)
 		)
 		(comp
-			(ref "R32")
+			(ref "R30")
 			(value "4.7k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3739,7 +3653,7 @@
 			)
 		)
 		(comp
-			(ref "R33")
+			(ref "R31")
 			(value "180R 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3785,7 +3699,7 @@
 			)
 		)
 		(comp
-			(ref "R34")
+			(ref "R32")
 			(value "180R 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3831,7 +3745,7 @@
 			)
 		)
 		(comp
-			(ref "R35")
+			(ref "R33")
 			(value "180R 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3877,7 +3791,7 @@
 			)
 		)
 		(comp
-			(ref "R36")
+			(ref "R34")
 			(value "180R 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3923,7 +3837,7 @@
 			)
 		)
 		(comp
-			(ref "R37")
+			(ref "R35")
 			(value "100R 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -3969,7 +3883,7 @@
 			)
 		)
 		(comp
-			(ref "R38")
+			(ref "R36")
 			(value "100k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -4015,7 +3929,7 @@
 			)
 		)
 		(comp
-			(ref "R39")
+			(ref "R37")
 			(value "100R 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -4061,7 +3975,7 @@
 			)
 		)
 		(comp
-			(ref "R40")
+			(ref "R38")
 			(value "100k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -4107,7 +4021,7 @@
 			)
 		)
 		(comp
-			(ref "U5")
+			(ref "U4")
 			(value "SN74LVC1G17DBVR")
 			(footprint "GemilaiMateCompact:SOT-23-5")
 			(fields
@@ -4162,7 +4076,7 @@
 			)
 		)
 		(comp
-			(ref "U6")
+			(ref "U5")
 			(value "SN74LVC1G125DBVR")
 			(footprint "GemilaiMateCompact:SOT-23-5")
 			(fields
@@ -4217,7 +4131,7 @@
 			)
 		)
 		(comp
-			(ref "U7")
+			(ref "U6")
 			(value "SN74AHCT125PWR")
 			(footprint "GemilaiMateCompact:TSSOP-14_4.4x5mm_P0.65mm")
 			(fields
@@ -4443,7 +4357,7 @@
 			)
 		)
 		(comp
-			(ref "R25")
+			(ref "R23")
 			(value "1k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -4489,7 +4403,7 @@
 			)
 		)
 		(comp
-			(ref "R26")
+			(ref "R24")
 			(value "10k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -4535,7 +4449,7 @@
 			)
 		)
 		(comp
-			(ref "R27")
+			(ref "R25")
 			(value "1k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -4581,7 +4495,7 @@
 			)
 		)
 		(comp
-			(ref "R28")
+			(ref "R26")
 			(value "10k 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -4933,7 +4847,7 @@
 			)
 		)
 		(comp
-			(ref "R41")
+			(ref "R39")
 			(value "470R 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -4979,7 +4893,7 @@
 			)
 		)
 		(comp
-			(ref "R42")
+			(ref "R40")
 			(value "470R 1%")
 			(footprint "GemilaiMateCompact:R_0603_1608Metric")
 			(fields
@@ -5025,7 +4939,7 @@
 			)
 		)
 		(comp
-			(ref "U8")
+			(ref "U7")
 			(value "PCA9634PW")
 			(footprint "GemilaiMateCompact:TSSOP-20_4.4x6.5mm_P0.65mm")
 			(fields
@@ -5127,10 +5041,10 @@
 		(comp
 			(ref "J16")
 			(value "SCALE 3V3")
-			(footprint "GemilaiMateCompact:PinHeader_1x05_P1.27mm_Vertical")
+			(footprint "GemilaiMateCompact:PinHeader_1x05_P2.54mm_Vertical")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:PinHeader_1x05_P1.27mm_Vertical")
+					(name "Footprint") "GemilaiMateCompact:PinHeader_1x05_P2.54mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -5185,10 +5099,10 @@
 		(comp
 			(ref "J17")
 			(value "EXT 3V3")
-			(footprint "GemilaiMateCompact:PinHeader_2x05_P1.27mm_Vertical")
+			(footprint "GemilaiMateCompact:PinHeader_2x05_P2.54mm_Vertical")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:PinHeader_2x05_P1.27mm_Vertical")
+					(name "Footprint") "GemilaiMateCompact:PinHeader_2x05_P2.54mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -5258,10 +5172,10 @@
 		(comp
 			(ref "J18")
 			(value "FREE GPIO 3V3")
-			(footprint "GemilaiMateCompact:PinHeader_1x06_P1.27mm_Vertical")
+			(footprint "GemilaiMateCompact:PinHeader_1x06_P2.54mm_Vertical")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:PinHeader_1x06_P1.27mm_Vertical")
+					(name "Footprint") "GemilaiMateCompact:PinHeader_1x06_P2.54mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -5877,7 +5791,7 @@
 				(field
 					(name "Reference") "C16")
 				(field
-					(name "Value") "10uF 10V X7R")
+					(name "Value") "10uF 16V X7R")
 				(field
 					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric")
 				(field
@@ -5937,7 +5851,7 @@
 				(field
 					(name "Reference") "C1")
 				(field
-					(name "Value") "10uF 10V X7R")
+					(name "Value") "10uF 16V X7R")
 				(field
 					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric")
 				(field
@@ -6027,7 +5941,7 @@
 				(field
 					(name "Reference") "C3")
 				(field
-					(name "Value") "10uF 10V X7R")
+					(name "Value") "10uF 16V X7R")
 				(field
 					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric")
 				(field
@@ -6087,7 +6001,7 @@
 				(field
 					(name "Reference") "C2")
 				(field
-					(name "Value") "10uF 10V X7R")
+					(name "Value") "10uF 16V X7R")
 				(field
 					(name "Footprint") "GemilaiMateCompact:C_1206_3216Metric")
 				(field
@@ -6387,7 +6301,7 @@
 				(field
 					(name "Reference") "F2")
 				(field
-					(name "Value") "1206L150-12 1.5A")
+					(name "Value") "1206L150/12 1.5A")
 				(field
 					(name "Footprint") "GemilaiMateCompact:Fuse_1206_3216Metric")
 				(field
@@ -6664,7 +6578,7 @@
 				(field
 					(name "Value") "EXT 3V3")
 				(field
-					(name "Footprint") "GemilaiMateCompact:PinHeader_2x05_P1.27mm_Vertical")
+					(name "Footprint") "GemilaiMateCompact:PinHeader_2x05_P2.54mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -6734,7 +6648,7 @@
 				(field
 					(name "Value") "FREE GPIO 3V3")
 				(field
-					(name "Footprint") "GemilaiMateCompact:PinHeader_1x06_P1.27mm_Vertical")
+					(name "Footprint") "GemilaiMateCompact:PinHeader_1x06_P2.54mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -6807,6 +6721,76 @@
 					(num "3")
 					(name "IN")
 					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "GemilaiMateCompact")
+			(part "J_LEVEL")
+			(fields
+				(field
+					(name "Reference") "J19")
+				(field
+					(name "Value") "CJMCU-0102 TXS0102 SOCKET")
+				(field
+					(name "Footprint") "GemilaiMateCompact:CJMCU0102_socket")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "GND_A")
+					(type "power_in")
+				)
+				(pin
+					(num "2")
+					(name "OE")
+					(type "input")
+				)
+				(pin
+					(num "3")
+					(name "VCCA")
+					(type "power_in")
+				)
+				(pin
+					(num "4")
+					(name "A1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "A2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "6")
+					(name "GND_B")
+					(type "power_in")
+				)
+				(pin
+					(num "7")
+					(name "G_RESERVED_NC")
+					(type "passive")
+				)
+				(pin
+					(num "8")
+					(name "VCCB")
+					(type "power_in")
+				)
+				(pin
+					(num "9")
+					(name "B1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "10")
+					(name "B2")
+					(type "bidirectional")
 				)
 			)
 		)
@@ -7014,7 +6998,7 @@
 				(field
 					(name "Value") "SCALE 3V3")
 				(field
-					(name "Footprint") "GemilaiMateCompact:PinHeader_1x05_P1.27mm_Vertical")
+					(name "Footprint") "GemilaiMateCompact:PinHeader_1x05_P2.54mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -7390,7 +7374,7 @@
 			(part "R_ALBASCL")
 			(fields
 				(field
-					(name "Reference") "R32")
+					(name "Reference") "R30")
 				(field
 					(name "Value") "4.7k 1%")
 				(field
@@ -7420,7 +7404,7 @@
 			(part "R_ALBASDA")
 			(fields
 				(field
-					(name "Reference") "R31")
+					(name "Reference") "R29")
 				(field
 					(name "Value") "4.7k 1%")
 				(field
@@ -7480,7 +7464,7 @@
 			(part "R_BREW")
 			(fields
 				(field
-					(name "Reference") "R25")
+					(name "Reference") "R23")
 				(field
 					(name "Value") "1k 1%")
 				(field
@@ -7510,7 +7494,7 @@
 			(part "R_BREWPU")
 			(fields
 				(field
-					(name "Reference") "R26")
+					(name "Reference") "R24")
 				(field
 					(name "Value") "10k 1%")
 				(field
@@ -7630,7 +7614,7 @@
 			(part "R_EXTSCL")
 			(fields
 				(field
-					(name "Reference") "R42")
+					(name "Reference") "R40")
 				(field
 					(name "Value") "470R 1%")
 				(field
@@ -7660,7 +7644,7 @@
 			(part "R_EXTSDA")
 			(fields
 				(field
-					(name "Reference") "R41")
+					(name "Reference") "R39")
 				(field
 					(name "Value") "470R 1%")
 				(field
@@ -7690,7 +7674,7 @@
 			(part "R_EXT_BASE")
 			(fields
 				(field
-					(name "Reference") "R14")
+					(name "Reference") "R12")
 				(field
 					(name "Value") "47k 1%")
 				(field
@@ -7720,7 +7704,7 @@
 			(part "R_EXT_PD")
 			(fields
 				(field
-					(name "Reference") "R15")
+					(name "Reference") "R13")
 				(field
 					(name "Value") "100k 1%")
 				(field
@@ -7750,7 +7734,7 @@
 			(part "R_GATE4")
 			(fields
 				(field
-					(name "Reference") "R37")
+					(name "Reference") "R35")
 				(field
 					(name "Value") "100R 1%")
 				(field
@@ -7780,7 +7764,7 @@
 			(part "R_GATE5")
 			(fields
 				(field
-					(name "Reference") "R39")
+					(name "Reference") "R37")
 				(field
 					(name "Value") "100R 1%")
 				(field
@@ -7810,7 +7794,7 @@
 			(part "R_GPD4")
 			(fields
 				(field
-					(name "Reference") "R38")
+					(name "Reference") "R36")
 				(field
 					(name "Value") "100k 1%")
 				(field
@@ -7840,7 +7824,7 @@
 			(part "R_GPD5")
 			(fields
 				(field
-					(name "Reference") "R40")
+					(name "Reference") "R38")
 				(field
 					(name "Value") "100k 1%")
 				(field
@@ -7872,7 +7856,7 @@
 				(field
 					(name "Reference") "R8")
 				(field
-					(name "Value") "1.2k 1%")
+					(name "Value") "1.62k 1%")
 				(field
 					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
 				(field
@@ -7930,7 +7914,7 @@
 			(part "R_LED0")
 			(fields
 				(field
-					(name "Reference") "R33")
+					(name "Reference") "R31")
 				(field
 					(name "Value") "180R 1%")
 				(field
@@ -7960,7 +7944,7 @@
 			(part "R_LED1")
 			(fields
 				(field
-					(name "Reference") "R34")
+					(name "Reference") "R32")
 				(field
 					(name "Value") "180R 1%")
 				(field
@@ -7990,7 +7974,7 @@
 			(part "R_LED2")
 			(fields
 				(field
-					(name "Reference") "R35")
+					(name "Reference") "R33")
 				(field
 					(name "Value") "180R 1%")
 				(field
@@ -8020,69 +8004,9 @@
 			(part "R_LED3")
 			(fields
 				(field
-					(name "Reference") "R36")
+					(name "Reference") "R34")
 				(field
 					(name "Value") "180R 1%")
-				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
-				(field
-					(name "Datasheet")
-				)
-				(field
-					(name "Description")
-				)
-			)
-			(pins
-				(pin
-					(num "1")
-					(name "1")
-					(type "passive")
-				)
-				(pin
-					(num "2")
-					(name "2")
-					(type "passive")
-				)
-			)
-		)
-		(libpart
-			(lib "GemilaiMateCompact")
-			(part "R_OE")
-			(fields
-				(field
-					(name "Reference") "R9")
-				(field
-					(name "Value") "10k 1%")
-				(field
-					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
-				(field
-					(name "Datasheet")
-				)
-				(field
-					(name "Description")
-				)
-			)
-			(pins
-				(pin
-					(num "1")
-					(name "1")
-					(type "passive")
-				)
-				(pin
-					(num "2")
-					(name "2")
-					(type "passive")
-				)
-			)
-		)
-		(libpart
-			(lib "GemilaiMateCompact")
-			(part "R_OEPD")
-			(fields
-				(field
-					(name "Reference") "R10")
-				(field
-					(name "Value") "100k 1%")
 				(field
 					(name "Footprint") "GemilaiMateCompact:R_0603_1608Metric")
 				(field
@@ -8110,7 +8034,7 @@
 			(part "R_OEUP")
 			(fields
 				(field
-					(name "Reference") "R16")
+					(name "Reference") "R14")
 				(field
 					(name "Value") "10k 1%")
 				(field
@@ -8140,7 +8064,7 @@
 			(part "R_OUT_ALT")
 			(fields
 				(field
-					(name "Reference") "R24")
+					(name "Reference") "R22")
 				(field
 					(name "Value") "10k 1%")
 				(field
@@ -8170,7 +8094,7 @@
 			(part "R_OUT_HEATER")
 			(fields
 				(field
-					(name "Reference") "R23")
+					(name "Reference") "R21")
 				(field
 					(name "Value") "10k 1%")
 				(field
@@ -8200,7 +8124,7 @@
 			(part "R_OUT_VALVE")
 			(fields
 				(field
-					(name "Reference") "R22")
+					(name "Reference") "R20")
 				(field
 					(name "Value") "10k 1%")
 				(field
@@ -8230,7 +8154,7 @@
 			(part "R_PCACLK")
 			(fields
 				(field
-					(name "Reference") "R29")
+					(name "Reference") "R27")
 				(field
 					(name "Value") "0R")
 				(field
@@ -8260,7 +8184,7 @@
 			(part "R_PCADAT")
 			(fields
 				(field
-					(name "Reference") "R30")
+					(name "Reference") "R28")
 				(field
 					(name "Value") "0R")
 				(field
@@ -8290,7 +8214,7 @@
 			(part "R_PD1")
 			(fields
 				(field
-					(name "Reference") "R17")
+					(name "Reference") "R15")
 				(field
 					(name "Value") "10k 1%")
 				(field
@@ -8320,7 +8244,7 @@
 			(part "R_PD2")
 			(fields
 				(field
-					(name "Reference") "R18")
+					(name "Reference") "R16")
 				(field
 					(name "Value") "10k 1%")
 				(field
@@ -8350,7 +8274,7 @@
 			(part "R_PD3")
 			(fields
 				(field
-					(name "Reference") "R19")
+					(name "Reference") "R17")
 				(field
 					(name "Value") "10k 1%")
 				(field
@@ -8380,7 +8304,7 @@
 			(part "R_PD4")
 			(fields
 				(field
-					(name "Reference") "R20")
+					(name "Reference") "R18")
 				(field
 					(name "Value") "10k 1%")
 				(field
@@ -8410,7 +8334,7 @@
 			(part "R_PD5")
 			(fields
 				(field
-					(name "Reference") "R21")
+					(name "Reference") "R19")
 				(field
 					(name "Value") "10k 1%")
 				(field
@@ -8440,7 +8364,7 @@
 			(part "R_PRESS")
 			(fields
 				(field
-					(name "Reference") "R11")
+					(name "Reference") "R9")
 				(field
 					(name "Value") "1k 1%")
 				(field
@@ -8470,7 +8394,7 @@
 			(part "R_STEAM")
 			(fields
 				(field
-					(name "Reference") "R27")
+					(name "Reference") "R25")
 				(field
 					(name "Value") "1k 1%")
 				(field
@@ -8500,7 +8424,7 @@
 			(part "R_STEAMPU")
 			(fields
 				(field
-					(name "Reference") "R28")
+					(name "Reference") "R26")
 				(field
 					(name "Value") "10k 1%")
 				(field
@@ -8530,7 +8454,7 @@
 			(part "R_TC3V3")
 			(fields
 				(field
-					(name "Reference") "R43")
+					(name "Reference") "R41")
 				(field
 					(name "Value") "0R")
 				(field
@@ -8560,7 +8484,7 @@
 			(part "R_TC5V")
 			(fields
 				(field
-					(name "Reference") "R44")
+					(name "Reference") "R42")
 				(field
 					(name "Value") "0R")
 				(field
@@ -8650,7 +8574,7 @@
 			(part "R_ZCPU")
 			(fields
 				(field
-					(name "Reference") "R12")
+					(name "Reference") "R10")
 				(field
 					(name "Value") "10k 1%")
 				(field
@@ -8680,7 +8604,7 @@
 			(part "R_ZCS")
 			(fields
 				(field
-					(name "Reference") "R13")
+					(name "Reference") "R11")
 				(field
 					(name "Value") "1k 1%")
 				(field
@@ -9295,7 +9219,7 @@
 			(part "U_LED")
 			(fields
 				(field
-					(name "Reference") "U8")
+					(name "Reference") "U7")
 				(field
 					(name "Value") "PCA9634PW")
 				(field
@@ -9412,70 +9336,10 @@
 		)
 		(libpart
 			(lib "GemilaiMateCompact")
-			(part "U_LEVEL")
-			(fields
-				(field
-					(name "Reference") "U4")
-				(field
-					(name "Value") "TXS0102DCTR")
-				(field
-					(name "Footprint") "GemilaiMateCompact:TXS0102_DCT_SSOP8")
-				(field
-					(name "Datasheet")
-				)
-				(field
-					(name "Description")
-				)
-			)
-			(pins
-				(pin
-					(num "1")
-					(name "B2")
-					(type "bidirectional")
-				)
-				(pin
-					(num "2")
-					(name "GND")
-					(type "power_in")
-				)
-				(pin
-					(num "3")
-					(name "VCCA")
-					(type "power_in")
-				)
-				(pin
-					(num "4")
-					(name "A2")
-					(type "bidirectional")
-				)
-				(pin
-					(num "5")
-					(name "A1")
-					(type "bidirectional")
-				)
-				(pin
-					(num "6")
-					(name "OE")
-					(type "input")
-				)
-				(pin
-					(num "7")
-					(name "VCCB")
-					(type "power_in")
-				)
-				(pin
-					(num "8")
-					(name "B1")
-					(type "bidirectional")
-				)
-			)
-		)
-		(libpart
-			(lib "GemilaiMateCompact")
 			(part "U_PUMP")
 			(fields
 				(field
-					(name "Reference") "U6")
+					(name "Reference") "U5")
 				(field
 					(name "Value") "SN74LVC1G125DBVR")
 				(field
@@ -9555,7 +9419,7 @@
 			(part "U_SSR")
 			(fields
 				(field
-					(name "Reference") "U7")
+					(name "Reference") "U6")
 				(field
 					(name "Value") "SN74AHCT125PWR")
 				(field
@@ -9645,7 +9509,7 @@
 			(part "U_ZC")
 			(fields
 				(field
-					(name "Reference") "U5")
+					(name "Reference") "U4")
 				(field
 					(name "Value") "SN74LVC1G17DBVR")
 				(field
@@ -9696,7 +9560,7 @@
 		(net
 			(code "1")
 			(name "+3V3")
-			(class "Default")
+			(class "Power")
 			(node
 				(ref "C10")
 				(pin "1")
@@ -9764,7 +9628,25 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R16")
+				(ref "J19")
+				(pin "2")
+				(pinfunction "OE_2")
+				(pintype "input")
+			)
+			(node
+				(ref "J19")
+				(pin "3")
+				(pinfunction "VCCA_3")
+				(pintype "power_in")
+			)
+			(node
+				(ref "R14")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R24")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -9776,25 +9658,19 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R28")
+				(ref "R29")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
-				(ref "R31")
+				(ref "R30")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
-				(ref "R32")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "R43")
+				(ref "R41")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -9807,12 +9683,6 @@
 			)
 			(node
 				(ref "R6")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "R9")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -9837,8 +9707,8 @@
 			)
 			(node
 				(ref "U4")
-				(pin "3")
-				(pinfunction "VCCA_3")
+				(pin "5")
+				(pinfunction "VCC_5")
 				(pintype "power_in")
 			)
 			(node
@@ -9848,13 +9718,7 @@
 				(pintype "power_in")
 			)
 			(node
-				(ref "U6")
-				(pin "5")
-				(pinfunction "VCC_5")
-				(pintype "power_in")
-			)
-			(node
-				(ref "U8")
+				(ref "U7")
 				(pin "20")
 				(pinfunction "VDD_20")
 				(pintype "power_in")
@@ -9863,7 +9727,7 @@
 		(net
 			(code "2")
 			(name "+5V_CORE")
-			(class "Default")
+			(class "Power")
 			(node
 				(ref "C1")
 				(pin "1")
@@ -9889,13 +9753,19 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "J19")
+				(pin "8")
+				(pinfunction "VCCB_8")
+				(pintype "power_in")
+			)
+			(node
 				(ref "J2")
 				(pin "1")
 				(pinfunction "VDD_1")
 				(pintype "passive")
 			)
 			(node
-				(ref "R44")
+				(ref "R42")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -9906,17 +9776,11 @@
 				(pinfunction "IN_1")
 				(pintype "power_in")
 			)
-			(node
-				(ref "U4")
-				(pin "7")
-				(pinfunction "VCCB_7")
-				(pintype "power_in")
-			)
 		)
 		(net
 			(code "3")
 			(name "+5V_EXT")
-			(class "Default")
+			(class "Power")
 			(node
 				(ref "C11")
 				(pin "1")
@@ -10008,25 +9872,25 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "R10")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
 				(ref "R12")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
-				(ref "R14")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U7")
+				(ref "U6")
 				(pin "13")
 				(pinfunction "4OE_N_13")
 				(pintype "input")
 			)
 			(node
-				(ref "U7")
+				(ref "U6")
 				(pin "14")
 				(pinfunction "VCC_14")
 				(pintype "power_in")
@@ -10037,19 +9901,19 @@
 			(name "ALBA_SCL")
 			(class "Default")
 			(node
-				(ref "R29")
+				(ref "R27")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
-				(ref "R32")
+				(ref "R30")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
-				(ref "R42")
+				(ref "R40")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -10072,19 +9936,19 @@
 			(name "ALBA_SDA")
 			(class "Default")
 			(node
-				(ref "R30")
+				(ref "R28")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
-				(ref "R31")
+				(ref "R29")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
-				(ref "R41")
+				(ref "R39")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -10107,7 +9971,7 @@
 			(name "ALT")
 			(class "Default")
 			(node
-				(ref "R20")
+				(ref "R18")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -10119,7 +9983,7 @@
 				(pintype "bidirectional")
 			)
 			(node
-				(ref "U7")
+				(ref "U6")
 				(pin "9")
 				(pinfunction "3A_9")
 				(pintype "input")
@@ -10136,13 +10000,13 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R24")
+				(ref "R22")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
-				(ref "U7")
+				(ref "U6")
 				(pin "8")
 				(pinfunction "3Y_8")
 				(pintype "tri_state")
@@ -10217,13 +10081,13 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R25")
+				(ref "R23")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
-				(ref "R26")
+				(ref "R24")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
@@ -10246,7 +10110,7 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R25")
+				(ref "R23")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -10428,13 +10292,13 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R14")
+				(ref "R12")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
-				(ref "R15")
+				(ref "R13")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -10443,7 +10307,7 @@
 		(net
 			(code "22")
 			(name "EXT_IN")
-			(class "Default")
+			(class "Power")
 			(node
 				(ref "F2")
 				(pin "1")
@@ -10474,7 +10338,7 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R42")
+				(ref "R40")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
@@ -10497,7 +10361,7 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R41")
+				(ref "R39")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
@@ -10700,6 +10564,18 @@
 				(pintype "passive")
 			)
 			(node
+				(ref "J19")
+				(pin "1")
+				(pinfunction "GND_A_1")
+				(pintype "power_in")
+			)
+			(node
+				(ref "J19")
+				(pin "6")
+				(pinfunction "GND_B_6")
+				(pintype "power_in")
+			)
+			(node
 				(ref "J2")
 				(pin "2")
 				(pinfunction "GND_2")
@@ -10784,13 +10660,19 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R10")
+				(ref "R13")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
 				(ref "R15")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R16")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
@@ -10838,25 +10720,13 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R23")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R24")
+				(ref "R36")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
 				(ref "R38")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R40")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
@@ -10917,8 +10787,8 @@
 			)
 			(node
 				(ref "U4")
-				(pin "2")
-				(pinfunction "GND_2")
+				(pin "3")
+				(pinfunction "GND_3")
 				(pintype "power_in")
 			)
 			(node
@@ -10929,72 +10799,66 @@
 			)
 			(node
 				(ref "U6")
-				(pin "3")
-				(pinfunction "GND_3")
-				(pintype "power_in")
-			)
-			(node
-				(ref "U7")
 				(pin "12")
 				(pinfunction "4A_12")
 				(pintype "input")
 			)
 			(node
-				(ref "U7")
+				(ref "U6")
 				(pin "7")
 				(pinfunction "GND_7")
 				(pintype "power_in")
 			)
 			(node
-				(ref "U8")
+				(ref "U7")
 				(pin "1")
 				(pinfunction "A0_1")
 				(pintype "input")
 			)
 			(node
-				(ref "U8")
+				(ref "U7")
 				(pin "10")
 				(pinfunction "VSS_10")
 				(pintype "power_in")
 			)
 			(node
-				(ref "U8")
+				(ref "U7")
 				(pin "15")
 				(pinfunction "OE_N_15")
 				(pintype "input")
 			)
 			(node
-				(ref "U8")
+				(ref "U7")
 				(pin "16")
 				(pinfunction "A5_16")
 				(pintype "input")
 			)
 			(node
-				(ref "U8")
+				(ref "U7")
 				(pin "17")
 				(pinfunction "A6_17")
 				(pintype "input")
 			)
 			(node
-				(ref "U8")
+				(ref "U7")
 				(pin "2")
 				(pinfunction "A1_2")
 				(pintype "input")
 			)
 			(node
-				(ref "U8")
+				(ref "U7")
 				(pin "3")
 				(pinfunction "A2_3")
 				(pintype "input")
 			)
 			(node
-				(ref "U8")
+				(ref "U7")
 				(pin "4")
 				(pinfunction "A3_4")
 				(pintype "input")
 			)
 			(node
-				(ref "U8")
+				(ref "U7")
 				(pin "5")
 				(pinfunction "A4_5")
 				(pintype "input")
@@ -11056,7 +10920,7 @@
 			(name "HEATER")
 			(class "Default")
 			(node
-				(ref "R19")
+				(ref "R17")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -11068,7 +10932,7 @@
 				(pintype "bidirectional")
 			)
 			(node
-				(ref "U7")
+				(ref "U6")
 				(pin "5")
 				(pinfunction "2A_5")
 				(pintype "input")
@@ -11085,13 +10949,13 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R23")
+				(ref "R21")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
-				(ref "U7")
+				(ref "U6")
 				(pin "6")
 				(pinfunction "2Y_6")
 				(pintype "tri_state")
@@ -11099,29 +10963,6 @@
 		)
 		(net
 			(code "31")
-			(name "I2C_OE")
-			(class "Default")
-			(node
-				(ref "R10")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "R9")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "U4")
-				(pin "6")
-				(pinfunction "OE_6")
-				(pintype "input")
-			)
-		)
-		(net
-			(code "32")
 			(name "LED4_DRAIN")
 			(class "Default")
 			(node
@@ -11138,7 +10979,7 @@
 			)
 		)
 		(net
-			(code "33")
+			(code "32")
 			(name "LED5_DRAIN")
 			(class "Default")
 			(node
@@ -11155,11 +10996,34 @@
 			)
 		)
 		(net
-			(code "34")
+			(code "33")
 			(name "LED_GATE4")
 			(class "Default")
 			(node
 				(ref "Q2")
+				(pin "1")
+				(pinfunction "G_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R35")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R36")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "34")
+			(name "LED_GATE5")
+			(class "Default")
+			(node
+				(ref "Q3")
 				(pin "1")
 				(pinfunction "G_1")
 				(pintype "passive")
@@ -11179,29 +11043,6 @@
 		)
 		(net
 			(code "35")
-			(name "LED_GATE5")
-			(class "Default")
-			(node
-				(ref "Q3")
-				(pin "1")
-				(pinfunction "G_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "R39")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-			(node
-				(ref "R40")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "36")
 			(name "OUTPUT_OE_N")
 			(class "Default")
 			(node
@@ -11211,39 +11052,73 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R16")
+				(ref "R14")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
-				(ref "U6")
+				(ref "U5")
 				(pin "1")
 				(pinfunction "OE_N_1")
 				(pintype "input")
 			)
 			(node
-				(ref "U7")
+				(ref "U6")
 				(pin "1")
 				(pinfunction "1OE_N_1")
 				(pintype "input")
 			)
 			(node
-				(ref "U7")
+				(ref "U6")
 				(pin "10")
 				(pinfunction "3OE_N_10")
 				(pintype "input")
 			)
 			(node
-				(ref "U7")
+				(ref "U6")
 				(pin "4")
 				(pinfunction "2OE_N_4")
 				(pintype "input")
 			)
 		)
 		(net
-			(code "37")
+			(code "36")
 			(name "PCA_LED0")
+			(class "Default")
+			(node
+				(ref "R31")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U7")
+				(pin "6")
+				(pinfunction "LED0_6")
+				(pintype "open_collector")
+			)
+		)
+		(net
+			(code "37")
+			(name "PCA_LED1")
+			(class "Default")
+			(node
+				(ref "R32")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U7")
+				(pin "7")
+				(pinfunction "LED1_7")
+				(pintype "open_collector")
+			)
+		)
+		(net
+			(code "38")
+			(name "PCA_LED2")
 			(class "Default")
 			(node
 				(ref "R33")
@@ -11252,15 +11127,15 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U8")
-				(pin "6")
-				(pinfunction "LED0_6")
+				(ref "U7")
+				(pin "8")
+				(pinfunction "LED2_8")
 				(pintype "open_collector")
 			)
 		)
 		(net
-			(code "38")
-			(name "PCA_LED1")
+			(code "39")
+			(name "PCA_LED3")
 			(class "Default")
 			(node
 				(ref "R34")
@@ -11269,15 +11144,15 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U8")
-				(pin "7")
-				(pinfunction "LED1_7")
+				(ref "U7")
+				(pin "9")
+				(pinfunction "LED3_9")
 				(pintype "open_collector")
 			)
 		)
 		(net
-			(code "39")
-			(name "PCA_LED2")
+			(code "40")
+			(name "PCA_LED4")
 			(class "Default")
 			(node
 				(ref "R35")
@@ -11286,32 +11161,15 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U8")
-				(pin "8")
-				(pinfunction "LED2_8")
-				(pintype "open_collector")
-			)
-		)
-		(net
-			(code "40")
-			(name "PCA_LED3")
-			(class "Default")
-			(node
-				(ref "R36")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U8")
-				(pin "9")
-				(pinfunction "LED3_9")
+				(ref "U7")
+				(pin "11")
+				(pinfunction "LED4_11")
 				(pintype "open_collector")
 			)
 		)
 		(net
 			(code "41")
-			(name "PCA_LED4")
+			(name "PCA_LED5")
 			(class "Default")
 			(node
 				(ref "R37")
@@ -11320,31 +11178,14 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U8")
-				(pin "11")
-				(pinfunction "LED4_11")
-				(pintype "open_collector")
-			)
-		)
-		(net
-			(code "42")
-			(name "PCA_LED5")
-			(class "Default")
-			(node
-				(ref "R39")
-				(pin "1")
-				(pinfunction "1_1")
-				(pintype "passive")
-			)
-			(node
-				(ref "U8")
+				(ref "U7")
 				(pin "12")
 				(pinfunction "LED5_12")
 				(pintype "open_collector")
 			)
 		)
 		(net
-			(code "43")
+			(code "42")
 			(name "PCA_LED6")
 			(class "Default")
 			(node
@@ -11354,14 +11195,14 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U8")
+				(ref "U7")
 				(pin "13")
 				(pinfunction "LED6_13")
 				(pintype "open_collector")
 			)
 		)
 		(net
-			(code "44")
+			(code "43")
 			(name "PCA_LED7")
 			(class "Default")
 			(node
@@ -11371,48 +11212,48 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "U8")
+				(ref "U7")
 				(pin "14")
 				(pinfunction "LED7_14")
 				(pintype "open_collector")
 			)
 		)
 		(net
-			(code "45")
+			(code "44")
 			(name "PCA_SCL")
 			(class "Default")
 			(node
-				(ref "R29")
+				(ref "R27")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
-				(ref "U8")
+				(ref "U7")
 				(pin "18")
 				(pinfunction "SCL_18")
 				(pintype "input")
 			)
 		)
 		(net
-			(code "46")
+			(code "45")
 			(name "PCA_SDA")
 			(class "Default")
 			(node
-				(ref "R30")
+				(ref "R28")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
-				(ref "U8")
+				(ref "U7")
 				(pin "19")
 				(pinfunction "SDA_19")
 				(pintype "bidirectional")
 			)
 		)
 		(net
-			(code "47")
+			(code "46")
 			(name "PRESSURE")
 			(class "Default")
 			(node
@@ -11428,14 +11269,14 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R11")
+				(ref "R9")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 		)
 		(net
-			(code "48")
+			(code "47")
 			(name "PRESSURE_RAW")
 			(class "Default")
 			(node
@@ -11445,14 +11286,14 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R11")
+				(ref "R9")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
 			)
 		)
 		(net
-			(code "49")
+			(code "48")
 			(name "PUMP_OUT")
 			(class "Default")
 			(node
@@ -11462,24 +11303,24 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R21")
+				(ref "R19")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
-				(ref "U6")
+				(ref "U5")
 				(pin "4")
 				(pinfunction "Y_4")
 				(pintype "tri_state")
 			)
 		)
 		(net
-			(code "50")
+			(code "49")
 			(name "PUMP_PWM")
 			(class "Default")
 			(node
-				(ref "R17")
+				(ref "R15")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -11491,14 +11332,14 @@
 				(pintype "bidirectional")
 			)
 			(node
-				(ref "U6")
+				(ref "U5")
 				(pin "2")
 				(pinfunction "A_2")
 				(pintype "input")
 			)
 		)
 		(net
-			(code "51")
+			(code "50")
 			(name "PUMP_ZC")
 			(class "Default")
 			(node
@@ -11508,20 +11349,54 @@
 				(pintype "bidirectional")
 			)
 			(node
-				(ref "U5")
+				(ref "U4")
 				(pin "4")
 				(pinfunction "Y_4")
 				(pintype "output")
 			)
 		)
 		(net
-			(code "52")
+			(code "51")
 			(name "RGBW0")
 			(class "Default")
 			(node
 				(ref "J14")
 				(pin "2")
 				(pinfunction "R_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R31")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "52")
+			(name "RGBW1")
+			(class "Default")
+			(node
+				(ref "J14")
+				(pin "3")
+				(pinfunction "G_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "R32")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "53")
+			(name "RGBW2")
+			(class "Default")
+			(node
+				(ref "J14")
+				(pin "4")
+				(pinfunction "B_4")
 				(pintype "passive")
 			)
 			(node
@@ -11532,13 +11407,13 @@
 			)
 		)
 		(net
-			(code "53")
-			(name "RGBW1")
+			(code "54")
+			(name "RGBW3")
 			(class "Default")
 			(node
 				(ref "J14")
-				(pin "3")
-				(pinfunction "G_3")
+				(pin "5")
+				(pinfunction "W_5")
 				(pintype "passive")
 			)
 			(node
@@ -11549,41 +11424,7 @@
 			)
 		)
 		(net
-			(code "54")
-			(name "RGBW2")
-			(class "Default")
-			(node
-				(ref "J14")
-				(pin "4")
-				(pinfunction "B_4")
-				(pintype "passive")
-			)
-			(node
-				(ref "R35")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-		)
-		(net
 			(code "55")
-			(name "RGBW3")
-			(class "Default")
-			(node
-				(ref "J14")
-				(pin "5")
-				(pinfunction "W_5")
-				(pintype "passive")
-			)
-			(node
-				(ref "R36")
-				(pin "2")
-				(pinfunction "2_2")
-				(pintype "passive")
-			)
-		)
-		(net
-			(code "56")
 			(name "SCALE_CLK")
 			(class "Default")
 			(node
@@ -11600,7 +11441,7 @@
 			)
 		)
 		(net
-			(code "57")
+			(code "56")
 			(name "SCALE_DAT0")
 			(class "Default")
 			(node
@@ -11617,7 +11458,7 @@
 			)
 		)
 		(net
-			(code "58")
+			(code "57")
 			(name "SCALE_DAT1")
 			(class "Default")
 			(node
@@ -11634,75 +11475,75 @@
 			)
 		)
 		(net
-			(code "59")
+			(code "58")
 			(name "SCL_3V3")
 			(class "Default")
+			(node
+				(ref "J19")
+				(pin "4")
+				(pinfunction "A1_4")
+				(pintype "bidirectional")
+			)
 			(node
 				(ref "U1")
 				(pin "34")
 				(pinfunction "GPIO41_34")
 				(pintype "bidirectional")
 			)
-			(node
-				(ref "U4")
-				(pin "5")
-				(pinfunction "A1_5")
-				(pintype "bidirectional")
-			)
 		)
 		(net
-			(code "60")
+			(code "59")
 			(name "SCL_5V")
 			(class "Default")
+			(node
+				(ref "J19")
+				(pin "9")
+				(pinfunction "B1_9")
+				(pintype "bidirectional")
+			)
 			(node
 				(ref "J2")
 				(pin "3")
 				(pinfunction "SCL_3")
 				(pintype "passive")
 			)
-			(node
-				(ref "U4")
-				(pin "8")
-				(pinfunction "B1_8")
-				(pintype "bidirectional")
-			)
 		)
 		(net
-			(code "61")
+			(code "60")
 			(name "SDA_3V3")
 			(class "Default")
+			(node
+				(ref "J19")
+				(pin "5")
+				(pinfunction "A2_5")
+				(pintype "bidirectional")
+			)
 			(node
 				(ref "U1")
 				(pin "35")
 				(pinfunction "GPIO42_35")
 				(pintype "bidirectional")
 			)
-			(node
-				(ref "U4")
-				(pin "4")
-				(pinfunction "A2_4")
-				(pintype "bidirectional")
-			)
 		)
 		(net
-			(code "62")
+			(code "61")
 			(name "SDA_5V")
 			(class "Default")
+			(node
+				(ref "J19")
+				(pin "10")
+				(pinfunction "B2_10")
+				(pintype "bidirectional")
+			)
 			(node
 				(ref "J2")
 				(pin "4")
 				(pinfunction "SDA_4")
 				(pintype "passive")
 			)
-			(node
-				(ref "U4")
-				(pin "1")
-				(pinfunction "B2_1")
-				(pintype "bidirectional")
-			)
 		)
 		(net
-			(code "63")
+			(code "62")
 			(name "STEAM")
 			(class "Default")
 			(node
@@ -11712,13 +11553,13 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R27")
+				(ref "R25")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
-				(ref "R28")
+				(ref "R26")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
@@ -11731,7 +11572,7 @@
 			)
 		)
 		(net
-			(code "64")
+			(code "63")
 			(name "STEAM_RAW")
 			(class "Default")
 			(node
@@ -11741,14 +11582,14 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R27")
+				(ref "R25")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
 			)
 		)
 		(net
-			(code "65")
+			(code "64")
 			(name "STRAP3")
 			(class "Default")
 			(node
@@ -11765,7 +11606,7 @@
 			)
 		)
 		(net
-			(code "66")
+			(code "65")
 			(name "STRAP45")
 			(class "Default")
 			(node
@@ -11782,7 +11623,7 @@
 			)
 		)
 		(net
-			(code "67")
+			(code "66")
 			(name "STRAP46")
 			(class "Default")
 			(node
@@ -11799,7 +11640,7 @@
 			)
 		)
 		(net
-			(code "68")
+			(code "67")
 			(name "TC_CS")
 			(class "Default")
 			(node
@@ -11816,7 +11657,7 @@
 			)
 		)
 		(net
-			(code "69")
+			(code "68")
 			(name "TC_DO")
 			(class "Default")
 			(node
@@ -11833,7 +11674,7 @@
 			)
 		)
 		(net
-			(code "70")
+			(code "69")
 			(name "TC_SCK")
 			(class "Default")
 			(node
@@ -11850,7 +11691,7 @@
 			)
 		)
 		(net
-			(code "71")
+			(code "70")
 			(name "TC_VIN")
 			(class "Default")
 			(node
@@ -11860,22 +11701,22 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R43")
+				(ref "R41")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
-				(ref "R44")
+				(ref "R42")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 		)
 		(net
-			(code "72")
+			(code "71")
 			(name "USB_DM")
-			(class "Default")
+			(class "USB")
 			(node
 				(ref "J1")
 				(pin "A7")
@@ -11908,7 +11749,7 @@
 			)
 		)
 		(net
-			(code "73")
+			(code "72")
 			(name "USB_DM_MCU")
 			(class "Default")
 			(node
@@ -11925,9 +11766,9 @@
 			)
 		)
 		(net
-			(code "74")
+			(code "73")
 			(name "USB_DP")
-			(class "Default")
+			(class "USB")
 			(node
 				(ref "J1")
 				(pin "A6")
@@ -11960,7 +11801,7 @@
 			)
 		)
 		(net
-			(code "75")
+			(code "74")
 			(name "USB_DP_MCU")
 			(class "Default")
 			(node
@@ -11977,9 +11818,9 @@
 			)
 		)
 		(net
-			(code "76")
+			(code "75")
 			(name "USB_FUSED")
-			(class "Default")
+			(class "Power")
 			(node
 				(ref "D1")
 				(pin "2")
@@ -11994,9 +11835,9 @@
 			)
 		)
 		(net
-			(code "77")
+			(code "76")
 			(name "USB_VBUS")
-			(class "Default")
+			(class "USB")
 			(node
 				(ref "F1")
 				(pin "1")
@@ -12035,11 +11876,11 @@
 			)
 		)
 		(net
-			(code "78")
+			(code "77")
 			(name "VALVE")
 			(class "Default")
 			(node
-				(ref "R18")
+				(ref "R16")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
@@ -12051,14 +11892,14 @@
 				(pintype "bidirectional")
 			)
 			(node
-				(ref "U7")
+				(ref "U6")
 				(pin "2")
 				(pinfunction "1A_2")
 				(pintype "input")
 			)
 		)
 		(net
-			(code "79")
+			(code "78")
 			(name "VALVE_5V")
 			(class "Default")
 			(node
@@ -12068,37 +11909,37 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R22")
+				(ref "R20")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
 			)
 			(node
-				(ref "U7")
+				(ref "U6")
 				(pin "3")
 				(pinfunction "1Y_3")
 				(pintype "tri_state")
 			)
 		)
 		(net
-			(code "80")
+			(code "79")
 			(name "ZC_IN")
 			(class "Default")
 			(node
-				(ref "R13")
+				(ref "R11")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
-				(ref "U5")
+				(ref "U4")
 				(pin "2")
 				(pinfunction "A_2")
 				(pintype "input")
 			)
 		)
 		(net
-			(code "81")
+			(code "80")
 			(name "ZC_RAW")
 			(class "Default")
 			(node
@@ -12108,20 +11949,20 @@
 				(pintype "passive")
 			)
 			(node
-				(ref "R12")
+				(ref "R10")
 				(pin "2")
 				(pinfunction "2_2")
 				(pintype "passive")
 			)
 			(node
-				(ref "R13")
+				(ref "R11")
 				(pin "1")
 				(pinfunction "1_1")
 				(pintype "passive")
 			)
 		)
 		(net
-			(code "82")
+			(code "81")
 			(name "unconnected-(J1-PadA8)")
 			(class "Default")
 			(node
@@ -12132,7 +11973,7 @@
 			)
 		)
 		(net
-			(code "83")
+			(code "82")
 			(name "unconnected-(J1-PadB8)")
 			(class "Default")
 			(node
@@ -12143,7 +11984,7 @@
 			)
 		)
 		(net
-			(code "84")
+			(code "83")
 			(name "unconnected-(J2-A1-Pad8)")
 			(class "Default")
 			(node
@@ -12154,7 +11995,7 @@
 			)
 		)
 		(net
-			(code "85")
+			(code "84")
 			(name "unconnected-(J2-A2-Pad9)")
 			(class "Default")
 			(node
@@ -12165,7 +12006,7 @@
 			)
 		)
 		(net
-			(code "86")
+			(code "85")
 			(name "unconnected-(J2-A3-Pad10)")
 			(class "Default")
 			(node
@@ -12176,7 +12017,7 @@
 			)
 		)
 		(net
-			(code "87")
+			(code "86")
 			(name "unconnected-(J2-ALRT-Pad6)")
 			(class "Default")
 			(node
@@ -12187,7 +12028,7 @@
 			)
 		)
 		(net
-			(code "88")
+			(code "87")
 			(name "unconnected-(J3-3Vo_NC-Pad2)")
 			(class "Default")
 			(node
@@ -12198,7 +12039,7 @@
 			)
 		)
 		(net
-			(code "89")
+			(code "88")
 			(name "unconnected-(J8-EMPTY-Pad5)")
 			(class "Default")
 			(node
@@ -12209,13 +12050,24 @@
 			)
 		)
 		(net
-			(code "90")
+			(code "89")
 			(name "unconnected-(J8-EMPTY-Pad6)")
 			(class "Default")
 			(node
 				(ref "J8")
 				(pin "6")
 				(pinfunction "EMPTY_6")
+				(pintype "passive+no_connect")
+			)
+		)
+		(net
+			(code "90")
+			(name "unconnected-(J19-G_RESERVED_NC-Pad7)")
+			(class "Default")
+			(node
+				(ref "J19")
+				(pin "7")
+				(pinfunction "G_RESERVED_NC_7")
 				(pintype "passive+no_connect")
 			)
 		)
@@ -12254,10 +12106,10 @@
 		)
 		(net
 			(code "94")
-			(name "unconnected-(U5-NC-Pad1)")
+			(name "unconnected-(U4-NC-Pad1)")
 			(class "Default")
 			(node
-				(ref "U5")
+				(ref "U4")
 				(pin "1")
 				(pinfunction "NC_1")
 				(pintype "passive+no_connect")
@@ -12265,10 +12117,10 @@
 		)
 		(net
 			(code "95")
-			(name "unconnected-(U7-4Y_NC-Pad11)")
+			(name "unconnected-(U6-4Y_NC-Pad11)")
 			(class "Default")
 			(node
-				(ref "U7")
+				(ref "U6")
 				(pin "11")
 				(pinfunction "4Y_NC_11")
 				(pintype "tri_state+no_connect")

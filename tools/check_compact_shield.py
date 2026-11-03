@@ -8,6 +8,10 @@ def value(n,key):return children(n,key)[0][1]
 def main():
  d=json.loads((H/'design.json').read_text());parts={c['ref']:c for c in d['parts']};aliases={c['designator']:c['ref'] for c in d['parts']}
  pcb=s.loads((H/'gemilaimate-compact.kicad_pcb').read_text());found={}
+ assert '${KICAD10_3DMODEL_DIR}' not in (H/'gemilaimate-compact.kicad_pcb').read_text(),'PCB must use self-contained 3D models'
+ for footprint in children(pcb,'footprint'):
+  for model in children(footprint,'model'):
+   name=str(model[1]);assert name.startswith('${KIPRJMOD}/') and (H/name.split('}/',1)[1]).is_file(),name
  for f in children(pcb,'footprint'):
   ref=next(x[2] for x in children(f,'property') if x[1]=='Reference')
   alias=aliases.get(ref,ref)
@@ -20,7 +24,7 @@ def main():
  # Literal manufacturer package numbers. Deliberately not imported from the
  # generator: DCT/DCU and X2SON have different pins; SO20 != QFN20 for PCA.
  expected={
- 'U_LEVEL':{1:'SDA_5V',2:'GND',3:'+3V3',4:'SDA_3V3',5:'SCL_3V3',6:'I2C_OE',7:'+5V_CORE',8:'SCL_5V'},
+ 'J_LEVEL':{1:'GND',2:'+3V3',3:'+3V3',4:'SCL_3V3',5:'SDA_3V3',6:'GND',8:'+5V_CORE',9:'SCL_5V',10:'SDA_5V'},
  'U_LED':{1:'GND',2:'GND',3:'GND',4:'GND',5:'GND',6:'PCA_LED0',7:'PCA_LED1',8:'PCA_LED2',9:'PCA_LED3',10:'GND',11:'PCA_LED4',12:'PCA_LED5',13:'PCA_LED6',14:'PCA_LED7',15:'GND',16:'GND',17:'GND',18:'PCA_SCL',19:'PCA_SDA',20:'+3V3'},
  'U_REG':{1:'+5V_CORE',2:'GND',3:'+3V3'},
  'U_ZC':{2:'ZC_IN',3:'GND',4:'PUMP_ZC',5:'+3V3'},
@@ -46,13 +50,16 @@ def main():
    ref=str(value(node,'ref'));pin=str(value(node,'pin'))
    if ref.startswith('#'):continue
    assert found[(aliases[ref],pin)]==name,(ref,pin,name)
- assert parts['U_LEVEL']['source_footprint'].endswith('TXS0102_DCT_SSOP8')
+ assert parts['J_LEVEL']['source_footprint'].endswith('CJMCU0102_socket')
+ assert parts['J_LEVEL']['nets']['7'] is None and '2 x Harwin M20-7820546' == parts['J_LEVEL']['mpn']
+ for ref in ['J_SCALE','J_EXT','J_FREE']:
+  assert parts[ref]['dnp'] and 'P2.54mm' in parts[ref]['source_footprint'],(ref,parts[ref]['source_footprint'])
  assert parts['U_LED']['source_footprint'].endswith('TSSOP-20_4.4x6.5mm_P0.65mm')
- assert parts['R_ID_TOP']['value']=='10k 1%' and parts['R_ID_LOW']['value']=='1.2k 1%'
- vmin=3.3*.95*(1200*.99)/(10000*1.01+1200*.99)
- vmax=3.3*1.05*(1200*1.01)/(10000*.99+1200*1.01)
- assert .3<vmin<vmax<.4
- assert d['size_mm']==[65,50] and d['copper_layers']==4 and d['board_id']==3
+ assert parts['R_ID_TOP']['value']=='10k 1%' and parts['R_ID_LOW']['value']=='1.62k 1%'
+ vmin=3.3*.95*(1620*.99)/(10000*1.01+1620*.99)
+ vmax=3.3*1.05*(1620*1.01)/(10000*.99+1620*1.01)
+ assert .4<vmin<vmax<.5
+ assert d['size_mm']==[75,60] and d['copper_layers']==4 and d['board_id']==4
  assert d['hardware_tested'] is False and d['manufacturing_release'] is False
  assert d['physical_flash_mb']==16 and d['compatible_partition_flash_mb']==8 and d['psram_mb']==8
  assert d['peripheral_gpio']==dict(sda=43,scl=44)
@@ -74,7 +81,9 @@ def main():
    label=next((t for t in report['visible_labels'] if t['owner']==owner+'.'+pin['number']),None)
    if label is None:
     assert pin['net'] is None;continue
-   assert abs(label['position_mm'][0]-pin['x'])<1.01
+   # A silk legend may shift sideways to clear vias, but must remain within
+   # one 2.54 mm pitch of its own pad in either axis.
+   assert math.dist(label['position_mm'],(pin['x'],pin['y']))<2.6,(ref,pin['number'],label['position_mm'],(pin['x'],pin['y']))
    words.append(label['text'])
   if ref=='J_TC':assert words[0]=='CLK' and words[-1]=='VIN',words
  # Review fixes that must not regress: the RobotDyn PH size is unique, the
@@ -82,7 +91,7 @@ def main():
  for pin in ['5','6']:assert found[('J_PUMP',pin)] is None or found[('J_PUMP',pin)].startswith('unconnected-'),('J_PUMP spare position wired',pin)
  sizes=[len(c['nets']) for c in parts.values() if c['section']=='Connectors' and not c['dnp']]
  assert sizes.count(len(parts['J_PUMP']['nets']))==1,'RobotDyn header size must be unique'
- assert parts['J_HEAT']['dnp'] and parts['F_EXT']['mpn']=='1206L150-12SLYR' and parts['D_TVS']['mpn']=='SMAJ5.0A'
+ assert parts['J_HEAT']['dnp'] and parts['F_EXT']['mpn']=='1206L150/12SLYR' and parts['D_TVS']['mpn']=='SMAJ5.0A'
  pos=lambda ref,num:next((p['x'],p['y']) for p in parts[ref]['pins'] if p['number']==num)
  for cap,pin in [('C_IN','1'),('C_OUT','3')]:
   assert math.dist(pos(cap,'1'),pos('U_REG',pin))<5,(cap,'too far from U_REG pin',pin)
@@ -90,13 +99,25 @@ def main():
  # Budget-fab silkscreen and copper margins.
  assert all(t['bbox_mm'] and (t['bbox_mm'][3]-t['bbox_mm'][1]>=.95 or t['bbox_mm'][2]-t['bbox_mm'][0]>=.95) for t in report['visible_labels'])
  rules=json.loads((H/'gemilaimate-compact.kicad_pro').read_text())['board']['design_settings']['rules']
- assert rules['min_text_height']>=1 and rules['min_text_thickness']>=.15 and rules['min_copper_edge_clearance']>=.4
- assert rules['min_hole_to_hole']>=.5 and rules['min_hole_clearance']>=.3 and rules['min_via_annular_width']>=.15
- for ref in ['J_ADS','J_TC']:assert parts[ref]['designator']+'.BODY' in report_labels,ref
+ assert rules['min_clearance']>=.15 and rules['min_track_width']>=.2
+ assert .30<=json.loads((H/'gemilaimate-compact.kicad_pro').read_text())['net_settings']['classes'][0]['clearance']
+ net_settings=json.loads((H/'gemilaimate-compact.kicad_pro').read_text())['net_settings']
+ classes={c['name']:c for c in net_settings['classes']}
+ assert classes['Power']['clearance']>=.3 and classes['Power']['track_width']>=.35
+ assert classes['USB']['clearance']>=.2
+ assert {p['pattern'] for p in net_settings['netclass_patterns'] if p['netclass']=='Power'}=={'+3V3','+5V_CORE','+5V_EXT','EXT_IN','USB_FUSED'}
+ assert rules['min_via_diameter']>=.8 and rules['min_via_drill']>=.4
+ assert rules['min_text_height']>=1 and rules['min_text_thickness']>=.15 and rules['min_copper_edge_clearance']>=.5
+ assert rules['min_hole_to_hole']>=.65 and rules['min_hole_clearance']>=.3 and rules['min_via_annular_width']>=.15
+ custom_rules=(H/'gemilaimate-compact.kicad_dru').read_text()
+ assert 'Ordinary drill to copper' in custom_rules and '(constraint hole_clearance (min 0.50mm))' in custom_rules
+ for ref in ['J_ADS','J_TC','J_LEVEL']:assert parts[ref]['designator']+'.BODY' in report_labels,ref
  for c in parts.values():
   if c['section']=='Connectors':assert c['designator']+'.FUNCTION' in report_labels,('no function label',c['designator'])
  placements=list(csv.DictReader((H/'manufacturing/CPL-SMD.csv').open()))
- assert len(placements)==77
+ expected_smd=sum(1 for c in parts.values() if not c['dnp'] and c['physical_pads'] and
+                  (c['ref']=='U1' or all(p['smd'] for p in c['physical_pads'])))
+ assert len(placements)==expected_smd
  u1=next(p for p in placements if p['Designator']=='U1')
  assert abs(float(u1['Mid X_mm'])-15)<.001 and abs(float(u1['Mid Y_mm'])-5.6)<.001
  assert 'U1' not in {p['Reference'] for p in csv.DictReader((H/'manufacturing/BOM-THT.csv').open())}

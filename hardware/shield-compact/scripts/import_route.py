@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import gc;gc.disable()
-import sys,json,sexpdata as s
+import sys,json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3];H=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'hardware/shield/scripts'))
@@ -9,31 +9,29 @@ _app=application()
 import pcbnew as p
 seed_uuids('compact-finish')
 B=p.LoadBoard(str(H/'gemilaimate-compact.kicad_pcb'))
-# The SES holds only new routes; preserve the locked pre-route. Parse the
-# documented Specctra paths directly so a headless KiCad import cannot depend
-# on an editor frame. Fresh KiCad DRC/parity checks the resulting geometry.
-def child(node,key):return [x for x in node if isinstance(x,list) and str(x[0])==key]
-ses=s.loads((H/'reports/routed.ses').read_text());routes=child(ses,'routes')[0]
-res=child(routes,'resolution')[0];assert str(res[1])=='um';scale=1000*float(res[2])
-network=child(routes,'network_out')[0]
+D=json.loads((H/'design.json').read_text())
+# The complete accepted copper is explicit project source, including the
+# manually completed branches. No router session or editor frame is required.
+route=json.loads((H/'routing.json').read_text())
+assert route['revision']==D['revision'] and route['size_mm']==D['size_mm']
+removed=list(B.GetTracks())
+for t in removed:B.Remove(t);t.thisown=False
 V=lambda x,y:p.VECTOR2I(p.FromMM(x),p.FromMM(y))
-for item in network[1:]:
- if str(item[0])!='net':continue
- net=B.FindNet(str(item[1]));assert net and net.GetNetCode()>0,str(item[1])
- for wire in child(item,'wire'):
-  path=child(wire,'path')[0];layer=B.GetLayerID(str(path[1]));width=max(.2,float(path[2])/scale)
-  pts=[(float(path[i])/scale,-float(path[i+1])/scale) for i in range(3,len(path),2)]
-  for a,b in zip(pts,pts[1:]):
-   if a==b:continue
-   t=p.PCB_TRACK(B);t.SetStart(V(*a));t.SetEnd(V(*b));t.SetWidth(p.FromMM(width));t.SetLayer(layer);t.SetNet(net);B.Add(t)
- for v in child(item,'via'):
-  assert str(v[1])=='Via[0-3]_700:350_um'
-  t=p.PCB_VIA(B);t.SetPosition(V(float(v[2])/scale,-float(v[3])/scale));t.SetWidth(p.FromMM(.7));t.SetDrill(p.FromMM(.35));t.SetViaType(p.VIATYPE_THROUGH);t.SetLayerPair(p.F_Cu,p.B_Cu);t.SetNet(net);B.Add(t)
-for layer in [p.F_Cu,p.In1_Cu]:
- z=p.ZONE(B);z.SetLayer(layer);z.SetNet(B.FindNet('GND'));z.SetLocalClearance(p.FromMM(.15));z.SetThermalReliefGap(p.FromMM(.2));z.SetThermalReliefSpokeWidth(p.FromMM(.3));z.SetMinThickness(p.FromMM(.15))
+for item in route['items']:
+ net=B.FindNet(item['net']);assert net and net.GetNetCode()>0,item['net']
+ if item['kind']=='track':
+  t=p.PCB_TRACK(B);t.SetStart(V(*item['start']));t.SetEnd(V(*item['end']));t.SetWidth(p.FromMM(item['width']));t.SetLayer(B.GetLayerID(item['layer']))
+ else:
+  t=p.PCB_VIA(B);t.SetPosition(V(*item['xy']));t.SetWidth(p.FromMM(item['diameter']));t.SetDrill(p.FromMM(item['drill']));t.SetViaType(p.VIATYPE_THROUGH);t.SetLayerPair(p.F_Cu,p.B_Cu)
+ t.SetNet(net);t.SetLocked(item['locked']);B.Add(t)
+W,H_MM=D['size_mm']
+# Keep the continuous inner ground reference. Outer power pours connect the
+# distributed supply loads without narrowing the generous routing channels.
+for layer,name in [(p.F_Cu,'+3V3'),(p.In1_Cu,'GND'),(p.In2_Cu,'+3V3'),(p.B_Cu,'+5V_EXT')]:
+ z=p.ZONE(B);z.SetLayer(layer);z.SetNet(B.FindNet(name));z.SetLocalClearance(p.FromMM(.3));z.SetThermalReliefGap(p.FromMM(.2));z.SetThermalReliefSpokeWidth(p.FromMM(.3));z.SetMinThickness(p.FromMM(.15))
  z.SetIslandRemovalMode(p.ISLAND_REMOVAL_MODE_ALWAYS);z.SetPadConnection(p.ZONE_CONNECTION_THERMAL);o=z.Outline();o.NewOutline()
- for x,y in [(0.4,.4),(64.6,.4),(64.6,49.6),(.4,49.6)]:o.Append(int(p.FromMM(x)),int(p.FromMM(y)))
+ for x,y in [(.4,.4),(W-.4,.4),(W-.4,H_MM-.4),(.4,H_MM-.4)]:o.Append(int(p.FromMM(x)),int(p.FromMM(y)))
  B.Add(z)
 p.ZONE_FILLER(B).Fill(B.Zones())
 p.SaveBoard(str(H/'gemilaimate-compact.kicad_pcb'),B)
-print('Imported SES and filled ground planes.')
+print('Imported complete accepted routing and filled ground/power planes.')

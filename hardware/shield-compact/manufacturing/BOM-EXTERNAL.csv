@@ -1,8 +1,10 @@
-Item,Quantity_per_assembled_controller,Note
-"ADS1115 Blue breakout, 1x10 2.54mm",1,Nominal 28x17mm; measure actual clone. Can share between prototypes
-"MAX31855 breakout, VIN/3Vo/GND/DO/CS/CLK",1,Nominal 20.32x22.86mm; verify VIN regulator and thermocouple polarity
-ADS male header 1x10 2.54mm,1,Module underside; standard plastic adds 2.54mm height
-MAX male header 1x6 2.54mm,1,Module underside; verify pin order
-M2 nylon fasteners and insulating supports,3,Head <=4mm; allow underside PH plugs and cable bends
-External system,1,"Reuse matched display, pressure sensor, thermocouple, RobotDyn, SSR, isolated 5V PSU and harnesses per project docs; these are not SMD assembly items"
-Optional VL53L0X and low-power RGBW/light loads,0,"Optional; 3.3V I2C, no direct LED strips on RGBW connector"
+Item,Quantity_per_assembled_controller,MPN_example,Dimensions_mm,Note
+"ADS1115 Blue breakout, 1x10 2.54mm",1,Unspecified clone,28 x 17 x varies,"Nominal seller outline only; measure actual board, components and pins. Can share between prototypes"
+"MAX31855 breakout, VIN/3Vo/GND/DO/CS/CLK",1,Unspecified clone,20.32 x 22.86 x varies,Adafruit reference outline only; measure actual clone and thermocouple terminal
+"CJMCU-0102 TXS0102 breakout, 2x1x5 2.54mm",1,Selected marketplace module,15.24 x 15.24 x varies; row gap 12.70 assumed,"Measure actual module and row spacing; row A is 3V3, row B is 5V"
+ADS male header 1x10 2.54mm,1,Harwin M20-9991046,25.40 x 2.54 x 11.64,"Fit on breakout underside; 0.64 mm square pins, 6.1 mm mating length"
+MAX male header 1x6 2.54mm,1,Harwin M20-9990646,15.24 x 2.54 x 11.64,Fit on breakout underside; verify pin order
+CJMCU male headers 2 x 1x5 2.54mm,2,Harwin M20-9990546,12.70 x 2.54 x 11.64 each; 12.70 mm row gap,Solder to module underside after measuring the actual row gap
+M2 nylon fasteners and insulating supports,4,Generic,Head <=4 mm,Use the documented mounting holes; check connector and cable clearance
+External system,1,Per docs/components.md,Varies,"Reuse matched display, pressure sensor, thermocouple, RobotDyn, SSR and isolated 5V PSU; power modules remain separate"
+Optional VL53L0X and low-power RGBW/light loads,0,Per docs/components.md,Varies,"Optional; 3.3V I2C, no direct LED strips on RGBW connector"

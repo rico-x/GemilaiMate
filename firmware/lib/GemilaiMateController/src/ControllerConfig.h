@@ -52,21 +52,23 @@ struct ControllerConfig {
     Capabilities capabilites;
 };
 
-// ID=3 is deliberately shared with upstream GM_PRO_LEGO. It cannot identify
-// the old DevKit wiring versus the compact WROOM board: select the target at
-// build time, never probe GPIO43/44 on a legacy board with a UART bridge.
+// Select a profile matching the physical controller wiring. The compact board
+// uses upstream Pro PCB Rev 1.1 (ID=4); the legacy DevKit/shield keeps Pro LEGO
+// (ID=3). Never probe GPIO43/44 on the legacy board with a UART bridge.
 #ifdef GEMILAIMATE_COMPACT
 static constexpr const char *GEMILAI_BOARD_NAME = "GemilaiMate Compact Shield";
+static constexpr uint8_t GEMILAI_BOARD_ID = 4;
 static constexpr uint8_t GEMILAI_PERIPHERAL_SCL = 44;
 static constexpr uint8_t GEMILAI_PERIPHERAL_SDA = 43;
 #else
 static constexpr const char *GEMILAI_BOARD_NAME = "GemilaiMate Gemilai 3007Z";
+static constexpr uint8_t GEMILAI_BOARD_ID = 3;
 static constexpr uint8_t GEMILAI_PERIPHERAL_SCL = 16;
 static constexpr uint8_t GEMILAI_PERIPHERAL_SDA = 15;
 #endif
 
 const ControllerConfig GEMILAI_3007Z = {.name = GEMILAI_BOARD_NAME,
-                                      .autodetectValue = 3,
+                                      .autodetectValue = GEMILAI_BOARD_ID,
                                       .heaterPin = 14,
                                       .pumpPin = 9,
                                       .pumpSensePin = 21,

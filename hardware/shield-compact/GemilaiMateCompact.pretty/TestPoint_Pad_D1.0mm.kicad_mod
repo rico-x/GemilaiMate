@@ -8,7 +8,7 @@
 	(property "Reference" "TP10"
 		(at 0 -1.448 0)
 		(layer "F.SilkS")
-		(uuid "bcc26ba5-b744-41eb-8558-87d3d11d7bad")
+		(uuid "7c67b81f-437c-4671-901a-9c398f002327")
 		(effects
 			(font
 				(size 1 1)
@@ -19,7 +19,7 @@
 	(property "Value" "PCA_LED7"
 		(at 0 1.55 0)
 		(layer "F.Fab")
-		(uuid "17155570-4143-4e88-bb8b-ea055cc25d3f")
+		(uuid "bf459001-01f9-4c87-9ac2-79629e192005")
 		(effects
 			(font
 				(size 1 1)
@@ -32,7 +32,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "32fa1277-1006-479e-a177-587034feabed")
+		(uuid "94e4c326-4f4d-4906-a449-30f253cc40da")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -45,7 +45,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "e286aa31-e7a4-4996-a562-46d16e7c0941")
+		(uuid "c527782f-d48b-414b-8079-f216ec5880ac")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -64,7 +64,7 @@
 		)
 		(fill no)
 		(layer "F.CrtYd")
-		(uuid "ed5c612f-55ff-4ab7-b2b2-5f20804e3996")
+		(uuid "32826626-a859-475b-8300-faed651a9954")
 	)
 	(fp_circle
 		(center 0 0)
@@ -75,12 +75,12 @@
 		)
 		(fill no)
 		(layer "F.Fab")
-		(uuid "bde9ecce-ba5b-4fd2-91a1-517cc56c3eb7")
+		(uuid "2fc082be-28c0-423c-9131-90b8bdf7fe8b")
 	)
 	(fp_text user "${REFERENCE}"
 		(at 0 -1.45 0)
 		(layer "F.Fab")
-		(uuid "e5868234-b0e1-45e0-acaf-9afe919572d0")
+		(uuid "fdb30e0c-79bf-4562-b712-d0bfb8d09324")
 		(effects
 			(font
 				(size 1 1)
@@ -92,7 +92,7 @@
 		(at 0 0)
 		(size 1 1)
 		(layers "F.Cu" "F.Mask")
-		(uuid "61b5e26f-89a4-4be7-a1a6-57886a9cf290")
+		(uuid "4a12689b-0533-49b9-96db-bd9b41f7f764")
 	)
 	(embedded_fonts no)
 )

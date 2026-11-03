@@ -48,30 +48,40 @@ def route(net,points,layer=p.F_Cu,width=.28):
  for a,b in zip(points,points[1:]):
   t=p.PCB_TRACK(B);t.SetStart(V(*a));t.SetEnd(V(*b));t.SetLayer(layer);t.SetWidth(p.FromMM(width));t.SetNet(nets[net]);t.SetLocked(True);B.Add(t)
 def via(net,xy):
- t=p.PCB_VIA(B);t.SetPosition(V(*xy));t.SetWidth(p.FromMM(.7));t.SetDrill(p.FromMM(.35));t.SetViaType(p.VIATYPE_THROUGH);t.SetLayerPair(p.F_Cu,p.B_Cu);t.SetNet(nets[net]);t.SetLocked(True);B.Add(t)
-# 0.25/0.15 mm main pair, continuous In1.Cu reference. Short package/connector
-# fanouts differ in spacing; don't present this as a field-solver certificate.
+ t=p.PCB_VIA(B);t.SetPosition(V(*xy));t.SetWidth(p.FromMM(.8));t.SetDrill(p.FromMM(.4));t.SetViaType(p.VIATYPE_THROUGH);t.SetLayerPair(p.F_Cu,p.B_Cu);t.SetNet(nets[net]);t.SetLocked(True);B.Add(t)
+# 0.30 mm signal and power clearance; 0.15 mm is limited to fixed-pitch
+# USB/WROOM pad fields. The short USB-FS route is not represented as an
+# impedance-controlled or field-solver-certified channel.
 route('USB_DM_MCU',[(6.25,16.33),(4.325,16.33)])
 route('USB_DP_MCU',[(6.25,17.6),(5.825,18.025),(4.4,18.025),(4.325,18.1)])
 route('USB_DM',[(2.675,16.33),(1.2,17.805),(1.2,29.05),(4.5125,32.3625),(6.525,32.3625)])
-route('USB_DP',[(2.675,18.1),(1.68,19.095),(1.68,28.8512),(3.6288,30.8),(8.425,30.8),(8.425,32.3625)])
+route('USB_DP',[(2.675,18.1),(1.68,19.095),(1.68,28.8512),(3.3288,30.5),(8.425,30.5),(8.425,32.3625)])
 route('USB_DM',[(6.525,34.6375),(6.27,34.8925),(6.27,38),(6.4,38.13),(6.4,38.4)])
 via('USB_DM',(6.4,38.4))
-route('USB_DM',[(6.4,38.4),(7.2,39.2),(7.9,39.2),(7.9,41.2),(7.05,42.55)],p.B_Cu)
-route('USB_DP',[(8.425,34.6375),(8.81,35.0225),(8.81,38.8),(8.21,39.4),(7.05,39.4),(7.05,41.2),(7.9,42.55)])
-route('USB_DM',[(6.525,32.3625),(6.525,34.6375)])
+usb_y=p.ToMM(F['J_USB'].GetPosition().y)
+route('USB_DM',[(6.4,38.4),(7.2,39.2),(7.9,39.2),(7.9,usb_y),(7.05,usb_y+1.35)],p.B_Cu)
+route('USB_DP',[(8.425,34.6375),(8.81,35.0225),(8.81,38.8),(8.21,39.4),(7.05,39.4),(7.05,usb_y),(7.9,usb_y+1.35)])
+route('USB_DM',[(6.525,32.3625),(6.525,34.6375)],width=.2)
 route('USB_DP',[(8.425,32.3625),(8.425,34.6375)])
+# The ID strap exits GPIO40 perpendicular to the WROOM pad row, then turns
+# toward the divider. This avoids crossing the neighbouring GPIO41 land.
+def pad_xy(ref,number):
+ pad=next(x for x in F[ref].Pads() if x.GetNumber()==str(number));q=pad.GetPosition()
+ return p.ToMM(q.x),p.ToMM(q.y)
+id_start=pad_xy('U1','33');id_end=pad_xy('R_ID_TOP','1');id_escape=(id_start[0]+1.1,id_start[1])
+route('DETECT_EN',[id_start,id_escape,(id_escape[0],id_end[1]),id_end],width=.2)
 # Ground return for the ESD array, next to its ground pad and layer transition.
 route('GND',[(7.475,34.6375),(7.475,35.75)],width=.4);via('GND',(7.475,35.75))
-# Budget fabs: copper 0.4 mm from the routed edge on every layer. The router adds
-# its 0.2 mm clearance to this 0.2 mm keepout band.
-for a,b,c,e in [(0,0,65,.2),(0,49.8,65,50),(0,0,.2,50),(64.8,0,65,50)]:
+# Budget fabs: copper 0.5 mm from the routed edge on every layer. The router adds
+# its 0.30 mm clearance to this 0.25 mm keepout band.
+W,board_h=_data['size_mm']
+for a,b,c,e in [(0,0,W,.25),(0,board_h-.25,W,board_h),(0,0,.25,board_h),(W-.25,0,W,board_h)]:
  z=p.ZONE(B);z.SetIsRuleArea(True);z.SetDoNotAllowTracks(True);z.SetDoNotAllowVias(True)
  z.SetDoNotAllowPads(False);z.SetDoNotAllowFootprints(False);z.SetDoNotAllowZoneFills(False)
  z.SetLayerSet(p.LSET.AllCuMask());o=z.Outline();o.NewOutline()
  for x,y in [(a,b),(c,b),(c,e),(a,e)]:o.Append(int(p.FromMM(x)),int(p.FromMM(y)))
  B.Add(z)
-# Reserve a full ground layer. The autorouter may use F.Cu, In2.Cu and B.Cu.
+# Ground pours share both outer layers; the autorouter may use F.Cu and B.Cu.
 p.SaveBoard(str(H/'gemilaimate-compact.kicad_pcb'),B)
 text=(H/'gemilaimate-compact.kicad_pcb').read_text()
 stack='''(stackup
@@ -103,8 +113,43 @@ for index in range(start,len(text)):
     if text[index]==')':level-=1
     if level==0:end=index+1;break
 old=text[start:end];head,tail=old.split('(circuit',1)
-for name in ['+3V3','+5V_CORE','+5V_EXT','EXT_IN','USB_VBUS','USB_FUSED']:
+for name in ['+3V3','+5V_CORE','+5V_EXT','EXT_IN','USB_VBUS','USB_FUSED','DETECT_EN','USB_DP','USB_DM']:
     head=re.sub(r'(?<!\S)'+re.escape(name)+r'(?=\s)', '',head)
-power='(class power +3V3 +5V_CORE +5V_EXT EXT_IN USB_VBUS USB_FUSED (circuit (use_via "Via[0-3]_700:350_um")) (rule (width 350) (clearance 200)))'
-dsn.write_text(text[:start]+head+'(circuit'+tail+'\n'+power+text[end:])
-print('Prepared schematic parity, locked USB routes and nominal 4-layer stackup.')
+power='(class power +3V3 +5V_CORE +5V_EXT EXT_IN USB_FUSED (circuit (use_via "Via[0-3]_800:400_um")) (rule (width 350) (clearance 300)))'
+detect='(class detect DETECT_EN (circuit (use_via "Via[0-3]_800:400_um")) (rule (width 200) (clearance 300)))'
+usb='(class usb USB_VBUS USB_DP USB_DM (circuit (use_via "Via[0-3]_800:400_um")) (rule (width 250) (clearance 200)))'
+dsn.write_text(text[:start]+head+'(circuit'+tail+'\n'+power+'\n'+detect+'\n'+usb+text[end:])
+# KiCad's DSN exporter omits local footprint clearances. Carry those into
+# per-pin clearance classes so the router can escape the fixed-pitch lands.
+(H/'reports/unrouted-native.dsn').write_text(dsn.read_text())
+native=dsn.read_text().replace('(string_quote ")','',1)
+# Brackets are legal DSN identifier characters, while sexpdata treats them as
+# list delimiters. Protect them while changing the tree, then restore verbatim.
+tree=s.loads(native.replace('[','__GM_LB__').replace(']','__GM_RB__'))
+network=children(tree,'network')[0]
+# KiCad now exports the project classes too. Keep the explicit DSN classes
+# below as the single assignment for each rail/USB net.
+network[:]=[x for x in network if not (isinstance(x,list) and str(x[0])=='class' and str(x[1]) in ['Power','USB'])]
+structure=children(tree,'structure')[0]
+rule=children(structure,'rule')[0]
+for name in ['fine_fine','fine_default','fine_wire','fine_smd','fine_pin','fine_via','fine_powerwire','fine_usbwire','fine_tssop']:
+ rule.append([s.Symbol('clearance'),150,[s.Symbol('type'),name]])
+for name in ['tssop_tssop','tssop_default','tssop_wire','tssop_smd','tssop_pin','tssop_via','tssop_powerwire','tssop_usbwire']:
+ rule.append([s.Symbol('clearance'),250,[s.Symbol('type'),name]])
+for peer in ['powerwire','default','wire','smd','pin','via','usbwire']:
+ rule.append([s.Symbol('clearance'),300,[s.Symbol('type'),'powerwire_'+peer]])
+rule.append([s.Symbol('clearance'),200,[s.Symbol('type'),'usbwire_usbwire']])
+for netclass in children(children(tree,'network')[0],'class'):
+ name=str(netclass[1]);cls={'power':'powerwire','usb':'usbwire'}.get(name,'default')
+ netclass.append([s.Symbol('clearance_class'),cls])
+fine_refs={c['designator'] for c in _data['parts'] if c['ref'] in ['U1','J_USB','U_ESD']}
+tssop_refs={c['designator'] for c in _data['parts'] if c['ref'] in ['U_SSR','U_LED']}
+for component in children(tree,'placement')[0][1:]:
+ if not isinstance(component,list):continue
+ for place in children(component,'place'):
+  ref=str(place[1]);cls='fine' if ref in fine_refs else 'tssop' if ref in tssop_refs else None
+  if cls:
+   part=next(c for c in _data['parts'] if c['designator']==ref)
+   for number in part['nets']:place.append([s.Symbol('pin'),number,[s.Symbol('clearance_class'),cls]])
+dsn.write_text(s.dumps(tree,str_as='string').replace('__GM_LB__','[').replace('__GM_RB__',']')+'\n')
+print('Prepared schematic parity, locked USB routes and four-layer stackup with In1 GND plane.')

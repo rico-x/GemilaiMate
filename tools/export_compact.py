@@ -24,10 +24,11 @@ def main():
    old=m/'gerber';assert sorted(f.name for f in old.iterdir())==sorted(f.name for f in g.iterdir())
    for f in g.iterdir():assert normalize(f.read_text())==normalize((old/f.name).read_text()),f.name
    manifest=json.loads((m/'manifest.json').read_text());assert manifest['pcb_sha256']==hashlib.sha256(pcb.read_bytes()).hexdigest()
-   with zipfile.ZipFile(m/'gemilaimate-compact-0.1.0-PROTOTYPE.zip') as z:
+   revision=json.loads((H/'revision.json').read_text())['revision']
+   with zipfile.ZipFile(m/f'gemilaimate-compact-{revision}-PROTOTYPE.zip') as z:
     assert sorted(z.namelist())==sorted(f.name for f in old.iterdir())
     assert all(z.read(f.name)==f.read_bytes() for f in old.iterdir())
-   print('PASS compact: fresh all-severity ERC/DRC/parity and 4-layer CAM match');return
+   print('PASS modular shield: fresh all-severity ERC/DRC/parity and CAM match');return
   for name in ['erc.json','drc.json']:shutil.copyfile(t/name,reports/name)
   dest=m/'gerber';dest.mkdir(exist_ok=True)
   for f in dest.iterdir():f.unlink()
@@ -47,27 +48,30 @@ def main():
  centres={c['designator']:[c['x'],c['y']] for c in smd}
  body=d['module_body'];centres['U1']=[(body[0]+body[2])/2,(body[1]+body[3])/2]
  table('CPL-SMD.csv',['Designator','Mid X_mm','Mid Y_mm','Layer','Rotation_deg','Comment'],[[c['designator'],*centres[c['designator']],c['side'],c['rotation'],c['value']] for c in smd])
- table('BOM-THT.csv',['Reference','Alias','Description','Side','Assembly_note'],[[c['designator'],c['ref'],c['value'],c['side'],'Verify exact mating part and pin 1 against assembly drawing'] for c in parts if not c['dnp'] and c['designator'] not in centres])
- table('BOM-EXTERNAL.csv',['Item','Quantity_per_assembled_controller','Note'],[
-  ['ADS1115 Blue breakout, 1x10 2.54mm',1,'Nominal 28x17mm; measure actual clone. Can share between prototypes'],
-  ['MAX31855 breakout, VIN/3Vo/GND/DO/CS/CLK',1,'Nominal 20.32x22.86mm; verify VIN regulator and thermocouple polarity'],
-  ['ADS male header 1x10 2.54mm',1,'Module underside; standard plastic adds 2.54mm height'],
-  ['MAX male header 1x6 2.54mm',1,'Module underside; verify pin order'],
-  ['M2 nylon fasteners and insulating supports',3,'Head <=4mm; allow underside PH plugs and cable bends'],
-  ['External system',1,'Reuse matched display, pressure sensor, thermocouple, RobotDyn, SSR, isolated 5V PSU and harnesses per project docs; these are not SMD assembly items'],
-  ['Optional VL53L0X and low-power RGBW/light loads',0,'Optional; 3.3V I2C, no direct LED strips on RGBW connector']])
+ table('BOM-THT.csv',['Reference','Alias','Description','MPN_example','Side','Assembly_note'],[[c['designator'],c['ref'],c['value'],c['mpn'],c['side'],'Verify exact mating part and pin 1 against assembly drawing'] for c in parts if not c['dnp'] and c['designator'] not in centres])
+ table('BOM-EXTERNAL.csv',['Item','Quantity_per_assembled_controller','MPN_example','Dimensions_mm','Note'],[
+  ['ADS1115 Blue breakout, 1x10 2.54mm',1,'Unspecified clone','28 x 17 x varies','Nominal seller outline only; measure actual board, components and pins. Can share between prototypes'],
+  ['MAX31855 breakout, VIN/3Vo/GND/DO/CS/CLK',1,'Unspecified clone','20.32 x 22.86 x varies','Adafruit reference outline only; measure actual clone and thermocouple terminal'],
+  ['CJMCU-0102 TXS0102 breakout, 2x1x5 2.54mm',1,'Selected marketplace module','15.24 x 15.24 x varies; row gap 12.70 assumed','Measure actual module and row spacing; row A is 3V3, row B is 5V'],
+  ['ADS male header 1x10 2.54mm',1,'Harwin M20-9991046','25.40 x 2.54 x 11.64','Fit on breakout underside; 0.64 mm square pins, 6.1 mm mating length'],
+  ['MAX male header 1x6 2.54mm',1,'Harwin M20-9990646','15.24 x 2.54 x 11.64','Fit on breakout underside; verify pin order'],
+  ['CJMCU male headers 2 x 1x5 2.54mm',2,'Harwin M20-9990546','12.70 x 2.54 x 11.64 each; 12.70 mm row gap','Solder to module underside after measuring the actual row gap'],
+  ['M2 nylon fasteners and insulating supports',4,'Generic','Head <=4 mm','Use the documented mounting holes; check connector and cable clearance'],
+  ['External system',1,'Per docs/components.md','Varies','Reuse matched display, pressure sensor, thermocouple, RobotDyn, SSR and isolated 5V PSU; power modules remain separate'],
+  ['Optional VL53L0X and low-power RGBW/light loads',0,'Per docs/components.md','Varies','Optional; 3.3V I2C, no direct LED strips on RGBW connector']])
  headers=[c for c in parts if c['section']=='Connectors' and not c['dnp']]
  xh=lambda c:'JST_XH' in c['source_footprint']
  table('HARNESSES.csv',['PCB_reference','Function','Housing','Contacts','Pin_1_to_N','Quantity_1_system'],[[c['designator'],c['value'],('XHP-' if xh(c) else 'PHR-')+str(len(c['nets'])),str(sum(1 for n in c['nets'].values() if n))+(' x SXH-001T-P0.6' if xh(c) else ' x SPH-002T-P0.5L'),'; '.join(c['names'][str(i)] for i in range(1,len(c['nets'])+1)),1] for c in headers])
  table('PINOUT.csv',['Reference','Alias','Pin','Function','Net','x_top_view_mm','y_top_view_mm'],[[c['designator'],c['ref'],p['number'],p['name'],p['net'] or 'NC',p['x'],p['y']] for c in parts for p in c['pins']])
- archive=m/'gemilaimate-compact-0.1.0-PROTOTYPE.zip'
+ revision=json.loads((H/'revision.json').read_text())['revision']
+ archive=m/f'gemilaimate-compact-{revision}-PROTOTYPE.zip'
  with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
   for f in sorted(dest.iterdir()):
    i=zipfile.ZipInfo(f.name,(2026,11,3,0,0,0));i.compress_type=zipfile.ZIP_DEFLATED;i.external_attr=0o644<<16;z.writestr(i,f.read_bytes())
  layout=json.loads((reports/'layout.json').read_text())
- manifest=dict(variant='compact',revision='0.1.0',status='PROTOTYPE / INDEPENDENT REVIEW REQUIRED',hardware_tested=False,manufacturing_release=False,board_size_mm=[65,50],copper_layers=4,pcb_sha256=hashlib.sha256(pcb.read_bytes()).hexdigest(),archive_sha256=hashlib.sha256(archive.read_bytes()).hexdigest(),kicad_version=subprocess.check_output([cli,'version'],text=True).strip(),smd_placements=len(smd),drc_violations=0,erc_violations=0,unconnected=0,schematic_parity=0,minimum_track_mm=layout['minimum_track_mm'],source_of_3d='KiCad models plus nominal daughterboard envelopes; actual clones unmeasured',fabrication_notes='Confirm 4-layer stack and USB 90 ohms; 0.15mm USB pad gaps; board not physically validated')
+ manifest=dict(variant='modular-shield',revision=revision,status='PROTOTYPE / INDEPENDENT REVIEW REQUIRED',hardware_tested=False,manufacturing_release=False,board_size_mm=d['size_mm'],copper_layers=d['copper_layers'],pcb_sha256=hashlib.sha256(pcb.read_bytes()).hexdigest(),archive_sha256=hashlib.sha256(archive.read_bytes()).hexdigest(),kicad_version=subprocess.check_output([cli,'version'],text=True).strip(),smd_placements=len(smd),drc_violations=0,erc_violations=0,unconnected=0,schematic_parity=0,minimum_track_mm=layout['minimum_track_mm'],source_of_3d='Manufacturer dimensions for components/connectors plus nominal module outlines; marketplace clones remain unmeasured',fabrication_notes='4-layer prototype with inner GND plane. Independently review ground continuity, short USB routing, RF keepout, fixed-pitch USB exception and actual module fit before production.')
  (m/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
- (m/'README.md').write_text('''# Compact: производственный комплект прототипа\n\nНе отправлять в производство как проверенный серийный проект. Нужны независимая проверка схемы/BOM, реальные размеры модулей и согласование стека/USB с фабрикой. Аппаратных испытаний нет.\n\nGerber ZIP: четыре слоя, без платы-панели и без заказа монтажа. BOM: количества на 1/5 PCB; DNP не устанавливать. Жгуты HARNESSES рассчитаны на одну кофемашину, не на пять. SMD CPL содержит центры компонентов и вид сверху; у WROOM учтён сдвиг 0,75 мм от начала его посадочного места. Модуль включён в SMD несмотря на тепловые PTH-площадки; сторона и повороты требуют проверки в предпросмотре конкретного сборщика. Выбор MPN-примеров проверить у поставщика по полному артикулу; не подменять DCT/DCU/X2SON. Гнёзда модулей и JST PH паять со стороны, указанной в BOM-THT.\n\nВсе резисторы 0603, малые конденсаторы 0603, 10uF — 1206. Основной модуль WROOM требует надёжной пайки центральной земли. Нужен ручной контроль сборки; один паяльник не гарантирует пайку скрытого контакта.\n\nСхема, ограничения питания и испытания: ../../../docs/compact-shield.md.\n''')
+ (m/'README.md').write_text(f'''# GemilaiMate Modular Shield {revision}: комплект прототипа\n\nНе отправлять в производство как проверенный серийный проект. Нужны независимая проверка схемы/BOM, реальные размеры модулей и согласование стека/USB с фабрикой. Аппаратных испытаний нет.\n\nGerber ZIP: четыре слоя, без платы-панели и без заказа монтажа. Внутренний слой In1 — сплошной GND, In2 — сигнальный. BOM: количества на 1/5 PCB; DNP не устанавливать. HARNESSES рассчитан на одну кофемашину, не на пять. SMD CPL содержит центры компонентов и вид сверху; у WROOM учтён сдвиг от начала посадочного места. Модуль включён в SMD несмотря на тепловые PTH-площадки; проверить предпросмотр сборщика. ADS1115, MAX31855 и CJMCU вставляются в отдельные гнёзда; реальные платы и межрядье CJMCU пока не измерены. Гнёзда модулей и JST паять со стороны, указанной в BOM-THT.\n\nВсе резисторы 0603, малые конденсаторы 0603, 10uF — 1206. Основной модуль WROOM требует надёжной пайки центральной земли. Нужен ручной контроль сборки; один паяльник не гарантирует пайку скрытого контакта.\n\nСхема, ограничения питания и испытания: ../../../docs/compact-shield.md.\n''')
  if not a.no_previews:
   pv=H/'previews';pv.mkdir(exist_ok=True)
   for name,layers,mirror in [('board-top','F.Cu,F.Mask,F.Silkscreen,Edge.Cuts',False),('board-bottom','B.Cu,B.Mask,B.Silkscreen,Edge.Cuts',True),('assembly-top','F.Fab,F.Silkscreen,Edge.Cuts',False),('assembly-bottom','B.Fab,B.Silkscreen,Edge.Cuts',True)]:
@@ -79,5 +83,6 @@ def main():
   for name,side,rot in [('assembled-front','top','-50,0,-25'),('assembled-back','bottom','-50,0,25')]:
    run('pcb','render','--side',side,'--quality','high','--background','opaque','--rotate',rot,'--perspective','-w','1600','-h','1000','-o',pv/(name+'.png'),pcb)
   subprocess.run([sys.executable,str(H/'scripts/make_template.py')],check=True)
- print('PASS compact prototype export; no physical assembly/flash or manufacturing release claimed')
+ subprocess.run([sys.executable,str(H/'scripts/component_dimensions.py')],check=True)
+ print('PASS modular shield prototype export; no physical assembly/flash or manufacturing release claimed')
 if __name__=='__main__':main()

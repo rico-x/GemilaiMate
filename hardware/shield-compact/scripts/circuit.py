@@ -68,7 +68,7 @@ usb.update({k:'USB_VBUS' for k in ['A4','A9','B4','B9']})
 usb.update({'A5':'CC1','B5':'CC2','A6':'USB_DP','B6':'USB_DP',
             'A7':'USB_DM','B7':'USB_DM','A8':None,'B8':None})
 part('J_USB','USB4085-GF-A','Connector_USB:USB_C_Receptacle_GCT_USB4085',
-     (4.5,41.2),usb,section='USB',datasheet='https://gct.co/connector/usb4085')
+     (4.5,50.865),usb,section='USB',datasheet='https://gct.co/connector/usb4085')
 r('R_CC1','5.1k 1%',(14,41),'CC1','GND',90)
 r('R_CC2','5.1k 1%',(17,41),'CC2','GND',90)
 r('R_USBP','22R 1%',(3.5,20.5),'USB_DP_MCU','USB_DP',90)
@@ -78,7 +78,7 @@ part('U_ESD','USBLC6-2SC6','Package_TO_SOT_SMD:SOT-23-6',(13.5,44),
      section='USB',datasheet='https://www.st.com/resource/en/datasheet/usblc6-2.pdf')
 part('F_USB','1206L050YR 0.5A','Fuse:Fuse_1206_3216Metric',(17,46.5),
      {1:'USB_VBUS',2:'USB_FUSED'},section='Power')
-part('F_EXT','1206L150-12 1.5A','Fuse:Fuse_1206_3216Metric',(46,3.5),
+part('F_EXT','1206L150/12 1.5A','Fuse:Fuse_1206_3216Metric',(46,3.5),
      {1:'EXT_IN',2:'+5V_EXT'},section='Power')
 for ref,xy,anode in [('D_USB',(22,46.5),'USB_FUSED'),('D_EXT',(37,7.5),'+5V_EXT')]:
     part(ref,'SS14','Diode_SMD:D_SMA',xy,{1:'+5V_CORE',2:anode},
@@ -87,9 +87,9 @@ part('U_REG','AP7361C-33E-13','Package_TO_SOT_SMD:SOT-223-3_TabPin2',(45,9),
      {1:'+5V_CORE',2:'GND',3:'+3V3'}, {1:'IN',2:'GND_TAB',3:'OUT'},
      {1:'power_in',2:'power_in',3:'power_out'},section='Power',
      datasheet='https://www.diodes.com/datasheet/download/AP7361C.pdf')
-c('C_IN','10uF 10V X7R',(37.5,10.5),'+5V_CORE',large=True)
-c('C_OUT','10uF 10V X7R',(51,8),'+3V3',large=True)
-c('C_MCU','10uF 10V X7R',(3,7.5),'+3V3',angle=90,large=True)
+c('C_IN','10uF 16V X7R',(37.5,10.5),'+5V_CORE',large=True)
+c('C_OUT','10uF 16V X7R',(51,8),'+3V3',large=True)
+c('C_MCU','10uF 16V X7R',(3,7.5),'+3V3',angle=90,large=True)
 c('C_MCUHF','100nF 50V X7R',(3,2.5),'+3V3',angle=180)
 r('R_EN','10k 1%',(4,11.5),'+3V3','EN')
 c('C_EN','1uF 16V X7R',(4,14),'EN')
@@ -98,27 +98,21 @@ for ref,label,xy,net in [('SW_RESET','RESET',(34,17),'EN'),('SW_BOOT','BOOT',(40
     part(ref,label,'Button_Switch_SMD:SW_SPST_TL3342',xy,
          {1:net,2:'GND'},section='Boot')
 r('R_ID_TOP','10k 1%',(26.5,10),'DETECT_EN','BOARD_ID')
-r('R_ID_LOW','1.2k 1%',(30.5,10),'BOARD_ID','GND')
+r('R_ID_LOW','1.62k 1%',(30.5,10),'BOARD_ID','GND')
 c('C_ID','10nF 50V C0G',(30.5,13),'BOARD_ID')
 
-# The 5-V I2C interface belongs only to ADS1115, not to ZC or Alba.
-part('U_LEVEL','TXS0102DCTR','GemilaiMateCompact:TXS0102_DCT_SSOP8',(29,29),
-     {1:'SDA_5V',2:'GND',3:'+3V3',4:'SDA_3V3',5:'SCL_3V3',6:'I2C_OE',7:'+5V_CORE',8:'SCL_5V'},
-     {1:'B2',2:'GND',3:'VCCA',4:'A2',5:'A1',6:'OE',7:'VCCB',8:'B1'},
-     {2:'power_in',3:'power_in',7:'power_in',6:'input',1:'bidirectional',4:'bidirectional',5:'bidirectional',8:'bidirectional'},
-     section='ADC',datasheet='https://www.ti.com/lit/ds/symlink/txs0102.pdf')
-r('R_OE','10k 1%',(31,32),'+3V3','I2C_OE')
-r('R_OEPD','100k 1%',(28,33),'I2C_OE','GND')
-c('C_LVA','100nF 50V X7R',(26,26.5),'+3V3')
-c('C_LVB','100nF 50V X7R',(32,26.5),'+5V_CORE')
-part('J_ADS','ADS1115 BLUE SOCKET','GemilaiMateCompact:ADS1115_socket',(5,37.5),
+c('C_LVA','100nF 50V X7R',(71,51),'+3V3')
+c('C_LVB','100nF 50V X7R',(79,51),'+5V_CORE')
+part('J_ADS','ADS1115 BLUE SOCKET','GemilaiMateCompact:ADS1115_socket',(23,24.14),
      dict(enumerate(['+5V_CORE','GND','SCL_5V','SDA_5V','GND',None,'PRESSURE',None,None,None],1)),
-     dict(enumerate(['VDD','GND','SCL','SDA','ADDR','ALRT','A0','A1','A2','A3'],1)),section='ADC')
+     dict(enumerate(['VDD','GND','SCL','SDA','ADDR','ALRT','A0','A1','A2','A3'],1)),angle=270,section='ADC',
+     mpn='M20-7821046')
 r('R_PRESS','1k 1%',(23,41),'PRESSURE_RAW','PRESSURE')
 c('C_PRESS','100nF 50V X7R',(25.5,44),'PRESSURE')
 part('J_TC','MAX31855 SOCKET','GemilaiMateCompact:MAX31855_socket',(56.5,24),
      dict(enumerate(['TC_VIN',None,'GND','TC_DO','TC_CS','TC_SCK'],1)),
-     dict(enumerate(['VIN','3Vo_NC','GND','DO','CS','CLK'],1)),section='Temperature')
+     dict(enumerate(['VIN','3Vo_NC','GND','DO','CS','CLK'],1)),section='Temperature',
+     mpn='M20-7820646')
 
 # ZC input: 5.5 V tolerant, non-inverting, with an external pull-up.
 r('R_ZCPU','10k 1%',(34.5,43),'+5V_EXT','ZC_RAW')
@@ -199,30 +193,41 @@ header('J_PUMP','ROBOTDYN',(37,48),['+5V_EXT','GND','ZC_RAW','PUMP_OUT',None,Non
 header('J_VALVE','VALVE SSR',(63,32),['+5V_EXT','GND','VALVE_5V'],['5V','GND','IN'],angle=90)
 header('J_HEAT','HEATER UNUSED',(52,41),['+5V_EXT','GND','HEATER_5V'],['5V','GND','IN'],angle=180,dnp=True)
 header('J_ALT','ALT SSR',(49,48),['+5V_EXT','GND','ALT_5V'],['5V','GND','IN'],angle=180)
-# Off-board I2C goes through 470R: 5 V on a miswired plug cannot drive GPIO43/44 hard.
+# External I2C is 3.3 V only. The 470R series resistors are not level shifters
+# and do not make these GPIO inputs 5 V tolerant.
 header('J_TOF','VL53L0X 3V3',(34,36),['+3V3','GND','EXT_SDA','EXT_SCL'],['3V3','GND','SDA','SCL'],angle=90)
 # External Alba lights load the external 5 V bus, not the LDO/ADS/TXS core rail.
 header('J_ALBA','EXTERNAL ALBA',(63,24),['+5V_EXT','GND','EXT_SDA','EXT_SCL'],['5V_EXT','GND','SDA','SCL'],angle=90)
 header('J_RGBW','RGBW CA',(63,12),['+5V_EXT','RGBW0','RGBW1','RGBW2','RGBW3'],['5V_CA','R','G','B','W'],angle=90)
 header('J_LIGHT','LIGHTS 200mA TOTAL',(63,44),['+5V_EXT','LED4_DRAIN','LED5_DRAIN'],['5V','CH4_NEG','CH5_NEG'],angle=90)
-part('J_SCALE','SCALE 3V3','Connector_PinHeader_1.27mm:PinHeader_1x05_P1.27mm_Vertical',(32,40),
+part('J_SCALE','SCALE 3V3','Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical',(32,40),
      {1:'+3V3',2:'GND',3:'SCALE_CLK',4:'SCALE_DAT0',5:'SCALE_DAT1'},angle=90,section='Expansion',dnp=True)
-part('J_EXT','EXT 3V3','Connector_PinHeader_1.27mm:PinHeader_2x05_P1.27mm_Vertical',(33,25),
+part('J_EXT','EXT 3V3','Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical',(33,25),
      {1:'+3V3',2:'GND',3:'EXT1',4:'EXT2',5:'EXT3',6:'EXT4',7:'EXT5',8:'+5V_EXT',9:'GND',10:'GND'},
      section='Expansion',dnp=True)
-part('J_FREE','FREE GPIO 3V3','Connector_PinHeader_1.27mm:PinHeader_1x06_P1.27mm_Vertical',(32,12.5),
+part('J_FREE','FREE GPIO 3V3','Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical',(32,12.5),
      {1:'+3V3',2:'GND',3:'GPIO5',4:'GPIO15',5:'GPIO16',6:'GND'},angle=90,section='Expansion',dnp=True)
+# Keep the legacy cable connector designators stable; this inserted module socket
+# is appended after the existing J1-J18 connectors.
+part('J_LEVEL','CJMCU-0102 TXS0102 SOCKET','GemilaiMateCompact:CJMCU0102_socket',(41,12.5),
+     {1:'GND',2:'+3V3',3:'+3V3',4:'SCL_3V3',5:'SDA_3V3',
+      6:'GND',7:None,8:'+5V_CORE',9:'SCL_5V',10:'SDA_5V'},
+     {1:'GND_A',2:'OE',3:'VCCA',4:'A1',5:'A2',
+      6:'GND_B',7:'G_RESERVED_NC',8:'VCCB',9:'B1',10:'B2'},
+     {1:'power_in',2:'input',3:'power_in',4:'bidirectional',5:'bidirectional',
+      6:'power_in',8:'power_in',9:'bidirectional',10:'bidirectional'},
+     section='ADC',mpn='2 x Harwin M20-7820546')
 for i,(net,xy) in enumerate([('STRAP3',(28,14)),('STRAP45',(26,8)),('STRAP46',(29,8)),
                             ('BOOT',(31,18)),('+3V3',(34,11)),('GND',(34,7)),
                             ('ALBA_SDA',(26,24)),('ALBA_SCL',(27,26)),
                             ('PCA_LED6',(48,12)),('PCA_LED7',(51,12))],1):
     part('TP'+str(i),net,'TestPoint:TestPoint_Pad_D1.0mm',xy,{1:net},section='Testpoints',dnp=True)
 
-# External 5 V protection, appended so existing designators stay unchanged: a
-# reversed or over-voltage supply makes the TVS conduct until F_EXT trips.
+# Transient clamp only. The TVS and PTC are not reverse-polarity or sustained
+# over-voltage protection; require a correctly polarized regulated 5 V supply.
 part('D_TVS','SMAJ5.0A','Diode_SMD:D_SMA',(43,6),{1:'+5V_EXT',2:'GND'},{1:'K',2:'A'},
      section='Power',datasheet='https://www.littelfuse.com/products/tvs-diodes/surface-mount/smaj')
-c('C_EXT','10uF 10V X7R',(41,3),'+5V_EXT',large=True)
+c('C_EXT','10uF 16V X7R',(41,3),'+5V_EXT',large=True)
 # Series resistors for the off-board I2C ports J_TOF / J_ALBA.
 r('R_EXTSDA','470R 1%',(33,30),'ALBA_SDA','EXT_SDA')
 r('R_EXTSCL','470R 1%',(33,32),'ALBA_SCL','EXT_SCL')
@@ -243,9 +248,9 @@ for component in PARTS:
 
 # Procurement examples; substitute only after checking value, dielectric,
 # voltage and the exact package. No marketplace seller is implied by an MPN.
-_res={'5.1k 1%':'5K1L','22R 1%':'22RL','10k 1%':'10KL','1.2k 1%':'1K2L','1k 1%':'1KL',
+_res={'5.1k 1%':'5K1L','22R 1%':'22RL','10k 1%':'10KL','1.62k 1%':'1K62L','1k 1%':'1KL',
       '100k 1%':'100KL','47k 1%':'47KL','4.7k 1%':'4K7L','180R 1%':'180RL','100R 1%':'100RL','470R 1%':'470RL'}
-_caps={'10uF 10V X7R':'GRM31CR71A106KA01L','100nF 50V X7R':'GRM188R71H104KA93D',
+_caps={'10uF 16V X7R':'GRM31CR71C106KAC7L','100nF 50V X7R':'GRM188R71H104KA93D',
        '1uF 16V X7R':'GRM188R71C105KA12D','10nF 50V C0G':'GRM1885C1H103JA01D'}
 for component in PARTS:
     ref=component['ref'];v=component['value']
@@ -255,17 +260,22 @@ for component in PARTS:
     if ref.startswith('D_'):component['mpn']='SMAJ5.0A' if ref=='D_TVS' else 'SS14-13-F'
     if ref=='U_LED':component['mpn']='PCA9634PW,118'
     if ref=='F_USB':component['mpn']='1206L050YR'
-    if ref=='F_EXT':component['mpn']='1206L150-12SLYR'
+    if ref=='F_EXT':component['mpn']='1206L150/12SLYR'
+    if ref=='Q_EXT':component['mpn']='MMBT3904-7-F'
+    if ref=='J_PWR':component['mpn']='B2B-XH-A(LF)(SN)'
+    if ref.startswith('J_') and ref not in ['J_PWR','J_ADS','J_TC'] and component['footprint'].split(':')[-1].startswith('JST_PH_B'):
+        n=len(component['nets'])
+        component['mpn']=f'B{n}B-PH-K-S(LF)(SN)'
 
-SPEC = dict(project='GemilaiMate Compact Shield', revision=REV['revision'], date=REV['date'],
-            size_mm=[65,50], copper_layers=4, author='Rico-X',
+SPEC = dict(project='GemilaiMate Modular Shield', revision=REV['revision'], date=REV['date'],
+            size_mm=[75,60], copper_layers=4, author='Rico-X',
             repository='https://github.com/Rico-X/GemilaiMate',
             hardware_tested=False, manufacturing_release=False, mains_on_board=False,
-            board_id=3, physical_flash_mb=16, compatible_partition_flash_mb=8,
+            board_id=4, physical_flash_mb=16, compatible_partition_flash_mb=8,
             psram_mb=8, peripheral_gpio={'sda':43,'scl':44},
             rf_keepout=[5.5,-8,24.5,-.1],
             module_body=[6,-7.15,24,18.35],
-            mounts_mm=[[28,9],[15,41],[53,3]],
+            mounts_mm=[[3,3],[72,3],[17,57.5],[72,57]],
             firmware_target='controller-compact', parts=PARTS)
 
 if __name__ == '__main__':

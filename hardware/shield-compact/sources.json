@@ -83,8 +83,65 @@
     {
       "url": "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM31CR71A106KA01-01.pdf",
       "purpose": "10uF 10V X7R 1206 capacitor example"
+    },
+    {
+      "url": "https://www.harwin.com/products/M20-7821046",
+      "purpose": "Manufacturer body dimensions and height of the 10-position receptacle"
+    },
+    {
+      "url": "https://www.harwin.com/products/M20-7820646",
+      "purpose": "Manufacturer body dimensions and height of the 6-position receptacle"
+    },
+    {
+      "url": "https://www.harwin.com/products/M20-7820546",
+      "purpose": "Manufacturer 5-position receptacle dimensions for CJMCU rows"
+    },
+    {
+      "url": "https://www.harwin.com/products/M20-9991046",
+      "purpose": "Mating 10-position male header dimensions"
+    },
+    {
+      "url": "https://www.harwin.com/products/M20-9990646",
+      "purpose": "Mating 6-position male header dimensions"
+    },
+    {
+      "url": "https://www.harwin.com/products/M20-9990546",
+      "purpose": "Mating 5-position male headers for CJMCU rows"
+    },
+    {
+      "url": "https://content.harwin.com/asset/53851ba8-b32e-4ac5-a0c5-09d9271c0c0a/DRG-00385-Technical-Drawing-Datasheet-M20-782-pdf.pdf",
+      "purpose": "Recommended 1.02 mm drill for M20-782 socket terminals"
+    },
+    {
+      "url": "https://order.jst-mfg.com/InternetShop/app/pdf_show.php?kbn=1&key=ePH.pdf",
+      "purpose": "Official JST PH connector envelope dimensions"
+    },
+    {
+      "url": "https://order.jst-mfg.com/InternetShop/app/pdf_show.php?kbn=1&key=eXH.pdf",
+      "purpose": "Official JST XH connector envelope dimensions"
+    },
+    {
+      "url": "https://www.littelfuse.com/assetdocs/resettable-ptcs-low-rho-smd-ptc-datasheet?assetguid=b786faf0-de16-4763-9d22-6b8080943caf",
+      "purpose": "1206L150/12 PTC body dimensions and ratings"
+    },
+    {
+      "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-0710KL",
+      "purpose": "Yageo 0603 resistor body dimensions"
+    },
+    {
+      "url": "https://www.diodes.com/datasheet/download/MMBT3904.pdf",
+      "purpose": "SOT23 transistor body dimensions"
+    },
+    {
+      "url": "https://www.e-switch.com/es/PRODUCTO/interruptor-t%C3%A1ctil-smt-de-perfil-bajo-serie-tl3342/",
+      "purpose": "TL3342 tact switch body dimensions"
+    },
+    {
+      "url": "https://aliexpress.ru/item/32898604164.html?sku_id=65803725915",
+      "purpose": "Selected CJMCU-0102 listing; seller dimensions are unverified until the received module is measured"
     }
   ],
   "hardware_compatibility": "source-checked only; no physical build or firmware switching test",
-  "kicad_library_license": "https://www.kicad.org/libraries/license/"
+  "kicad_library_license": "https://www.kicad.org/libraries/license/",
+  "modules_geometry_note": "ADS1115 and MAX31855 are unmeasured marketplace clones. CJMCU-0102 is seller-selected; two 1x5 rows are assumed 12.70 mm apart. Verify actual module outlines, pin rows, thicknesses and thermocouple terminal before manufacturing."
 }

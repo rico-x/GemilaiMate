@@ -1,23 +1,23 @@
 {
-  "variant": "compact",
-  "revision": "0.1.0",
+  "variant": "modular-shield",
+  "revision": "0.2.3",
   "status": "PROTOTYPE / INDEPENDENT REVIEW REQUIRED",
   "hardware_tested": false,
   "manufacturing_release": false,
   "board_size_mm": [
-    65,
-    50
+    75,
+    60
   ],
   "copper_layers": 4,
-  "pcb_sha256": "fa34e7ac10d307d9b5ae534aa87952809c2fedd90ece2db76480f80b8debaad8",
-  "archive_sha256": "58e20d5ebbaee45f76b76549772cd319b6d02e2385c6828e43ac73a39f3fa828",
+  "pcb_sha256": "89c416b167b64a433bc66e9ee9089c76fc29743c4002adf43b773f6d4023be5b",
+  "archive_sha256": "3ca35c280386b03e2d591353c64c2c9add3e1000c00cf2b53167089909f5b9ed",
   "kicad_version": "10.0.7",
-  "smd_placements": 77,
+  "smd_placements": 74,
   "drc_violations": 0,
   "erc_violations": 0,
   "unconnected": 0,
   "schematic_parity": 0,
   "minimum_track_mm": 0.2,
-  "source_of_3d": "KiCad models plus nominal daughterboard envelopes; actual clones unmeasured",
-  "fabrication_notes": "Confirm 4-layer stack and USB 90 ohms; 0.15mm USB pad gaps; board not physically validated"
+  "source_of_3d": "Manufacturer dimensions for components/connectors plus nominal module outlines; marketplace clones remain unmeasured",
+  "fabrication_notes": "4-layer prototype with inner GND plane. Independently review ground continuity, short USB routing, RF keepout, fixed-pitch USB exception and actual module fit before production."
 }

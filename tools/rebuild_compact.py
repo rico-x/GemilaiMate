@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproduce accepted compact routing from a checksum-bound SES on a build host.
+"""Reproduce accepted compact routing from checksum-bound copper JSON.
 
 No fabrication upload or physical USB device is accessed. A new electrical or
 placement change invalidates the routing cache and requires a new routing pass.
@@ -33,8 +33,8 @@ def routing_input_hash():
  return hashlib.sha256(s.dumps(canonical_dsn(s.loads(text))).encode()).hexdigest()
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--kicad-python',default=sys.executable);ap.add_argument('--no-previews',action='store_true');a=ap.parse_args()
- cache=json.loads((H/'reports/route-cache.json').read_text());ses=H/'reports/routed.ses'
- assert hashlib.sha256(ses.read_bytes()).hexdigest()==cache['ses_sha256'],'Routing session changed'
+ cache=json.loads((H/'reports/route-cache.json').read_text());route=H/'routing.json'
+ assert hashlib.sha256(route.read_bytes()).hexdigest()==cache['routing_sha256'],'Accepted routing changed'
  def py(name):subprocess.run([a.kicad_python,str(H/'scripts'/name)],check=True)
  py('generate.py');py('make_schematic.py')
  subprocess.run(['kicad-cli','sch','export','netlist','-o',str(H/'gemilaimate-compact.net'),str(H/'gemilaimate-compact.kicad_sch')],check=True)
@@ -44,5 +44,5 @@ def main():
  subprocess.run([sys.executable,str(R/'tools/export_compact.py'),*(['--no-previews'] if a.no_previews else [])],check=True)
  subprocess.run([sys.executable,str(R/'tools/check_compact_shield.py')],check=True)
  assert hashlib.sha256((H/'gemilaimate-compact.kicad_pcb').read_bytes()).hexdigest()==cache['accepted_pcb_sha256'],'PCB did not reproduce exactly'
- print('PASS exact compact PCB reproduction from pinned routing input/session; physical tests pending')
+ print('PASS exact compact PCB reproduction from pinned geometry and copper; physical tests pending')
 if __name__=='__main__':main()

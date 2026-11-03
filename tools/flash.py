@@ -16,9 +16,11 @@ def main(argv=None, root=None):
     root=Path(root) if root else (a.package if a.package else Path(__file__).resolve().parent)
     m=json.loads((root/'manifest.json').read_text());target=m['targets'][a.target]
     if a.target=='controller-compact':
+        if target.get('board_id')!=4:
+            raise SystemExit('This compact PCB requires ID=4 firmware; rebuild the current package first.')
         if target.get('physical_flash_mb')!=16 or target['flash_mb']!=8:
             raise SystemExit('Compact target requires physical 16MB with the compatible 8MB flash layout.')
-        print('Compact WROOM board only: Alba SDA43/SCL44. Do not use this target on the DevKit carrier/shield.')
+        print('Compact WROOM ID=4 only: Alba SDA43/SCL44. Legacy DevKit carrier/shield uses ID=3.')
     parts=target['parts'] if a.fresh else [x for x in target['parts'] if not x['initial_only']]
     prefix=[sys.executable,'-m','esptool','--chip','esp32s3','--port',a.port,'--baud','460800']
     write=prefix+['write_flash','--flash_mode','keep','--flash_freq','keep','--flash_size',str(target['flash_mb'])+'MB']

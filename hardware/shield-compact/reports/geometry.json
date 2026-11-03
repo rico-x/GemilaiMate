@@ -1,9 +1,14 @@
 {
-  "pcb_sha256": "fa34e7ac10d307d9b5ae534aa87952809c2fedd90ece2db76480f80b8debaad8",
+  "pcb_sha256": "89c416b167b64a433bc66e9ee9089c76fc29743c4002adf43b773f6d4023be5b",
+  "board_size_mm": [
+    75,
+    60
+  ],
+  "copper_layers": 4,
   "visible_text_via_overlaps": 0,
   "unfilled_via_drill_smd_overlaps": 0,
   "all_actual_pad_coordinates_match": true,
-  "dedicated_ground_layer": true,
+  "inner_ground_plane": true,
   "nominal_module_body_overlap": false,
   "actual_clone_dimensions_verified": false,
   "usb_plug_physical_test": false,

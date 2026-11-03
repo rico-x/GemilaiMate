@@ -6,6 +6,7 @@ separate stages and no fabrication readiness is implied by generation.
 """
 import csv
 import json
+import math
 import shutil
 import sys
 from pathlib import Path
@@ -21,7 +22,7 @@ from circuit import SPEC, HERE, REV, WROOM_GPIO
 for folder in ['GemilaiMateCompact.pretty','GemilaiMateCompact.3dshapes','previews','manufacturing','reports']:
     (HERE/folder).mkdir(parents=True, exist_ok=True)
 B=p.BOARD()
-B.SetCopperLayerCount(4)
+B.SetCopperLayerCount(SPEC['copper_layers'])
 V=lambda x,y:p.VECTOR2I(p.FromMM(x),p.FromMM(y))
 names=sorted({n for c in SPEC['parts'] for n in c['nets'].values() if n})
 nets={}
@@ -29,10 +30,10 @@ for name in names:
     net=p.NETINFO_ITEM(B,name)
     B.Add(net);nets[name]=net
 title=B.GetTitleBlock()
-title.SetTitle('GemilaiMate Compact Shield - Rico-X')
+title.SetTitle('GemilaiMate Modular Shield - Rico-X')
 title.SetRevision(REV['revision']);title.SetDate(REV['date'])
 title.SetComment(0,'PROTOTYPE / NOT HARDWARE VALIDATED')
-title.SetComment(1,'Native USB / GM Pro LEGO ID=3 / 16MB physical, 8MB partition map')
+title.SetComment(1,'Native USB / GM Pro PCB Rev 1.1 ID=4 / 16MB physical, 8MB partition map')
 title.SetComment(2,'github.com/Rico-X/GemilaiMate - no mains on PCB')
 B.SetTitleBlock(title)
 
@@ -55,23 +56,30 @@ def socket(part):
     fp.SetAttributes(p.FP_THROUGH_HOLE)
     name=part['footprint'].split(':',1)[1]
     fp.SetFPID(p.LIB_ID('GemilaiMateCompact',name))
-    if part['ref']=='U_LEVEL':
-        fp.SetAttributes(p.FP_SMD)
-        for num,x,y in [(1,-1.9,-.975),(2,-1.9,-.325),(3,-1.9,.325),(4,-1.9,.975),
-                        (5,1.9,.975),(6,1.9,.325),(7,1.9,-.325),(8,1.9,-.975)]:
-            a=p.PAD(fp);a.SetNumber(str(num));a.SetPosition(V(x,y));a.SetAttribute(p.PAD_ATTRIB_SMD)
-            a.SetShape(p.PAD_SHAPE_ROUNDRECT);a.SetSize(V(1.1,.4));a.SetRoundRectRadiusRatio(.125);a.SetLayerSet(p.PAD.SMDMask());fp.Add(a)
-        rect(fp,[-1.5,-1.5,1.5,1.5]);rect(fp,[-2.7,-1.75,2.7,1.75],p.F_CrtYd,.05)
+    if part['ref']=='J_LEVEL':
+        for i in range(5):
+            for number,y in [(i+1,6.35),(i+6,-6.35)]:
+                pad=p.PAD(fp);pad.SetNumber(str(number));pad.SetPosition(V((i-2)*2.54,y))
+                pad.SetAttribute(p.PAD_ATTRIB_PTH)
+                pad.SetShape(p.PAD_SHAPE_RECT if number in [1,6] else p.PAD_SHAPE_CIRCLE)
+                pad.SetSize(V(1.65,1.65));pad.SetDrillSize(V(1.02,1.02));pad.SetLayerSet(p.PAD.PTHMask())
+                fp.Add(pad)
+        # The two 1x5 rows mate with the selected CJMCU-0102 layout. The
+        # square body is the nominal 15.24 x 15.24 mm breakout envelope.
+        rect(fp,[-7.62,-7.62,7.62,7.62],p.F_CrtYd,.05)
+        rect(fp,[-7.62,-7.62,7.62,7.62],p.F_SilkS,.1)
         return fp
     n=10 if part['ref']=='J_ADS' else 6
     for i in range(n):
         pad=p.PAD(fp);pad.SetNumber(str(i+1));pad.SetPosition(V(i*2.54*(1 if n==10 else -1),0))
         pad.SetAttribute(p.PAD_ATTRIB_PTH);pad.SetShape(p.PAD_SHAPE_RECT if i==0 else p.PAD_SHAPE_CIRCLE)
-        pad.SetSize(V(1.65,1.65));pad.SetDrillSize(V(.95,.95));pad.SetLayerSet(p.PAD.PTHMask())
+        # Harwin M20-782 sockets specify a Ø1.02 ±0.05 mm PCB hole for their
+        # 0.65 mm terminal; 0.95 mm was below the manufacturer's recommended fit.
+        pad.SetSize(V(1.65,1.65));pad.SetDrillSize(V(1.02,1.02));pad.SetLayerSet(p.PAD.PTHMask())
         fp.Add(pad)
     # Only the low socket itself occupies a PCB courtyard. The daughterboard
     # envelope is checked at its actual assembly height, not as a flat keepout.
-    box=[-1.27,-1.27,(n-1)*2.54+1.27,1.27] if n==10 else [-(n-1)*2.54-1.27,-1.27,1.27,1.27]
+    box=[-1.47,-1.25,(n-1)*2.54+1.47,1.25] if n==10 else [-(n-1)*2.54-1.47,-1.25,1.47,1.25]
     rect(fp,box,p.F_CrtYd,.05);rect(fp,box,p.F_SilkS,.1)
     return fp
 
@@ -101,7 +109,11 @@ for c in SPEC['parts']:
         # Harness GND pins join both GND layers solidly: routing between connector
         # pins otherwise leaves F.Cu spokes on isolated islands (starved thermals).
         if (c['ref'] in ['J_EXT','J_FREE','J_SCALE'] or c['section']=='Connectors') and c['nets'].get(pad.GetNumber())=='GND':pad.SetLocalZoneConnection(p.ZONE_CONNECTION_FULL)
-        if c['ref']=='J_USB':pad.SetLocalClearance(p.FromMM(.15))
+        # The WROOM castellated pads and USB-C contacts are fixed-pitch
+        # geometries. Keep the generous 0.30 mm signal-net clearance; local 0.15 mm
+        # applies only within these two manufacturer-defined interfaces.
+        if c['ref'] in ['J_USB','U_ESD','U1']:
+            pad.SetLocalClearance(p.FromMM(.15))
         if c['ref']=='U1' and pad.GetNumber()=='41':
             if pad.GetAttribute()==p.PAD_ATTRIB_PTH:
                 pad.SetDrillSize(V(.3,.3));pad.SetSize(V(.65,.65))
@@ -150,7 +162,7 @@ for index,(x,y) in enumerate(SPEC['mounts_mm'],1):
     pa.SetLayerSet(p.LSET.AllCuMask());fp.Add(pa)
     fp.Reference().SetVisible(False);fp.Value().SetVisible(False);B.Add(fp)
 
-for text,x,y,size in [('GemilaiMate COMPACT',33,48.8,.8),('Rico-X  /  v'+REV['revision'],46,1.3,.7),
+for text,x,y,size in [('GemilaiMate MODULE SHIELD',37.5,58.5,.8),('Rico-X  /  v'+REV['revision'],64,1.3,.7),
                       ('NO MAINS',30,44.5,.65),('USB',7.5,39.5,.7)]:
     t=p.PCB_TEXT(B);t.SetText(text);t.SetPosition(V(x,y));t.SetTextSize(V(size,size))
     t.SetTextThickness(p.FromMM(.1));t.SetLayer(p.F_SilkS);B.Add(t)
@@ -158,11 +170,23 @@ t=p.PCB_TEXT(B);t.SetText('github.com/Rico-X/GemilaiMate');t.SetPosition(V(34,47
 t.SetTextSize(V(.85,.85));t.SetTextThickness(p.FromMM(.12));t.SetLayer(p.B_SilkS);t.SetMirrored(True);B.Add(t)
 
 # Standard footprint includes the antenna rule area. All the antenna is beyond
-# the PCB edge. Document its actual overhang rather than claiming a 65x50 assembly.
-SPEC['nominal_assembly_bounds_mm']=[0,-7.15,65,50.335]
-SPEC['module_sockets']={
- 'J_ADS':dict(body_rect_mm=[2.46,22.26,30.46,39.3],socket_height_mm=8.5,male_header_height_mm=2.54,module_underside_mm=11.04,module_thickness_mm=1.6),
- 'J_TC':dict(body_rect_mm=[39.99,21.97,60.31,44.83],socket_height_mm=8.5,male_header_height_mm=2.54,module_underside_mm=11.04,module_thickness_mm=1.6)}
+# the PCB edge; record the complete nominal assembly footprint.
+W,H=SPEC['size_mm']
+SPEC['nominal_assembly_bounds_mm']=[0,-7.15,W,H]
+module_specs={
+ 'J_ADS':dict(body_size_mm=[28,17],body_offset_from_pin_row_mm=[0,-6.72],body_center_local_mm=[11.43,-6.72],socket_mpn='M20-7821046',male_header_mpn='M20-9991046',socket_body_mm=[25.8,2.5,8.5],socket_height_mm=8.5,male_header_body_mm=[25.4,2.54,2.54],male_header_height_mm=2.54,module_underside_mm=11.04,module_thickness_mm=1.6,geometry_status='seller outline; received clone not measured'),
+ 'J_TC':dict(body_size_mm=[20.32,22.86],body_offset_from_pin_row_mm=[0,9.4],body_center_local_mm=[-6.35,9.4],socket_mpn='M20-7820646',male_header_mpn='M20-9990646',socket_body_mm=[15.64,2.5,8.5],socket_height_mm=8.5,male_header_body_mm=[15.24,2.54,2.54],male_header_height_mm=2.54,module_underside_mm=11.04,module_thickness_mm=1.6,geometry_status='Adafruit reference envelope; received clone not measured'),
+ 'J_LEVEL':dict(body_size_mm=[15.24,15.24],body_offset_from_pin_row_mm=[0,0],body_center_local_mm=[0,0],socket_mpn='2 x M20-7820546',male_header_mpn='2 x M20-9990546',socket_body_mm=[13.1,2.5,8.5],socket_height_mm=8.5,male_header_body_mm=[12.7,2.54,2.54],male_header_height_mm=2.54,row_spacing_mm=12.7,module_underside_mm=11.04,module_thickness_mm=1.6,geometry_status='seller outline; received module and 12.70 mm row spacing unmeasured')}
+SPEC['module_sockets']={}
+for alias,spec in module_specs.items():
+ c=next(x for x in SPEC['parts'] if x['ref']==alias)
+ pads=c['physical_pads'];rx=sum(x['x'] for x in pads)/len(pads);ry=sum(x['y'] for x in pads)/len(pads)
+ theta=-math.radians(c['rotation']);ox,oy=spec['body_offset_from_pin_row_mm']
+ cx=rx+ox*math.cos(theta)-oy*math.sin(theta);cy=ry+ox*math.sin(theta)+oy*math.cos(theta)
+ bw,bh=spec['body_size_mm']
+ if int(round(c['rotation']))%180==90:bw,bh=bh,bw
+ spec['body_rect_mm']=[round(cx-bw/2,4),round(cy-bh/2,4),round(cx+bw/2,4),round(cy+bh/2,4)]
+ SPEC['module_sockets'][alias]=spec
 SPEC['parts_count']=len(SPEC['parts'])
 (HERE/'design.json').write_text(json.dumps(SPEC,ensure_ascii=False,indent=2)+'\n')
 (HERE/'circuit.json').write_text(json.dumps(SPEC,ensure_ascii=False,indent=2)+'\n')
@@ -177,23 +201,45 @@ SPEC['power_flags']=['GND','EXT_IN','USB_VBUS','USB_FUSED','+5V_EXT','+5V_CORE']
 (HERE/'design.json').write_text(json.dumps(SPEC,ensure_ascii=False,indent=2)+'\n')
 pro=json.loads((ROOT/'hardware/carrier/gemilaimate-carrier.kicad_pro').read_text())
 ds=pro['board']['design_settings']
-# Budget-fab margins (typical cheap 4-layer process plus reserve): edge, hole and
+# Budget-fab margins (typical cheap four-layer process plus reserve): edge, hole and
 # annular clearances and legible silkscreen are enforced by DRC, not by review.
-ds['rules'].update(min_clearance=.15,min_track_width=.2,min_via_diameter=.7,min_via_drill=.35,
-                   min_through_hole_diameter=.3,min_copper_edge_clearance=.4,min_hole_clearance=.3,
-                   min_hole_to_hole=.5,min_via_annular_width=.15,min_text_height=1.0,min_text_thickness=.15)
+ds['rules'].update(min_clearance=.15,min_track_width=.2,min_via_diameter=.8,min_via_drill=.4,
+                   min_through_hole_diameter=.3,min_copper_edge_clearance=.5,min_hole_clearance=.3,
+                   min_hole_to_hole=.65,min_via_annular_width=.15,min_text_height=1.0,min_text_thickness=.15)
 pro['meta']['filename']='gemilaimate-compact.kicad_pro'
 pro['board']['design_settings']['drc_exclusions']=[]
-pro['net_settings']['classes'][0].update(clearance=.2,track_width=.35,via_diameter=.7,via_drill=.35)
+pro['net_settings']['classes'][0].update(clearance=.30,track_width=.3,via_diameter=.8,via_drill=.4)
+default_class=pro['net_settings']['classes'][0]
+pro['net_settings']['classes']=[default_class,
+ dict(default_class,name='Power',clearance=.30,track_width=.35),
+ dict(default_class,name='USB',clearance=.2,track_width=.25)]
+pro['net_settings']['netclass_assignments']={}
+pro['net_settings']['netclass_patterns']=[
+ dict(netclass='Power',pattern=n) for n in ['+3V3','+5V_CORE','+5V_EXT','EXT_IN','USB_FUSED']]+[
+ dict(netclass='USB',pattern=n) for n in ['USB_VBUS','USB_DP','USB_DM']]
 (HERE/'gemilaimate-compact.kicad_pro').write_text(json.dumps(pro,indent=2)+'\n')
 (HERE/'fp-lib-table').write_text('(fp_lib_table (version 7) (lib (name "GemilaiMateCompact") (type "KiCad") (uri "${KIPRJMOD}/GemilaiMateCompact.pretty") (options "") (descr "Local compact board footprints")))\n')
 (HERE/'gemilaimate-compact.kicad_dru').write_text("""(version 1)
+(rule "Ordinary drill to copper"
+ (constraint hole_clearance (min 0.50mm)))
 (rule "USB4085 fixed pin pitch"
  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
  (constraint clearance (min 0.15mm)))
 (rule "USB4085 fixed hole pitch"
  (condition "A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
  (constraint hole_to_hole (min 0.45mm)))
+(rule "USB4085 fixed drill to copper"
+ (condition "A.memberOfFootprint('J1') || B.memberOfFootprint('J1')")
+ (constraint hole_clearance (min 0.30mm)))
+(rule "USB differential pair spacing"
+ (condition "(A.NetName == 'USB_DP' && B.NetName == 'USB_DM') || (A.NetName == 'USB_DM' && B.NetName == 'USB_DP')")
+ (constraint clearance (min 0.20mm)))
+(rule "TSSOP fixed lands and escapes"
+ (condition "A.memberOfFootprint('U6') || B.memberOfFootprint('U6') || A.memberOfFootprint('U7') || B.memberOfFootprint('U7')")
+ (constraint clearance (min 0.25mm)))
+(rule "WROOM fixed pad pitch"
+ (condition "A.memberOfFootprint('U1') || B.memberOfFootprint('U1')")
+ (constraint clearance (min 0.15mm)))
 """)
 p.SaveBoard(str(HERE/'gemilaimate-compact.kicad_pcb'),B)
 print('Generated',SPEC['parts_count'],'components at',HERE,'- unrouted, not a manufacturing release')
