@@ -1,5 +1,5 @@
 (kicad_sch(version 20250114)(generator "eeschema")(uuid "2fd33eb9-2109-5070-aaa7-921600420504")(paper "A2")
-      (title_block(title "PCA9634 and tank / lighting")(date "2026-11-03")(rev "0.2.4")
+      (title_block(title "PCA9634 and tank / lighting")(date "2026-11-04")(rev "0.3.0")
       (comment 1 "GemilaiMate Compact Shield / Rico-X / github.com/Rico-X/GemilaiMate")
       (comment 2 "PROTOTYPE - NOT HARDWARE VALIDATED / NO MAINS"))
       (lib_symbols(symbol "GemilaiMateCompact:U_LED"(pin_names(offset .5))(in_bom yes)(on_board yes)

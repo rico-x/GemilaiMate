@@ -1,5 +1,5 @@
 (kicad_sch(version 20250114)(generator "eeschema")(uuid "50174406-5e91-5b95-a452-c9bd6c8208b0")(paper "A2")
-      (title_block(title "Reserved interfaces and free GPIO")(date "2026-11-03")(rev "0.2.4")
+      (title_block(title "Reserved interfaces and free GPIO")(date "2026-11-04")(rev "0.3.0")
       (comment 1 "GemilaiMate Compact Shield / Rico-X / github.com/Rico-X/GemilaiMate")
       (comment 2 "PROTOTYPE - NOT HARDWARE VALIDATED / NO MAINS"))
       (lib_symbols(symbol "GemilaiMateCompact:J_SCALE"(pin_names(offset .5))(in_bom yes)(on_board yes)

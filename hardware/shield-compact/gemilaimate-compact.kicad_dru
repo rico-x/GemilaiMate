@@ -3,23 +3,20 @@
  (constraint hole_clearance (min 0.50mm)))
 (rule "Signal track width"
  (condition "A.NetClass == 'Default'")
- (constraint track_width (min 0.15mm)))
+ (constraint track_width (min 0.20mm)))
 (rule "USB track width"
  (condition "A.NetClass == 'USB'")
  (constraint track_width (min 0.20mm)))
 (rule "Power track width"
  (condition "A.NetClass == 'Power'")
  (constraint track_width (min 0.30mm)))
-(rule "USB4085 contact fan-out"
+(rule "HRO USB-C contact fan-out"
  (condition "(A.memberOfFootprint('J1') || B.memberOfFootprint('J1')) && A.Type != 'Zone' && B.Type != 'Zone'")
  (constraint clearance (min 0.20mm)))
-(rule "USB4085 fixed hole pitch"
- (condition "A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
- (constraint hole_to_hole (min 0.45mm)))
-(rule "USB4085 fixed drill to copper"
+(rule "HRO USB-C fixed drill to copper"
  (condition "A.memberOfFootprint('J1') || B.memberOfFootprint('J1')")
- (constraint hole_clearance (min 0.30mm)))
-# The last matching rule wins: the fixed contact pitch overrides the fan-out rule.
-(rule "USB4085 fixed pin pitch"
+ (constraint hole_clearance (min 0.40mm)))
+# The last matching rule wins: enforce the real USB-C contact pitch.
+(rule "HRO USB-C fixed pin pitch"
  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
- (constraint clearance (min 0.15mm)))
+ (constraint clearance (min 0.20mm)))

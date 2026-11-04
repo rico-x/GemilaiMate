@@ -1,5 +1,4 @@
 Reference,Alias,Description,MPN_example,Side,Assembly_note
-J1,J_USB,USB4085-GF-A,USB4085-GF-A,front,Verify exact mating part and pin 1 against assembly drawing
 J2,J_ADS,ADS1115 BLUE SOCKET,M20-7821046,front,Verify exact mating part and pin 1 against assembly drawing
 J3,J_TC,MAX31855 SOCKET,M20-7820646,front,Verify exact mating part and pin 1 against assembly drawing
 J4,J_PWR,5V INPUT,B2B-XH-A(LF)(SN),back,Verify exact mating part and pin 1 against assembly drawing

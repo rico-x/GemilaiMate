@@ -18,7 +18,7 @@ OUT.mkdir(exist_ok=True)
 # follow the package code; individual makers may use a smaller body within it.
 profiles = {
     'ESP32-S3-WROOM-1': ('25.5 x 18.0 x 3.1', 'Espressif module drawing', 'manufacturer'),
-    'USB4085-GF-A': ('9.17 x 7.4 x 3.46', 'GCT product drawing/spec', 'manufacturer'),
+    'TYPE-C-31-M-12': ('8.94 x 7.35 x 3.26 max (3.16 nominal)', 'HRO product page and manufacturer drawing', 'manufacturer'),
     'R_0805_2012Metric': ('2.0 x 1.25 x 0.5', 'Yageo RC0805 drawing; resistor class', 'manufacturer'),
     'C_0805_2012Metric': ('2.0 x 1.25 x 1.35', 'Murata GRM21 max body; capacitor class', 'manufacturer'),
     'C_1206_3216Metric': ('3.2 x 1.6 x 1.8', 'Murata GRM31 max body; capacitor class', 'manufacturer'),
@@ -82,6 +82,7 @@ doc = '''# Component dimensions and mechanical fit\n\n'''
 doc += f"PCB outline: **{D['size_mm'][0]} x {D['size_mm'][1]} mm**, {D['copper_layers']} copper layers. This report covers every fitted footprint and the three plug-in daughterboards.\n\n"
 doc += '## Fit status\n\n'
 doc += '- The component body sizes in the CSV come from manufacturer package drawings when a fixed MPN is selected; generic package envelopes are explicitly marked nominal. KiCad DRC checks the routed footprints and board-edge clearances.\n'
+doc += '- The HRO USB-C body dimensions come from its manufacturer drawing. Its bundled 3D model is a nominal maximum envelope, not a detailed STEP; pad/anchor geometry follows the selected KiCad footprint and drawing.\n'
 doc += '- The ADS1115, MAX31855 and CJMCU-0102 are breakout boards, not fixed bare components. Their clones have not been measured. Their nominal outlines are included in the CAD, but mechanical fit is **not confirmed** until the actual boards, pin rows, terminal, and headers are measured.\n'
 doc += '- The Harwin M20 sockets provide an 8.5 mm socket body above the carrier PCB. The matching 2.54 mm header plastic gives a nominal daughterboard underside height of about 11.04 mm. Check the selected male headers and actual parts together before building. Optional expansion headers use standard 2.54 mm pitch for easier hand assembly.\n'
 doc += '- RobotDyn and SSR remain off-board, separately mounted modules. Their footprints and 230 V conductors are intentionally not placed on this low-voltage shield.\n'

@@ -66,7 +66,7 @@ def socket(part):
                 fp.Add(pad)
         # The two 1x5 rows mate with the selected CJMCU-0102 layout. The
         # square body is the nominal 15.24 x 15.24 mm breakout envelope.
-        rect(fp,[-7.62,-7.62,7.62,7.62],p.F_CrtYd,.05)
+        for row_y in [-6.35,6.35]:rect(fp,[-6.8,row_y-1.5,6.8,row_y+1.5],p.F_CrtYd,.05)
         rect(fp,[-7.62,-7.62,7.62,7.62],p.F_SilkS,.1)
         return fp
     n=10 if part['ref']=='J_ADS' else 6
@@ -108,12 +108,12 @@ for c in SPEC['parts']:
     for pad in fp.Pads():
         # Harness GND pins join both GND layers solidly: routing between connector
         # pins otherwise leaves F.Cu spokes on isolated islands (starved thermals).
-        if (c['ref'] in ['J_EXT','J_FREE','J_SCALE'] or c['section']=='Connectors') and c['nets'].get(pad.GetNumber())=='GND':pad.SetLocalZoneConnection(p.ZONE_CONNECTION_FULL)
+        if (c['ref'] in ['J_EXT','J_FREE','J_SCALE','J_USB'] or c['section']=='Connectors') and c['nets'].get(pad.GetNumber())=='GND':pad.SetLocalZoneConnection(p.ZONE_CONNECTION_FULL)
         # Optional expansion headers: their supply pins join the outer +3V3/+5V_EXT
         # pours solidly too, so the 2.54 mm rows never leave a starved thermal.
         if c['ref'] in ['J_EXT','J_FREE','J_SCALE'] and c['nets'].get(pad.GetNumber()) in ['+3V3','+5V_EXT']:pad.SetLocalZoneConnection(p.ZONE_CONNECTION_FULL)
         # No local pad clearances: a pad override also applies to pours and
-        # foreign tracks. The fixed USB4085 pitch is a pad-to-pad DRU exception.
+        # foreign tracks. The fixed HRO USB-C pitch is a pad-to-pad DRU exception.
         pad.SetLocalClearance(None)
         if c['ref']=='U1' and pad.GetNumber()=='41':
             if pad.GetAttribute()==p.PAD_ATTRIB_PTH:
@@ -205,16 +205,16 @@ SPEC['power_flags']=['GND','EXT_IN','USB_VBUS','USB_FUSED','+5V_EXT','+5V_CORE']
 (HERE/'design.json').write_text(json.dumps(SPEC,ensure_ascii=False,indent=2)+'\n')
 pro=json.loads((ROOT/'hardware/carrier/gemilaimate-carrier.kicad_pro').read_text())
 ds=pro['board']['design_settings']
-# Budget-fab margins (typical cheap four-layer process plus reserve): edge, hole and
+# Budget-fab margins for a two-layer process: edge, hole and
 # annular clearances and legible silkscreen are enforced by DRC, not by review.
-ds['rules'].update(min_clearance=.15,min_track_width=.15,min_via_diameter=.8,min_via_drill=.4,
-                   min_through_hole_diameter=.3,min_copper_edge_clearance=.5,min_hole_clearance=.3,
-                   min_hole_to_hole=.65,min_via_annular_width=.15,min_text_height=1.0,min_text_thickness=.15)
+ds['rules'].update(min_clearance=.20,min_track_width=.20,min_via_diameter=.8,min_via_drill=.4,
+                   min_through_hole_diameter=.3,min_copper_edge_clearance=.5,min_hole_clearance=.4,
+                   min_hole_to_hole=.65,min_via_annular_width=.20,min_text_height=1.0,min_text_thickness=.15)
 pro['meta']['filename']='gemilaimate-compact.kicad_pro'
 pro['board']['design_settings']['drc_exclusions']=[]
 # Copper for hand assembly and rework: 0.30 mm signals, 0.40 mm supplies, 0.30 mm
 # gaps. The router may neck down at crowded pins only; DRC enforces the floors.
-pro['net_settings']['classes'][0].update(clearance=.30,track_width=.3,via_diameter=.8,via_drill=.4)
+pro['net_settings']['classes'][0].update(clearance=json.loads((HERE/'layout-config.json').read_text()).get('signal_clearance_mm',.30),track_width=.3,via_diameter=.8,via_drill=.4)
 default_class=pro['net_settings']['classes'][0]
 pro['net_settings']['classes']=[default_class,
  dict(default_class,name='Power',clearance=.30,track_width=.4),
@@ -242,6 +242,7 @@ for fp in sorted(B.GetFootprints(),key=lambda f:f.GetReference()):
                                    max(p.ToMM(rb.GetTop()-ra.GetBottom()),p.ToMM(ra.GetTop()-rb.GetBottom()),0)))
     if gaps and min(gaps)<.30-1e-6:
         gap=math.floor(min(gaps)*100+1e-6)/100
+        assert gap>=.20,(ref,'package gap below fabrication floor',gap)
         package_rules+=f'''(rule "Package lands {ref}"
  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('{ref}') && B.memberOfFootprint('{ref}')")
  (constraint clearance (min {gap:.2f}mm)))
@@ -251,26 +252,23 @@ for fp in sorted(B.GetFootprints(),key=lambda f:f.GetReference()):
  (constraint hole_clearance (min 0.50mm)))
 (rule "Signal track width"
  (condition "A.NetClass == 'Default'")
- (constraint track_width (min 0.15mm)))
+ (constraint track_width (min 0.20mm)))
 (rule "USB track width"
  (condition "A.NetClass == 'USB'")
  (constraint track_width (min 0.20mm)))
 (rule "Power track width"
  (condition "A.NetClass == 'Power'")
  (constraint track_width (min 0.30mm)))
-(rule "USB4085 contact fan-out"
+(rule "HRO USB-C contact fan-out"
  (condition "(A.memberOfFootprint('J1') || B.memberOfFootprint('J1')) && A.Type != 'Zone' && B.Type != 'Zone'")
  (constraint clearance (min 0.20mm)))
-(rule "USB4085 fixed hole pitch"
- (condition "A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
- (constraint hole_to_hole (min 0.45mm)))
-(rule "USB4085 fixed drill to copper"
+(rule "HRO USB-C fixed drill to copper"
  (condition "A.memberOfFootprint('J1') || B.memberOfFootprint('J1')")
- (constraint hole_clearance (min 0.30mm)))
-"""+package_rules+"""# The last matching rule wins: the fixed contact pitch overrides the fan-out rule.
-(rule "USB4085 fixed pin pitch"
+ (constraint hole_clearance (min 0.40mm)))
+"""+package_rules+"""# The last matching rule wins: enforce the real USB-C contact pitch.
+(rule "HRO USB-C fixed pin pitch"
  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
- (constraint clearance (min 0.15mm)))
+ (constraint clearance (min 0.20mm)))
 """)
 p.SaveBoard(str(HERE/'gemilaimate-compact.kicad_pcb'),B)
 print('Generated',SPEC['parts_count'],'components at',HERE,'- unrouted, not a manufacturing release')

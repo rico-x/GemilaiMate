@@ -1,5 +1,6 @@
 Designators,Quantity_1_PCB,Quantity_5_PCB,Value,MPN_example,Footprint
 U1,1,5,ESP32-S3-WROOM-1-N16R8,ESP32-S3-WROOM-1-N16R8,GemilaiMateCompact:ESP32-S3-WROOM-1
+J1,1,5,TYPE-C-31-M-12,TYPE-C-31-M-12,GemilaiMateCompact:USB_C_Receptacle_HRO_TYPE-C-31-M-12
 R1 R2,2,10,5.1k 1%,RC0805FR-075K1L,GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder
 R3 R4,2,10,22R 1%,RC0805FR-0722RL,GemilaiMateCompact:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder
 U2,1,5,USBLC6-2SC6,USBLC6-2SC6,GemilaiMateCompact:SOT-23-6_Handsoldering

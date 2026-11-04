@@ -24,14 +24,16 @@ for item in route['items']:
  else:
   t=p.PCB_VIA(B);t.SetPosition(V(*item['xy']));t.SetWidth(p.FromMM(item['diameter']));t.SetDrill(p.FromMM(item['drill']));t.SetViaType(p.VIATYPE_THROUGH);t.SetLayerPair(p.F_Cu,p.B_Cu)
  t.SetNet(net);t.SetLocked(item['locked']);B.Add(t)
+# Re-imports replace pours instead of leaving duplicate zero-area zones.
+removed_zones=[z for z in B.Zones() if not z.GetIsRuleArea()]
+for z in removed_zones:B.Remove(z);z.thisown=False
 W,H_MM=D['size_mm']
-# Keep the continuous inner ground reference. Outer power pours connect the
-# distributed supply loads without narrowing the generous routing channels.
-for layer,name in [(p.F_Cu,'+3V3'),(p.In1_Cu,'GND'),(p.In2_Cu,'+3V3'),(p.B_Cu,'+5V_EXT')]:
- z=p.ZONE(B);z.SetLayer(layer);z.SetNet(B.FindNet(name));z.SetLocalClearance(p.FromMM(.3));z.SetThermalReliefGap(p.FromMM(.2));z.SetThermalReliefSpokeWidth(p.FromMM(.3));z.SetMinThickness(p.FromMM(.15))
+# GND on both outer layers. Power uses explicit tracks; no hidden inner copper.
+for layer,name in [(p.F_Cu,'GND'),(p.B_Cu,'GND')]:
+ z=p.ZONE(B);z.SetLayer(layer);z.SetNet(B.FindNet(name));z.SetLocalClearance(p.FromMM(.3));z.SetThermalReliefGap(p.FromMM(.2));z.SetThermalReliefSpokeWidth(p.FromMM(.3));z.SetMinThickness(p.FromMM(.2))
  z.SetIslandRemovalMode(p.ISLAND_REMOVAL_MODE_ALWAYS);z.SetPadConnection(p.ZONE_CONNECTION_THERMAL);o=z.Outline();o.NewOutline()
  for x,y in [(.4,.4),(W-.4,.4),(W-.4,H_MM-.4),(.4,H_MM-.4)]:o.Append(int(p.FromMM(x)),int(p.FromMM(y)))
  B.Add(z)
 p.ZONE_FILLER(B).Fill(B.Zones())
 p.SaveBoard(str(H/'gemilaimate-compact.kicad_pcb'),B)
-print('Imported complete accepted routing and filled ground/power planes.')
+print('Imported complete accepted routing and filled both outer ground pours.')

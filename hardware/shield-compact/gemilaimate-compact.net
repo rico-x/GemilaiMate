@@ -1,8 +1,8 @@
 (export
 	(version "E")
 	(design
-		(source "/home/ubuntu/gm-repro-0.2.4/hardware/shield-compact/gemilaimate-compact.kicad_sch")
-		(date "2026-11-03T17:39:49")
+		(source "/home/ubuntu/codex-builds/gemilaimate-compact-2layer-final/hardware/shield-compact/gemilaimate-compact.kicad_sch")
+		(date "2026-11-04T08:51:11")
 		(tool "Eeschema 10.0.7-10.0.7~ubuntu26.04.1")
 		(sheet
 			(number "1")
@@ -11,12 +11,12 @@
 			(title_block
 				(title "GemilaiMate Compact Shield - Rico-X")
 				(company)
-				(rev "0.2.4")
-				(date "2026-11-03")
+				(rev "0.3.0")
+				(date "2026-11-04")
 				(source "gemilaimate-compact.kicad_sch")
 				(comment
 					(number "1")
-					(value "ESP32-S3-WROOM-1-N16R8 / 75x60mm / 4 layers / native USB")
+					(value "ESP32-S3-WROOM-1-N16R8 / 76x61mm / 2 layers / native USB")
 				)
 				(comment
 					(number "2")
@@ -59,8 +59,8 @@
 			(title_block
 				(title "USB-C and protected core power")
 				(company)
-				(rev "0.2.4")
-				(date "2026-11-03")
+				(rev "0.3.0")
+				(date "2026-11-04")
 				(source "power-usb.kicad_sch")
 				(comment
 					(number "1")
@@ -107,8 +107,8 @@
 			(title_block
 				(title "ESP32-S3 and ID=4 / Boot")
 				(company)
-				(rev "0.2.4")
-				(date "2026-11-03")
+				(rev "0.3.0")
+				(date "2026-11-04")
 				(source "mcu.kicad_sch")
 				(comment
 					(number "1")
@@ -155,8 +155,8 @@
 			(title_block
 				(title "ADS1115 and 3V3/5V I2C")
 				(company)
-				(rev "0.2.4")
-				(date "2026-11-03")
+				(rev "0.3.0")
+				(date "2026-11-04")
 				(source "pressure.kicad_sch")
 				(comment
 					(number "1")
@@ -203,8 +203,8 @@
 			(title_block
 				(title "MAX31855 socket")
 				(company)
-				(rev "0.2.4")
-				(date "2026-11-03")
+				(rev "0.3.0")
+				(date "2026-11-04")
 				(source "temperature.kicad_sch")
 				(comment
 					(number "1")
@@ -251,8 +251,8 @@
 			(title_block
 				(title "ZC and buffered external outputs")
 				(company)
-				(rev "0.2.4")
-				(date "2026-11-03")
+				(rev "0.3.0")
+				(date "2026-11-04")
 				(source "outputs.kicad_sch")
 				(comment
 					(number "1")
@@ -299,8 +299,8 @@
 			(title_block
 				(title "Active-low dry contacts")
 				(company)
-				(rev "0.2.4")
-				(date "2026-11-03")
+				(rev "0.3.0")
+				(date "2026-11-04")
 				(source "buttons.kicad_sch")
 				(comment
 					(number "1")
@@ -347,8 +347,8 @@
 			(title_block
 				(title "PCA9634 and tank / lighting")
 				(company)
-				(rev "0.2.4")
-				(date "2026-11-03")
+				(rev "0.3.0")
+				(date "2026-11-04")
 				(source "alba.kicad_sch")
 				(comment
 					(number "1")
@@ -395,8 +395,8 @@
 			(title_block
 				(title "Reserved interfaces and free GPIO")
 				(company)
-				(rev "0.2.4")
-				(date "2026-11-03")
+				(rev "0.3.0")
+				(date "2026-11-04")
 				(source "expansion.kicad_sch")
 				(comment
 					(number "1")
@@ -808,11 +808,11 @@
 		)
 		(comp
 			(ref "J1")
-			(value "USB4085-GF-A")
-			(footprint "GemilaiMateCompact:USB_C_Receptacle_GCT_USB4085")
+			(value "TYPE-C-31-M-12")
+			(footprint "GemilaiMateCompact:USB_C_Receptacle_HRO_TYPE-C-31-M-12")
 			(fields
 				(field
-					(name "Footprint") "GemilaiMateCompact:USB_C_Receptacle_GCT_USB4085")
+					(name "Footprint") "GemilaiMateCompact:USB_C_Receptacle_HRO_TYPE-C-31-M-12")
 				(field
 					(name "Datasheet")
 				)
@@ -7253,9 +7253,9 @@
 				(field
 					(name "Reference") "J1")
 				(field
-					(name "Value") "USB4085-GF-A")
+					(name "Value") "TYPE-C-31-M-12")
 				(field
-					(name "Footprint") "GemilaiMateCompact:USB_C_Receptacle_GCT_USB4085")
+					(name "Footprint") "GemilaiMateCompact:USB_C_Receptacle_HRO_TYPE-C-31-M-12")
 				(field
 					(name "Datasheet")
 				)

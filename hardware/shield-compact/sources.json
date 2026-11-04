@@ -73,10 +73,6 @@
       "purpose": "ESD IO1 pins 1/6, IO2 3/4, GND2 VBUS5"
     },
     {
-      "url": "https://gct.co/connector/usb4085",
-      "purpose": "Data-capable through-hole USB-C, package pitch and shell"
-    },
-    {
       "url": "https://www.littelfuse.com/products/polyswitch-resettable-pptcs/surface-mount/1206l",
       "purpose": "PTC ratings; current derating with temperature"
     },
@@ -125,8 +121,8 @@
       "purpose": "1206L150/12 PTC body dimensions and ratings"
     },
     {
-      "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-0710KL",
-      "purpose": "Yageo 0603 resistor body dimensions"
+      "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0805FR-0710KL",
+      "purpose": "Yageo RC0805 manufacturer drawing: 2.0 +/-0.1 x 1.25 +/-0.1 x 0.5 +/-0.1 mm"
     },
     {
       "url": "https://www.diodes.com/datasheet/download/MMBT3904.pdf",
@@ -139,9 +135,29 @@
     {
       "url": "https://aliexpress.ru/item/32898604164.html?sku_id=65803725915",
       "purpose": "Selected CJMCU-0102 listing; seller dimensions are unverified until the received module is measured"
+    },
+    {
+      "url": "https://en.krhro.com/Product-Details/726.html",
+      "purpose": "HRO TYPE-C-31-M-12 16P single accessible SMT row; body dimensions; exact part required"
+    },
+    {
+      "url": "https://datasheet.lcsc.com/datasheet/pdf/9e56b777c022540fcce7c7f67825f55e.pdf?productCode=C165948",
+      "purpose": "Manufacturer-authored HRO TYPE-C-31-M-12 drawing, hosted by distributor; pad and shell/peg geometry"
+    },
+    {
+      "url": "https://www.pcbwave.com/pcb-manufacturing.html",
+      "purpose": "Fabrication target: user-confirmed >=0.20mm clearance; 6mil minimum trace. Project uses >=0.20mm trace instead of 0.15mm"
     }
   ],
   "hardware_compatibility": "source-checked only; no physical build or firmware switching test",
   "kicad_library_license": "https://www.kicad.org/libraries/license/",
-  "modules_geometry_note": "ADS1115 and MAX31855 are unmeasured marketplace clones. CJMCU-0102 is seller-selected; two 1x5 rows are assumed 12.70 mm apart. Verify actual module outlines, pin rows, thicknesses and thermocouple terminal before manufacturing."
+  "modules_geometry_note": "ADS1115 and MAX31855 are unmeasured marketplace clones. CJMCU-0102 is seller-selected; two 1x5 rows are assumed 12.70 mm apart. Verify actual module outlines, pin rows, thicknesses and thermocouple terminal before manufacturing.",
+  "usb_3d_model": {
+    "type": "nominal maximum envelope from manufacturer 2D drawing",
+    "file": "GemilaiMateCompact.3dshapes/USB_C_HRO_nominal.wrl",
+    "detailed_manufacturer_step": false,
+    "upstream_missing_model_issue": "https://gitlab.com/kicad/code/kicad/-/issues/22139",
+    "sha256": "645407b20fcc60db5a092dc04113802a93e8611254be001875e4e811d8e1b91a"
+  },
+  "hardware_revision_checked_date": "2026-11-04"
 }

@@ -25,6 +25,8 @@ def main():
  # generator: DCT/DCU and X2SON have different pins; SO20 != QFN20 for PCA.
  expected={
  # CJMCU-0102 silkscreen A: GND OE VA A1 A2 / B: GND G VB B1 B2; TXS0102 pairs A1-B1, A2-B2.
+ 'J_USB':{'A1':'GND','A12':'GND','B1':'GND','B12':'GND','SH':'GND','A4':'USB_VBUS','A9':'USB_VBUS','B4':'USB_VBUS','B9':'USB_VBUS','A5':'CC1','B5':'CC2','A6':'USB_DP','B6':'USB_DP','A7':'USB_DM','B7':'USB_DM'},
+ 'R_CC1':{1:'CC1',2:'GND'},'R_CC2':{1:'CC2',2:'GND'},
  'J_LEVEL':{1:'GND',2:'I2C_OE',3:'+3V3',4:'SCL_3V3',5:'SDA_3V3',6:'GND',8:'+5V_CORE',9:'SCL_5V',10:'SDA_5V'},
  'R_OE':{1:'+3V3',2:'I2C_OE'},'C_OE':{1:'I2C_OE',2:'GND'},
  'U_LED':{1:'GND',2:'GND',3:'GND',4:'GND',5:'GND',6:'PCA_LED0',7:'PCA_LED1',8:'PCA_LED2',9:'PCA_LED3',10:'GND',11:'PCA_LED4',12:'PCA_LED5',13:'PCA_LED6',14:'PCA_LED7',15:'GND',16:'GND',17:'GND',18:'PCA_SCL',19:'PCA_SDA',20:'+3V3'},
@@ -83,7 +85,7 @@ def main():
  vmin=3.3*.95*(1580*.99)/(10000*1.01+1580*.99)
  vmax=3.3*1.05*(1580*1.01)/(10000*.99+1580*1.01)
  assert .415<vmin<vmax<.485,(vmin,vmax)
- assert d['size_mm']==[75,60] and d['copper_layers']==4 and d['board_id']==4
+ assert d['size_mm']==json.loads((H/'layout-config.json').read_text())['size_mm'] and d['copper_layers']==2 and d['board_id']==4
  assert d['hardware_tested'] is False and d['manufacturing_release'] is False
  assert d['physical_flash_mb']==16 and d['compatible_partition_flash_mb']==8 and d['psram_mb']==8
  assert d['peripheral_gpio']==dict(sda=43,scl=44)
@@ -95,7 +97,7 @@ def main():
  erc=json.loads((H/'reports/erc.json').read_text());drc=json.loads((H/'reports/drc.json').read_text())
  assert not any(sh['violations'] for sh in erc['sheets'])
  assert all(not drc[k] for k in ['violations','unconnected_items','schematic_parity'])
- report=json.loads((H/'reports/layout.json').read_text());assert report['minimum_track_mm']>=.15
+ report=json.loads((H/'reports/layout.json').read_text());assert report['minimum_track_mm']>=.20
  assert all(x['via_overlaps']==0 for x in report['visible_labels'])
  # Socket marking order is checked spatially, including the reversed MAX row.
  for ref in ['J_ADS','J_TC']:
@@ -126,22 +128,26 @@ def main():
  # Budget-fab silkscreen and copper margins.
  assert all(t['bbox_mm'] and (t['bbox_mm'][3]-t['bbox_mm'][1]>=.95 or t['bbox_mm'][2]-t['bbox_mm'][0]>=.95) for t in report['visible_labels'])
  rules=json.loads((H/'gemilaimate-compact.kicad_pro').read_text())['board']['design_settings']['rules']
- assert rules['min_clearance']>=.15 and rules['min_track_width']>=.15
+ assert rules['min_clearance']>=.20 and rules['min_track_width']>=.20
+ assert not json.loads((H/'gemilaimate-compact.kicad_pro').read_text())['board']['design_settings']['drc_exclusions']
  net_settings=json.loads((H/'gemilaimate-compact.kicad_pro').read_text())['net_settings']
  classes={c['name']:c for c in net_settings['classes']}
- assert classes['Default']['clearance']>=.3 and classes['Default']['track_width']>=.3
+ assert classes['Default']['clearance']>=.25 and classes['Default']['track_width']>=.3
  assert classes['Power']['clearance']>=.3 and classes['Power']['track_width']>=.4
  assert classes['USB']['clearance']>=.3 and classes['USB']['track_width']>=.3
  assert {p['pattern'] for p in net_settings['netclass_patterns'] if p['netclass']=='Power'}=={'+3V3','+5V_CORE','+5V_EXT','EXT_IN','USB_VBUS','USB_FUSED'}
  assert rules['min_via_diameter']>=.8 and rules['min_via_drill']>=.4
  assert rules['min_text_height']>=1 and rules['min_text_thickness']>=.15 and rules['min_copper_edge_clearance']>=.5
- assert rules['min_hole_to_hole']>=.65 and rules['min_hole_clearance']>=.3 and rules['min_via_annular_width']>=.15
+ assert rules['min_hole_to_hole']>=.65 and rules['min_hole_clearance']>=.4 and rules['min_via_annular_width']>=.20
  custom_rules=(H/'gemilaimate-compact.kicad_dru').read_text()
  assert 'Ordinary drill to copper' in custom_rules and '(constraint hole_clearance (min 0.50mm))' in custom_rules
  assert 'Power track width' in custom_rules and '(constraint track_width (min 0.30mm))' in custom_rules
- assert 'Signal track width' in custom_rules and '(constraint track_width (min 0.15mm))' in custom_rules and 'TSSOP' not in custom_rules
- # 0.15 mm exists only between USB4085 contacts; no blanket footprint exception.
- assert custom_rules.count('(constraint clearance (min 0.15mm))')==1 and "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('J1') && B.memberOfFootprint('J1')" in custom_rules
+ assert 'Signal track width' in custom_rules and '(constraint track_width (min 0.20mm))' in custom_rules and 'TSSOP' not in custom_rules
+ assert 'USB4085' not in custom_rules and '(min 0.15mm)' not in custom_rules
+ assert parts['J_USB']['mpn']=='TYPE-C-31-M-12'
+ import re
+ for floor in re.findall(r'constraint (?:clearance|track_width) \(min ([0-9.]+)mm\)',custom_rules):
+  assert float(floor)>=.2,('fabrication floor bypassed',floor)
  # Any other footprint exception is pad-to-pad inside one package only.
  import re
  for rule in re.findall(r'\(rule "([^"]+)"\n \(condition "([^"]+)"\)',custom_rules):
@@ -150,7 +156,7 @@ def main():
  pcb_text=(H/'gemilaimate-compact.kicad_pcb').read_text()
  assert '(clearance 0.15)' not in pcb_text,'local 0.15 mm pad clearance leaks to pours and foreign tracks'
  geometry=json.loads((H/'reports/geometry.json').read_text())
- assert geometry['mount_copper_keepout_radius_mm']>=2.5 and geometry['power_min_track_mm']>=.3 and geometry['signal_min_track_mm']>=.15 and geometry['usb_min_track_mm']>=.2
+ assert geometry['mount_copper_keepout_radius_mm']>=2.5 and geometry['power_min_track_mm']>=.3 and geometry['signal_min_track_mm']>=.20 and geometry['usb_min_track_mm']>=.2
  for ref in ['J_ADS','J_TC','J_LEVEL']:assert parts[ref]['designator']+'.BODY' in report_labels,ref
  # Orientation marks on silk for every fitted polarised SMD part.
  for c in parts.values():
@@ -159,11 +165,11 @@ def main():
   if c['section']=='Connectors':assert c['designator']+'.FUNCTION' in report_labels,('no function label',c['designator'])
  placements=list(csv.DictReader((H/'manufacturing/CPL-SMD.csv').open()))
  expected_smd=sum(1 for c in parts.values() if not c['dnp'] and c['physical_pads'] and
-                  (c['ref']=='U1' or all(p['smd'] for p in c['physical_pads'])))
+                  (c['ref'] in ['U1','J_USB'] or all(p['smd'] for p in c['physical_pads'])))
  assert len(placements)==expected_smd
  u1=next(p for p in placements if p['Designator']=='U1')
- assert abs(float(u1['Mid X_mm'])-15)<.001 and abs(float(u1['Mid Y_mm'])-5.6)<.001
- assert 'U1' not in {p['Reference'] for p in csv.DictReader((H/'manufacturing/BOM-THT.csv').open())}
+ assert abs(float(u1['Mid X_mm'])-(15+json.loads((H/'layout-config.json').read_text()).get('layout_offset_x_mm',0)))<.001 and abs(float(u1['Mid Y_mm'])-5.6)<.001
+ assert not {'U1','J1'} & {p['Reference'] for p in csv.DictReader((H/'manufacturing/BOM-THT.csv').open())}
  manifest=json.loads((H/'manufacturing/manifest.json').read_text())
  assert manifest['revision']==d['revision']==json.loads((H/'revision.json').read_text())['revision']
  assert manifest['pcb_sha256']==hashlib.sha256((H/'gemilaimate-compact.kicad_pcb').read_bytes()).hexdigest()

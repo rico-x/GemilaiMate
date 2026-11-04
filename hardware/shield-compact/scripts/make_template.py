@@ -31,5 +31,10 @@ for a,b in [((10,97),(20,97)),((10,96),(10,98)),((20,96),(20,98))]:
  s=p.PCB_SHAPE(B);s.SetShape(p.SHAPE_T_SEGMENT);s.SetLayer(p.Dwgs_User);s.SetWidth(p.FromMM(.15));s.SetStart(V(*a));s.SetEnd(V(*b));B.Add(s)
 with tempfile.TemporaryDirectory() as tmp:
  f=Path(tmp)/'compact-template.kicad_pcb';p.SaveBoard(str(f),B)
- subprocess.run(['kicad-cli','pcb','export','pdf','--layers','F.Fab,F.Silkscreen,Dwgs.User,Edge.Cuts','--black-and-white','--scale','1','--mode-single','-o',str(H/'previews/assembly-1to1.pdf'),str(f)],check=True)
+ for filename,layers,mirror in [('assembly-1to1.pdf','F.Fab,F.Silkscreen,Dwgs.User,Edge.Cuts',False),('assembly-bottom-1to1.pdf','B.Fab,B.Silkscreen,Dwgs.User,Edge.Cuts',True)]:
+  if mirror:
+   for item in B.GetDrawings():
+    if isinstance(item,p.PCB_TEXT) and item.GetLayer()==p.Dwgs_User:item.SetMirrored(True)
+   p.SaveBoard(str(f),B)
+  subprocess.run(['kicad-cli','pcb','export','pdf','--layers',layers,'--crossout-DNP-footprints-on-fab-layers','--no-property-popups','--black-and-white','--scale','1','--mode-single',*(['--mirror'] if mirror else []),'-o',str(H/'previews'/filename),str(f)],check=True)
 print('Exported unclipped 1:1 A4 template and a 10mm calibration bar; source PCB unchanged')

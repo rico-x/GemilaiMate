@@ -1,6 +1,6 @@
 (kicad_sch(version 20250114)(generator "eeschema")(uuid "e18dfb34-e273-5aaa-b2da-4a09dcb77710")(paper "A3")
-  (title_block(title "GemilaiMate Compact Shield - Rico-X")(date "2026-11-03")(rev "0.2.4")
-  (comment 1 "ESP32-S3-WROOM-1-N16R8 / 75x60mm / 4 layers / native USB")
+  (title_block(title "GemilaiMate Compact Shield - Rico-X")(date "2026-11-04")(rev "0.3.0")
+  (comment 1 "ESP32-S3-WROOM-1-N16R8 / 76x61mm / 2 layers / native USB")
   (comment 2 "GM Pro PCB Rev 1.1 ID=4; official binary compatibility requires physical testing")
   (comment 3 "No mains on PCB. Heater output unused in stock Gemilai integration.")
   (comment 4 "github.com/Rico-X/GemilaiMate - PROTOTYPE - NOT HARDWARE VALIDATED"))

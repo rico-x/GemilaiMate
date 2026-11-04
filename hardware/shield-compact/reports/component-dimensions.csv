@@ -1,6 +1,6 @@
 Reference,Function_alias,Value,MPN_example,KiCad_footprint,Body_LxWxH_mm,Dimension_source_or_basis,Confidence,Side,DNP
 U1,U1,ESP32-S3-WROOM-1-N16R8,ESP32-S3-WROOM-1-N16R8,RF_Module:ESP32-S3-WROOM-1,25.5 x 18.0 x 3.1,Espressif module drawing,manufacturer,front,0
-J1,J_USB,USB4085-GF-A,USB4085-GF-A,Connector_USB:USB_C_Receptacle_GCT_USB4085,9.17 x 7.4 x 3.46,GCT product drawing/spec,manufacturer,front,0
+J1,J_USB,TYPE-C-31-M-12,TYPE-C-31-M-12,Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12,8.94 x 7.35 x 3.26 max (3.16 nominal),HRO product page and manufacturer drawing,manufacturer,front,0
 R1,R_CC1,5.1k 1%,RC0805FR-075K1L,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,2.0 x 1.25 x 0.5,Yageo RC0805 drawing; resistor class,manufacturer,front,0
 R2,R_CC2,5.1k 1%,RC0805FR-075K1L,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,2.0 x 1.25 x 0.5,Yageo RC0805 drawing; resistor class,manufacturer,front,0
 R3,R_USBP,22R 1%,RC0805FR-0722RL,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,2.0 x 1.25 x 0.5,Yageo RC0805 drawing; resistor class,manufacturer,front,0

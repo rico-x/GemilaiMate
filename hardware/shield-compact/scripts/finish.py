@@ -3,9 +3,10 @@
 Execute with KiCad Python and Shapely on the remote build host.
 """
 import gc;gc.disable()
-import sys,json,math,shutil,hashlib,collections,re
+import sys,json,math,shutil,hashlib,collections,re,itertools
 from pathlib import Path
 from shapely.geometry import LineString,Point,box as shape_box
+from shapely.strtree import STRtree
 ROOT=Path(__file__).resolve().parents[3];H=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'hardware/shield/scripts'))
 from kicad_runtime import application,seed_uuids
@@ -25,10 +26,21 @@ def polygon(t):
  a,b=t.GetStart(),t.GetEnd();return LineString([(mm(a.x),mm(a.y)),(mm(b.x),mm(b.y))]).buffer(mm(t.GetWidth())/2)
 objects=[dict(item=t,net=t.GetNetCode(),shape=polygon(t),layer=None if isinstance(t,p.PCB_VIA) else t.GetLayer()) for t in tracks]
 objects +=[dict(item=a,net=a.GetNetCode(),shape=shape_box(*rect(a)),layer=a.GetLayer() if a.GetAttribute()==p.PAD_ATTRIB_SMD else None) for a in pads]
+# A large annulus does not substitute for drill-to-copper clearance.
+# Include every foreign drill independently so widening cannot reintroduce
+# the 0.50 mm hole violations repaired during routing.
+for pad in pads:
+ if pad.GetAttribute()==p.PAD_ATTRIB_SMD:continue
+ pos=pad.GetPosition();radius=max(mm(pad.GetDrillSize().x),mm(pad.GetDrillSize().y))/2
+ objects.append(dict(item=pad,net=pad.GetNetCode(),shape=Point(mm(pos.x),mm(pos.y)).buffer(radius),layer=None,drill=True))
 # M2 mounts are copper-free discs on every layer, not just their 2.2 mm drills.
 keepout=D['mount_keepout_radius_mm']
 objects +=[dict(item=None,net=-1,shape=Point(x,y).buffer(keepout,64),layer=None) for x,y in D['mounts_mm']]
 power={'+3V3','+5V_CORE','+5V_EXT','EXT_IN','USB_VBUS','USB_FUSED'}
+# The largest widening adds <=0.5 mm per side. A 2 mm query margin
+# includes all objects that can limit a <=1.2 mm track at <=0.51 mm gap,
+# even after their own widths increase; acceptance remains fresh KiCad DRC.
+spatial=STRtree([o['shape'] for o in objects])
 changed=0
 for obj in objects[:len(tracks)]:
  t=obj['item']
@@ -36,12 +48,18 @@ for obj in objects[:len(tracks)]:
  a,b=t.GetStart(),t.GetEnd();line=LineString([(mm(a.x),mm(a.y)),(mm(b.x),mm(b.y))])
  limit=1.2 if t.GetNetname() in power else .8
  bounds=line.bounds;edge=min(bounds[0],bounds[1],W-bounds[2],H_MM-bounds[3]);limit=min(limit,2*(edge-.51))
- for other in objects:
+ for object_index in spatial.query(line.buffer(2.0)):
+  other=objects[int(object_index)]
   if other['net']==obj['net'] or other is obj or (other['layer'] is not None and other['layer']!=obj['layer']):continue
   # 0.01 mm extra geometric margin beyond the 0.30 mm signal and power rule;
   # widening never enters a mount keepout disc.
   distance=line.distance(other['shape'])
-  clear=.02 if other['item'] is None else .51 if isinstance(other['item'],p.PAD) and other['item'].GetAttribute()==p.PAD_ATTRIB_NPTH else .31
+  foreign=other['item']
+  if other.get('drill'):clear=.51
+  elif foreign is None:clear=.02
+  elif isinstance(foreign,p.PAD) and foreign.GetAttribute()==p.PAD_ATTRIB_NPTH:clear=.51
+  elif isinstance(foreign,p.PCB_VIA) or t.GetNetname() in power or foreign.GetNetname() in power or t.GetNetname().startswith('USB_') or foreign.GetNetname().startswith('USB_'):clear=.31
+  else:clear=json.loads((H/'layout-config.json').read_text()).get('signal_clearance_mm',.3)+.01
   limit=min(limit,2*(distance-clear))
  width=max(mm(t.GetWidth()),math.floor((limit+1e-8)/.05)*.05)
  if width>mm(t.GetWidth())+.001:
@@ -50,12 +68,23 @@ for t in tracks:
  if isinstance(t,p.PCB_VIA):t.SetFrontTentingMode(p.TENTING_MODE_TENTED);t.SetBackTentingMode(p.TENTING_MODE_TENTED)
 p.ZONE_FILLER(B).Fill(B.Zones())
 
+# The upstream HRO footprint references a STEP that packages3D does not ship.
+# Use an explicitly nominal envelope from the manufacturer 2D drawing rather
+# than disguising another connector model as this part.
+usb_envelope=H/'GemilaiMateCompact.3dshapes'/'USB_C_HRO_nominal.wrl'
+def envelope_box(x,y,z,w,h,t,color):
+ u=2.54
+ return f'Transform {{ translation {x/u} {y/u} {z/u} children Shape {{ appearance Appearance {{ material Material {{ diffuseColor {color} }} }} geometry Box {{ size {w/u} {h/u} {t/u} }} }} }}\n'
+usb_envelope.write_text('#VRML V2.0 utf8\n# HRO TYPE-C-31-M-12: nominal maximum envelope, not a detailed STEP.\n'+envelope_box(0,.025,1.63,8.94,7.35,3.26,'0.70 0.70 0.72'))
 # Self-contained copies of the KiCad standard 3D models.
 models=H/'GemilaiMateCompact.3dshapes';models.mkdir(exist_ok=True)
 for f in B.GetFootprints():
  original_models=list(f.Models());f.Models().clear()
  for model in original_models:
   filename=model.m_Filename
+  model.m_Show=not parts.get(f.GetReference(),{}).get('dnp',False)
+  if filename.endswith('USB_C_Receptacle_HRO_TYPE-C-31-M-12.step'):
+   model.m_Filename='${KIPRJMOD}/GemilaiMateCompact.3dshapes/USB_C_HRO_nominal.wrl';f.Add3DModel(model);continue
   if filename.startswith('${KICAD10_3DMODEL_DIR}/'):
    src=Path('/usr/share/kicad/3dmodels')/filename.split('}/',1)[1]
    if src.exists():shutil.copyfile(src,models/src.name)
@@ -65,6 +94,7 @@ for f in B.GetFootprints():
 for lib in (H/'GemilaiMateCompact.pretty').glob('*.kicad_mod'):
  text=lib.read_text()
  text=re.sub(r'\$\{KICAD10_3DMODEL_DIR\}/[^\"]*/([^/\"]+)',r'${KIPRJMOD}/GemilaiMateCompact.3dshapes/\1',text)
+ text=text.replace('USB_C_Receptacle_HRO_TYPE-C-31-M-12.step','USB_C_HRO_nominal.wrl')
  lib.write_text(text)
 # Daughterboard headers use exact Harwin housing sizes; unmeasured breakout
 # envelopes remain conservative nominal rectangles and are flagged in geometry.
@@ -114,7 +144,9 @@ for c in D['parts']:
  for a in F[c['designator']].GraphicalItems():
   if a.GetLayer()==p.B_CrtYd:obstacles[p.B_SilkS].append(rect(a))
 usb_y=next(c['y'] for c in D['parts'] if c['ref']=='J_USB')
-obstacles[p.F_SilkS].append([2.175,usb_y-1.085,12.775,usb_y+9.135])
+usb_fp=next(f for f in B.GetFootprints() if f.GetReference()==next(c['designator'] for c in D['parts'] if c['ref']=='J_USB'))
+for drawing in usb_fp.GraphicalItems():
+ if drawing.GetLayer()==p.F_CrtYd:obstacles[p.F_SilkS].append(rect(drawing))
 labels=[]
 def overlaps(a,b):return a[0]<b[2] and b[0]<a[2] and a[1]<b[3] and b[1]<a[3]
 def label(text,layer,candidates,size=.7,required=True,owner='BOARD'):
@@ -177,7 +209,7 @@ for alias,name in [('J_ADS','ADS1115'),('J_TC','MAX31855'),('J_LEVEL','CJMCU-010
    label(name.replace('-','\n'),p.F_SilkS,inside,1.0,owner=des+'.BODY')
 # Several harnesses share a PH size: name the function next to each header.
 FUNCTION={'J_PWR':'5V IN','J_DISPLAY':'DISP','J_PRESS':'BAR','J_BUTTONS':'BTN',
-          'J_PUMP':'PUMP','J_VALVE':'VALVE','J_HEAT':'HEAT','J_ALT':'ALT',
+          'J_PUMP':'PUMP','J_VALVE':'VALVE','J_HEAT':'HEAT DNP','J_ALT':'ALT',
           'J_TOF':'TOF 3V3','J_ALBA':'ALBA 3V3','J_RGBW':'RGBW','J_LIGHT':'LIGHT'}
 for c in D['parts']:
  if c['section']!='Connectors':continue
@@ -207,8 +239,8 @@ for c in D['parts']:
  dot(p.B_SilkS,sorted(closer,key=lambda q:math.dist(q[:2],(x,y))),c['designator']+'.1')
 def bar(layer,x,y,ux,uy,half,owner):
  # Cathode bar beside pad 1 (K), across the diode axis, outside the body.
- for offset in [.45,.6,.75,.9,1.05,1.2,1.4]:
-  cx,cy=x+ux*(half+offset),y+uy*(half+offset);ax,ay,bx,by=cx+uy*1.0,cy-ux*1.0,cx-uy*1.0,cy+ux*1.0
+ for length,offset,tangent in itertools.product([2.0,1.5,1.0],[.45,.6,.75,.9,1.05,1.2,1.4,1.65,1.9],[0,.25,-.25,.5,-.5,.75,-.75,1,-1]):
+  cx,cy=x+ux*(half+offset)+uy*tangent,y+uy*(half+offset)-ux*tangent;ax,ay,bx,by=cx+uy*length/2,cy-ux*length/2,cx-uy*length/2,cy+ux*length/2
   b=[min(ax,bx)-.15,min(ay,by)-.15,max(ax,bx)+.15,max(ay,by)+.15]
   if b[0]<.35 or b[1]<.35 or b[2]>W-.35 or b[3]>H_MM-.35 or any(overlaps(b,o) for o in obstacles[layer]):continue
   s=p.PCB_SHAPE(B);s.SetShape(p.SHAPE_T_SEGMENT);s.SetStart(V(ax,ay));s.SetEnd(V(bx,by));s.SetWidth(p.FromMM(.3));s.SetLayer(layer);B.Add(s)
@@ -240,6 +272,11 @@ for c in D['parts']:
  if c['ref'] in ['U1','J_ADS','J_TC'] or c['section']=='Connectors':continue
  f=F[c['designator']];x,y=mm(f.GetPosition().x),mm(f.GetPosition().y);layer=p.B_SilkS if f.IsFlipped() else p.F_SilkS
  if not label(c['designator'],layer,near(x,y-1.5,radius=2),.65,False,c['designator']):missing.append(c['designator'])
+
+# DNP remains visible as an assembly outline, never as a fitted 3D part.
+for c in D['parts']:
+ if not c['dnp']:continue
+ f=F[c['designator']];q=f.GetPosition();t=p.PCB_TEXT(B);t.SetText('DNP');t.SetPosition(q);t.SetTextSize(V(1,1));t.SetTextThickness(p.FromMM(.15));t.SetLayer(p.B_Fab if f.IsFlipped() else p.F_Fab);t.SetMirrored(f.IsFlipped());B.Add(t)
 
 # Refresh all physical coordinates; the board, not a stale nominal placement,
 # is the source of assembly positions.

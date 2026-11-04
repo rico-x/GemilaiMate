@@ -1,18 +1,19 @@
 {
-  "pcb_sha256": "1627eeb567e094cbc82848451744b8eb66abef9e3193b5c68b31769f466578df",
+  "pcb_sha256": "7d06382703646c69bbe345bc11246a3ec0029578c470b0331d897be1320f653e",
   "board_size_mm": [
-    75,
-    60
+    76,
+    61
   ],
-  "copper_layers": 4,
+  "copper_layers": 2,
   "mount_copper_keepout_radius_mm": 2.5,
   "power_min_track_mm": 0.3,
-  "signal_min_track_mm": 0.15,
-  "usb_min_track_mm": 0.25,
+  "signal_min_track_mm": 0.2,
+  "usb_min_track_mm": 0.2,
   "visible_text_via_overlaps": 0,
   "unfilled_via_drill_smd_overlaps": 0,
   "all_actual_pad_coordinates_match": true,
-  "inner_ground_plane": true,
+  "inner_ground_plane": false,
+  "outer_ground_pours": true,
   "nominal_module_body_overlap": false,
   "actual_clone_dimensions_verified": false,
   "usb_plug_physical_test": false,

@@ -101,7 +101,7 @@ for page,(name,parts) in enumerate(groups.items(),2):
 
 rootdoc=f'''(kicad_sch(version 20250114)(generator "eeschema")(uuid {q(root)})(paper "A3")
   (title_block(title "GemilaiMate Compact Shield - Rico-X")(date {q(D['date'])})(rev {q(D['revision'])})
-  (comment 1 "ESP32-S3-WROOM-1-N16R8 / {D['size_mm'][0]}x{D['size_mm'][1]}mm / 4 layers / native USB")
+  (comment 1 "ESP32-S3-WROOM-1-N16R8 / {D['size_mm'][0]}x{D['size_mm'][1]}mm / 2 layers / native USB")
   (comment 2 "GM Pro PCB Rev 1.1 ID=4; official binary compatibility requires physical testing")
   (comment 3 "No mains on PCB. Heater output unused in stock Gemilai integration.")
   (comment 4 "github.com/Rico-X/GemilaiMate - PROTOTYPE - NOT HARDWARE VALIDATED"))

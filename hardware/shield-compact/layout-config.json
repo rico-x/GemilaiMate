@@ -1,0 +1,29 @@
+{
+  "size_mm": [
+    76,
+    61
+  ],
+  "mounts_mm": [
+    [
+      4,
+      3
+    ],
+    [
+      73.0,
+      3
+    ],
+    [
+      18,
+      58.5
+    ],
+    [
+      73.0,
+      58.0
+    ]
+  ],
+  "minimum_clearance_mm": 0.2,
+  "minimum_track_mm": 0.2,
+  "usb_edge_offset_mm": 3.65,
+  "signal_clearance_mm": 0.25,
+  "layout_offset_x_mm": 1
+}

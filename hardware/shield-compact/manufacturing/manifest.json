@@ -1,23 +1,35 @@
 {
   "variant": "compact-shield",
-  "revision": "0.2.4",
+  "revision": "0.3.0",
   "status": "PROTOTYPE / INDEPENDENT REVIEW REQUIRED",
   "hardware_tested": false,
   "manufacturing_release": false,
   "board_size_mm": [
-    75,
-    60
+    76,
+    61
   ],
-  "copper_layers": 4,
-  "pcb_sha256": "1627eeb567e094cbc82848451744b8eb66abef9e3193b5c68b31769f466578df",
-  "archive_sha256": "08c6fec79dfbc224e95c678b5ed4a3532aca692e8203718e48d4efa7eb82361f",
+  "copper_layers": 2,
+  "pcb_sha256": "7d06382703646c69bbe345bc11246a3ec0029578c470b0331d897be1320f653e",
+  "archive_sha256": "0a0656710b460656ad9a5e2a1ac5c08a83d114784113d198b20922389d94b3d5",
   "kicad_version": "10.0.7",
-  "smd_placements": 76,
+  "smd_placements": 77,
   "drc_violations": 0,
   "erc_violations": 0,
   "unconnected": 0,
   "schematic_parity": 0,
-  "minimum_track_mm": 0.15,
-  "source_of_3d": "Manufacturer dimensions for components/connectors plus nominal module outlines; marketplace clones remain unmeasured",
-  "fabrication_notes": "4-layer prototype with inner GND plane. Independently review ground continuity, short USB routing, RF keepout, fixed-pitch USB exception and actual module fit before production."
+  "minimum_track_mm": 0.2,
+  "minimum_copper_clearance_mm": 0.2,
+  "default_signal_clearance_mm": 0.25,
+  "power_usb_clearance_mm": 0.3,
+  "minimum_power_track_mm": 0.3,
+  "via_diameter_drill_mm": [
+    0.8,
+    0.4
+  ],
+  "hole_to_copper_mm": 0.5,
+  "usb_hole_to_copper_mm": 0.4,
+  "thickness_mm": 1.6,
+  "copper_oz": 1,
+  "source_of_3d": "Manufacturer dimensions for components/connectors; HRO USB and breakout 3D envelopes are nominal; marketplace clones remain unmeasured",
+  "fabrication_notes": "2-layer hand-assembly prototype; clearance >=0.20mm, no 0.15mm fabrication exception. Independently review outer GND continuity, USB, RF and module fit."
 }

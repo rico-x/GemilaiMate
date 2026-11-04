@@ -1,0 +1,1468 @@
+{
+  "revision": "0.3.0",
+  "base_commit": "1b20d58094c71542e981bf4f230a862537fa51a5",
+  "selected_size_mm": [
+    76,
+    61
+  ],
+  "copper_layers": 2,
+  "selection": "User confirmed whole-millimetre dimensions and explicitly chose 76 x 61. Narrower attempts were investigated; this is not a proof of a global minimum.",
+  "manufacturing_floor_mm": {
+    "trace": 0.2,
+    "copper_clearance": 0.2,
+    "power_trace": 0.3,
+    "ordinary_signal_clearance": 0.25,
+    "power_usb_clearance": 0.3
+  },
+  "router": "Freerouting 2.5.0 / Java 25; automatic neckdown disabled; 200 um lower routing width; final acceptance is KiCad, not router score",
+  "router_trials": [
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75.5x60-strict-usb-links",
+      "size_mm": [
+        75.5,
+        60.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 16,
+      "router_violations": 24,
+      "drc_violations": 30,
+      "unconnected": 15,
+      "schematic_parity": 0,
+      "seconds": 153.0
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x60-strict-central-ssr-opt2-clear25",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-central-ssr-opt2-clear25",
+      "preflight_violations": 0,
+      "router_unrouted": 12,
+      "router_violations": 10,
+      "drc_violations": 32,
+      "unconnected": 12,
+      "schematic_parity": 0,
+      "seconds": 439.9
+    },
+    {
+      "name": "75x60-strict-central-ssr-opt2-clear25",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-central-ssr-opt2-clear25",
+      "preflight_violations": 0,
+      "router_unrouted": 12,
+      "router_violations": 10,
+      "drc_violations": 32,
+      "unconnected": 12,
+      "schematic_parity": 0,
+      "seconds": 439.9
+    },
+    {
+      "name": "75x60-strict-central-ssr-opt2-clear25",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-central-ssr-opt2-clear25",
+      "preflight_violations": 0,
+      "router_unrouted": 12,
+      "router_violations": 10,
+      "drc_violations": 32,
+      "unconnected": 12,
+      "schematic_parity": 0,
+      "seconds": 439.9
+    },
+    {
+      "name": "75x60-strict-usb-links",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 6,
+      "router_violations": 24,
+      "drc_violations": 47,
+      "unconnected": 5,
+      "schematic_parity": 0,
+      "seconds": 244.6
+    },
+    {
+      "name": "75x60-strict-usb-links",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 6,
+      "router_violations": 24,
+      "drc_violations": 47,
+      "unconnected": 5,
+      "schematic_parity": 0,
+      "seconds": 244.6
+    },
+    {
+      "name": "75x60-high-ripup",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "high-ripup",
+      "preflight_violations": 0,
+      "router_unrouted": 34,
+      "router_violations": 10,
+      "drc_violations": 41,
+      "unconnected": 34,
+      "schematic_parity": 0,
+      "seconds": 431.7
+    },
+    {
+      "name": "75x60-left-usb",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "left-usb",
+      "preflight_violations": 3,
+      "error": "Unrouted input violates fabrication geometry",
+      "seconds": 1.8
+    },
+    {
+      "name": "75x60-left-usb-no-fanout",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "left-usb-no-fanout",
+      "preflight_violations": 3,
+      "error": "Unrouted input violates fabrication geometry",
+      "seconds": 1.8
+    },
+    {
+      "name": "75x60-left-usb2",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "left-usb2",
+      "preflight_violations": 0,
+      "router_unrouted": 32,
+      "router_violations": 10,
+      "drc_violations": 45,
+      "unconnected": 32,
+      "schematic_parity": 0,
+      "seconds": 660.3
+    },
+    {
+      "name": "75x60-left-usb2-clear25",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "left-usb2-clear25",
+      "preflight_violations": 0,
+      "router_unrouted": 28,
+      "router_violations": 10,
+      "drc_violations": 262,
+      "unconnected": 28,
+      "schematic_parity": 0,
+      "seconds": 556.9
+    },
+    {
+      "name": "75x60-left-usb2-no-fanout",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "left-usb2-no-fanout",
+      "preflight_violations": 0,
+      "router_unrouted": 34,
+      "router_violations": 10,
+      "drc_violations": 44,
+      "unconnected": 33,
+      "schematic_parity": 0,
+      "seconds": 567.8
+    },
+    {
+      "name": "75x60-left-usb2-plane-gnd",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "left-usb2-plane-gnd",
+      "preflight_violations": 0,
+      "router_unrouted": 78,
+      "router_violations": 10,
+      "drc_violations": 108,
+      "unconnected": 41,
+      "schematic_parity": 0,
+      "seconds": 256.3
+    },
+    {
+      "name": "75x60-low-via-cost",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "low-via-cost",
+      "preflight_violations": 0,
+      "router_unrouted": 36,
+      "router_violations": 10,
+      "drc_violations": 59,
+      "unconnected": 35,
+      "schematic_parity": 0,
+      "seconds": 536.3
+    },
+    {
+      "name": "75x60-no-fanout",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "no-fanout",
+      "preflight_violations": 0,
+      "router_unrouted": 35,
+      "router_violations": 10,
+      "drc_violations": 69,
+      "unconnected": 35,
+      "schematic_parity": 0,
+      "seconds": 537.7
+    },
+    {
+      "name": "75x60-strict-usb-links",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 6,
+      "router_violations": 24,
+      "drc_violations": 47,
+      "unconnected": 5,
+      "schematic_parity": 0,
+      "seconds": 244.6
+    },
+    {
+      "name": "75x60-normal",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "normal",
+      "preflight_violations": 0,
+      "router_unrouted": 35,
+      "router_violations": 10,
+      "drc_violations": 62,
+      "unconnected": 34,
+      "schematic_parity": 0,
+      "seconds": 357.9
+    },
+    {
+      "name": "75x60-normal-clear25",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "normal-clear25",
+      "preflight_violations": 0,
+      "error": "Command '['java', '-Xmx3g', '-jar', '/home/ubuntu/codex-builds/tools/freerouting-2.5.0.jar', '-de', '/home/ubuntu/codex-builds/gemilaimate-2layer-search/75x60-normal-clear25/hardware/shield-compact/reports/unrouted.dsn', '-do', '/home/ubuntu/codex-builds/gemilaimate-2layer-search/75x60-normal-clear25/hardware/shield-compact/reports/trial.ses', '--router.autorouter.max_passes=200', '--router.optimizer.enabled=false', '--router.neck_width_um=200', '--router.layers.routable=true,true', '--gui.enabled=false', '--usage_and_diagnostic_data.disable_analytics=true']' timed out after 1800 seconds",
+      "seconds": 1802.0
+    },
+    {
+      "name": "75x60-plane-gnd",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "plane-gnd",
+      "preflight_violations": 0,
+      "router_unrouted": 84,
+      "router_violations": 10,
+      "drc_violations": 61,
+      "unconnected": 47,
+      "schematic_parity": 0,
+      "seconds": 313.6
+    },
+    {
+      "name": "75x60-strict-central-ssr-opt2-clear25",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-central-ssr-opt2-clear25",
+      "preflight_violations": 0,
+      "router_unrouted": 12,
+      "router_violations": 10,
+      "drc_violations": 32,
+      "unconnected": 12,
+      "schematic_parity": 0,
+      "seconds": 439.9
+    },
+    {
+      "name": "75x60-strict",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict",
+      "preflight_violations": 0,
+      "router_unrouted": 63,
+      "router_violations": 10,
+      "drc_violations": 39,
+      "unconnected": 62,
+      "schematic_parity": 0,
+      "seconds": 406.0
+    },
+    {
+      "name": "75x60-strict-central-ssr-opt1-clear25",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-central-ssr-opt1-clear25",
+      "preflight_violations": 0,
+      "router_unrouted": 34,
+      "router_violations": 11,
+      "drc_violations": 44,
+      "unconnected": 32,
+      "schematic_parity": 0,
+      "seconds": 332.2
+    },
+    {
+      "name": "75x60-strict-central-ssr-opt2-clear25",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-central-ssr-opt2-clear25",
+      "preflight_violations": 0,
+      "router_unrouted": 12,
+      "router_violations": 10,
+      "drc_violations": 32,
+      "unconnected": 12,
+      "schematic_parity": 0,
+      "seconds": 439.9
+    },
+    {
+      "name": "75x60-strict-central-ssr-opt2-clear25-tol",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-central-ssr-opt2-clear25-tol",
+      "preflight_violations": 0,
+      "router_unrouted": 12,
+      "router_violations": 10,
+      "drc_violations": 32,
+      "unconnected": 12,
+      "schematic_parity": 0,
+      "seconds": 395.9
+    },
+    {
+      "name": "75x60-strict-central-ssr-opt2-clear25-usb-links",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-central-ssr-opt2-clear25-usb-links",
+      "preflight_violations": 5,
+      "error": "Unrouted input violates fabrication geometry",
+      "seconds": 6.7
+    },
+    {
+      "name": "75x60-strict-central-ssr-opt2-clear25-usb-links-no-fanout",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-central-ssr-opt2-clear25-usb-links-no-fanout",
+      "preflight_violations": 5,
+      "error": "Unrouted input violates fabrication geometry",
+      "seconds": 6.6
+    },
+    {
+      "name": "75x60-strict-central-ssr-opt3-clear25-v19",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-central-ssr-opt3-clear25-v19",
+      "preflight_violations": 0,
+      "router_unrouted": 13,
+      "router_violations": 10,
+      "drc_violations": 19,
+      "unconnected": 13,
+      "schematic_parity": 0,
+      "seconds": 362.5
+    },
+    {
+      "name": "75x60-strict-central-ssr-opt4-clear25-v19",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-central-ssr-opt4-clear25-v19",
+      "preflight_violations": 0,
+      "router_unrouted": 26,
+      "router_violations": 10,
+      "drc_violations": 43,
+      "unconnected": 25,
+      "schematic_parity": 0,
+      "seconds": 283.8
+    },
+    {
+      "name": "75x60-strict-clear25",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-clear25",
+      "preflight_violations": 0,
+      "router_unrouted": 63,
+      "router_violations": 10,
+      "drc_violations": 132,
+      "unconnected": 59,
+      "schematic_parity": 0,
+      "seconds": 370.9
+    },
+    {
+      "name": "75x60-strict-left-usb",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-left-usb",
+      "preflight_violations": 0,
+      "router_unrouted": 31,
+      "router_violations": 10,
+      "drc_violations": 42,
+      "unconnected": 30,
+      "schematic_parity": 0,
+      "seconds": 864.2
+    },
+    {
+      "name": "75x60-strict-left-usb-clear25",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-left-usb-clear25",
+      "preflight_violations": 0,
+      "router_unrouted": 29,
+      "router_violations": 10,
+      "drc_violations": 208,
+      "unconnected": 29,
+      "schematic_parity": 0,
+      "seconds": 673.8
+    },
+    {
+      "name": "75x60-strict-left-usb-opt1-clear25",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-left-usb-opt1-clear25",
+      "preflight_violations": 0,
+      "router_unrouted": 47,
+      "router_violations": 10,
+      "drc_violations": 99,
+      "unconnected": 41,
+      "schematic_parity": 0,
+      "seconds": 248.2
+    },
+    {
+      "name": "75x60-strict-left-usb-opt2-clear25-no-fanout",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-left-usb-opt2-clear25-no-fanout",
+      "preflight_violations": 0,
+      "router_unrouted": 19,
+      "router_violations": 10,
+      "drc_violations": 33,
+      "unconnected": 17,
+      "schematic_parity": 0,
+      "seconds": 695.7
+    },
+    {
+      "name": "75x60-strict-opt1-clear25",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-opt1-clear25",
+      "preflight_violations": 0,
+      "router_unrouted": 68,
+      "router_violations": 10,
+      "drc_violations": 115,
+      "unconnected": 53,
+      "schematic_parity": 0,
+      "seconds": 247.5
+    },
+    {
+      "name": "75x60-strict-opt2-clear25",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-opt2-clear25",
+      "preflight_violations": 0,
+      "router_unrouted": 40,
+      "router_violations": 10,
+      "drc_violations": 78,
+      "unconnected": 37,
+      "schematic_parity": 0,
+      "seconds": 272.4
+    },
+    {
+      "name": "75x60-strict-opt2-clear25-no-fanout",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-opt2-clear25-no-fanout",
+      "preflight_violations": 0,
+      "router_unrouted": 16,
+      "router_violations": 10,
+      "drc_violations": 44,
+      "unconnected": 16,
+      "schematic_parity": 0,
+      "seconds": 432.2
+    },
+    {
+      "name": "75x60-strict-usb-links",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 6,
+      "router_violations": 24,
+      "drc_violations": 47,
+      "unconnected": 5,
+      "schematic_parity": 0,
+      "seconds": 244.6
+    },
+    {
+      "name": "75x60-strict-usb-links-no-fanout",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-usb-links-no-fanout",
+      "preflight_violations": 0,
+      "router_unrouted": 27,
+      "router_violations": 24,
+      "drc_violations": 15,
+      "unconnected": 24,
+      "schematic_parity": 0,
+      "seconds": 134.4
+    },
+    {
+      "name": "75x60-strict-usb-links-rot180",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-usb-links-rot180",
+      "preflight_violations": 5,
+      "error": "Unrouted input violates fabrication geometry",
+      "seconds": 2.0
+    },
+    {
+      "name": "75x60-strict-usb-links-rot180-b",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-usb-links-rot180-b",
+      "preflight_violations": 3,
+      "error": "Unrouted input violates fabrication geometry",
+      "seconds": 2.0
+    },
+    {
+      "name": "75x60-strict-usb-links-rot180-b-no-fanout",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-usb-links-rot180-b-no-fanout",
+      "preflight_violations": 3,
+      "error": "Unrouted input violates fabrication geometry",
+      "seconds": 2.0
+    },
+    {
+      "name": "75x60-strict-usb-links-rot180-c",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-usb-links-rot180-c",
+      "preflight_violations": 0,
+      "router_unrouted": 7,
+      "router_violations": 24,
+      "drc_violations": 18,
+      "unconnected": 6,
+      "schematic_parity": 0,
+      "seconds": 260.5
+    },
+    {
+      "name": "75x60-strict-usb-links-rot180-c-no-fanout",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-usb-links-rot180-c-no-fanout",
+      "preflight_violations": 0,
+      "router_unrouted": 11,
+      "router_violations": 24,
+      "drc_violations": 26,
+      "unconnected": 10,
+      "schematic_parity": 0,
+      "seconds": 233.0
+    },
+    {
+      "name": "75x60-strict-usb-links-rot180-no-fanout",
+      "size_mm": [
+        75.0,
+        60.0
+      ],
+      "mode": "strict-usb-links-rot180-no-fanout",
+      "preflight_violations": 5,
+      "error": "Unrouted input violates fabrication geometry",
+      "seconds": 2.0
+    },
+    {
+      "mode": "normal",
+      "router_unrouted": 10,
+      "router_violations": 10,
+      "drc_violations": 32,
+      "unconnected": 10,
+      "schematic_parity": 0,
+      "seconds": 37.1
+    },
+    {
+      "mode": "ripup",
+      "router_unrouted": 10,
+      "router_violations": 10,
+      "drc_violations": 32,
+      "unconnected": 10,
+      "schematic_parity": 0,
+      "seconds": 38.4
+    },
+    {
+      "mode": "normal",
+      "router_unrouted": 6,
+      "router_violations": 14,
+      "drc_violations": 48,
+      "unconnected": 11,
+      "schematic_parity": 0,
+      "seconds": 22.9
+    },
+    {
+      "mode": "ripup",
+      "router_unrouted": 6,
+      "router_violations": 14,
+      "drc_violations": 48,
+      "unconnected": 11,
+      "schematic_parity": 0,
+      "seconds": 23.3
+    },
+    {
+      "mode": "v19",
+      "router_unrouted": 6,
+      "router_violations": 14,
+      "drc_violations": 48,
+      "unconnected": 11,
+      "schematic_parity": 0,
+      "seconds": 22.5
+    },
+    {
+      "name": "75x60.5-strict-usb-links",
+      "size_mm": [
+        75.0,
+        60.5
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 9,
+      "router_violations": 24,
+      "drc_violations": 16,
+      "unconnected": 9,
+      "schematic_parity": 0,
+      "seconds": 234.1
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "75x61-strict-central-ssr-opt2-clear25",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-central-ssr-opt2-clear25",
+      "preflight_violations": 0,
+      "router_unrouted": 19,
+      "router_violations": 10,
+      "drc_violations": 52,
+      "unconnected": 19,
+      "schematic_parity": 0,
+      "seconds": 539.7
+    },
+    {
+      "name": "75x61-strict-opt1-clear25",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-opt1-clear25",
+      "preflight_violations": 0,
+      "router_unrouted": 17,
+      "router_violations": 10,
+      "drc_violations": 183,
+      "unconnected": 17,
+      "schematic_parity": 0,
+      "seconds": 325.1
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "mode": "normal",
+      "router_unrouted": 13,
+      "router_violations": 10,
+      "drc_violations": 189,
+      "unconnected": 13,
+      "schematic_parity": 0,
+      "seconds": 47.7
+    },
+    {
+      "mode": "ripup",
+      "router_unrouted": 14,
+      "router_violations": 10,
+      "drc_violations": 187,
+      "unconnected": 14,
+      "schematic_parity": 0,
+      "seconds": 51.1
+    },
+    {
+      "mode": "v19",
+      "router_unrouted": 13,
+      "router_violations": 10,
+      "drc_violations": 189,
+      "unconnected": 13,
+      "schematic_parity": 0,
+      "seconds": 46.6
+    },
+    {
+      "name": "76x60-strict-opt1-clear25",
+      "size_mm": [
+        76.0,
+        60.0
+      ],
+      "mode": "strict-opt1-clear25",
+      "preflight_violations": 0,
+      "router_unrouted": 19,
+      "router_violations": 10,
+      "drc_violations": 122,
+      "unconnected": 17,
+      "schematic_parity": 0,
+      "seconds": 385.3
+    },
+    {
+      "name": "76x60-strict-usb-links",
+      "size_mm": [
+        76.0,
+        60.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 9,
+      "router_violations": 24,
+      "drc_violations": 51,
+      "unconnected": 9,
+      "schematic_parity": 0,
+      "seconds": 177.6
+    },
+    {
+      "name": "75x61-strict-usb-links",
+      "size_mm": [
+        75.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 2,
+      "router_violations": 24,
+      "drc_violations": 25,
+      "unconnected": 2,
+      "schematic_parity": 0,
+      "seconds": 146.7
+    },
+    {
+      "name": "76x61-strict-usb-links",
+      "size_mm": [
+        76.0,
+        61.0
+      ],
+      "mode": "strict-usb-links",
+      "preflight_violations": 0,
+      "router_unrouted": 4,
+      "router_violations": 24,
+      "drc_violations": 48,
+      "unconnected": 4,
+      "schematic_parity": 0,
+      "seconds": 156.8
+    }
+  ],
+  "local_trials": [
+    {
+      "name": "75x60-no-ground",
+      "unconnected_after_local_completion": 15,
+      "violations_after_local_completion": 50,
+      "accepted_as_manufacturing_input": false
+    },
+    {
+      "name": "75x61-power-bottom",
+      "unconnected_after_local_completion": 1,
+      "violations_after_local_completion": 0,
+      "accepted_as_manufacturing_input": false
+    },
+    {
+      "name": "75.25x61-left-strip",
+      "unconnected_after_local_completion": 1,
+      "violations_after_local_completion": 0,
+      "accepted_as_manufacturing_input": false
+    },
+    {
+      "name": "75.5x61-left-strip",
+      "unconnected_after_local_completion": 1,
+      "violations_after_local_completion": 0,
+      "accepted_as_manufacturing_input": false
+    },
+    {
+      "name": "75.75x61-left-strip",
+      "unconnected_after_local_completion": 1,
+      "violations_after_local_completion": 0,
+      "accepted_as_manufacturing_input": false
+    },
+    {
+      "name": "76x61-left-strip",
+      "unconnected_after_local_completion": 1,
+      "violations_after_local_completion": 0,
+      "accepted_as_manufacturing_input": false
+    }
+  ],
+  "selected_after_ground_stitch": {
+    "drc_violations": 0,
+    "unconnected": 0,
+    "schematic_parity": 0
+  },
+  "fresh_generated_checks": "See drc.json, erc.json, geometry.json, route-cache.json and manufacturing/manifest.json",
+  "hardware_tested": false,
+  "candidate_trial_count": 99,
+  "completed_router_count": 90
+}

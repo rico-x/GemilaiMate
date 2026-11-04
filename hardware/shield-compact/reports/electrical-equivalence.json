@@ -1,0 +1,31 @@
+{
+  "base_commit": "1b20d58094c71542e981bf4f230a862537fa51a5",
+  "revision": "0.3.0",
+  "component_count": 106,
+  "added_components": [],
+  "removed_components": [],
+  "logical_connections_unchanged": true,
+  "values_and_dnp_unchanged_except_usb_part": true,
+  "hardware_profile_unchanged": true,
+  "changes": [
+    {
+      "ref": "J_USB",
+      "field": "value",
+      "before": "USB4085-GF-A",
+      "after": "TYPE-C-31-M-12"
+    },
+    {
+      "ref": "J_USB",
+      "field": "mpn",
+      "before": "USB4085-GF-A",
+      "after": "TYPE-C-31-M-12"
+    },
+    {
+      "ref": "J_USB",
+      "field": "source_footprint",
+      "before": "Connector_USB:USB_C_Receptacle_GCT_USB4085",
+      "after": "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12"
+    }
+  ],
+  "physical_firmware_swap_tested": false
+}

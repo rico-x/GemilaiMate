@@ -69,8 +69,8 @@ usb={k:'GND' for k in ['A1','A12','B1','B12','SH']}
 usb.update({k:'USB_VBUS' for k in ['A4','A9','B4','B9']})
 usb.update({'A5':'CC1','B5':'CC2','A6':'USB_DP','B6':'USB_DP',
             'A7':'USB_DM','B7':'USB_DM','A8':None,'B8':None})
-part('J_USB','USB4085-GF-A','Connector_USB:USB_C_Receptacle_GCT_USB4085',
-     (4.5,50.865),usb,section='USB',datasheet='https://gct.co/connector/usb4085')
+part('J_USB','TYPE-C-31-M-12','Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12',
+     (4.5,50.865),usb,section='USB',datasheet='https://en.krhro.com/Product-Details/726.html')
 r('R_CC1','5.1k 1%',(14,41),'CC1','GND',90)
 r('R_CC2','5.1k 1%',(17,41),'CC2','GND',90)
 r('R_USBP','22R 1%',(3.5,20.5),'USB_DP_MCU','USB_DP',90)
@@ -277,14 +277,14 @@ for component in PARTS:
         component['mpn']=f'B{n}B-PH-K-S(LF)(SN)'
 
 SPEC = dict(project='GemilaiMate Compact Shield', revision=REV['revision'], date=REV['date'],
-            size_mm=[75,60], copper_layers=4, author='Rico-X',
+            size_mm=json.loads((HERE/'layout-config.json').read_text())['size_mm'], copper_layers=2, author='Rico-X',
             repository='https://github.com/Rico-X/GemilaiMate',
             hardware_tested=False, manufacturing_release=False, mains_on_board=False,
             board_id=4, physical_flash_mb=16, compatible_partition_flash_mb=8,
             psram_mb=8, peripheral_gpio={'sda':43,'scl':44},
-            rf_keepout=[5.5,-8,24.5,-.1],
-            module_body=[6,-7.15,24,18.35],
-            mounts_mm=[[3,3],[72,3],[17,57.5],[72,57]],
+            rf_keepout=[5.5+json.loads((HERE/'layout-config.json').read_text()).get('layout_offset_x_mm',0),-8,24.5+json.loads((HERE/'layout-config.json').read_text()).get('layout_offset_x_mm',0),-.1],
+            module_body=[6+json.loads((HERE/'layout-config.json').read_text()).get('layout_offset_x_mm',0),-7.15,24+json.loads((HERE/'layout-config.json').read_text()).get('layout_offset_x_mm',0),18.35],
+            mounts_mm=json.loads((HERE/'layout-config.json').read_text())['mounts_mm'],
             firmware_target='controller-compact', parts=PARTS)
 
 if __name__ == '__main__':
