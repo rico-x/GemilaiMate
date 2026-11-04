@@ -1,8 +1,9 @@
 {
-  "format": 3,
+  "format": 4,
   "router": "Freerouting 2.5.0 with automatic neckdown disabled; two outer layers, conservative local completion, reviewed explicit copper before widening",
-  "dsn_normalized_sha256": "3573de40c1af2ebb905da7add31435067dd8c7db1042046e5fba59eb3d61d064",
-  "routing_sha256": "16f15a84a0769d90abd841290037129c884020a33348b19af99d52fa754bb27c",
-  "accepted_pcb_sha256": "7d06382703646c69bbe345bc11246a3ec0029578c470b0331d897be1320f653e",
-  "physical_tests": false
+  "dsn_normalized_sha256": "a9ac22f051ba43f60a6066356211a1828fa36fade9cac7a009201c3e885567db",
+  "routing_sha256": "af1ff3cde7893d1b69807dd7000cf9268e148f42369f726a4c2e14557afda51f",
+  "accepted_pcb_sha256": "a0fffebb91f3cf10278ab6e7622e5095bd3c5b7a6328d9a0f56894427fcac2ac",
+  "physical_tests": false,
+  "footprint_library_sha256": "e43c2cead5190b56bb2e46a1c9239b7d4d75113812b6ddc3199b31beae517a47"
 }

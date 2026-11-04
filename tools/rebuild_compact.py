@@ -31,16 +31,23 @@ def routing_input_hash():
  text=re.sub(r'\(host_version "[^"\n]+"\)','(host_version "10.0.7")',text)
  text=text.replace('(string_quote ")','',1)  # a lone quote is not an s-expression token
  return hashlib.sha256(s.dumps(canonical_dsn(s.loads(text))).encode()).hexdigest()
+def footprint_library_hash():
+ digest=hashlib.sha256()
+ for path in sorted((H/'GemilaiMateCompact.pretty').glob('*.kicad_mod')):
+  digest.update(path.name.encode()+b'\0'+path.read_bytes()+b'\0')
+ return digest.hexdigest()
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--kicad-python',default=sys.executable);ap.add_argument('--no-previews',action='store_true');a=ap.parse_args()
  cache=json.loads((H/'reports/route-cache.json').read_text());route=H/'routing.json'
  assert hashlib.sha256(route.read_bytes()).hexdigest()==cache['routing_sha256'],'Accepted routing changed'
+ assert footprint_library_hash()==cache['footprint_library_sha256'],'Local footprint library differs from accepted fixed point'
  def py(name):subprocess.run([a.kicad_python,str(H/'scripts'/name)],check=True)
  py('generate.py');py('make_schematic.py')
  subprocess.run(['kicad-cli','sch','export','netlist','-o',str(H/'gemilaimate-compact.net'),str(H/'gemilaimate-compact.kicad_sch')],check=True)
  py('prepare_route.py')
  assert routing_input_hash()==cache['dsn_normalized_sha256'],'Electrical/geometry input changed: cached route must not be reused'
- py('import_route.py');py('finish.py');py('verify_geometry.py')
+ py('import_route.py');py('finish.py');py('verify_geometry.py');py('ground_integrity.py')
+ assert footprint_library_hash()==cache['footprint_library_sha256'],'Generation rewrote the footprint library: not at a fixed point'
  subprocess.run([sys.executable,str(R/'tools/export_compact.py'),*(['--no-previews'] if a.no_previews else [])],check=True)
  subprocess.run([sys.executable,str(R/'tools/check_compact_shield.py')],check=True)
  assert hashlib.sha256((H/'gemilaimate-compact.kicad_pcb').read_bytes()).hexdigest()==cache['accepted_pcb_sha256'],'PCB did not reproduce exactly'

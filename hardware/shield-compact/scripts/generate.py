@@ -115,6 +115,13 @@ for c in SPEC['parts']:
         # No local pad clearances: a pad override also applies to pours and
         # foreign tracks. The fixed HRO USB-C pitch is a pad-to-pad DRU exception.
         pad.SetLocalClearance(None)
+        if c['ref']=='J_USB' and pad.GetAttribute()==p.PAD_ATTRIB_SMD:
+            # HRO drawing: 0.30/0.60 mm recommended lands, layout tolerance
+            # +/-0.05 mm; leads are 0.20 +/-0.05 mm. Retain centres/lengths,
+            # reduce each land by 0.02 mm for a real >=0.22 mm copper gap.
+            # Absolute sizes make this idempotent when loading the local cache.
+            sx=.58 if pad.GetNumber() in ['A1','A4','A9','A12','B1','B4','B9','B12'] else .28
+            pad.SetSize(V(sx,p.ToMM(pad.GetSize().y)))
         if c['ref']=='U1' and pad.GetNumber()=='41':
             if pad.GetAttribute()==p.PAD_ATTRIB_PTH:
                 pad.SetDrillSize(V(.3,.3));pad.SetSize(V(.65,.65))
@@ -207,7 +214,7 @@ pro=json.loads((ROOT/'hardware/carrier/gemilaimate-carrier.kicad_pro').read_text
 ds=pro['board']['design_settings']
 # Budget-fab margins for a two-layer process: edge, hole and
 # annular clearances and legible silkscreen are enforced by DRC, not by review.
-ds['rules'].update(min_clearance=.20,min_track_width=.20,min_via_diameter=.8,min_via_drill=.4,
+ds['rules'].update(min_clearance=.21,min_track_width=.20,min_via_diameter=.8,min_via_drill=.4,
                    min_through_hole_diameter=.3,min_copper_edge_clearance=.5,min_hole_clearance=.4,
                    min_hole_to_hole=.65,min_via_annular_width=.20,min_text_height=1.0,min_text_thickness=.15)
 pro['meta']['filename']='gemilaimate-compact.kicad_pro'
@@ -242,7 +249,7 @@ for fp in sorted(B.GetFootprints(),key=lambda f:f.GetReference()):
                                    max(p.ToMM(rb.GetTop()-ra.GetBottom()),p.ToMM(ra.GetTop()-rb.GetBottom()),0)))
     if gaps and min(gaps)<.30-1e-6:
         gap=math.floor(min(gaps)*100+1e-6)/100
-        assert gap>=.20,(ref,'package gap below fabrication floor',gap)
+        assert gap>=.21,(ref,'package gap below fabrication floor',gap)
         package_rules+=f'''(rule "Package lands {ref}"
  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('{ref}') && B.memberOfFootprint('{ref}')")
  (constraint clearance (min {gap:.2f}mm)))
@@ -261,14 +268,14 @@ for fp in sorted(B.GetFootprints(),key=lambda f:f.GetReference()):
  (constraint track_width (min 0.30mm)))
 (rule "HRO USB-C contact fan-out"
  (condition "(A.memberOfFootprint('J1') || B.memberOfFootprint('J1')) && A.Type != 'Zone' && B.Type != 'Zone'")
- (constraint clearance (min 0.20mm)))
+ (constraint clearance (min 0.21mm)))
 (rule "HRO USB-C fixed drill to copper"
  (condition "A.memberOfFootprint('J1') || B.memberOfFootprint('J1')")
  (constraint hole_clearance (min 0.40mm)))
 """+package_rules+"""# The last matching rule wins: enforce the real USB-C contact pitch.
 (rule "HRO USB-C fixed pin pitch"
  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
- (constraint clearance (min 0.20mm)))
+ (constraint clearance (min 0.21mm)))
 """)
 p.SaveBoard(str(HERE/'gemilaimate-compact.kicad_pcb'),B)
 print('Generated',SPEC['parts_count'],'components at',HERE,'- unrouted, not a manufacturing release')

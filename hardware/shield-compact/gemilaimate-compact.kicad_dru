@@ -12,11 +12,11 @@
  (constraint track_width (min 0.30mm)))
 (rule "HRO USB-C contact fan-out"
  (condition "(A.memberOfFootprint('J1') || B.memberOfFootprint('J1')) && A.Type != 'Zone' && B.Type != 'Zone'")
- (constraint clearance (min 0.20mm)))
+ (constraint clearance (min 0.21mm)))
 (rule "HRO USB-C fixed drill to copper"
  (condition "A.memberOfFootprint('J1') || B.memberOfFootprint('J1')")
  (constraint hole_clearance (min 0.40mm)))
 # The last matching rule wins: enforce the real USB-C contact pitch.
 (rule "HRO USB-C fixed pin pitch"
  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('J1') && B.memberOfFootprint('J1')")
- (constraint clearance (min 0.20mm)))
+ (constraint clearance (min 0.21mm)))

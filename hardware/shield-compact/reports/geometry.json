@@ -1,10 +1,12 @@
 {
-  "pcb_sha256": "7d06382703646c69bbe345bc11246a3ec0029578c470b0331d897be1320f653e",
+  "pcb_sha256": "a0fffebb91f3cf10278ab6e7622e5095bd3c5b7a6328d9a0f56894427fcac2ac",
   "board_size_mm": [
     76,
     61
   ],
   "copper_layers": 2,
+  "minimum_usb_pad_gap_mm": 0.22,
+  "fabrication_clearance_floor_mm": 0.21,
   "mount_copper_keepout_radius_mm": 2.5,
   "power_min_track_mm": 0.3,
   "signal_min_track_mm": 0.2,

@@ -33,4 +33,6 @@ try:
         subprocess.run(['kicad-cli','pcb','render','--side',side,'--quality','high','--background','opaque','--rotate',rotation,'--perspective','-w','1600','-h','1000','-o',str(H/'previews'/(name+'.png')),str(temporary)],check=True)
 finally:
     temporary.unlink(missing_ok=True)
+    for suffix in ['.kicad_pro','.kicad_prl']:
+        temporary.with_suffix(suffix).unlink(missing_ok=True)
 print('Rendered fitted assembly; DNP models omitted only in temporary view:',', '.join(removed))

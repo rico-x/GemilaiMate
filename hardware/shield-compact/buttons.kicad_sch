@@ -1,5 +1,5 @@
 (kicad_sch(version 20250114)(generator "eeschema")(uuid "74c8b5f7-efb9-55d1-b397-d0be03240189")(paper "A2")
-      (title_block(title "Active-low dry contacts")(date "2026-11-04")(rev "0.3.0")
+      (title_block(title "Active-low dry contacts")(date "2026-11-04")(rev "0.3.1")
       (comment 1 "GemilaiMate Compact Shield / Rico-X / github.com/Rico-X/GemilaiMate")
       (comment 2 "PROTOTYPE - NOT HARDWARE VALIDATED / NO MAINS"))
       (lib_symbols(symbol "GemilaiMateCompact:R_BREW"(pin_names(offset .5))(in_bom yes)(on_board yes)

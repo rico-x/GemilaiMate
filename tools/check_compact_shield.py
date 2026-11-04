@@ -128,7 +128,7 @@ def main():
  # Budget-fab silkscreen and copper margins.
  assert all(t['bbox_mm'] and (t['bbox_mm'][3]-t['bbox_mm'][1]>=.95 or t['bbox_mm'][2]-t['bbox_mm'][0]>=.95) for t in report['visible_labels'])
  rules=json.loads((H/'gemilaimate-compact.kicad_pro').read_text())['board']['design_settings']['rules']
- assert rules['min_clearance']>=.20 and rules['min_track_width']>=.20
+ assert rules['min_clearance']>=.21 and rules['min_track_width']>=.20
  assert not json.loads((H/'gemilaimate-compact.kicad_pro').read_text())['board']['design_settings']['drc_exclusions']
  net_settings=json.loads((H/'gemilaimate-compact.kicad_pro').read_text())['net_settings']
  classes={c['name']:c for c in net_settings['classes']}
@@ -146,8 +146,8 @@ def main():
  assert 'USB4085' not in custom_rules and '(min 0.15mm)' not in custom_rules
  assert parts['J_USB']['mpn']=='TYPE-C-31-M-12'
  import re
- for floor in re.findall(r'constraint (?:clearance|track_width) \(min ([0-9.]+)mm\)',custom_rules):
-  assert float(floor)>=.2,('fabrication floor bypassed',floor)
+ for kind,floor in re.findall(r'constraint (clearance|track_width) \(min ([0-9.]+)mm\)',custom_rules):
+  assert float(floor)>=(.21 if kind=='clearance' else .20),('fabrication floor bypassed',kind,floor)
  # Any other footprint exception is pad-to-pad inside one package only.
  import re
  for rule in re.findall(r'\(rule "([^"]+)"\n \(condition "([^"]+)"\)',custom_rules):

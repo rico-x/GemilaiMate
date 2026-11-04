@@ -17,7 +17,15 @@ B=p.LoadBoard(str(H/'gemilaimate-compact.kicad_pcb'));D=json.loads((H/'design.js
 W,H_MM=D['size_mm']
 parts={c['designator']:c for c in D['parts']};F={f.GetReference():f for f in B.GetFootprints()}
 mm=p.ToMM;V=lambda x,y:p.VECTOR2I(p.FromMM(x),p.FromMM(y))
-tracks=list(B.GetTracks());pads=[a for f in B.GetFootprints() for a in f.Pads()]
+def copper_key(t):
+ # KiCad enumerates by UUID. Widening updates obstacles in-place, so that
+ # incidental order must never choose which of two tracks gets the free space.
+ if isinstance(t,p.PCB_VIA):
+  q=t.GetPosition();return (0,t.GetNetname(),q.x,q.y,t.GetWidth(p.F_Cu),t.GetDrillValue())
+ a,b=t.GetStart(),t.GetEnd();a,b=sorted([(a.x,a.y),(b.x,b.y)])
+ return (1,t.GetNetname(),t.GetLayer(),a,b,t.GetWidth(),t.IsLocked())
+tracks=sorted(B.GetTracks(),key=copper_key)
+pads=[a for _,a in sorted(((f.GetReference(),a) for f in B.GetFootprints() for a in f.Pads()),key=lambda pair:(pair[0],pair[1].GetNumber(),pair[1].GetPosition().x,pair[1].GetPosition().y))]
 
 def rect(a):
  b=a.GetBoundingBox();return [mm(b.GetLeft()),mm(b.GetTop()),mm(b.GetRight()),mm(b.GetBottom())]

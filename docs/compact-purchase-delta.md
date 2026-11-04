@@ -1,4 +1,4 @@
-# Что докупить для Compact Shield 0.3.0
+# Что докупить для Compact Shield 0.3.1
 
 Сверка от 04.11.2026: текущий BOM 76×61 мм / 2 слоя и зафиксированная оплаченная закупка от 29.10.2026 в [purchase-kit.md](purchase-kit.md). Позднейшие покупки и фактическое получение посылок этим документом не подтверждаются. Предполагается, что старые упаковки ещё не израсходованы на carrier/shield.
 
@@ -6,7 +6,7 @@
 
 ## Новые печатные платы
 
-Заказать **5 Compact 0.3.0**, 76×61 мм, 2 слоя, 1,6 мм, 1 oz, по [актуальному Gerber ZIP](../hardware/shield-compact/manufacturing/gemilaimate-compact-0.3.0-PROTOTYPE.zip). Ранее заказанные carrier и shield имеют другую разводку.
+Заказать **5 Compact 0.3.1**, 76×61 мм, 2 слоя, 1,6 мм, 1 oz, по [актуальному Gerber ZIP](../hardware/shield-compact/manufacturing/gemilaimate-compact-0.3.1-PROTOTYPE.zip). Ранее заказанные carrier и shield имеют другую разводку.
 
 ## Новые SMD-компоненты
 

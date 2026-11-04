@@ -5,7 +5,7 @@ PCB outline: **76 x 61 mm**, 2 copper layers. This report covers every fitted fo
 ## Fit status
 
 - The component body sizes in the CSV come from manufacturer package drawings when a fixed MPN is selected; generic package envelopes are explicitly marked nominal. KiCad DRC checks the routed footprints and board-edge clearances.
-- The HRO USB-C body dimensions come from its manufacturer drawing. Its bundled 3D model is a nominal maximum envelope, not a detailed STEP; pad/anchor geometry follows the selected KiCad footprint and drawing.
+- The HRO USB-C body dimensions come from its manufacturer drawing. Its bundled 3D model is a nominal maximum envelope, not a detailed STEP; anchors and pad centres/lengths follow KiCad and the drawing; local pad widths are reduced by 0.02 mm (0.28/0.58 mm) for a 0.22 mm copper gap.
 - The ADS1115, MAX31855 and CJMCU-0102 are breakout boards, not fixed bare components. Their clones have not been measured. Their nominal outlines are included in the CAD, but mechanical fit is **not confirmed** until the actual boards, pin rows, terminal, and headers are measured.
 - The Harwin M20 sockets provide an 8.5 mm socket body above the carrier PCB. The matching 2.54 mm header plastic gives a nominal daughterboard underside height of about 11.04 mm. Check the selected male headers and actual parts together before building. Optional expansion headers use standard 2.54 mm pitch for easier hand assembly.
 - RobotDyn and SSR remain off-board, separately mounted modules. Their footprints and 230 V conductors are intentionally not placed on this low-voltage shield.

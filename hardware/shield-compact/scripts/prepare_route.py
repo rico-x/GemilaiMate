@@ -91,7 +91,7 @@ power='(class power +3V3 +5V_CORE +5V_EXT EXT_IN USB_VBUS USB_FUSED (circuit (us
 usb='(class usb USB_DP USB_DM USB_DP_MCU USB_DM_MCU (circuit (use_via "Via[0-1]_800:400_um") '+signal_layers+') (rule (width 300) (clearance 300)))'
 gnd='(class gnd GND (circuit (use_via "Via[0-1]_800:400_um")) (rule (width 300) (clearance 300)))'
 dsn.write_text(text[:start]+head+'(circuit '+signal_layers+tail+'\n'+power+'\n'+usb+'\n'+gnd+text[end:])
-# Per-pin clearance class: USB-C and ESD escapes have a 0.20 mm floor.
+# Per-pin clearance class: USB-C and ESD escapes have a 0.21 mm clearance floor.
 (H/'reports/unrouted-native.dsn').write_text(dsn.read_text())
 native=dsn.read_text().replace('(string_quote ")','',1)
 # Brackets are legal DSN identifier characters, while sexpdata treats them as
@@ -125,4 +125,4 @@ for component in children(tree,'placement')[0][1:]:
    part=next(c for c in _data['parts'] if c['designator']==ref)
    for number in part['nets']:place.append([s.Symbol('pin'),number,[s.Symbol('clearance_class'),cls]])
 dsn.write_text(s.dumps(tree,str_as='string').replace('__GM_LB__','[').replace('__GM_RB__',']')+'\n')
-print('Prepared schematic parity, keepouts and two-layer stackup; 0.20 mm absolute clearance floor.')
+print('Prepared schematic parity, keepouts and two-layer stackup; 0.21 mm absolute clearance floor.')

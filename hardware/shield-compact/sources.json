@@ -146,7 +146,7 @@
     },
     {
       "url": "https://www.pcbwave.com/pcb-manufacturing.html",
-      "purpose": "Fabrication target: user-confirmed >=0.20mm clearance; 6mil minimum trace. Project uses >=0.20mm trace instead of 0.15mm"
+      "purpose": "Fabrication target: PCBWave 8mil (0.2032mm) clearance; project floor 0.21mm, USB lands 0.22mm. 6mil minimum trace; project uses >=0.20mm trace"
     }
   ],
   "hardware_compatibility": "source-checked only; no physical build or firmware switching test",

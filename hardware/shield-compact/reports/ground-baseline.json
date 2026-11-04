@@ -1,0 +1,55 @@
+{
+  "gnd_vias": 14,
+  "ground_pours": {
+    "F.Cu": {
+      "regions": 9,
+      "largest_region_mm2": 1615.967,
+      "total_area_mm2": 2046.328
+    },
+    "B.Cu": {
+      "regions": 20,
+      "largest_region_mm2": 191.018,
+      "total_area_mm2": 1132.318
+    }
+  },
+  "usb": {
+    "USB_DP": {
+      "length_mm": 25.7705,
+      "signal_vias": 2,
+      "opposite_gnd_pour_coverage_percent": 46.46,
+      "via_return_bridge_distances_mm": [
+        2.611,
+        3.73
+      ]
+    },
+    "USB_DM": {
+      "length_mm": 40.33,
+      "signal_vias": 5,
+      "opposite_gnd_pour_coverage_percent": 48.16,
+      "via_return_bridge_distances_mm": [
+        2.735,
+        4.429,
+        4.815,
+        4.833,
+        5.651
+      ]
+    },
+    "USB_DP_MCU": {
+      "length_mm": 17.09,
+      "signal_vias": 2,
+      "opposite_gnd_pour_coverage_percent": 34.79,
+      "via_return_bridge_distances_mm": [
+        4.068,
+        4.088
+      ]
+    },
+    "USB_DM_MCU": {
+      "length_mm": 3.0034,
+      "signal_vias": 0,
+      "opposite_gnd_pour_coverage_percent": 0.0,
+      "via_return_bridge_distances_mm": []
+    }
+  },
+  "coverage_method": "Track centreline intersected with filled opposite-layer GND pour; pad/track copper excluded. Not a return-path or impedance simulation.",
+  "hardware_tested": false
+}

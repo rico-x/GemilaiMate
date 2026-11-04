@@ -1,5 +1,5 @@
 {
-  "revision": "0.3.0",
+  "revision": "0.3.1",
   "size_mm": [
     76.0,
     61.0
@@ -29665,6 +29665,226 @@
       ],
       "width": 0.3,
       "layer": "F.Cu"
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        4.5,
+        40.5
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        4.0,
+        38.0
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        11.0,
+        44.5
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        5.0,
+        44.5
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        9.5,
+        39.5
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        10.5,
+        56.5
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        11.5,
+        25.5
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        2.5,
+        49.5
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        15.5,
+        50.0
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        2.5,
+        6.0
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        20.5,
+        48.0
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        21.0,
+        60.0
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        1.5,
+        1.0
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        29.0,
+        58.0
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        32.0,
+        45.5
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        43.5,
+        33.5
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        48.5,
+        33.5
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        65.5,
+        17.0
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        67.5,
+        44.0
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
+    },
+    {
+      "net": "GND",
+      "locked": false,
+      "kind": "via",
+      "xy": [
+        65.5,
+        5.5
+      ],
+      "diameter": 0.8,
+      "drill": 0.4
     }
   ]
 }

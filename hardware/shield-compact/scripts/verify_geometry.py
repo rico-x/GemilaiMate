@@ -16,6 +16,17 @@ W,H_MM=D['size_mm']
 usb=next(c for c in D['parts'] if c['ref']=='J_USB')
 assert abs(usb['y']+3.65-H_MM)<.001,'USB mating face must reach the board edge'
 assert B.GetCopperLayerCount()==2
+# Check actual saved lands independently of the custom-rule threshold.
+# PCBWave's 8 mil is 0.2032 mm, not 0.20 mm.
+usb_lands=[a for a in F[usb['designator']].Pads() if a.GetAttribute()==p.PAD_ATTRIB_SMD]
+usb_gaps=[]
+for i,a in enumerate(usb_lands):
+ for b in usb_lands[i+1:]:
+  if a.GetNetCode() and a.GetNetCode()==b.GetNetCode():continue
+  ra,rb=a.GetBoundingBox(),b.GetBoundingBox()
+  usb_gaps.append(math.hypot(max(mm(rb.GetLeft()-ra.GetRight()),mm(ra.GetLeft()-rb.GetRight()),0),max(mm(rb.GetTop()-ra.GetBottom()),mm(ra.GetTop()-rb.GetBottom()),0)))
+usb_pad_gap=min(usb_gaps)
+assert usb_pad_gap>=.22-1e-6,('USB pad gap below 0.22 mm target',usb_pad_gap)
 tracks=list(B.GetTracks());vias=[t for t in tracks if isinstance(t,p.PCB_VIA)]
 assert all(isinstance(t,p.PCB_VIA) or t.GetLayer() in [p.F_Cu,p.B_Cu] for t in tracks),'Unexpected inner copper'
 labels=[t for t in B.GetDrawings() if isinstance(t,p.PCB_TEXT) and t.GetLayer() in [p.F_SilkS,p.B_SilkS]]
@@ -117,6 +128,6 @@ power_nets={'+3V3','+5V_CORE','+5V_EXT','EXT_IN','USB_VBUS','USB_FUSED'};usb_net
 widths=lambda nets,inside:[mm(t.GetWidth()) for t in tracks if not isinstance(t,p.PCB_VIA) and (t.GetNetname() in nets)==inside]
 power_min=min(widths(power_nets,True));usb_min=min(widths(usb_nets,True));signal_min=min(widths(power_nets|usb_nets,False))
 assert power_min>=.3-1e-6 and usb_min>=.2-1e-6 and signal_min>=.20-1e-6,('track below class width',power_min,usb_min,signal_min)
-result=dict(pcb_sha256=hashlib.sha256((H/'gemilaimate-compact.kicad_pcb').read_bytes()).hexdigest(),board_size_mm=[W,H_MM],copper_layers=2,mount_copper_keepout_radius_mm=keep,power_min_track_mm=round(power_min,3),signal_min_track_mm=round(signal_min,3),usb_min_track_mm=round(usb_min,3),visible_text_via_overlaps=0,unfilled_via_drill_smd_overlaps=0,all_actual_pad_coordinates_match=True,inner_ground_plane=False,outer_ground_pours=True,nominal_module_body_overlap=False,actual_clone_dimensions_verified=False,usb_plug_physical_test=False,hardware_tested=False)
+result=dict(pcb_sha256=hashlib.sha256((H/'gemilaimate-compact.kicad_pcb').read_bytes()).hexdigest(),board_size_mm=[W,H_MM],copper_layers=2,minimum_usb_pad_gap_mm=round(usb_pad_gap,6),fabrication_clearance_floor_mm=.21,mount_copper_keepout_radius_mm=keep,power_min_track_mm=round(power_min,3),signal_min_track_mm=round(signal_min,3),usb_min_track_mm=round(usb_min,3),visible_text_via_overlaps=0,unfilled_via_drill_smd_overlaps=0,all_actual_pad_coordinates_match=True,inner_ground_plane=False,outer_ground_pours=True,nominal_module_body_overlap=False,actual_clone_dimensions_verified=False,usb_plug_physical_test=False,hardware_tested=False)
 (H/'reports/geometry.json').write_text(json.dumps(result,indent=2)+'\n')
 print('PASS independent geometry: module envelopes, pads, two copper layers, outer ground pours, M2 copper keepouts, class widths, silk/vias and no unfilled via-in-pad except intentional WROOM thermal land')

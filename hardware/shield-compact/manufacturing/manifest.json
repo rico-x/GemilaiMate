@@ -1,6 +1,6 @@
 {
   "variant": "compact-shield",
-  "revision": "0.3.0",
+  "revision": "0.3.1",
   "status": "PROTOTYPE / INDEPENDENT REVIEW REQUIRED",
   "hardware_tested": false,
   "manufacturing_release": false,
@@ -9,8 +9,8 @@
     61
   ],
   "copper_layers": 2,
-  "pcb_sha256": "7d06382703646c69bbe345bc11246a3ec0029578c470b0331d897be1320f653e",
-  "archive_sha256": "0a0656710b460656ad9a5e2a1ac5c08a83d114784113d198b20922389d94b3d5",
+  "pcb_sha256": "a0fffebb91f3cf10278ab6e7622e5095bd3c5b7a6328d9a0f56894427fcac2ac",
+  "archive_sha256": "a4555bc530eef0ea7e144fce44103001805780374b53b0f1479ddfa212efa3c7",
   "kicad_version": "10.0.7",
   "smd_placements": 77,
   "drc_violations": 0,
@@ -18,7 +18,8 @@
   "unconnected": 0,
   "schematic_parity": 0,
   "minimum_track_mm": 0.2,
-  "minimum_copper_clearance_mm": 0.2,
+  "minimum_copper_clearance_mm": 0.21,
+  "minimum_usb_pad_gap_mm": 0.22,
   "default_signal_clearance_mm": 0.25,
   "power_usb_clearance_mm": 0.3,
   "minimum_power_track_mm": 0.3,
@@ -31,5 +32,5 @@
   "thickness_mm": 1.6,
   "copper_oz": 1,
   "source_of_3d": "Manufacturer dimensions for components/connectors; HRO USB and breakout 3D envelopes are nominal; marketplace clones remain unmeasured",
-  "fabrication_notes": "2-layer hand-assembly prototype; clearance >=0.20mm, no 0.15mm fabrication exception. Independently review outer GND continuity, USB, RF and module fit."
+  "fabrication_notes": "2-layer hand-assembly prototype; clearance >=0.21mm (PCBWave 8mil=0.2032mm), USB lands >=0.22mm, no 0.15mm fabrication exception. Independently review outer GND continuity, USB, RF and module fit."
 }
