@@ -6,6 +6,8 @@
 
 Открыть [KiCad-проект](../hardware/shield-compact/gemilaimate-compact.kicad_pro). [Файлы прототипа](../hardware/shield-compact/manufacturing/), [шаблон сверху 1:1](../hardware/shield-compact/previews/assembly-1to1.pdf), [снизу 1:1](../hardware/shield-compact/previews/assembly-bottom-1to1.pdf), [отчёты](../hardware/shield-compact/reports/).
 
+Закупка с учётом прежнего комплекта: [что докупить для Compact](compact-purchase-delta.md).
+
 ## Размеры и размещение
 
 **76 × 61 мм, два медных слоя**, FR-4 1,6 мм, медь 35 мкм. По сравнению с проверявшейся четырёхслойной платой 75 × 60 мм прибавлен 1 мм по каждой стороне габарита; площадь больше на 3,0%. Размер выбран после серии изолированных попыток разводки. Это минимальный прошедший вариант с целыми миллиметрами среди проверенных; глобальный математический минимум не заявляется. Итоги поиска: [layout-search.json](../hardware/shield-compact/reports/layout-search.json).
