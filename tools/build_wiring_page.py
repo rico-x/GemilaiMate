@@ -205,8 +205,8 @@ def carrier():
             LEAD="Жгуты carrier: цельный корпус J5 1×4 и J6 1×3 с гнездовыми контактами и красной меткой контакта 1. "
                  "Отдельные одноконтактные вилки не использовать. Корпуса без ключа: до питания проверить ориентацию "
                  "и прозвонить цепи. Корпус J6 shield 1×5 здесь не применяется.",
-            NAV=f'<a href="shield-wiring.html">Второй вариант: shield v{rev} · 90×75 мм</a> · '
-                '<a href="shield.html">рендеры и распиновка shield</a>',
+            NAV=f'<a href="index.html">Все варианты плат</a> · <a href="shield-wiring.html">shield v{rev} · 90×75 мм</a> · '
+                '<a href="compact-wiring.html">Compact · 76×61 мм</a>',
             META="GemilaiMate v{version} · carrier v0.1 · Gemilai 3007Z · {nh} низковольтных жгутов, {nw} проводов",
             CAPTION="Каждый провод идёт от контакта разъёма carrier к выводу модуля в том порядке, как на модуле. "
                     "Перекрещенные пары в жгутах J2 и J8 — так и должно быть: порядок выводов на модулях отличается "
@@ -421,8 +421,8 @@ def shield():
                  "жгутов: J1, J9 вверх, J4, J8, J5 вниз, J6 вправо. J5 — цельный корпус 1×4, J6 — 1×5 с контактами "
                  "1/3/5, оба со штыревыми контактами и красной меткой контакта 1. RobotDyn и SSR крепятся отдельно, "
                  "не над платой.",
-            NAV='<a href="wiring.html">Первый вариант: carrier v0.1 · 90×46 мм</a> · '
-                '<a href="shield.html">рендеры, маркировка и шаблон 1:1 shield</a>',
+            NAV='<a href="index.html">Все варианты плат</a> · <a href="shield.html">рендеры, маркировка и шаблон 1:1 shield</a> · '
+                '<a href="wiring.html">carrier v0.1 · 90×46 мм</a> · <a href="compact-wiring.html">Compact · 76×61 мм</a>',
             META=f"GemilaiMate v{{version}} · shield v{rev} · Gemilai 3007Z · {{nh}} низковольтных жгутов, {{nw}} проводов · "
                  f"3 модуля в гнёздах",
             CAPTION="ADS1115, TXS0102 и MAX31855 вставлены в гнёзда J2, J7 и J3 — проводов к ним нет. Каждый провод жгута "
@@ -457,6 +457,233 @@ def shield():
     )
 
 # =====================================================================================================
+# compact: WROOM soldered on a 2-layer board, ADS1115 / CJMCU-0102 / MAX31855 in sockets, JST cable headers underneath
+# =====================================================================================================
+CP = REPO / "hardware/shield-compact"
+# J10 (DNP), J11 ALT and J12 ToF sit under the plug-in modules in plan view; the rules and tables name them instead.
+CP_SHOWN = ("J2", "J3", "J4", "J5", "J6", "J7", "J8", "J9", "J13", "J14", "J15", "J19")
+
+def compact_design():
+    return json.loads((CP / "design.json").read_text())
+
+def compact_revision():
+    return json.loads((CP / "revision.json").read_text())["revision"]
+
+def compact_pins():
+    """Connector and socket pins by PCB designator; J1 (USB-C, flashing only) and DNP expansion headers stay off the scheme."""
+    pins = {}
+    for c in compact_design()["parts"]:
+        if c["designator"] not in CP_SHOWN:
+            continue
+        for p in c["pins"]:
+            pins[(c["designator"], p["number"])] = (p["x"], p["y"], p["name"], p["net"] or "NC")
+    return pins, []
+
+M_COMPACT = {
+ "psu": M_SHIELD["psu"],
+ "disp": dict(t="LilyGo T-RGB 2.1", s="дисплей · связь по BLE", circle=(1040, 440, 52), zone="lv",
+              pins={"VBUS": (990, 456), "GND": (990, 474)},
+              d3=dict(c=(82, -52), size=(62, 62, 9), color="#1d1f22", shape="disk")),
+ "ps": M_SHIELD["ps"] | dict(d3=dict(c=(-48, 82), size=(22, 55, 22), color="#b9c0c4", shape="sensor", flip=True)),
+ "btn": M_SHIELD["btn"] | dict(d3=dict(c=(-16, 80), size=(26, 16, 6), color="#2a2d30", shape="buttons")),
+ "rd": M_SHIELD["rd"] | dict(d3=dict(c=(16, 104), size=(52, 72, 22), color="#1f5fa8", shape="dimmer", flip=True)),
+ "ssr": dict(t="SSR клапана", s="G3MB · High 5V", box=(990, 560, 155, 100), zone="straddle",
+             pins={"DC+": (990, 594.6), "DC−": (990, 606.6), "CH1": (990, 618.6), "L": (1145, 580), "OUT": (1145, 640)},
+             d3=dict(c=(80, 14), size=(26, 34, 18), color="#1f5fa8", shape="ssr")),
+ "boiler": dict(t="Бойлер", s="термопара в M3 сверху", box=(905, 905, 140, 75), zone="machine",
+                pins={"TC": (975, 905)},
+                d3=dict(c=(74, 82), size=(56, 56, 42), color="#c4c8cb", shape="boiler")),
+ "stock": M_SHIELD["stock"], "valve": M_SHIELD["valve"], "swv": M_SHIELD["swv"], "swp": M_SHIELD["swp"], "pump": M_SHIELD["pump"],
+}
+
+H_COMPACT = [
+ ("J4", "Питание 5 В", "psu", [("1", "+V", "5v", "EXT_IN"), ("2", "−V", "gnd", "GND")],
+  "Единственный JST XH на плате: корпус XHP-2, контакты SXH-001T-P0.6, провод до 22 AWG. Внешний изолированный БП 5 В; "
+  "первое включение — от стендового БП с ограничением тока."),
+ ("J5", "Питание дисплея", "disp", [("1", "VBUS", "5v", "+5V_EXT"), ("2", "GND", "gnd", "GND")],
+  "PHR-2, контакты SPH-002T, провод 24–28 AWG. Кабель USB-C только для питания экрана: VBUS и GND определить прозвонкой."),
+ ("J6", "Датчик давления", "ps", [("1", "+5V", "5v", "+5V_EXT"), ("2", "GND", "gnd", "GND"), ("3", "OUT", "analog", "PRESSURE_RAW")],
+  "PHR-3. Цвета жил датчика — по его паспорту, прозвонить до подключения. Сигнал идёт через RC-фильтр на A0 ADS1115."),
+ ("J7", "Кнопки", "btn", [("1", "BREW", "btn", "BREW_RAW"), ("3", "COM1", "gnd", "GND"), ("2", "STEAM", "btn", "STEAM_RAW"), ("4", "COM2", "gnd", "GND")],
+  "PHR-4. Только независимые сухие контакты на GND. Штатную цепь кнопок не подключать, пока не выяснены её схема и изоляция."),
+ ("J8", "Диммер помпы", "rd", [("1", "VCC", "5v", "+5V_EXT"), ("2", "GND", "gnd", "GND"), ("3", "Z-C", "pump", "ZC_RAW"), ("4", "PSM", "pump", "PUMP_OUT")],
+  "PHR-6, позиции 5 и 6 пустые: единственный 6-контактный PH, в другие разъёмы не входит. Z-C и PSM свить с GND и вести "
+  "отдельно от сетевых проводов. RobotDyn — на своей опоре, не над платой."),
+ ("J9", "SSR клапана", "ssr", [("1", "DC+", "5v", "+5V_EXT"), ("2", "DC−", "gnd", "GND"), ("3", "CH1", "valve", "VALVE_5V")],
+  "PHR-3. Провода — к штатной винтовой клемме входа SSR, без перепайки модуля."),
+]
+
+ONBOARD_COMPACT = [
+ dict(id="ads", ref="J2", t="ADS1115", s="АЦП давления · 0x48", color="#1f5fa8", top=14.6,
+      note="Гнездо 1×10. VDD — квадратная площадка 1; плата модуля ложится на контур «ADS1115» шелкографии. ADDR на GND, "
+           "адрес 0x48, давление на A0; ALRT и A1–A3 не подключены."),
+ dict(id="txs", ref="J19", t="CJMCU-0102", s="уровни I²C 3,3↔5 В", color="#5b3f9e", top=14.6,
+      note="Две гребёнки 1×5, межрядье 12,70 мм — проверить по модулю. Ряд A (GND OE VA A1 A2, 3,3 В) — с квадратной площадкой 1, "
+           "ряд B (GND G VB B1 B2, 5 В) напротив; обе GND на одном торце. G не подключён, OE включается RC-цепочкой R43/C17."),
+ dict(id="max", ref="J3", t="MAX31855", s="термопара K", color="#9e2a3a", top=22.6,
+      note="VIN — контакт 1 (квадратная площадка), подписи читаются «CLK ... VIN»; клемма термопары смотрит к нижнему краю платы. "
+           "VIN питается от 3,3 В через R41; 3Vo — выход модуля, не подключён."),
+]
+
+def compact():
+    d = compact_design(); rev = compact_revision()
+    W, Hh = d["size_mm"]; cx, cz = W / 2, Hh / 2
+    X0, Y0 = C_X0, C_Y0
+    parts = {c["designator"]: c for c in d["parts"]}
+    by_ref = {c["ref"]: c for c in d["parts"]}
+    sockets = {"J2": "J_ADS", "J3": "J_TC", "J19": "J_LEVEL"}
+    onboard = []
+    for o in ONBOARD_COMPACT:
+        a, b, c, e = d["module_sockets"][sockets[o["ref"]]]["body_rect_mm"]
+        onboard.append(o | dict(rect=(a, b, c, e)))
+    # MAX31855 terminal: same offsets from the module outline as on the shield page (Adafruit reference envelope)
+    ma, mb, mc, me = d["module_sockets"]["J_TC"]["body_rect_mm"]
+    mx_ = next(o for o in onboard if o["id"] == "max")
+    mx_["terminal"] = (round(ma + 5.66, 2), round(me - 4.76, 2), round(ma + 14.66, 2), me)
+    mx_["tc"] = [("T+", round(ma + 7.66, 2), round(me - 2.16, 2)), ("T−", round(ma + 12.66, 2), round(me - 2.16, 2))]
+    tc = mx_["tc"]; tcx = [X0 + x * S for _, x, _ in tc]; tcy = Y0 + tc[0][2] * S
+    extra = []
+    a, b, c, e = d["module_body"]
+    extra.append(f'<rect x="{X0 + a * S:.1f}" y="{Y0 + max(b, 0) * S:.1f}" width="{(c - a) * S:.1f}" height="{(e - max(b, 0)) * S:.1f}" rx="2" class="wroom"/>'
+                 f'<text class="dev-title" x="{X0 + (a + c) / 2 * S:.1f}" y="{Y0 + 9 * S:.1f}" text-anchor="middle">ESP32-S3-WROOM-1</text>'
+                 f'<text class="dev-sub" x="{X0 + (a + c) / 2 * S:.1f}" y="{Y0 + 11.6 * S:.1f}" text-anchor="middle">N16R8 · распаян на плате</text>'
+                 f'<text class="note-lab" x="{X0 + (a + c) / 2 * S:.1f}" y="{Y0 - 6:.1f}" text-anchor="middle">антенна за краем платы</text>')
+    for o in onboard:
+        a, b, c, e = o["rect"]; mx, my = X0 + (a + c) / 2 * S, Y0 + (b + e) / 2 * S
+        extra.append(f'<rect x="{X0 + a * S:.1f}" y="{Y0 + b * S:.1f}" width="{(c - a) * S:.1f}" height="{(e - b) * S:.1f}" rx="2" class="devkit"/>'
+                     f'<text class="dev-title" x="{mx:.1f}" y="{my:.1f}" text-anchor="middle">{esc(o["t"])}</text>'
+                     f'<text class="dev-sub" x="{mx:.1f}" y="{my + 15:.1f}" text-anchor="middle">в гнезде {o["ref"]}</text>')
+    for (name, x, y), px in zip(tc, tcx):
+        extra.append(f'<circle cx="{px:.1f}" cy="{tcy:.1f}" r="3.4" class="mpin"/>'
+                     f'<text class="dev-sub" x="{px:.1f}" y="{tcy - 8:.1f}" text-anchor="middle">{name}</text>')
+    usb = by_ref["J_USB"]; ux = [p["x"] for p in usb["pins"]]
+    extra.append(f'<rect x="{X0 + (min(ux) - 1.5) * S:.1f}" y="{Y0 + (Hh - 7.5) * S:.1f}" width="{(max(ux) - min(ux) + 3) * S:.1f}" height="{7.5 * S:.1f}" rx="2" class="usb"/>'
+                 f'<text class="note-lab" x="{X0 - 8:.1f}" y="{Y0 + (Hh - 3.5) * S:.1f}" text-anchor="end">USB-C J1 · только прошивка</text>')
+    bottom = Y0 + Hh * S
+    plugs, wire_y, under = [], {}, []
+    elev = 16.0
+    for ref, *_ in H_COMPACT:
+        pts = [(p["x"], p["y"]) for p in parts[ref]["pins"]]; xs = [x for x, _ in pts]; ys = [y for _, y in pts]
+        p1 = next(p for p in parts[ref]["pins"] if p["number"] == "1")
+        along_x = max(xs) - min(xs) >= max(ys) - min(ys)
+        hw, hd = (1.95, 2.25) if along_x else (2.25, 1.95)
+        plugs.append(dict(box=[round(min(xs) - hw - cx, 2), round(min(ys) - hd - cz, 2), round(max(xs) + hw - cx, 2), round(max(ys) + hd - cz, 2)],
+                          y0=6.0, y1=12.0, under=True, pin1=[round(p1["x"] - cx, 2), round(p1["y"] - cz, 2)]))
+        wire_y[ref] = round(elev - 12.5, 2)
+    for ref in CP_SHOWN:
+        if parts[ref]["side"] == "back":
+            under.append(ref)
+    return dict(
+        key="compact", out=REPO / "docs/compact-wiring.html", read=compact_pins,
+        tex=CP / "previews/board-top.png", size=(W, Hh), x0=X0, y0=Y0, view=(1400, 1100),
+        chan_top=(306, 384), chan_bot=(bottom + 8, bottom + 58), M=M_COMPACT, H=H_COMPACT, onboard=onboard, col="Compact",
+        devkit=False, jumpers2d=(), jumpers3d=[], label_left=("J9", "J13", "J14", "J15"),
+        aria="Схема подключения Compact Shield GemilaiMate: плата с распаянным ESP32-S3-WROOM в центре, АЦП, преобразователь "
+             "уровней и модуль термопары в гнёздах; блок питания сверху, дисплей и SSR справа, датчик давления, кнопки, "
+             "диммер и бойлер снизу; сетевая часть 230 вольт по краям.",
+        zone=['<path class="zone-mains" fill-rule="evenodd" d="M10 20 H1390 V1095 H10 Z M250 170 V1012 H1075 V170 Z"/>',
+              '<text class="zone-label" x="22" y="1072">230 В · сетевая часть</text>',
+              '<text class="zone-label" x="22" y="1089">только на обесточенной машине</text>',
+              '<text class="zone-label" x="1378" y="42" text-anchor="end">машина Gemilai 3007Z</text>',
+              '<text class="zone-label lv" x="700" y="195">5 В / 3,3 В · низковольтная часть</text>'],
+        mains=[
+            dict(id="M1", t="L → предохранитель T2A → БП", kind="L", pts=[(320, L_BUS), (320, 160)], fuse=(320, 118)),
+            dict(id="M1", t="N → БП", kind="N", pts=[(350, N_BUS), (350, 160)]),
+            dict(id="M2", t="N → RobotDyn AC-IN", kind="N", pts=[(150, 118), (150, 1020), (662, 1020)]),
+            dict(id="M2", t="L → RobotDyn AC-IN", kind="L", pts=[(120, 118), (120, 1040), (662, 1040)]),
+            dict(id="M3", t="RobotDyn LOAD → переключатель, GM", kind="load", pts=[(802, 1040), (1150, 1040), (1150, 960), (1295, 960)]),
+            dict(id="M4", t="L → SSR", kind="L", pts=[(1160, L_BUS), (1160, 580), (1145, 580)]),
+            dict(id="M4", t="SSR → переключатель, GM", kind="load", pts=[(1145, 640), (1170, 640), (1170, 825), (1335, 825), (1335, 805)]),
+            dict(id="M6", t="переключатель → клапан", kind="load", pts=[(1295, 755), (1285, 755)]),
+            dict(id="M6", t="переключатель → помпа", kind="load", pts=[(1335, 985), (1335, 1005)]),
+        ],
+        bus=[dict(kind="L", pts=[(205, L_BUS), (1160, L_BUS)]), dict(kind="N", pts=[(205, N_BUS), (350, N_BUS)])],
+        junctions=[(320, L_BUS), (1160, L_BUS)],
+        stock=[dict(t="M5: штатный выход клапана → переключатель", pts=[(1335, 530), (1335, 705)]),
+               dict(t="M5: штатный выход помпы → переключатель", pts=[(1378, 530), (1378, 900), (1368, 900)])],
+        decor=['<text class="note-lab" x="1327" y="600" text-anchor="end">штатный выход клапана</text>',
+               '<text class="note-lab" x="1327" y="614" text-anchor="end">разъём снять с клапана</text>',
+               '<text class="note-lab" transform="translate(1374,617) rotate(-90)" text-anchor="middle">штатный выход помпы</text>',
+               '<polyline class="mech" points="1355,805 1355,885"/>',
+               '<text class="note-lab" x="1349" y="849" text-anchor="end">один переключатель</text>',
+               '<text class="bus-label L" x="104" y="140">L</text><text class="bus-label N" x="156" y="140">N</text>',
+               f'<polyline class="w w-water" points="{route([(450, 990), (426, 990)])}"/>',
+               '<text class="note-lab" x="420" y="994" text-anchor="end">вода G1/4 → тройник помпа/OPV</text>',
+               f'<polyline class="w w-tc" points="{route([(tcx[0], tcy), (tcx[0], 852), (965, 852), (965, 905)])}"/>'
+               f'<polyline class="w w-tc" points="{route([(tcx[1], tcy), (tcx[1], 844), (985, 844), (985, 905)])}"/>',
+               '<text class="note-lab" x="995" y="840">термопара K</text>'],
+        board_extra=extra,
+        titles=[(48.5, 58.4, f"Compact {rev}"), (48.5, 60.4, f"{W} × {Hh} мм · 2 слоя")],
+        notes=['<text class="note-lab" x="1185" y="690">RC-снаббер параллельно</text>',
+               '<text class="note-lab" x="1185" y="704">катушке — по месту</text>',
+               '<text class="note-lab" x="1185" y="1092">N помпы и клапана — штатные</text>',
+               '<text class="note-lab" x="900" y="790">разъёмы J4–J15 — снизу платы</text>'],
+        d3_mains=[
+            dict(h="M1", title="Сеть → БП", a="src:L", b=["psu", "L"], kind="L"),
+            dict(h="M1", title="Сеть → БП", a="src:N", b=["psu", "N"], kind="N"),
+            dict(h="M2", title="Сеть → RobotDyn AC-IN", a="src:L", b=["rd", "AC-IN L"], kind="L", via=[[-150, 150]]),
+            dict(h="M2", title="Сеть → RobotDyn AC-IN", a="src:N", b=["rd", "AC-IN N"], kind="N", via=[[-143, 143]]),
+            dict(h="M3", title="RobotDyn LOAD → переключатель, GM", a=["rd", "LOAD"], b=["swp", "GM"], kind="load"),
+            dict(h="M4", title="Сеть → SSR", a="src:L", b=["ssr", "L"], kind="L", via=[[-140, -150], [125, -150], [125, 0]]),
+            dict(h="M4", title="SSR → переключатель, GM", a=["ssr", "OUT"], b=["swv", "GM"], kind="load"),
+            dict(h="M6", title="Переключатель → клапан", a=["swv", "C"], b=["valve", "L"], kind="load"),
+            dict(h="M6", title="Переключатель → помпа", a=["swp", "C"], b=["pump", "L"], kind="load"),
+            dict(h="TC", title="Термопара K → бойлер", a=["max", "T+"], b=["boiler", "TC"], kind="tc"),
+            dict(h="TC", title="Термопара K → бойлер", a=["max", "T−"], b=["boiler", "TC"], kind="tc"),
+            dict(h="W", title="Вода: датчик → тройник помпа/OPV", a=["ps", "G1/4"], b=["pump", "L"], kind="water", via=[[-60, 168], [110, 168]]),
+            dict(h="M5", title="Штатный выход клапана → переключатель, штат", a=["stock", "VALVE"], b=["swv", "штат"], kind="stock"),
+            dict(h="M5", title="Штатный выход помпы → переключатель, штат", a=["stock", "PUMP"], b=["swp", "штат"], kind="stock"),
+        ],
+        src=[-140, -60],
+        board3d=dict(label=f"Compact {rev} · ESP32-S3-WROOM", labelPos=[-10, elev + 22, -32], connLabelY=round(elev - 15, 2), labelDx={},
+                     views=dict(iso=[[-20, 280, 345], [35, 0, 12]], top=[[25, 520, 21], [25, 0, 20]]), ground=[440, 380, 30, 10],
+                     elev=elev, bottom=under, sockets=["J2", "J3", "J19"], socketH=8.5, plugs=plugs, wireY=wire_y,
+                     mounts=[[x - cx, y - cz] for x, y in d["mounts_mm"]], headD=4.0,
+                     wroom=[round(d["module_body"][0] - cx, 2), round(d["module_body"][1] - cz, 2), round(d["module_body"][2] - cx, 2), round(d["module_body"][3] - cz, 2)],
+                     keep=[dict(box=[round(min(ux) - 3 - cx, 2), round(Hh - cz, 2), round(max(ux) + 3 - cx, 2), round(Hh + 30 - cz, 2)], h=elev + 8,
+                                t="USB-C · только прошивка")]),
+        texts=dict(
+            TITLE="Подключение Compact Shield GemilaiMate", H1="Подключение Compact Shield",
+            STAMP=f"Прототип {rev} · не собран · модули не замерены",
+            LEAD="ESP32-S3-WROOM распаян на плате; ADS1115, CJMCU-0102 и MAX31855 стоят в гнёздах сверху и соединены с платой "
+                 "без проводов. Все кабельные разъёмы JST — снизу платы, поэтому она ставится на изолирующие стойки M2. "
+                 "Для базовой машины нужны шесть жгутов: J4 питание, J5 экран, J6 давление, J7 кнопки, J8 RobotDyn, J9 SSR клапана. "
+                 "USB-C J1 нужен только для прошивки.",
+            NAV='<a href="index.html">Все варианты плат</a> · <a href="compact.html">Compact: рендеры и распиновка</a> · '
+                '<a href="compact-purchase.html">закупка</a> · <a href="compact-assembly.html">пошаговый монтаж</a>',
+            META=f"GemilaiMate v{{version}} · Compact {rev} · 76×61 мм, 2 слоя · Gemilai 3007Z · {{nh}} низковольтных жгутов, "
+                 f"{{nw}} проводов · 3 модуля в гнёздах",
+            CAPTION="Вид сверху. ADS1115, CJMCU-0102 и MAX31855 вставлены в гнёзда J2, J19 и J3 — проводов к ним нет. Разъёмы "
+                    "J4–J15 стоят снизу платы; на схеме показано их положение в плане. J10 (не устанавливается), J11 ALT и J12 ToF "
+                    "в плане лежат под модулями и на схеме не показаны. Перекрещенная пара в J7 — так и должно "
+                    "быть: порядок выводов на кнопках отличается от порядка на разъёме. Сетевая часть заштрихована.",
+            NOTE3D="Плата Compact поднята на стойки M2: кабельные разъёмы и ответные колодки PH/XH — снизу, жгуты уходят под "
+                   "платой. Модули в гнёздах, WROOM и колодки — номинальные размеры из design.json, реальные клоны не замерены. "
+                   "Прозрачный объём у нижнего края — доступ к USB-C для прошивки. Внешние модули и узлы машины — примерные "
+                   "габариты, размещение условное.",
+            RULES=[
+                "<b>J4 — питание 5 В</b>, единственный разъём XH. Первое включение — от стендового БП с ограничением тока, "
+                "без экрана, модулей и силовых блоков.",
+                "<b>J8 RobotDyn</b> — единственный PH на 6 позиций (5 и 6 пустые). <b>J10</b> (нагрев) не устанавливается: "
+                "нагрев остаётся на штатной плате.",
+                "<b>Модули в гнёздах</b> ставить после пайки и проверки питания на пустых гнёздах: CJMCU, ADS1115, MAX31855 по одному.",
+                "<b>J19 CJMCU-0102</b>: ряд A (3,3 В, VA) — с квадратной площадкой 1, ряд B (5 В, VB) напротив, обе GND на одном "
+                "торце. Перевёрнутый модуль подаёт 5 В на VCCA.",
+                "<b>J3 MAX31855</b>: VIN — квадратная площадка 1, подписи «CLK ... VIN», клемма термопары к нижнему краю.",
+                "<b>J7</b> — только сухие контакты на GND. <b>J5</b>: кабель USB-C только для питания экрана, VBUS/GND прозвонить.",
+                "<b>Не используются в базовой сборке</b>: J11 ALT, J13 внешняя Alba, J14 RGBW, J15 подсветка — разъёмы можно не "
+                "ставить. J12 — датчик уровня VL53L0X (3V3, GND, SDA, SCL; только 3,3 В), необязательно.",
+                "<b>USB-C J1</b> — только для прошивки: экран и силовые модули отключить, полную систему от USB не питать.",
+                "<b>Крепёж</b>: четыре M2 с изолирующими стойками, головка ≤ 4 мм; вокруг отверстий кольца без меди.",
+                SWITCH_RULE,
+                "<b>230 В</b>: только на обесточенной машине. RobotDyn и SSR — на собственных опорах, не над платой; "
+                "низковольтные жгуты не связывать с сетевыми.",
+            ],
+            SRC="Страница генерируется <code>tools/build_wiring_page.py</code> из hardware/shield-compact/design.json; "
+                "пояснения — по docs/compact-shield.md, docs/compact-assembly.md и HARNESSES.csv. Сетевая часть — как у carrier и shield."),
+    )
+
+# =====================================================================================================
 # shared generator
 # =====================================================================================================
 def lv_routes(v):
@@ -472,9 +699,14 @@ def lv_routes(v):
             rows.append((cx, cy, mx, my, pin, mpin, kind, net))
         segs = []
         if rows[0][2] > right:                      # module beside the right edge: run straight out
-            for i, (cx, cy, mx, my, pin, mpin, kind, net) in enumerate(sorted(rows, key=lambda r: r[1])):
+            one_row = len({round(r[1], 1) for r in rows}) == 1 and len(rows) > 1
+            for i, (cx, cy, mx, my, pin, mpin, kind, net) in enumerate(sorted(rows, key=lambda r: (r[1], r[0]))):
                 xm = right + 8 + i * 5
-                pts = [(cx, cy), (mx, cy)] if abs(cy - my) < 0.5 else [(cx, cy), (xm, cy), (xm, my), (mx, my)]
+                if one_row:   # a horizontal row: a short stub gives every wire its own rail
+                    ry = cy + (i - (len(rows) - 1) / 2) * 6
+                    pts = [(cx, cy), (cx, ry), (xm, ry), (xm, my), (mx, my)]
+                else:
+                    pts = [(cx, cy), (mx, cy)] if abs(cy - my) < 0.5 else [(cx, cy), (xm, cy), (xm, my), (mx, my)]
                 segs.append(dict(pin=pin, mpin=mpin, kind=kind, net=net, pts=pts))
             out.append(dict(ref=ref, title=title, mod=mod, note=note, segs=segs))
             continue
@@ -503,7 +735,7 @@ def pin_rows(pts):
 # ---------- SVG ----------
 def svg(v):
     X0, Y0, (W, Hh), M = v["x0"], v["y0"], v["size"], v["M"]
-    dx = v["devkit_dx"]
+    dx = v.get("devkit_dx", 0)
     o = []
     a = o.append
     a(f'<svg viewBox="0 0 {v["view"][0]} {v["view"][1]}" role="img" aria-label="{v["aria"]}" class="scheme">')
@@ -538,11 +770,12 @@ def svg(v):
         a(d)
     # board with DevKit and modules standing in sockets
     a(f'<g class="carrier"><rect x="{X0}" y="{Y0}" width="{W * S}" height="{Hh * S}" rx="6" class="pcb"/>')
-    a(f'<rect x="{X0 + (3.5 + dx) * S}" y="{Y0 + 7.6 * S}" width="{62.8 * S}" height="{28 * S}" rx="3" class="devkit"/>')
-    a(f'<rect x="{X0 + (47.9 + dx) * S}" y="{Y0 + 12.0 * S}" width="{18.4 * S}" height="{19.2 * S}" rx="2" class="wroom"/>')
-    a(f'<text class="dev-title" x="{X0 + (9 + dx) * S}" y="{Y0 + 19 * S}">ESP32-S3 DevKit N8R8 · контроллер</text>')
-    a(f'<text class="dev-sub" x="{X0 + (9 + dx) * S}" y="{Y0 + 22.6 * S}">в гнёздах, ряд A · USB слева</text>')
-    a(f'<text class="dev-sub" x="{X0 + (50 + dx) * S}" y="{Y0 + 33.5 * S}">антенна</text>')
+    if v.get("devkit", True):
+        a(f'<rect x="{X0 + (3.5 + dx) * S}" y="{Y0 + 7.6 * S}" width="{62.8 * S}" height="{28 * S}" rx="3" class="devkit"/>')
+        a(f'<rect x="{X0 + (47.9 + dx) * S}" y="{Y0 + 12.0 * S}" width="{18.4 * S}" height="{19.2 * S}" rx="2" class="wroom"/>')
+        a(f'<text class="dev-title" x="{X0 + (9 + dx) * S}" y="{Y0 + 19 * S}">ESP32-S3 DevKit N8R8 · контроллер</text>')
+        a(f'<text class="dev-sub" x="{X0 + (9 + dx) * S}" y="{Y0 + 22.6 * S}">в гнёздах, ряд A · USB слева</text>')
+        a(f'<text class="dev-sub" x="{X0 + (50 + dx) * S}" y="{Y0 + 33.5 * S}">антенна</text>')
     for e in v["board_extra"]:
         a(e)
     a("".join(f'<text class="pcb-title" x="{X0 + x * S}" y="{Y0 + y * S}">{t}</text>' for x, y, t in v["titles"]) + '</g>')
@@ -564,6 +797,9 @@ def svg(v):
         top = yf < Y0 + 20 * S
         if ref in onboard:    # the module drawn over the socket already names it
             continue
+        if ref in v.get("label_left", ()):    # vertical connector at the board edge: name it beside the row
+            a(f'<text class="conn-lab" x="{x0 - 6:.1f}" y="{(y0 + y1) / 2 + 4:.1f}" text-anchor="end">{ref}</text>')
+            continue
         if ref == "J10":
             a(f'<text class="conn-lab" x="{x0 - 6:.1f}" y="{y0 + 11:.1f}" text-anchor="end">J10</text>'
               f'<text class="pcb-note" x="{x0 - 6:.1f}" y="{y0 + 25:.1f}" text-anchor="end">не подключать</text>')
@@ -571,7 +807,7 @@ def svg(v):
             a(f'<text class="conn-lab" x="{(x0 + x1) / 2:.1f}" y="{y1 + 15:.1f}" text-anchor="middle">{ref}{" 1–2" if ref.startswith("JP") else ""}</text>')
         else:
             a(f'<text class="conn-lab" x="{(x0 + x1) / 2:.1f}" y="{y0 - 6:.1f}" text-anchor="middle">{ref}</text>')
-    for ref, lab in (("JP1", "JP1 1–2"), ("JP3", "JP3 1–2")):
+    for ref, lab in v.get("jumpers2d", (("JP1", "JP1 1–2"), ("JP3", "JP3 1–2"))):
         x1, y1, *_ = v["pins"][(ref, "1")]; x2, *_ = v["pins"][(ref, "2")]
         x1, y1, x2 = X0 + x1 * S, Y0 + y1 * S, X0 + x2 * S
         a(f'<rect x="{x1 - 7:.1f}" y="{y1 - 7:.1f}" width="{x2 - x1 + 14:.1f}" height="14" rx="2" class="jumper"/>')
@@ -657,6 +893,7 @@ def tables(v):
 # ---------- 3D data ----------
 def d3data(v):
     W, Hh = v["size"]; cx0, cz0 = W / 2, Hh / 2
+    elev = v["board3d"].get("elev", 0)     # board raised on standoffs (connectors underneath)
     mods = {}
     for mid, m in v["M"].items():
         d = m["d3"]
@@ -677,9 +914,9 @@ def d3data(v):
     for ob in v["onboard"]:
         a, b, c, e = ob["rect"]
         mod = dict(t=ob["t"], s=ob["s"], c=[round((a + c) / 2 - cx0, 2), round((b + e) / 2 - cz0, 2)],
-                   size=[round(c - a, 2), round(e - b, 2), round(1.6 + ob["top"], 2)], color=ob["color"], shape="onboard",
+                   size=[round(c - a, 2), round(e - b, 2), round(elev + 1.6 + ob["top"], 2)], color=ob["color"], shape="onboard",
                    ref=ob["ref"], rect=[round(a - cx0, 2), round(b - cz0, 2), round(c - cx0, 2), round(e - cz0, 2)],
-                   pins={n: [round(x - cx0, 2), round(1.6 + ob["top"], 2), round(y - cz0, 2)] for n, x, y in ob.get("tc", [])}, machine=False)
+                   pins={n: [round(x - cx0, 2), round(elev + 1.6 + ob["top"], 2), round(y - cz0, 2)] for n, x, y in ob.get("tc", [])}, machine=False)
         if "terminal" in ob:
             t0, u0, t1, u1 = ob["terminal"]
             mod["terminal"] = [round(t0 - cx0, 2), round(u0 - cz0, 2), round(t1 - cx0, 2), round(u1 - cz0, 2)]
@@ -692,15 +929,17 @@ def d3data(v):
         for sg in r["segs"]:
             wires.append(dict(h=r["ref"], title=r["title"], a=[r["ref"], sg["pin"]], b=[r["mod"], sg["mpin"]],
                               kind=sg["kind"], net=sg["net"]))
-    u1 = v["u1"]; xs = [x for x, _ in u1]; ys = sorted({y for _, y in u1})
-    board = dict(size=[W, Hh], sockets=[], socketH=8.5, plugs=[], wireY={}, mounts=[], headD=5.5, keep=[],
-                 devkit=dict(x=round((min(xs) + max(xs)) / 2 - cx0, 2), zTop=round(ys[0] - cz0, 2), zRow=round(ys[1] - cz0, 2)))
+    board = dict(size=[W, Hh], sockets=[], socketH=8.5, plugs=[], wireY={}, mounts=[], headD=5.5, keep=[])
+    u1 = v["u1"]
+    if u1:
+        xs = [x for x, _ in u1]; ys = sorted({y for _, y in u1})
+        board["devkit"] = dict(x=round((min(xs) + max(xs)) / 2 - cx0, 2), zTop=round(ys[0] - cz0, 2), zRow=round(ys[1] - cz0, 2))
     board.update(v["board3d"])
     return dict(mods=mods, conns=conns, wires=wires, mains=v["d3_mains"], src=v["src"],
-                jumpers=[["JP1", "1", "2"], ["JP3", "1", "2"]], labels=WIRE_LABEL, board=board)
+                jumpers=v.get("jumpers3d", [["JP1", "1", "2"], ["JP3", "1", "2"]]), labels=WIRE_LABEL, board=board)
 
 def build(v):
-    v["pins"], v["u1"] = read_pins(v["csv"])
+    v["pins"], v["u1"] = v["read"]() if "read" in v else read_pins(v["csv"])
     v["routes"] = lv_routes(v)
     nwires = sum(len(r["segs"]) for r in v["routes"])
     t = v["texts"]
@@ -727,7 +966,7 @@ def main():
     ap.add_argument("--check", action="store_true", help="fail if a page differs from a fresh build")
     ap.add_argument("--fragment", type=Path, help="also write the carrier page without the document wrapper")
     args = ap.parse_args()
-    for v in (carrier(), shield()):
+    for v in (carrier(), shield(), compact()):
         page, body, nh, nwires = build(v)
         out = v["out"]
         if args.check:

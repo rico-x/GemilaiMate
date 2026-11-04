@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GemilaiMate — варианты плат</title>
+<meta name="description" content="Три варианта платы GemilaiMate для Gemilai 3007Z: carrier, shield и Compact — подключение, 3D, закупка и монтаж.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Same drawing-sheet look as the wiring pages: title block, ruled sheets on a faint grid */
+:root {
+  --paper: #e9eeec; --sheet: #f8faf9; --ink: #14201d; --muted: #566562; --rule: #c6d0cc; --soft: #eef2f0;
+  --accent: #0b6b65; --accent-ink: #ffffff; --accent-soft: #d7ece9; --hazard: #c2410c; --hazard-soft: #fbe9df;
+  --pcb: #2d5b3d; --pcb-soft: #dde8e0; --part: #b8c5bf; --hi: #0b6b65; --mod: #8a6fc0;
+  --display: "Fira Sans Extra Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0e1413; --sheet: #141c1b; --ink: #dce5e2; --muted: #8b9b97; --rule: #2a3735; --soft: #1a2422;
+  --accent: #46b8ad; --accent-ink: #0b1312; --accent-soft: #173533; --hazard: #f07a45; --hazard-soft: #2a1a12;
+  --pcb: #24533a; --pcb-soft: #1b2c23; --part: #3d4c47; --hi: #46b8ad; --mod: #a58ee0;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #0e1413; --sheet: #141c1b; --ink: #dce5e2; --muted: #8b9b97; --rule: #2a3735; --soft: #1a2422;
+  --accent: #46b8ad; --accent-ink: #0b1312; --accent-soft: #173533; --hazard: #f07a45; --hazard-soft: #2a1a12;
+  --pcb: #24533a; --pcb-soft: #1b2c23; --part: #3d4c47; --hi: #46b8ad; --mod: #a58ee0;
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.55 var(--body);
+  background-image: linear-gradient(var(--rule) 1px, transparent 1px), linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 24px 24px; background-position: -1px -1px; }
+a { color: var(--accent); }
+code, .mono { font-family: var(--mono); font-size: .92em; }
+code { overflow-wrap: anywhere; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 28px 16px 56px; display: grid; gap: 20px; }
+.titleblock { display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; align-items: end;
+  background: var(--sheet); border: 1.5px solid var(--ink); padding: 18px 22px; }
+.titleblock h1 { margin: 0; font: 700 clamp(30px, 4.4vw, 46px)/1 var(--display); letter-spacing: .01em; text-wrap: balance; }
+.titleblock .lead { margin: 10px 0 0; max-width: 760px; }
+.titleblock nav { font-size: 14px; }
+.titleblock .meta { font: 500 12px/1.5 var(--mono); color: var(--muted); letter-spacing: .03em; }
+.titleblock .stamp { grid-row: span 2; align-self: center; font: 600 12px/1.35 var(--mono); text-transform: uppercase;
+  letter-spacing: .08em; color: var(--hazard); border: 1.5px solid var(--hazard); padding: 8px 12px; max-width: 220px; text-align: center; }
+@media (max-width: 640px) { .titleblock { grid-template-columns: 1fr; } .titleblock .stamp { grid-row: auto; max-width: none; } }
+.sheet { background: var(--sheet); border: 1.5px solid var(--ink); padding: 18px 20px; min-width: 0; }
+.sheet > h2:first-child, .sheet > header h2 { margin-top: 0; }
+h2 { font: 700 26px/1.1 var(--display); letter-spacing: .01em; margin: 0 0 12px; }
+h3 { font: 600 19px/1.2 var(--display); letter-spacing: .02em; margin: 18px 0 8px; }
+p { margin: 0 0 10px; max-width: 900px; }
+ul, ol { margin: 0 0 10px; padding-left: 22px; max-width: 900px; }
+li { margin: 3px 0; }
+.note { color: var(--muted); font-size: 13.5px; }
+.warn { background: var(--hazard-soft); border-left: 4px solid var(--hazard); padding: 10px 14px; margin: 10px 0; max-width: 900px; }
+.warn b:first-child { color: var(--hazard); }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; vertical-align: top; padding: 6px 8px; border-bottom: 1px solid var(--rule); }
+th { font: 600 12px/1.3 var(--mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); background: var(--soft); }
+td.num, th.num { text-align: right; font-family: var(--mono); white-space: nowrap; }
+td.refs { font-family: var(--mono); font-size: 13px; }
+td.fp { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+td.srch { white-space: nowrap; font-size: 13px; }
+tr.opt td { color: var(--muted); }
+tr.done td { text-decoration: line-through; text-decoration-color: var(--muted); color: var(--muted); }
+.tag { display: inline-block; font: 600 11px/1.6 var(--mono); padding: 0 6px; border: 1px solid currentColor; border-radius: 3px;
+  text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+.tag.base { color: var(--accent); } .tag.opt { color: var(--muted); } .tag.hz { color: var(--hazard); }
+.ctl { font: 500 14px var(--body); color: var(--ink); background: var(--sheet); border: 1.5px solid var(--ink); padding: 6px 10px; }
+input.ctl[type="number"] { width: 84px; font-family: var(--mono); }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin: 4px 0 14px; }
+.controls label { display: inline-flex; gap: 8px; align-items: center; }
+.ctl:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+figure { margin: 0; display: grid; gap: 6px; }
+figure img { width: 100%; height: auto; display: block; border: 1px solid var(--rule); background: #fff; }
+figcaption { font-size: 13.5px; color: var(--muted); }
+.specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0; border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
+.specs div { padding: 8px 10px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.specs b { display: block; font: 600 11.5px/1.3 var(--mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.specs span { font: 600 17px/1.3 var(--display); letter-spacing: .02em; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; padding: 0; list-style: none; }
+.links a { display: inline-block; font: 600 14px var(--display); letter-spacing: .04em; text-transform: uppercase; text-decoration: none;
+  color: var(--ink); border: 1.5px solid var(--ink); padding: 5px 10px; }
+.links a:hover { background: var(--ink); color: var(--sheet); }
+.links a.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+/* assembly steps */
+.step { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(280px, 1fr); gap: 18px 24px; }
+.step > div { min-width: 0; }
+@media (max-width: 860px) { .step { grid-template-columns: 1fr; } }
+.step h2 { display: flex; gap: 12px; align-items: baseline; }
+.step h2 .n { font: 600 14px/1 var(--mono); color: var(--accent-ink); background: var(--accent); padding: 5px 8px; }
+.checks { list-style: none; padding: 0; }
+.checks li { display: flex; gap: 10px; align-items: flex-start; padding: 4px 0; }
+.checks input { margin-top: 4px; width: 17px; height: 17px; accent-color: var(--accent); flex: none; }
+.checks li.ok span { color: var(--muted); text-decoration: line-through; }
+.progress { font: 600 13px var(--mono); color: var(--muted); }
+.map svg { width: 100%; height: auto; display: block; }
+.map .m-board { fill: var(--pcb-soft); stroke: var(--ink); stroke-width: .35; }
+.map .m-ant { fill: none; stroke: var(--muted); stroke-width: .25; stroke-dasharray: .8 .6; }
+.map .m-hole { fill: var(--sheet); stroke: var(--ink); stroke-width: .25; }
+.map .m-part { fill: var(--part); stroke: none; opacity: .75; }
+.map .m-hi { fill: var(--hi); stroke: var(--ink); stroke-width: .15; }
+.map .m-mod { fill: none; stroke: var(--mod); stroke-width: .3; stroke-dasharray: 1 .6; }
+.map .m-modl { fill: var(--mod); font: 600 2px var(--mono); }
+.map .m-pin1 { fill: var(--hazard); stroke: var(--sheet); stroke-width: .15; }
+.map .m-lab { fill: var(--ink); font: 600 2.1px var(--mono); paint-order: stroke; stroke: var(--pcb-soft); stroke-width: .5px; }
+.map .m-side { fill: var(--muted); font: 600 2.4px var(--mono); letter-spacing: .1px; }
+/* board size comparison */
+.sizes svg { width: 100%; max-width: 520px; height: auto; display: block; }
+.sizes .s-c { fill: none; stroke: var(--muted); stroke-width: .6; }
+.sizes .s-s { fill: none; stroke: var(--ink); stroke-width: .6; stroke-dasharray: 2 1.4; }
+.sizes .s-x { fill: var(--accent-soft); stroke: var(--accent); stroke-width: .9; }
+.sizes text { font: 600 4px var(--mono); fill: var(--ink); }
+.sizes .s-xt { fill: var(--accent); }
+.card { display: grid; gap: 8px; align-content: start; }
+.card h2 { margin: 0; }
+.card .ver { font: 600 12px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.card.now { border-color: var(--accent); box-shadow: inset 0 4px 0 var(--accent); }
+footer { font-size: 13px; color: var(--muted); }
+@media print {
+  body { background: #fff; color: #000; font-size: 12px; }
+  .wrap { padding: 0; gap: 10px; max-width: none; }
+  .titleblock nav, .controls, .links, .noprint { display: none !important; }
+  .sheet, .titleblock { border: 1px solid #000; break-inside: avoid-page; }
+  .step { break-inside: avoid; }
+  a { color: #000; text-decoration: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="titleblock">
+    <div>
+      <h1>GemilaiMate · платы</h1>
+      <p class="lead">Управление проливом Gemilai 3007Z на прошивке, основанной на GaggiMate. Три независимых варианта низковольтной платы; GPIO и логика прошивки общие, отличаются компоновка, контроллер и сборка.</p>
+    </div>
+    <div class="stamp">Прототипы · в железе не собраны</div>
+    <nav><b>Все платы</b> · <a href="compact.html">Compact</a> · <a href="compact-wiring.html">подключение и 3D</a> · <a href="compact-purchase.html">закупка</a> · <a href="compact-assembly.html">монтаж</a></nav>
+    <div class="meta">GemilaiMate v0.1.0 · carrier v0.1 · shield v0.2.4 · Compact 0.3.1 · Rico-X</div>
+  </header>
+<div class="grid2"><section class="sheet"><figure class="sizes"><svg viewBox="-2 -12 132 92" role="img" aria-label="Три платы в одном масштабе, совмещены по левому верхнему углу"><rect class="s-c" x="0" y="0" width="90" height="46"/><rect class="s-s" x="0" y="0" width="90" height="75"/><rect class="s-x" x="0" y="0" width="76" height="61" fill-opacity=".55"/><rect class="s-x" x="7" y="-7.15" width="18" height="7.15" fill-opacity=".25" stroke-dasharray="1.2 .8"/><text x="92" y="44">carrier 90×46</text><text x="92" y="74">shield 90×75</text><text class="s-xt" x="44" y="58">Compact 76×61</text><text x="27" y="-3" class="s-xt">антенна WROOM</text></svg><figcaption>Габариты текстолита в одном масштабе. Compact на 31% меньше shield по площади; антенна WROOM выступает за край на 7 мм.</figcaption></figure></section><section class="sheet"><h2>Общее для всех плат</h2><ul><li>Прошивка: <a href="https://github.com/Rico-X/GemilaiMate/releases/tag/v0.1.0">релиз v0.1.0</a> для carrier/shield; для Compact пакет собирается из исходников (<a href="https://github.com/Rico-X/GemilaiMate/blob/main/docs/development.md">сборка</a>).</li><li><a href="https://github.com/Rico-X/GemilaiMate/blob/main/docs/flashing.md">Прошивка через USB</a> и <a href="https://github.com/Rico-X/GemilaiMate/blob/main/docs/bench.md">низковольтный стенд</a> — до установки в машину.</li><li><a href="https://github.com/Rico-X/GemilaiMate/blob/main/docs/validation.md">Статус проверок и открытые вопросы</a>, <a href="https://github.com/Rico-X/GemilaiMate/blob/main/docs/components.md">общие комплектующие</a>.</li><li>Сеть 230 В на платы не заходит: нагрев остаётся на штатной плате Gemilai, помпа и клапан коммутируются внешними RobotDyn и SSR.</li></ul></section></div><div class="grid3"><section class="sheet card"><div class="ver">90×46 мм · 2 слоя · DevKit на жгутах</div><h2>Carrier v0.1</h2><p>Исходная плата: ESP32-S3 DevKit N8R8 в гнёздах, ADS1115/MAX31855/TXS0102 и силовые модули — на жгутах. 20 SMD-установок. Прошивка <code>controller</code>, ID=3.</p><ul class="links"><li><a class=primary href="wiring.html">Подключение и 3D</a></li><li><a href="https://github.com/Rico-X/GemilaiMate/blob/main/docs/assembly.md">Сборка</a></li><li><a href="https://github.com/Rico-X/GemilaiMate/tree/main/hardware/carrier">KiCad</a></li><li><a href="https://github.com/Rico-X/GemilaiMate/blob/main/hardware/carrier/manufacturing/gerber-drill.zip">Gerber</a></li></ul></section><section class="sheet card"><div class="ver">90×75 мм · 2 слоя · модули в гнёздах</div><h2>Shield v0.2.4</h2><p>DevKit N8R8 и три измерительных модуля вставляются в гнёзда — вместо трёх жгутов. RobotDyn и SSR — на управляющих жгутах. 20 SMD-установок. Прошивка <code>controller</code>, ID=3.</p><ul class="links"><li><a class=primary href="shield-wiring.html">Подключение и 3D</a></li><li><a href="shield.html">Рендеры и распиновка</a></li><li><a href="https://github.com/Rico-X/GemilaiMate/blob/main/docs/shield.md">Сборка</a></li><li><a href="https://github.com/Rico-X/GemilaiMate/tree/main/hardware/shield">KiCad</a></li></ul></section><section class="sheet card now"><div class="ver">76×61 мм · 2 слоя · WROOM на плате</div><h2>Compact 0.3.1</h2><p>ESP32-S3-WROOM-1-N16R8 и USB-C распаяны на плате, модули в гнёздах сверху, все кабельные JST снизу. Паяется вручную: 0805/1206, SOT-23, SOIC. 77 SMD-установок. Прошивка <code>controller-compact</code>, ID=4.</p><ul class="links"><li><a class=primary href="compact.html">Обзор и распиновка</a></li><li><a href="compact-wiring.html">Подключение и 3D</a></li><li><a href="compact-purchase.html">Закупка</a></li><li><a href="compact-assembly.html">Пошаговый монтаж</a></li></ul></section></div><section class="sheet"><h2>Сравнение</h2><div class="scroll"><table><tr><th></th><th>Carrier v0.1</th><th>Shield v0.2.4</th><th>Compact 0.3.1</th></tr><tr><td>Текстолит</td><td>90×46 мм</td><td>90×75 мм</td><td>76×61 мм + антенна 7 мм</td></tr><tr><td>Контроллер</td><td>DevKit N8R8 в гнёздах</td><td>DevKit N8R8 в гнёздах</td><td>WROOM-1-N16R8 на плате</td></tr><tr><td>ADS1115 / MAX31855 / TXS0102</td><td>на жгутах</td><td>в гнёздах</td><td>в гнёздах</td></tr><tr><td>Жгуты базовой машины</td><td>9 жгутов, 37 проводов</td><td>6 жгутов, 18 проводов</td><td>6 жгутов, 18 проводов</td></tr><tr><td>USB</td><td>на DevKit</td><td>на DevKit</td><td>USB-C на плате, только прошивка</td></tr><tr><td>Цель прошивки</td><td><code>controller</code>, ID=3</td><td><code>controller</code>, ID=3</td><td><code>controller-compact</code>, ID=4</td></tr><tr><td>SMD</td><td>20 шт.</td><td>20 шт.</td><td>77 шт., в том числе WROOM и USB-C с шагом 0,5 мм</td></tr><tr><td>Статус</td><td colspan="3">Файлы проверены (ERC/DRC, воспроизводимая сборка). Ни одна плата не собиралась и не испытывалась в машине.</td></tr></table></div></section>
+  <footer>GemilaiMate · Rico-X · <a href="https://github.com/Rico-X/GemilaiMate">github.com/Rico-X/GemilaiMate</a>. Страница собрана <code>tools/build_compact_pages.py</code> из файлов Compact 0.3.1 (2026-11-04). Код основан на GaggiMate (jniebuhr и участники); лицензии — в NOTICE.md и LICENSE.md.</footer>
+</div>
+
+</body>
+</html>

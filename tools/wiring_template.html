@@ -359,8 +359,10 @@ function init3d() {
   const pcbSide = mat(0x2d5b3d);
   const top = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.7 });
   new THREE.TextureLoader().load('%%BOARD_TEX%%', t => { t.anisotropy = 4; top.map = t; top.needsUpdate = true; renderer.render(scene, camera); });
+  /* E: board raised on standoffs when cable connectors sit underneath (compact) */
+  const E = B.elev || 0, bottomSide = new Set(B.bottom || []);
   const board = new THREE.Mesh(new THREE.BoxGeometry(B.size[0], 1.6, B.size[1]), [pcbSide, pcbSide, top, pcbSide, pcbSide, pcbSide]);
-  board.position.set(0, 0.8, 0); scene.add(board);
+  board.position.set(0, E + 0.8, 0); scene.add(board);
   const black = mat(0x18191b), gold = metal(0xc9a227), yellow = mat(0xe8be22);
   /* one strip per pin row: a two-row breakout gets two separate sockets */
   function strips(pts) {
@@ -372,26 +374,33 @@ function init3d() {
   for (const [ref, pins] of Object.entries(DATA.conns)) {
     const pts = Object.values(pins);
     if (sockets.has(ref)) {
-      for (const [x0, z0, x1, z1] of strips(pts)) box(x1 - x0 + 2.54, B.socketH, z1 - z0 + 2.54, black, (x0 + x1) / 2, 1.6 + B.socketH / 2, (z0 + z1) / 2);
+      for (const [x0, z0, x1, z1] of strips(pts)) box(x1 - x0 + 2.54, B.socketH, z1 - z0 + 2.54, black, (x0 + x1) / 2, E + 1.6 + B.socketH / 2, (z0 + z1) / 2);
       continue;
     }
     const xs = pts.map(p => p[0]), zs = pts.map(p => p[1]);
     const x0 = Math.min(...xs), x1 = Math.max(...xs), z0 = Math.min(...zs), z1 = Math.max(...zs);
-    box(x1 - x0 + 2.54, 2.5, z1 - z0 + 2.54, black, (x0 + x1) / 2, 1.6 + 1.25, (z0 + z1) / 2);
-    for (const [px, pz] of pts) cyl(0.32, 8, gold, px, 1.6 + 4, pz);
+    if (bottomSide.has(ref)) {   /* vertical cable header under the board */
+      box(x1 - x0 + 3.9, 6, z1 - z0 + 4.5, mat(0xf2efe6), (x0 + x1) / 2, E - 3, (z0 + z1) / 2);
+      continue;
+    }
+    box(x1 - x0 + 2.54, 2.5, z1 - z0 + 2.54, black, (x0 + x1) / 2, E + 1.6 + 1.25, (z0 + z1) / 2);
+    for (const [px, pz] of pts) cyl(0.32, 8, gold, px, E + 1.6 + 4, pz);
   }
   for (const [ref, a, b] of DATA.jumpers) {
     const p1 = DATA.conns[ref][a], p2 = DATA.conns[ref][b];
-    box(Math.abs(p2[0] - p1[0]) + 2.6, 6, 2.6, yellow, (p1[0] + p2[0]) / 2, 1.6 + 2.5 + 3, p1[1]);
+    box(Math.abs(p2[0] - p1[0]) + 2.6, 6, 2.6, yellow, (p1[0] + p2[0]) / 2, E + 1.6 + 2.5 + 3, p1[1]);
   }
-  /* mated cable plugs: nominal housings, red mark at contact 1 */
+  /* mated cable plugs: nominal housings, red mark at contact 1 (below the board when p.under) */
   for (const p of B.plugs) {
-    const [x0, z0, x1, z1] = p.box;
-    box(x1 - x0, p.y1 - p.y0, z1 - z0, mat(0x2b2e31), (x0 + x1) / 2, 1.6 + (p.y0 + p.y1) / 2, (z0 + z1) / 2);
-    if (p.pin1) box(2, 0.5, 2, mat(0xd0342c), p.pin1[0], 1.6 + p.y1 + 0.25, p.pin1[1]);
+    const [x0, z0, x1, z1] = p.box, base = p.under ? E : E + 1.6, s = p.under ? -1 : 1;
+    box(x1 - x0, p.y1 - p.y0, z1 - z0, mat(0x2b2e31), (x0 + x1) / 2, base + s * (p.y0 + p.y1) / 2, (z0 + z1) / 2);
+    if (p.pin1) box(2, 0.5, 2, mat(0xd0342c), p.pin1[0], base + s * (p.y1 + 0.25), p.pin1[1]);
   }
-  /* M3 heads at the PCB mounts */
-  for (const [x, z] of B.mounts) cyl(B.headD / 2, 2.2, mat(0xeeeadf), x, 1.6 + 1.1, z);
+  /* screw heads at the PCB mounts; insulating standoffs when the board is raised */
+  for (const [x, z] of B.mounts) {
+    cyl(B.headD / 2, 2.2, mat(0xeeeadf), x, E + 1.6 + 1.1, z);
+    if (E) cyl(2, E, mat(0xeeeadf), x, E / 2, z);
+  }
   /* access corridors that must stay free */
   for (const k of B.keep) {
     const [x0, z0, x1, z1] = k.box;
@@ -399,12 +408,19 @@ function init3d() {
     label(k.t, (x0 + x1) / 2, k.h + 5, (z0 + z1) / 2, 'keep');
   }
   /* DevKit on sockets (simplified body, real module footprint) */
-  const dk = B.devkit, dkY = 1.6 + 8.5 + 2.54, dkZ = (dk.zTop + dk.zRow) / 2;
-  box(55.9, 8.5, 2.5, black, dk.x, 1.6 + 4.25, dk.zTop);
-  box(55.9, 8.5, 2.5, black, dk.x, 1.6 + 4.25, dk.zRow);
-  box(62.8, 1.6, 28, mat(0x16191c), dk.x - 3.43, dkY + 0.8, dkZ);
-  box(18, 3.1, 25.5, metal(0x9aa1a6), dk.x + 15.27, dkY + 1.6 + 1.55, dkZ);
-  for (const dz of [-5.2, 5.2]) box(7.4, 3.2, 8.9, metal(0xb9bec2), dk.x - 31.53, dkY + 1.6 + 1.6, dkZ + dz);
+  if (B.devkit) {
+    const dk = B.devkit, dkY = 1.6 + 8.5 + 2.54, dkZ = (dk.zTop + dk.zRow) / 2;
+    box(55.9, 8.5, 2.5, black, dk.x, 1.6 + 4.25, dk.zTop);
+    box(55.9, 8.5, 2.5, black, dk.x, 1.6 + 4.25, dk.zRow);
+    box(62.8, 1.6, 28, mat(0x16191c), dk.x - 3.43, dkY + 0.8, dkZ);
+    box(18, 3.1, 25.5, metal(0x9aa1a6), dk.x + 15.27, dkY + 1.6 + 1.55, dkZ);
+    for (const dz of [-5.2, 5.2]) box(7.4, 3.2, 8.9, metal(0xb9bec2), dk.x - 31.53, dkY + 1.6 + 1.6, dkZ + dz);
+  }
+  /* WROOM soldered to the board (compact): shield can over the real module outline, antenna past the edge */
+  if (B.wroom) {
+    const [x0, z0, x1, z1] = B.wroom;
+    box(x1 - x0, 3.1, z1 - z0, metal(0x9aa1a6), (x0 + x1) / 2, E + 1.6 + 1.55, (z0 + z1) / 2);
+  }
   label(B.label, ...B.labelPos, 'conn');
   for (const [ref, pins] of Object.entries(DATA.conns)) {
     const p = Object.values(pins)[0];
@@ -419,9 +435,9 @@ function init3d() {
     const add = o => { if (m.machine) mainsGroup.push(o); return o; };
     if (m.shape === 'onboard') {
       /* breakout standing in shield sockets: header plastic, PCB, chip, optional terminal block */
-      const [x0, z0, x1, z1] = m.rect, y0 = 1.6 + B.socketH + 2.54;
+      const [x0, z0, x1, z1] = m.rect, y0 = E + 1.6 + B.socketH + 2.54;
       for (const [a0, b0, a1, b1] of strips(Object.values(DATA.conns[m.ref])))
-        box(a1 - a0 + 2.54, 2.54, b1 - b0 + 2.54, black, (a0 + a1) / 2, 1.6 + B.socketH + 1.27, (b0 + b1) / 2);
+        box(a1 - a0 + 2.54, 2.54, b1 - b0 + 2.54, black, (a0 + a1) / 2, E + 1.6 + B.socketH + 1.27, (b0 + b1) / 2);
       box(x1 - x0, 1.6, z1 - z0, mat(col), cx, y0 + 0.8, cz);
       box(Math.min(6, w * 0.3), 1.4, Math.min(5, d * 0.3), black, cx, y0 + 2.3, cz);
       if (m.terminal) {
@@ -486,7 +502,11 @@ function init3d() {
   /* via: plan-view waypoints [x, z] that keep a long run around the board instead of over it */
   function tube(a, b, kind, r, lift, info, spread, via) {
     const up1 = Math.max(10, lift), mid = a.clone().add(b).multiplyScalar(0.5);
-    const pts = via ? [a, a.clone().add(new THREE.Vector3(0, up1, 0)), ...via.map(v => new THREE.Vector3(v[0], up1 + 6, v[1])),
+    const under = E && a.y < E;   /* harness leaving a connector under the raised board: stay below it */
+    const pts = under ? [a, a.clone().add(new THREE.Vector3(0, -2, 0)),
+      new THREE.Vector3(mid.x + (spread || 0), Math.max(1.5, Math.min(a.y - 2, b.y)), mid.z),
+      b.clone().add(new THREE.Vector3(0, 6, 0)), b]
+      : via ? [a, a.clone().add(new THREE.Vector3(0, up1, 0)), ...via.map(v => new THREE.Vector3(v[0], up1 + 6, v[1])),
       b.clone().add(new THREE.Vector3(0, up1 * 0.7, 0)), b]
       : [a, a.clone().add(new THREE.Vector3(0, up1, 0)),
       mid.clone().add(new THREE.Vector3(spread || 0, up1 + 8 + a.distanceTo(b) * 0.08, 0)),

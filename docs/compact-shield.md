@@ -6,7 +6,7 @@
 
 Открыть [KiCad-проект](../hardware/shield-compact/gemilaimate-compact.kicad_pro). [Файлы прототипа](../hardware/shield-compact/manufacturing/), [шаблон сверху 1:1](../hardware/shield-compact/previews/assembly-1to1.pdf), [снизу 1:1](../hardware/shield-compact/previews/assembly-bottom-1to1.pdf), [отчёты](../hardware/shield-compact/reports/).
 
-Закупка с учётом прежнего комплекта: [что докупить для Compact](compact-purchase-delta.md).
+Закупка с учётом прежнего комплекта: [что докупить для Compact](compact-purchase-delta.md). Полная деталировка с расчётом количества — [страница закупки](https://rico-x.github.io/GemilaiMate/compact-purchase.html); ручная сборка — [пошаговый монтаж](compact-assembly.md) ([с картами позиций](https://rico-x.github.io/GemilaiMate/compact-assembly.html)); рендеры и распиновка — [обзор Compact](https://rico-x.github.io/GemilaiMate/compact.html).
 
 ## Размеры и размещение
 

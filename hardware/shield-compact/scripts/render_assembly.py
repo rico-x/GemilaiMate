@@ -24,15 +24,23 @@ for f in B.GetFootprints():
     if f.IsDNP():
         removed.append(f.GetReference())
         f.Models().clear()
-fd,name=tempfile.mkstemp(prefix='.fitted-',suffix='.kicad_pcb',dir=H)
-os.close(fd)
-temporary=Path(name)
-try:
-    p.SaveBoard(str(temporary),B)
-    for name,side,rotation in [('assembled-front','top','-50,0,-25'),('assembled-back','bottom','-50,0,25')]:
-        subprocess.run(['kicad-cli','pcb','render','--side',side,'--quality','high','--background','opaque','--rotate',rotation,'--perspective','-w','1600','-h','1000','-o',str(H/'previews'/(name+'.png')),str(temporary)],check=True)
-finally:
-    temporary.unlink(missing_ok=True)
-    for suffix in ['.kicad_pro','.kicad_prl']:
-        temporary.with_suffix(suffix).unlink(missing_ok=True)
+VIEWS=[('assembled-front','top','-50,0,-25',['--perspective']),('assembled-back','bottom','-50,0,25',['--perspective']),('assembled-top','top','0,0,0',[])]
+def render(board,views):
+    fd,name=tempfile.mkstemp(prefix='.fitted-',suffix='.kicad_pcb',dir=H)
+    os.close(fd)
+    temporary=Path(name)
+    try:
+        p.SaveBoard(str(temporary),board)
+        for name,side,rotation,extra in views:
+            subprocess.run(['kicad-cli','pcb','render','--side',side,'--quality','high','--background','opaque','--rotate',rotation,*extra,'-w','1600','-h','1000' if extra else '1300','-o',str(H/'previews'/(name+'.png')),str(temporary)],check=True)
+    finally:
+        temporary.unlink(missing_ok=True)
+        for suffix in ['.kicad_pro','.kicad_prl']:
+            temporary.with_suffix(suffix).unlink(missing_ok=True)
+render(B,VIEWS)
+# Assembly step 1: SMD only, before sockets, JST headers and modules.
+for f in B.GetFootprints():
+    if f.GetAttributes()&p.FP_THROUGH_HOLE:
+        f.Models().clear()
+render(B,[('smd-front','top','-50,0,-25',['--perspective']),('smd-top','top','0,0,0',[])])
 print('Rendered fitted assembly; DNP models omitted only in temporary view:',', '.join(removed))
