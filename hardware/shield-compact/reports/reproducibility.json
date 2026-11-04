@@ -1,0 +1,68 @@
+{
+  "revision": "0.3.1",
+  "source_commit": "da454cc11cbdfb2c46f2f7aa7804239d23483fdf",
+  "git_archive_sha256": "f754f48b4dcd19e115a962222411b97629c3ec314a5a4380eb686b5613347b3d",
+  "kicad_version": "10.0.7",
+  "runs": [
+    {
+      "run": 1,
+      "source": "Independent extraction of git archive da454cc",
+      "pcb_sha256": "a0fffebb91f3cf10278ab6e7622e5095bd3c5b7a6328d9a0f56894427fcac2ac",
+      "cam_archive_sha256": "a4555bc530eef0ea7e144fce44103001805780374b53b0f1479ddfa212efa3c7",
+      "footprint_library_sha256": "e43c2cead5190b56bb2e46a1c9239b7d4d75113812b6ddc3199b31beae517a47",
+      "library_unchanged": true,
+      "erc_drc_parity_clean": true,
+      "cam_byte_identical": true,
+      "controller_profiles_pass": true
+    },
+    {
+      "run": 2,
+      "source": "Independent extraction of git archive da454cc",
+      "pcb_sha256": "a0fffebb91f3cf10278ab6e7622e5095bd3c5b7a6328d9a0f56894427fcac2ac",
+      "cam_archive_sha256": "a4555bc530eef0ea7e144fce44103001805780374b53b0f1479ddfa212efa3c7",
+      "footprint_library_sha256": "e43c2cead5190b56bb2e46a1c9239b7d4d75113812b6ddc3199b31beae517a47",
+      "library_unchanged": true,
+      "erc_drc_parity_clean": true,
+      "cam_byte_identical": true,
+      "controller_profiles_pass": true
+    },
+    {
+      "run": 3,
+      "source": "Independent extraction of git archive da454cc",
+      "pcb_sha256": "a0fffebb91f3cf10278ab6e7622e5095bd3c5b7a6328d9a0f56894427fcac2ac",
+      "cam_archive_sha256": "a4555bc530eef0ea7e144fce44103001805780374b53b0f1479ddfa212efa3c7",
+      "footprint_library_sha256": "e43c2cead5190b56bb2e46a1c9239b7d4d75113812b6ddc3199b31beae517a47",
+      "library_unchanged": true,
+      "erc_drc_parity_clean": true,
+      "cam_byte_identical": true,
+      "controller_profiles_pass": true
+    }
+  ],
+  "all_passed": true,
+  "physical_tests": false,
+  "source_files_sha256": {
+    "hardware/shield-compact/scripts/capture_route.py": "69905108ac151ac39850720ce986bad03935e2df45d21a85fd4485aabb25121d",
+    "hardware/shield-compact/scripts/circuit.py": "e63b5d56158d1ab7ec3342158d32bee7e808236513d13a15f4bfd2d0eb78dd64",
+    "hardware/shield-compact/scripts/complete_route.py": "09bb854b05a8be2bc91da54ad29f1c2542d055ca8c6f9f3ff3947282ae03e597",
+    "hardware/shield-compact/scripts/component_dimensions.py": "4e0dd2734b0fecdfc79462dc0e968ececd0bbd46b320a1bc19b3e06dc77b4db5",
+    "hardware/shield-compact/scripts/finish.py": "e8dd2e02ec6e67e892609564368fce7c065455991155eadc8f4817453eeb9f01",
+    "hardware/shield-compact/scripts/generate.py": "caa96b892a828ce43afa2a9c5ad8659c459f4df9ef78e5a1e50f77a0085d5607",
+    "hardware/shield-compact/scripts/ground_integrity.py": "720f0122e29bbb7006dbcff2df2b05bcf0c182cc062c66fc32312084772aa2f1",
+    "hardware/shield-compact/scripts/import_route.py": "932a53794453094a739a2eb79ae763cc5d892b4b2fe0797e33c526c9d46d3a40",
+    "hardware/shield-compact/scripts/make_schematic.py": "4130dfda7e7fd6d88b157dbaa3fa6145af7aab4b7376ef7aa1b668f1d96e4e2a",
+    "hardware/shield-compact/scripts/make_template.py": "28834b3b692c4cf8a949a31431664db7340000d882ec040a904c17e2a490653d",
+    "hardware/shield-compact/scripts/optimize_placement.py": "902457db4e314f9d4a88039f59e19d924b467c4d418c1f2f2f1cd1e27db8fb0b",
+    "hardware/shield-compact/scripts/place.py": "ed843db669f391a98d958ad3f76682054e3be462e4ffd87e5bc45b370abac313",
+    "hardware/shield-compact/scripts/prepare_route.py": "35e87d4fc9a004a4f0d8582a0895d5ad3080fb8b67da94941512cf866a2f56df",
+    "hardware/shield-compact/scripts/render_assembly.py": "43cf4275293256f54524e64656243fe56f987aa7c6c843fe42c040d45c290544",
+    "hardware/shield-compact/scripts/stitch_ground.py": "f54b38c0b9922a49e7d93d215708fd5bb0394e4a37f1534dca1ccd7b5e250332",
+    "hardware/shield-compact/scripts/verify_geometry.py": "94ab9c324513ea9082eb88630a541179d98e93b14897dc4bcc13a37ff69ee639",
+    "tools/check_compact_shield.py": "8703b811a14d5d83be4f52d865b2164b7ffba6052a0854e39e07a502cf083773",
+    "tools/export_compact.py": "2daea4e0cb87dcf68064f5f097b99474bc151b52617c96dbea03d6aaa141a87c",
+    "tools/rebuild_compact.py": "085ba186c33fb38dff4a3df302aeab910b53fbd8fc7ad440c1c7a471564db09d",
+    "tools/resume_compact_route.py": "e973ec7e3fac8a69dce210297113b05a0c243d8e3dd00f54d68c322d80c177a2",
+    "tools/search_compact_2layer.py": "e32f359887473fe7525edff0e25476254b40e436ce74086e35ccbe9c06d61921",
+    "hardware/shield/scripts/kicad_runtime.py": "cf308975dc636430d5549fcd6bb2207ccc5c7528610e165e3e1c3593fa6c7d5b"
+  },
+  "method": "Three independent extractions of the committed Git archive; no warm footprint cache copied in. Full rebuild, fresh all-severity ERC/DRC/parity, CAM verification and controller profile check. Committed PCB and CAM ZIP reproduced byte-for-byte."
+}
