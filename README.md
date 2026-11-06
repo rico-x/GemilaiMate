@@ -56,6 +56,7 @@
 
 - [Обзор: рендеры, сборочные виды, распиновка разъёмов](https://rico-x.github.io/GemilaiMate/compact.html) ([файл](docs/compact.html)).
 - [Подключение: схема, 3D и жгуты](https://rico-x.github.io/GemilaiMate/compact-wiring.html) ([файл](docs/compact-wiring.html)).
+- [Gemilai 3007Z: гидравлика с двумя трёхходовыми клапанами и подключение Compact](https://gemilaimate-3007z-wiring.wiseparrot.chatgpt.site/) (закрытая страница Sites, [копия HTML в репозитории](docs/gemilai-3007z-hydraulics.html)).
 - [Закупка с расчётом количества](https://rico-x.github.io/GemilaiMate/compact-purchase.html) ([файл](docs/compact-purchase.html)) и [что докупить к прежнему комплекту](docs/compact-purchase-delta.md).
 - [Пошаговый монтаж с картами позиций](https://rico-x.github.io/GemilaiMate/compact-assembly.html) ([текстовая версия](docs/compact-assembly.md)).
 - [Описание, допуски, питание, GPIO и приёмка](docs/compact-shield.md), [требования](docs/plans/compact-shield.md), [размеры компонентов](docs/component-dimensions.md).

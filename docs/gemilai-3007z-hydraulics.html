@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Гидравлика Gemilai 3007Z с двумя трёхходовыми клапанами и подключение GemilaiMate Compact 0.3.1">
+<title>GemilaiMate 3007Z — гидравлика и подключение</title>
+<style>
+:root{color-scheme:light;--bg:#f6f5ef;--paper:#fffdf8;--ink:#172e2b;--muted:#495e58;--line:#d7ded4;--teal:#086956;--amber:#784808;--cold:#176699;--hot:#a03b28;--drain:#63615b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:1.02rem/1.65 system-ui,sans-serif}
+main,header>div{max-width:73rem;margin:auto;padding:clamp(1rem,4vw,3rem)}
+header{background:#173e37;color:#fffdf8}header p{max-width:52rem;color:#e0eee7;margin:.5rem 0}h1,h2,h3{line-height:1.15;text-wrap:balance}h1{font-size:clamp(2rem,6vw,4rem);margin:.45rem 0 1rem}h2{font-size:clamp(1.45rem,4vw,2.1rem);margin:0 0 .75rem}h3{font-size:1.12rem;margin:1.35rem 0 .35rem}
+.eyebrow{font-size:.86rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}a{color:var(--teal);text-underline-offset:.17em}a:focus-visible{outline:3px solid #167f6a;outline-offset:3px}
+nav{display:flex;gap:.6rem 1.4rem;flex-wrap:wrap;margin:0 0 1.6rem}nav a{font-weight:650}
+section{background:var(--paper);border:1px solid var(--line);border-radius:1rem;padding:clamp(.85rem,3vw,2rem);margin-bottom:1.2rem;scroll-margin-top:1rem}
+p{margin:.6rem 0 1rem}li+li{margin-top:.5rem}.note{padding:.85rem 1rem;border-left:.28rem solid #a96515;background:#fff1d9;color:#553500;margin:1rem 0}.muted,figcaption{color:var(--muted)}figure{margin:1.15rem 0}.scroll{overflow-x:auto}.diagram{display:block;width:100%;min-width:660px;height:auto;background:#f4f8f4;border:1px solid var(--line);border-radius:.75rem}
+.node{fill:#fffdf8;stroke:#8da69d;stroke-width:1.4}.box{fill:#e3f2e9;stroke:#529480;stroke-width:1.4}.label{fill:var(--ink);font-size:14px;font-weight:650;text-anchor:middle}.small{font-size:12px;font-weight:500}.pipe{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.cold{stroke:var(--cold)}.hot{stroke:var(--hot)}.drain{stroke:var(--drain);stroke-dasharray:5 6}.signal{stroke:var(--teal)}.caution{stroke:var(--amber);stroke-dasharray:5 5}
+.legend{display:flex;flex-wrap:wrap;gap:.2rem 1rem;margin:.4rem 0}.legend span::before{content:"";display:inline-block;width:1.1rem;vertical-align:middle;margin-right:.38rem;border-top:.2rem solid var(--key)}.legend .d::before{border-top-style:dashed}
+table{border-collapse:collapse;width:100%;text-align:left}th,td{border-bottom:1px solid var(--line);padding:.57rem .65rem;vertical-align:top}th{background:#e6f0e8}td:first-child{font-weight:650}code{font-size:.93em;background:#edf1e9;padding:.1em .25em;border-radius:.2em}
+footer{color:var(--muted);font-size:.88rem} @media print{body{background:#fff}header{background:#fff;color:#000}header p{color:#333}main,header>div{padding:1rem}nav{display:none}.diagram{min-width:0}figure,table,tr{break-inside:avoid}section{border:none;padding:0}}
+</style>
+</head>
+<body>
+<header><div>
+<p class="eyebrow">GemilaiMate Compact 0.3.1 · 6 ноября 2026</p>
+<h1>Gemilai 3007Z<br>Гидравлика и подключение</h1>
+<p>Адаптация схемы Turin Legato V2 с одной помпой и двумя штатными трёхходовыми клапанами. GemilaiMate управляет проливом, штатная плата сохраняет нагрев и пар.</p>
+</div></header>
+<main>
+<nav aria-label="Оглавление"><a href="#hydraulic">Гидравлика</a><a href="#wiring">Электрика</a><a href="#sequence">Проверка и запуск</a><a href="#sources">Источники</a></nav>
+
+<section id="hydraulic">
+<h2>Гидравлика с двумя клапанами</h2>
+<p>В исходной схеме Legato V2 поток после OPV разделяется до бойлера: одна ветка проходит через двухходовой клапан заполнения бойлера, другая через <strong>Steam 3WV</strong> подаёт холодную воду в паровой термоблок. В переделке Jochen убирает клапан заполнения из гидравлического тракта. Помпа через OPV подаёт воду напрямую в бойлер. Тройник на выходе бойлера делит уже нагретую воду между проливом и паром. <a href="#source-diagram">[1]</a> <a href="#source-discussion">[2]</a></p>
+
+<figure>
+<div class="scroll" tabindex="0" aria-label="Гидросхема, область с горизонтальной прокруткой">
+<svg class="diagram" viewBox="0 0 960 375" role="img" aria-labelledby="hyd-title hyd-desc">
+<title id="hyd-title">Гидравлика после переделки, одна помпа</title>
+<desc id="hyd-desc">Бак, помпа, отвод к датчику давления, OPV, бойлер и тройник. Верхняя ветка идёт через регулятор потока и Brew 3WV в группу. Нижняя через Steam 3WV, термоблок и паровой клапан к трубке. Оба трёхходовых клапана имеют слив в поддон.</desc>
+<defs>
+<marker id="cold-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path fill="#176699" d="M0 0L10 5L0 10Z"/></marker>
+<marker id="hot-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path fill="#a03b28" d="M0 0L10 5L0 10Z"/></marker>
+<marker id="drain-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path fill="#63615b" d="M0 0L10 5L0 10Z"/></marker>
+</defs>
+<g class="pipe cold" marker-end="url(#cold-arrow)">
+<path d="M86 166H112"/><path d="M204 166H242"/><path d="M314 166H343"/><path d="M221 166V88"/>
+</g>
+<g class="pipe hot" marker-end="url(#hot-arrow)">
+<path d="M445 166H478V117H511"/><path d="M478 166V240H511"/><path d="M631 117H658"/><path d="M764 117H834"/><path d="M631 240H658"/><path d="M764 240H788"/><path d="M868 240H885"/>
+</g>
+<g class="pipe drain" marker-end="url(#drain-arrow)">
+<path d="M711 93V60H929V315"/><path d="M571 264V339H840"/>
+</g>
+<circle cx="221" cy="166" r="4" fill="#176699"/><circle cx="478" cy="166" r="4" fill="#a03b28"/>
+<g class="node">
+<rect x="22" y="143" width="64" height="46" rx="8"/><rect x="112" y="143" width="92" height="46" rx="8"/>
+<rect x="242" y="143" width="72" height="46" rx="8"/><rect x="343" y="143" width="102" height="46" rx="8"/>
+<rect x="160" y="42" width="122" height="46" rx="8"/><rect x="511" y="93" width="120" height="48" rx="8"/>
+<rect x="834" y="93" width="104" height="48" rx="8"/><rect x="658" y="216" width="106" height="48" rx="8"/>
+<rect x="788" y="216" width="80" height="48" rx="8"/><rect x="885" y="216" width="55" height="48" rx="8"/>
+<rect x="840" y="315" width="100" height="48" rx="8"/>
+</g>
+<g class="box"><rect x="658" y="93" width="106" height="48" rx="8"/><rect x="511" y="216" width="120" height="48" rx="8"/></g>
+<g class="label">
+<text x="54" y="171">Бак</text><text x="158" y="171">Помпа</text><text x="278" y="171">OPV</text>
+<text x="394" y="171">Бойлер</text><text x="221" y="62">Датчик<tspan x="221" dy="16">давления</tspan></text>
+<text x="571" y="113">Регулятор<tspan x="571" dy="16">потока</tspan></text><text x="711" y="122">Brew 3WV</text>
+<text x="886" y="122">Группа*</text><text x="571" y="245">Steam 3WV</text><text x="711" y="245">Термоблок</text>
+<text class="small" x="828" y="236">Паровой<tspan x="828" dy="15">клапан</tspan></text>
+<text class="small" x="912" y="244">Трубка</text><text x="890" y="344">Поддон</text>
+<text class="small" x="496" y="188">Тройник</text>
+</g></svg>
+</div>
+<div class="legend"><span style="--key:var(--cold)">Подача до бойлера</span><span style="--key:var(--hot)">Ветви после бойлера</span><span class="d" style="--key:var(--drain)">Слив</span></div>
+<figcaption>* На исходном рисунке Jochen линия от Brew 3WV к группе проходит через узел бойлера. Отдельно сохранены регулятор потока и паровой клапан после термоблока. Положение тройников показано по схеме Legato V2. Возврат OPV не прорисован. <a href="#source-diagram">[1]</a></figcaption>
+</figure>
+<table>
+<thead><tr><th scope="col">Узел</th><th scope="col">Как подключается по схеме</th><th scope="col">Что сверить на 3007Z</th></tr></thead>
+<tbody>
+<tr><td>Датчик давления</td><td>Отвод сразу после помпы перед OPV. Это отдельный тройник от тройника паровой ветки.</td><td>Резьбу, уплотнение, размер трубки и допустимое давление. Точка показывает давление у помпы, при протоке оно может отличаться от давления у группы.</td></tr>
+<tr><td>Клапан заполнения</td><td>Двухходовой клапан исключается из гидравлического тракта. Линия после OPV идёт на вход бойлера.</td><td>Отличить его по трассировке трубок. Отдельно установить, влияет ли отключение его катушки на работу штатной платы.</td></tr>
+<tr><td>Brew 3WV</td><td>Ветвь от тройника через регулятор потока. Выход на группу, слив в поддон.</td><td>Функцию каждого порта и путь сброса при снятии питания.</td></tr>
+<tr><td>Steam 3WV</td><td>Ветвь от того же тройника к паровому термоблоку. Слив в поддон. За термоблоком остаётся паровой клапан.</td><td>Функцию портов и пригодность штатного клапана и трубок для горячей воды на входе.</td></tr>
+</tbody></table>
+</section>
+
+<section id="wiring">
+<h2>Распределение управления</h2>
+<p>В рабочих переделках из обсуждения штатная плата продолжает управлять нагревателями и паром. GemilaiMate получает команду пролива, читает давление и температуру, управляет помпой во время пролива и открывает клапан группы. Маркировки проводов штатной платы YZ‑CRM3007H‑P по доступному фото установить нельзя. <a href="#source-split">[3]</a> <a href="#source-upstream">[4]</a></p>
+
+<figure>
+<div class="scroll" tabindex="0" aria-label="Схема управления, область с горизонтальной прокруткой">
+<svg class="diagram" viewBox="0 0 960 285" role="img" aria-labelledby="el-title el-desc">
+<title id="el-title">Распределение сигналов и нагрузок между платами</title>
+<desc id="el-desc">Кнопка, давление, термопара и пять вольт подключаются к Compact. Выход J9 управляет SSR клапана группы, J8 связан с RobotDyn. Штатная плата управляет клапаном пара и нагревателями. Совместное управление помпой требует проверки и развязки.</desc>
+<defs>
+<marker id="sig-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path fill="#086956" d="M0 0L10 5L0 10Z"/></marker>
+<marker id="check-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path fill="#784808" d="M0 0L10 5L0 10Z"/></marker>
+</defs>
+<g class="pipe signal" marker-end="url(#sig-arrow)">
+<path d="M220 84H260"/><path d="M445 55H499"/><path d="M646 55H722"/><path d="M445 116H499"/><path d="M646 116H722"/><path d="M445 216H722"/>
+</g>
+<path class="pipe caution" d="M445 236H671V136H722" marker-end="url(#check-arrow)"/>
+<g class="node">
+<rect x="20" y="32" width="200" height="105" rx="9"/>
+<rect x="499" y="32" width="147" height="46" rx="9"/><rect x="499" y="93" width="147" height="46" rx="9"/>
+<rect x="722" y="32" width="218" height="46" rx="9"/><rect x="722" y="93" width="218" height="46" rx="9"/>
+<rect x="722" y="190" width="218" height="74" rx="9"/>
+</g>
+<g class="box"><rect x="260" y="32" width="185" height="105" rx="9"/><rect x="260" y="190" width="185" height="74" rx="9"/></g>
+<g class="label">
+<text x="120" y="57">Изолированные 5 В<tspan x="120" dy="21">Кнопка пролива</tspan><tspan x="120" dy="21">Давление / термопара</tspan></text>
+<text x="352" y="76">GemilaiMate Compact<tspan class="small" x="352" dy="21">J4 · J7 · J6 · MAX31855</tspan></text>
+<text x="573" y="60">J9 → внешний SSR</text><text x="573" y="121">J8 ↔ RobotDyn</text>
+<text x="831" y="60">Клапан группы</text><text x="831" y="121">Общая помпа</text>
+<text x="352" y="232">Штатная плата Gemilai</text>
+<text x="831" y="220">Steam 3WV и нагреватели<tspan class="small" x="831" dy="20">Штатные цепи управления</tspan></text>
+<text class="small" x="557" y="258">Запрос помпы для пара · проверить</text>
+</g></svg>
+</div>
+<figcaption>Стрелки показывают назначение блоков. Пунктир — требование к согласованию помпы, реализация зависит от штатной проводки. <a href="#source-wiring">[5]</a> <a href="#source-compact">[6]</a></figcaption>
+</figure>
+
+<div class="note"><strong>Общая помпа требует согласования.</strong> Если штатная плата включает помпу для пара или горячей воды, проследи эту цепь до выбора схемы подключения. Штатный силовой выход и выход RobotDyn нельзя просто соединить параллельно. Для обоих режимов нужен проверенный способ передачи запроса одному силовому каналу либо переключение с взаимной блокировкой. До проверки этого узла схему нельзя считать готовой монтажной схемой.</div>
+
+<h3>Разъёмы Compact 0.3.1</h3>
+<div class="scroll" tabindex="0" aria-label="Таблица разъёмов">
+<table>
+<thead><tr><th scope="col">Разъём</th><th scope="col">Контакты по порядку</th><th scope="col">Подключение</th></tr></thead>
+<tbody>
+<tr><td>J4 · питание</td><td>1 — 5V_IN, 2 — GND</td><td>Изолированный стабилизированный источник 5 В. Сверить полярность по плате.</td></tr>
+<tr><td>J6 · давление</td><td>1 — 5V, 2 — GND, 3 — OUT</td><td>Совместимый датчик на отводе после помпы. Сверить питание, уровни выхода и калибровку по паспорту конкретного датчика.</td></tr>
+<tr><td>J3 · MAX31855</td><td>1 — VIN, 2 — NC, 3 — GND, 4 — DO, 5 — CS, 6 — CLK</td><td>Термопара K идёт на клеммы K+ / K− модуля. Для этой сборки нужен изолированный спай. Положение выбора VIN и маркировку модуля проверить по документации платы.</td></tr>
+<tr><td>J7 · кнопки</td><td>1 — BREW, 2 — STEAM, 3 и 4 — GND</td><td>Кнопку пролива подключают после проверки контактов и изоляции от штатной цепи. В варианте со штатным паром оставить контакт STEAM свободным, пока способ считывания команды не проверен.</td></tr>
+<tr><td>J8 · RobotDyn</td><td>1 — 5V, 2 — GND, 3 — ZC, 4 — PSM, 5 и 6 — пусто</td><td>Управляющий жгут диммера помпы. Сверять обозначения на самом модуле, поскольку порядок контактов на ответной стороне может отличаться.</td></tr>
+<tr><td>J9 · SSR пролива</td><td>1 — 5V, 2 — GND, 3 — IN</td><td>Управляющий вход совместимого внешнего SSR для Brew 3WV. Распиновка трёхконтактного модуля и подключение двухконтактного входа SSR проверяются отдельно.</td></tr>
+<tr><td>J10 · нагрев</td><td>1 — 5V, 2 — GND, 3 — IN</td><td>По документации этой ревизии разъём не устанавливается. Штатный нагрев бойлера и термоблока работает через плату Gemilai.</td></tr>
+<tr><td>J11 · ALT</td><td>1 — 5V, 2 — GND, 3 — IN</td><td>Выход предусмотрен аппаратно. Привязка к Steam 3WV и блокировки помпы для 3007Z требуют отдельного проектирования и проверки прошивки.</td></tr>
+</tbody></table>
+</div>
+<p class="muted">Таблица относится к Compact 0.3.1. Для других carrier и shield нумерация отличается. J4–J11 — низковольтные разъёмы. Сетевые цепи идут через отдельные силовые модули. <a href="#source-compact">[6]</a> <a href="#source-adc">[7]</a></p>
+</section>
+
+<section id="sequence">
+<h2>Порядок проверки и запуска</h2>
+<ol>
+<li><strong>Зафиксировать исходное состояние.</strong> Обесточить машину, остудить, сбросить давление. Сфотографировать оба конца каждого жгута и соединения трубок. На фото подписать клапан заполнения, Brew 3WV, Steam 3WV, вход и выход бойлера, термоблок и дренажи. Записать маркировки катушек, помпы и силовых модулей.</li>
+<li><strong>Сверить гидравлику.</strong> Проследить каждый порт клапанов. До переноса паровой ветки подтвердить, что материалы, трубки и соединения рассчитаны на температуру и давление в новой точке. Убедиться, что оба сброса в поддон свободны. Клапан заполнения и его жгут сохранить для обратной сборки.</li>
+<li><strong>Проверить Compact на стенде.</strong> От изолированных 5 В проверить датчики и реакции J8/J9 с эквивалентами нагрузки. Проверить выключение выходов при включении, сбросе и обрыве датчиков. Отдельно проверить ZC и управляемое включение SSR.</li>
+<li><strong>Согласовать общую помпу.</strong> Составить таблицу запросов штатной платы для пролива, пара, горячей воды и ожидания. Подтвердить, какой канал коммутирует помпу в каждом режиме, и что при переключении нет обратного питания. Сетевые подключения выполняются по проверенной схеме с сохранением PE и штатной термозащиты.</li>
+<li><strong>Заполнить и проверить контур.</strong> Удалить воздух и проверить герметичность с холодной водой до подачи питания на нагреватели. Подтвердить наличие потока через группу и сброс в поддон после завершения пролива. Проверить показание датчика давления на атмосферном давлении и калибровку по эталону.</li>
+<li><strong>Проверить пролив, пар и переходы.</strong> По очереди проверить пролив, остановку, пар и возврат из пара к проливу. Убедиться, что помпа останавливается по команде, клапан группы сбрасывает давление, а при работе пара группа закрыта и в термоблок поступает вода. Проверить поведение при перезапуске и потере питания Compact.</li>
+</ol>
+<p class="note"><strong>Статус для 3007Z с платой YZ‑CRM3007H‑P.</strong> Гидравлическая схема основана на опубликованной переделке Legato V2. Распиновка относится к Compact 0.3.1. Схему штатных сетевых проводов, управление общей помпой и соответствие портов клапанов нужно подтвердить на экземпляре машины.</p>
+</section>
+
+<section id="sources">
+<h2>Источники и привязка к ревизии</h2>
+<ol>
+<li id="source-diagram"><a href="https://discord.com/channels/951416527721230336/1543643602440159273">Discord · Gemilai 3007Z / Apex V2 / Legato V2 — installation guide PDF request</a>. Первое вложение в начальном сообщении показывает штатную и изменённую схемы. Jochen подтвердил авторство в этой же теме.</li>
+<li id="source-discussion"><a href="https://discord.com/channels/951416527721230336/1451894271350145075/1452501112203776000">Discord · сообщение gullygossner в теме установки 3007 L/Z</a>. Описывает тройник после бойлера и паровой трёхходовой клапан. Мнение автора сообщения о заполнении по датчику давления в этой схеме не подтверждено.</li>
+<li id="source-split"><a href="https://discord.com/channels/951416527721230336/1451894271350145075/1532738654055825508">Discord · сообщение Benjos</a>. Разделение функций между штатной платой и GaggiMate в переделках 3007Z.</li>
+<li id="source-upstream"><a href="https://github.com/jniebuhr/gaggimate/issues/222">GitHub · обсуждение совместимости Apex V2</a>. Отчёт Jochen о переносе подачи в термоблок и отчёт tspencerdata о рабочей переделке с сохранением штатного управления нагревом и паром.</li>
+<li id="source-wiring"><a href="https://discord.com/channels/951416527721230336/1451894271350145075/1452620182307733514">Discord · рисунок жгута Jochen</a>. В нём один выход Valve. <a href="https://docs.gaggimate.eu/docs/wiring/">Документация GaggiMate по жгутам</a> поясняет типы соединений для оригинальных плат.</li>
+<li id="source-compact">GemilaiMate Compact 0.3.1, коммит <code>cb63a01</code>. <a href="https://github.com/rico-x/GemilaiMate/blob/cb63a01/docs/compact-shield.md">Описание Compact</a>, <a href="https://github.com/rico-x/GemilaiMate/blob/cb63a01/hardware/shield-compact/manufacturing/PINOUT.csv">PINOUT.csv</a>, <a href="https://github.com/rico-x/GemilaiMate/blob/cb63a01/hardware/shield-compact/manufacturing/HARNESSES.csv">HARNESSES.csv</a>.</li>
+<li id="source-adc"><a href="https://www.analog.com/en/products/max31855.html">Analog Devices · MAX31855</a> и <a href="https://docs.gaggimate.eu/docs/sourcing-pcb/">список компонентов GaggiMate</a> с требованием изолированной термопары.</li>
+</ol>
+</section>
+<footer>Схемы перерисованы на русском. Сетевой монтаж и проверка на реальной машине остаются отдельным этапом.</footer>
+</main>
+</body>
+</html>
